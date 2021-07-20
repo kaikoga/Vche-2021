@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  app:
+    image: vche-dev
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    volumes:
+      - .:/vche
+      - app_bundler:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - '3306:3306'
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - db_mysql:/var/lib/mysql
+
+volumes:
+  app_bundler:
+    driver: local
+  db_mysql:
+    driver: local
