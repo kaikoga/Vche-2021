@@ -68,12 +68,17 @@ Rails.application.config.sorcery.configure do |config|
   # Will register the time of last user logout, every logout.
   # Default: `true`
   #
-  # config.register_logout_time =
+  config.register_logout_time = false
 
   # Will register the time of last user action, every action.
   # Default: `true`
   #
-  # config.register_last_activity_time =
+  config.register_last_activity_time = false
+
+  # Will register the IP address of last user login, every login.
+  # Default: `true`
+  #
+  config.register_last_ip_address = false
 
   # -- external --
   # What providers are supported by this app
@@ -226,7 +231,7 @@ Rails.application.config.sorcery.configure do |config|
   # config.line.bot_prompt = "normal"
   # config.line.user_info_mapping = {name: 'displayName'}
 
-  
+
   # For information about Discord API
   # https://discordapp.com/developers/docs/topics/oauth2
   # config.discord.key = "xxxxxx"
