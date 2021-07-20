@@ -1,11 +1,13 @@
 version: '3.9'
 
 services:
-  app:
+  app: &app
     image: vche-dev
     build:
       context: .
       dockerfile: Dockerfile-dev
+    environment:
+      - "WEBPACKER_DEV_SERVER_HOST=webpack"
     volumes:
       - .:/vche
       - app_bundler:/usr/local/bundle
@@ -15,6 +17,17 @@ services:
       - db
     stdin_open: true
     tty: true
+  webpack:
+    <<: *app
+    command: "bin/webpack-dev-server"
+    environment:
+      - "WEBPACKER_DEV_SERVER_HOST=0.0.0.0"
+    ports:
+      - "3035:3035"
+    depends_on:
+      - app
+    tty: false
+    stdin_open: false
   db:
     image: mysql:8.0
     environment:

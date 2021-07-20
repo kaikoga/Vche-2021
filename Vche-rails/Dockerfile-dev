@@ -1,7 +1,12 @@
 FROM ruby:2.7.4
 
 ENV LANG=C.UTF-8
-RUN apt-get update -qq \
+
+# install nodejs, yarn, and other libraries
+RUN curl https://deb.nodesource.com/setup_12.x | bash \
+  && curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+  && apt-get update -qq \
   && apt-get install -y nodejs yarn default-mysql-client \
   && rm -rf /var/lib/apt/lists/*
 
