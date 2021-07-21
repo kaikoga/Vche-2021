@@ -18,8 +18,8 @@
         <td><%= user.crypted_password %></td>
         <td><%= user.salt %></td>
         <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to_if loyalty(user).update?, 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to_if loyalty(user).destroy?, 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
     </tbody>

@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    authorize! @user
   end
 
   # POST /users
@@ -33,6 +34,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
+    authorize! @user
     if @user.update(user_params)
       redirect_to @user, notice: 'User was successfully updated.'
     else
@@ -42,6 +44,7 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
+    authorize! @user
     @user.destroy
     redirect_to users_url, notice: 'User was successfully destroyed.'
   end
