@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Vche</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Vche</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <div id="nav">
+<body>
+<header>
+  <nav class="navbar navbar-expand-sm bg-light">
+    <ul class="navbar-nav">
       <% if current_user %>
-        <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
-        <%= link_to "Logout", :logout, method: :post %>
+        <li class="nav-item">
+          <%= link_to "Edit Profile", edit_user_path(current_user.id), class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Logout", :logout, method: :post, class: 'nav-link' %>
+        </li>
       <% else %>
-        <%= link_to "Register", new_user_path %> |
-        <%= link_to "Login", :login %>
+        <li class="nav-item">
+          <%= link_to "Register", new_user_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Login", :login, class: 'nav-link' %>
+        </li>
       <% end %>
-    </div>
-    <div>
-      <p id="notice"><%= flash[:notice] %></p>
-      <p id="alert"><%= flash[:alert] %></p>
-    </div>
-    <%= yield %>
-  </body>
+    </ul>
+  </nav>
+  <div>
+    <p id="notice"><%= flash[:notice] %></p>
+    <p id="alert"><%= flash[:alert] %></p>
+  </div>
+</header>
+<%= yield %>
+</body>
 </html>

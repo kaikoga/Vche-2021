@@ -1,16 +1,17 @@
 <h1>Users</h1>
 
-<table>
-  <thead>
+<div class="container-fluid">
+  <table>
+    <thead>
     <tr>
       <th>Email</th>
       <th>Crypted password</th>
       <th>Salt</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @users.each do |user| %>
       <tr>
         <td><%= user.email %></td>
@@ -21,9 +22,10 @@
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-<br>
+  <br>
 
-<%= link_to 'New User', new_user_path %>
+  <%= link_to 'New User', new_user_path %>
+</div>
