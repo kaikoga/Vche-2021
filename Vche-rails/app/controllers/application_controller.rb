@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  layout 'application_bootstrap'
+
   before_action :require_login
 
   private
