@@ -6,28 +6,23 @@ html
     meta[name="viewport" content="width=device-width,initial-scale=1"]
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
-    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_pack_tag 'application_bootstrap', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application_bootstrap', 'data-turbolinks-track': 'reload'
   body
     header
-      nav.navbar.navbar-expand-sm.bg-light
-        ul.navbar-nav
+      nav
+        ul
+          li Vche
           - if current_user
-            li.nav-item
-              = link_to "Edit Profile", edit_user_path(current_user.id), class: 'nav-link'
-            li.nav-item
-              = link_to "Logout", :logout, method: :post, class: 'nav-link'
+            li.header__username = current_user.email
+            li = link_to "Edit Profile", edit_user_path(current_user.id), class: 'nav-link'
+            li = link_to "Logout", :logout, method: :post, class: 'nav-link'
           - else
-            li.nav-item
-              = link_to "Register", new_user_path, class: 'nav-link'
-            li.nav-item
-              = link_to "Login", :login, class: 'nav-link'
-        - if current_user
-          span.navbar-text
-            = current_user.email
+            li = link_to "Register", new_user_path, class: 'nav-link'
+            li = link_to "Login", :login, class: 'nav-link'
       div
-        p#notice
-          = flash[:notice]
-        p#alert
-          = flash[:alert]
+        - if flash[:notice]
+          p#notice = flash[:notice]
+        - if flash[:alert]
+          p#alert = flash[:alert]
     = yield

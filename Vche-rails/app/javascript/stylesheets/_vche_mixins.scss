@@ -1,0 +1,36 @@
+@mixin font--medium {
+  font-size: 1rem;
+}
+
+@mixin font--large {
+  font-size: 1.4rem;
+}
+
+@mixin font--larger {
+  font-size: 2rem;
+}
+
+@mixin button {
+  @include reset--font;
+  display: inline-block;
+  background: $primary_bg-light;
+  border: none;
+  padding: 0.5em 1.5em;
+  border-radius: 2em;
+  color: $primary_text;
+  &:hover {
+    background: $primary_bg-lighter;
+    color: $primary_text-lighter;
+  }
+}
+
+@mixin reset--list {
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+
+@mixin reset--font {
+  text-decoration: none;
+  appearance: none;
+}

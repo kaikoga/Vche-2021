@@ -1,0 +1,75 @@
+@import '_vche_variables';
+@import '_vche_mixins';
+
+body {
+  background: $fill;
+}
+
+h1 {
+  color: $primary_text-light;
+  background: $primary_bg-light;
+}
+
+header {
+  nav {
+    @include font--large;
+    background: $primary_bg;
+    ul {
+      display: inline-block;
+      @include reset--list;
+      li {
+        display: inline-block;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        a {}
+      }
+    }
+    .header__username {
+      @include font--medium;
+      color: $text-lighter
+    }
+  }
+}
+
+#notice {
+  background: $primary_bg-lighter;
+  margin: 0px;
+}
+
+#alert {
+  background: $primary_bg-light;
+  margin: 0px;
+}
+
+a {
+  @include button;
+}
+
+a+a {
+  margin-left: 1em;
+}
+input[type="submit"] {
+  @include button;
+  margin-left: 200px;
+}
+
+form {
+  .field {
+    margin: 1rem 0px;
+    label {
+      width: 200px;
+      padding-right: 1rem;
+      text-align: right;
+    }
+    input {
+      width: 400px;
+      padding: 0.5em 1.5em;
+      border-radius: 2em;
+      border: $primary_bg solid 1px;
+      background: $fill-light;
+      &:hover {
+        background: $fill-lighter;
+      }
+    }
+  }
+}
