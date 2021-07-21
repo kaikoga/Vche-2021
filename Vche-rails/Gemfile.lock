@@ -65,6 +65,8 @@ GEM
     annotate (3.1.1)
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
+    banken (1.0.3)
+      activesupport (>= 3.0.0)
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.7.5)
@@ -238,6 +240,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  banken
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
