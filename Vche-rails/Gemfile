@@ -22,6 +22,7 @@ gem 'turbolinks', '~> 5'
 
 gem 'slim'
 gem 'banken'
+gem 'draper'
 gem 'enumerize'
 gem 'sorcery'
 
