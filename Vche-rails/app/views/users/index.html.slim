@@ -1,20 +1,8 @@
 h1 = User.model_name.human
-div
-  table
-    thead
-      tr
-        th = User.human_attribute_name(:email)
-        th = User.human_attribute_name(:display_name)
-        th = User.human_attribute_name(:user_role)
-        th[colspan="3"]
-    tbody
-      - @users.each do |user|
-        tr
-          td = user.email
-          td = user.display_name
-          td = user.user_role_text
-          td = link_to 'Show', user
-          td = link_to_if loyalty(user).update?, 'Edit', edit_user_path(user)
-          td = link_to_if loyalty(user).destroy?, 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
-  br
-  = link_to 'New User', new_user_path
+
+.users
+  - @users.each do |user|
+    .user--card
+      span.email = user.email
+      span.display_name = user.display_name
+      = link_to 'Show', user

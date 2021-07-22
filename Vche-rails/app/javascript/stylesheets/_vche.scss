@@ -81,3 +81,21 @@ form {
     }
   }
 }
+
+.user--card {
+  @include panel;
+  .email {
+    @include font--smaller;
+    color: $text-lighter;
+  }
+  .display_name {
+  }
+}
+
+.users {
+  display: flex;
+  flex-wrap: wrap;
+  .user--card {
+    display: inline-block;
+  }
+}
