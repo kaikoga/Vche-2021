@@ -25,6 +25,7 @@ gem 'activeadmin'
 gem 'banken'
 gem 'draper'
 gem 'enumerize'
+gem 'public_uid'
 gem 'sorcery'
 
 # Use Active Storage variant

@@ -190,6 +190,8 @@ GEM
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
     public_suffix (4.0.6)
+    public_uid (2.1.1)
+      activerecord (> 4.2)
     puma (5.3.2)
       nio4r (~> 2.0)
     racc (1.5.2)
@@ -314,6 +316,7 @@ DEPENDENCIES
   enumerize
   listen (~> 3.3)
   mysql2
+  public_uid
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4)
