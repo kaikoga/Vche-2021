@@ -22,6 +22,7 @@ gem 'turbolinks', '~> 5'
 
 gem 'slim'
 gem 'banken'
+gem 'enumerize'
 gem 'sorcery'
 
 # Use Active Storage variant
