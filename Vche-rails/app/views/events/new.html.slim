@@ -1,0 +1,4 @@
+h1 = "#{Event.model_name.human}を新しく登録する"
+div
+  = render 'form', event: @event
+  = link_to 'Back', events_path

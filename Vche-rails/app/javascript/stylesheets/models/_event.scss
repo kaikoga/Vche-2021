@@ -1,0 +1,27 @@
+.event {
+  @include keyvaluechart;
+  .field {
+    @include keyvaluechart__keyvalue;
+    label {
+      @include keyvaluechart__key;
+    }
+    .value {
+      @include keyvaluechart__value;
+    }
+  }
+}
+
+.event--card {
+  @include panel;
+  .hashtag {
+    font-size: $font-size-smaller;
+    color: $text-lighter;
+  }
+}
+
+.events {
+  @include cards;
+  .event--card {
+    @include card;
+  }
+}

@@ -43,4 +43,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 
   validates :email, uniqueness: true
+
+  has_many :created_events, class_name: 'Event', foreign_key: :created_user_id
+  has_many :updated_events, class_name: 'Event', foreign_key: :updated_user_id
 end

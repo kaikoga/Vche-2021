@@ -1,0 +1,10 @@
+h1 = Event.model_name.human
+
+.events
+  - @events.each do |event|
+    .event--card
+      span.name = event.name
+      span.hashtag = event.hashtag
+      = link_to 'Show', event
+
+= link_to 'New', new_event_path

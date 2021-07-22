@@ -32,4 +32,7 @@ class Event < ApplicationRecord
 
   include Enums::Platform
   include Enums::Visibility
+
+  belongs_to :created_user, class_name: 'User'
+  belongs_to :updated_user, class_name: 'User'
 end
