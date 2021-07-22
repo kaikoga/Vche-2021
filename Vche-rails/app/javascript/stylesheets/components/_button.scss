@@ -1,0 +1,13 @@
+@mixin button {
+  @include reset--font;
+  display: inline-block;
+  background: $primary_bg-light;
+  border: none;
+  padding: 0.5em 1.5em;
+  border-radius: 2em;
+  color: $primary_text;
+  &:hover {
+    background: $primary_bg-lighter;
+    color: $primary_text-lighter;
+  }
+}

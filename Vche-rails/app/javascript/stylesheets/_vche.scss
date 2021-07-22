@@ -1,5 +1,13 @@
-@import '_vche_variables';
-@import '_vche_mixins';
+@import '_variables';
+
+@import 'mixins/_reset';
+
+@import 'components/_button';
+@import 'components/_card';
+@import 'components/_keyvaluechart';
+@import 'components/_panel';
+
+@import 'models/_user';
 
 body {
   background: $fill;
@@ -12,7 +20,7 @@ h1 {
 
 header {
   nav {
-    @include font--large;
+    font-size: $font-size-large;
     background: $primary_bg;
     ul {
       display: inline-block;
@@ -25,7 +33,7 @@ header {
       }
     }
     .header__username {
-      @include font--medium;
+      font-size: $font-size;
       color: $text-lighter
     }
   }
@@ -48,6 +56,7 @@ a {
 a+a {
   margin-left: 1em;
 }
+
 input[type="submit"] {
   @include button;
   margin-left: 200px;
@@ -66,36 +75,5 @@ form {
     .field_with_errors {
       display: inline-block;
     }
-  }
-}
-
-.user {
-  @include keyvaluechart;
-  .field {
-    @include keyvaluechart__keyvalue;
-    label {
-      @include keyvaluechart__key;
-    }
-    .value {
-      @include keyvaluechart__value;
-    }
-  }
-}
-
-.user--card {
-  @include panel;
-  .email {
-    @include font--smaller;
-    color: $text-lighter;
-  }
-  .display_name {
-  }
-}
-
-.users {
-  display: flex;
-  flex-wrap: wrap;
-  .user--card {
-    display: inline-block;
   }
 }

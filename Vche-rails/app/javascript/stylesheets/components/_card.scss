@@ -1,0 +1,8 @@
+@mixin cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@mixin card {
+  display: inline-block;
+}

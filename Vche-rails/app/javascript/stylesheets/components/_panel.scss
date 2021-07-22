@@ -1,0 +1,6 @@
+@mixin panel {
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 2em;
+  border: $primary_bg solid 1px;
+}

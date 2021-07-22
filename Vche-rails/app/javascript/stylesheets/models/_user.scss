@@ -1,0 +1,29 @@
+.user {
+  @include keyvaluechart;
+  .field {
+    @include keyvaluechart__keyvalue;
+    label {
+      @include keyvaluechart__key;
+    }
+    .value {
+      @include keyvaluechart__value;
+    }
+  }
+}
+
+.user--card {
+  @include panel;
+  .email {
+    font-size: $font-size-smaller;
+    color: $text-lighter;
+  }
+  .display_name {
+  }
+}
+
+.users {
+  @include cards;
+  .user--card {
+    @include card;
+  }
+}
