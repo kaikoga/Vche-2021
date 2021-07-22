@@ -21,6 +21,7 @@ ja:
         repeat: 繰り返しタイプ
         repeat_until: 繰り返し期限
   attributes:
+    event_schedules: イベント予定
     hashtag: ハッシュタグ
     name: 名前
     platform: プラットフォーム

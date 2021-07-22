@@ -1,0 +1,7 @@
+.events
+  - events.each do |event|
+    .event--card
+      span.name = event.name
+      span.hashtag = event.hashtag
+      = link_to 'Show', event
+      = link_to 'Edit', edit_event_path(event) if edit

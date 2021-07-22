@@ -1,0 +1,7 @@
+.event_schedules
+  - event_schedules.each do |event_schedule|
+    .event_schedule--card
+      span.start_at = event_schedule.start_at
+      span.end_at = event_schedule.end_at
+      = link_to 'Show', [event, event_schedule]
+      = link_to 'Edit', edit_event_event_schedule_path(event, event_schedule) if edit
