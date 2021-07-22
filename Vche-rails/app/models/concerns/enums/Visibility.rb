@@ -4,7 +4,7 @@ module Enums::Visibility
   included do
     enumerize :visibility, in: [
         :public,
-        :guest,
+        :shared,
         :follow,
         :invite
     ], default: :invite

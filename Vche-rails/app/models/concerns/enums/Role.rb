@@ -5,8 +5,8 @@ module Enums::Role
     enumerize :role, in: [
         :owner,
         :instance_owner,
+        :performer,
         :staff,
-        :collaborator,
         :participant,
         :visitor,
         :viewer

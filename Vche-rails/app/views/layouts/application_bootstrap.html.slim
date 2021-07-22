@@ -15,11 +15,11 @@ html
           li Vche
           - if current_user
             li.header__username = current_user.email
-            li = link_to "Edit Profile", edit_user_path(current_user.id), class: 'nav-link'
-            li = link_to "Logout", :logout, method: :post, class: 'nav-link'
+            li = link_to "アカウント設定", edit_user_path(current_user.id), class: 'nav-link'
+            li = link_to "ログアウト", :logout, method: :post, class: 'nav-link'
           - else
-            li = link_to "Register", new_user_path, class: 'nav-link'
-            li = link_to "Login", :login, class: 'nav-link'
+            li = link_to "新規登録", new_user_path, class: 'nav-link'
+            li = link_to "ログイン", :login, class: 'nav-link'
       div
         - if flash[:notice]
           p#notice = flash[:notice]

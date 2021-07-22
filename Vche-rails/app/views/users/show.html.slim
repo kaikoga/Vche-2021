@@ -1,21 +1,23 @@
+h1 = "#{User.model_name.human}詳細"
+
 .user
   .field
-    label Email:
+    label = User.human_attribute_name(:email)
     .value = @user.email
   .field
-    label Uid:
+    label = User.human_attribute_name(:uid)
     .value = @user.uid
   .field
-    label Display Name:
+    label = User.human_attribute_name(:display_name)
     .value = @user.display_name
   .field
-    label Visibility:
-    .value = @user.visibility
+    label = User.human_attribute_name(:visibility)
+    .value = @user.visibility_text
   .field
-    label User Role:
-    .value = @user.user_role
+    label = User.human_attribute_name(:user_role)
+    .value = @user.user_role_text
   .field
-    label Last Login At:
+    label = User.human_attribute_name(:last_login_at)
     .value = @user.last_login_at
   = link_to 'Edit', edit_user_path(@user)
   = link_to 'Back', users_path

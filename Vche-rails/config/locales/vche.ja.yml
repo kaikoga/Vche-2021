@@ -1,0 +1,45 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        email: ログインID
+        display_name: 表示する名前
+        user_role: ユーザータイプ
+        password: パスワード
+        password_confirmation: パスワード（確認する）
+        last_login_at: 最終ログイン
+  attributes:
+    uid: UID
+    visibility: 公開する範囲
+  enumerize:
+    defaults:
+      platform:
+        vrchat: VRChat
+      resolution:
+        scheduled: 開催予定
+        moved: 日程変更
+        canceled: 中止
+        completed: 終了
+      role:
+        owner: 主催
+        instance_owner: インスタンスオーナー
+        performer: 出演者
+        staff: スタッフ
+        participant: 参加者
+        visitor: 訪問者
+        viewer: 観客
+      visibility:
+        public: 公開
+        shared: 共有可能
+        follow: 個人ページのみ表示
+        invite: 非公開
+    user:
+      user_role:
+        organizer: 主催
+        staff: スタッフ
+        user: 一般人
+      admin_role:
+        none: 一般ユーザー
+        admin: 管理ユーザー
