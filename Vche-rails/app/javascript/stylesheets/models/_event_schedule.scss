@@ -1,0 +1,28 @@
+.event_schedule {
+  @include keyvaluechart;
+  .field {
+    @include keyvaluechart__keyvalue;
+    label {
+      @include keyvaluechart__key;
+    }
+    .value {
+      @include keyvaluechart__value;
+    }
+  }
+}
+
+.event_schedule--card {
+  @include panel;
+  .start_at, .end_at  {
+    font-size: $font-size-small;
+    color: $text-light;
+    margin: 0em 1em;
+  }
+}
+
+.event_schedules {
+  @include cards;
+  .event_schedule--card {
+    @include card;
+  }
+}

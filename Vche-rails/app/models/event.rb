@@ -35,4 +35,6 @@ class Event < ApplicationRecord
 
   belongs_to :created_user, class_name: 'User'
   belongs_to :updated_user, class_name: 'User'
+
+  has_many :event_schedules
 end

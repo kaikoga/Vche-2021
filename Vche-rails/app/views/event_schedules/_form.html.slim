@@ -1,0 +1,32 @@
+= form_with(model: [event, event_schedule]) do |form|
+  - if event_schedule.errors.any?
+    #error_explanation
+      h2
+        = pluralize(event_schedule.errors.count, "error")
+        |  prohibited this event_schedule from being saved:
+      ul1
+        - event_schedule.errors.each do |error|
+          li error.full_message
+  .field
+    = form.label :visibility
+    = form.text_field :visibility
+  .field
+    = form.label :assemble_at
+    = form.datetime_field :assemble_at
+  .field
+    = form.label :open_at
+    = form.datetime_field :open_at
+  .field
+    = form.label :start_at
+    = form.datetime_field :start_at
+  .field
+    = form.label :end_at
+    = form.datetime_field :end_at
+  .field
+    = form.label :close_at
+    = form.datetime_field :close_at
+  .field
+    = form.label :repeat_until
+    = form.datetime_field :repeat_until
+  .actions
+    = form.submit

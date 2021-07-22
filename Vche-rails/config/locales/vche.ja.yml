@@ -1,8 +1,9 @@
 ja:
   activerecord:
     models:
-      user: ユーザー
       event: イベント
+      event_schedule: イベント予定
+      user: ユーザー
     attributes:
       user:
         email: ログインID
@@ -11,7 +12,14 @@ ja:
         password: パスワード
         password_confirmation: パスワード（確認する）
         last_login_at: 最終ログイン
-      event:
+      event_schedule:
+        assemble_at: 集合日時
+        open_at: 開場日時
+        start_at: 開始日時
+        end_at: 終了日時
+        close_at: 解散日時
+        repeat: 繰り返しタイプ
+        repeat_until: 繰り返し期限
   attributes:
     hashtag: ハッシュタグ
     name: 名前
