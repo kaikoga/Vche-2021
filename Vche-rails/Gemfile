@@ -26,6 +26,7 @@ gem 'banken'
 gem 'draper'
 gem 'enumerize'
 gem 'public_uid'
+gem 'rails-i18n'
 gem 'sorcery'
 
 # Use Active Storage variant
