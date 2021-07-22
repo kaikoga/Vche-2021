@@ -34,3 +34,34 @@
   text-decoration: none;
   appearance: none;
 }
+
+@mixin keyvaluechart {
+  margin: 1rem 0px;
+}
+
+@mixin keyvaluechart__keyvalue {
+  margin: 1rem 0px;
+}
+
+@mixin keyvaluechart__key {
+  display: inline-block;
+  width: 200px;
+  padding-right: 1rem;
+  text-align: right;
+  vertical-align: middle;
+}
+
+@mixin keyvaluechart__value {
+  display: inline-block;
+  vertical-align: middle;
+  word-break: break-all;
+  width: 400px;
+  padding: 0.5em 1.5em;
+  border-radius: 2em;
+  border: $primary_bg solid 1px;
+  background: $fill-light;
+  &:hover {
+    background: $fill-lighter;
+  }
+}
+

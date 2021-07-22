@@ -54,22 +54,30 @@ input[type="submit"] {
 }
 
 form {
+  @include keyvaluechart;
   .field {
-    margin: 1rem 0px;
+    @include keyvaluechart__keyvalue;
     label {
-      width: 200px;
-      padding-right: 1rem;
-      text-align: right;
+      @include keyvaluechart__key;
     }
-    input {
-      width: 400px;
-      padding: 0.5em 1.5em;
-      border-radius: 2em;
-      border: $primary_bg solid 1px;
-      background: $fill-light;
-      &:hover {
-        background: $fill-lighter;
-      }
+    input, select {
+      @include keyvaluechart__value;
+    }
+    .field_with_errors {
+      display: inline-block;
+    }
+  }
+}
+
+.user {
+  @include keyvaluechart;
+  .field {
+    @include keyvaluechart__keyvalue;
+    label {
+      @include keyvaluechart__key;
+    }
+    .value {
+      @include keyvaluechart__value;
     }
   }
 }

@@ -1,12 +1,21 @@
-div
-  p
-    strong Email:
-    = @user.email
-  p
-    strong Crypted password:
-    = @user.crypted_password
-  p
-    strong Salt:
-    = @user.salt
+.user
+  .field
+    label Email:
+    .value = @user.email
+  .field
+    label Uid:
+    .value = @user.uid
+  .field
+    label Display Name:
+    .value = @user.display_name
+  .field
+    label Visibility:
+    .value = @user.visibility
+  .field
+    label User Role:
+    .value = @user.user_role
+  .field
+    label Last Login At:
+    .value = @user.last_login_at
   = link_to 'Edit', edit_user_path(@user)
   = link_to 'Back', users_path

@@ -11,6 +11,15 @@
     = form.label :email
     = form.text_field :email
   .field
+    = form.label :visibility
+    = form.select :visibility, User.visibility.options
+  .field
+    = form.label :display_name
+    = form.text_field :display_name
+  .field
+    = form.label :user_role
+    = form.select :user_role, User.user_role.options
+  .field
     = form.label :password
     = form.password_field :password
   .field
