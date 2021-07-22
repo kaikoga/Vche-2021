@@ -1,0 +1,13 @@
+.editor_fields {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  .editor_field {
+    display: inline-block;
+    font-size: $font-size-small;
+    color: $text-lighter;
+    label, span.value {
+      margin: 0em 1em;
+    }
+  }
+}

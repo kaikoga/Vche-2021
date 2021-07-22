@@ -13,18 +13,6 @@ h1 = "#{Event.model_name.human}詳細"
   .field
     label = Event.human_attribute_name(:visibility)
     .value = @event.visibility_text
-  .field
-    label = Event.human_attribute_name(:created_user)
-    .value = @event.created_user.display_name
-  .field
-    label = Event.human_attribute_name(:created_at)
-    .value = @event.created_at
-  .field
-    label = Event.human_attribute_name(:updated_user)
-    .value = @event.updated_user.display_name
-  .field
-    label = Event.human_attribute_name(:updated_at)
-    .value = @event.updated_at
 
   .field
     label = Event.human_attribute_name(:event_schedules)
@@ -32,3 +20,5 @@ h1 = "#{Event.model_name.human}詳細"
 
   = link_to 'Edit', edit_event_path(@event)
   = link_to 'Back', events_path
+
+  = render 'editor_info', resource: @event

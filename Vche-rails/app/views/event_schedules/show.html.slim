@@ -2,40 +2,31 @@ h1 = "#{EventSchedule.model_name.human}詳細"
 
 .user
   .field
-    label = Event.human_attribute_name(:visibility)
+    label = EventSchedule.human_attribute_name(:visibility)
     .value = @event_schedule.visibility_text
   .field
-    label = Event.human_attribute_name(:assemble_at)
+    label = EventSchedule.human_attribute_name(:assemble_at)
     .value = @event_schedule.assemble_at
   .field
-    label = Event.human_attribute_name(:open_at)
+    label = EventSchedule.human_attribute_name(:open_at)
     .value = @event_schedule.open_at
   .field
-    label = Event.human_attribute_name(:start_at)
+    label = EventSchedule.human_attribute_name(:start_at)
     .value = @event_schedule.start_at
   .field
-    label = Event.human_attribute_name(:end_at)
+    label = EventSchedule.human_attribute_name(:end_at)
     .value = @event_schedule.end_at
   .field
-    label = Event.human_attribute_name(:close_at)
+    label = EventSchedule.human_attribute_name(:close_at)
     .value = @event_schedule.end_at
   .field
-    label = Event.human_attribute_name(:repeat)
+    label = EventSchedule.human_attribute_name(:repeat)
     .value = @event_schedule.repeat
   .field
-    label = Event.human_attribute_name(:repeat_until)
+    label = EventSchedule.human_attribute_name(:repeat_until)
     .value = @event_schedule.repeat_until
-  .field
-    label = Event.human_attribute_name(:created_user)
-    .value = @event_schedule.created_user.display_name
-  .field
-    label = Event.human_attribute_name(:created_at)
-    .value = @event_schedule.created_at
-  .field
-    label = Event.human_attribute_name(:updated_user)
-    .value = @event_schedule.updated_user.display_name
-  .field
-    label = Event.human_attribute_name(:updated_at)
-    .value = @event_schedule.updated_at
+
   = link_to 'Edit', edit_event_event_schedule_path(@event_schedule)
   = link_to 'Back', event_path(@event)
+
+  = render 'editor_info', resource: @event_schedule
