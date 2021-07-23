@@ -1,0 +1,10 @@
+- users ||= nil
+- card_cloud ||= false
+- _layout = card_cloud ? 'card_cloud' : 'table'
+
+div class="users -#{_layout}"
+  - users.each do |user|
+    .user.-card
+      span.email = user.email
+      span.display_name = user.display_name
+      = link_to 'Show', user

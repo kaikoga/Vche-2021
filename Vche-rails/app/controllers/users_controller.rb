@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_action :require_login, only: [:index, :new, :create]
 
   # GET /users
@@ -9,6 +8,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    @user = find_user
   end
 
   # GET /users/new
@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @user = find_user
     authorize! @user
   end
 
@@ -34,6 +35,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
+    @user = find_user
     authorize! @user
     if @user.update(user_params)
       redirect_to @user, notice: 'User was successfully updated.'
@@ -44,18 +46,18 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
+    @user = find_user
     authorize! @user
     @user.destroy
     redirect_to users_url, notice: 'User was successfully destroyed.'
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_user
-    @user = User.find(params[:id])
+
+  def find_user
+    User.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:email, :visibility, :user_role, :display_name, :password, :password_confirmation)
   end
