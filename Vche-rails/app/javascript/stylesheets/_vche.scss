@@ -52,11 +52,11 @@ header {
   margin: 0px;
 }
 
-a {
+.button {
   @include button;
 }
 
-a+a {
+.button + .button {
   margin-left: 1em;
 }
 

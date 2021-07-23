@@ -26,7 +26,7 @@ h1 = "#{EventSchedule.model_name.human}詳細"
     label = EventSchedule.human_attribute_name(:repeat_until)
     .value = l(@event_schedule.repeat_until)
 
-  = link_to 'Edit', edit_event_event_schedule_path(@event_schedule)
-  = link_to 'Back', event_path(@event)
+  = link_to 'Edit', edit_event_event_schedule_path(@event_schedule), class: 'button'
+  = link_to 'Back', event_path(@event), class: 'button'
 
   = render 'editor_info', resource: @event_schedule

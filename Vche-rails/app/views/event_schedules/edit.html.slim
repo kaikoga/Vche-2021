@@ -1,5 +1,5 @@
 h1 = "#{EventSchedule.model_name.human}を編集する"
 div
   = render 'form', event: @event, event_schedule: @event_schedule
-  = link_to 'Show', [@event, @event_schedule]
-  = link_to 'Back', event_path(@event)
+  = link_to 'Show', [@event, @event_schedule], class: 'button'
+  = link_to 'Back', event_path(@event), class: 'button'

@@ -1,4 +1,4 @@
 h1 = "#{EventSchedule.model_name.human}を新しく登録する"
 div
   = render 'form', event: @event, event_schedule: @event_schedule
-  = link_to 'Back', event_path(@event)
+  = link_to 'Back', event_path(@event), class: 'button'

@@ -2,4 +2,4 @@ h1 = EventSchedule.model_name.human
 
 = render 'cards', event: @event, event_schedules: @event_schedules, edit: false, card_cloud: true
 
-= link_to 'New', new_event_event_schedule_path(@event)
+= link_to 'New', new_event_event_schedule_path(@event), class: 'button'
