@@ -9,6 +9,6 @@ div class="events -#{_layout}"
     .event.-card
       span.name = event.name
       span.hashtag = event.hashtag
-      span.start_at = event.next_schedule.started_at
+      span.start_at = l(event.next_schedule.started_at)
       = link_to 'Show', event
       = link_to 'Edit', edit_event_path(event) if edit
