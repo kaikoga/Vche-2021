@@ -1,4 +1,4 @@
-.event--table {
+.event.-table {
   @include keyvaluetable;
   .field {
     @include keyvaluetable__keyvalue;
@@ -11,7 +11,7 @@
   }
 }
 
-.event--card {
+.event.-card {
   @include panel;
   .hashtag {
     font-size: $font-size-smaller;
@@ -19,14 +19,14 @@
   }
 }
 
-.events--card_cloud {
+.events.-card_cloud {
   @include cards--card_cloud;
-  .event--card {
+  .event.-card {
     @include card;
   }
 }
 
-.events--card_list {
+.events.-card_list {
   @include cards--card_list;
   .event--card {
     @include card;

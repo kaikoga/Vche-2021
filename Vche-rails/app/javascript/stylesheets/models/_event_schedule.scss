@@ -1,4 +1,4 @@
-.event_schedule--table {
+.event_schedule.-table {
   @include keyvaluetable;
   .field {
     @include keyvaluetable__keyvalue;
@@ -11,7 +11,7 @@
   }
 }
 
-.event_schedule--card {
+.event_schedule.-card {
   @include panel;
   .start_at, .end_at  {
     font-size: $font-size-small;
@@ -20,16 +20,16 @@
   }
 }
 
-.event_schedules--card_list {
+.event_schedules.-card_list {
   @include cards--card_list;
-  .event_schedule--card {
+  .event_schedule.-card {
     @include card;
   }
 }
 
-.event_schedules--card_cloud {
+.event_schedules.-card_cloud {
   @include cards--card_cloud;
-  .event_schedule--card {
+  .event_schedule.-card {
     @include card;
   }
 }

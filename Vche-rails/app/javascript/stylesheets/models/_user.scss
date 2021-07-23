@@ -1,4 +1,4 @@
-.user--table {
+.user.-table {
   @include keyvaluetable;
   .field {
     @include keyvaluetable__keyvalue;
@@ -11,7 +11,7 @@
   }
 }
 
-.user--card {
+.user.-card {
   @include panel;
   .email {
     font-size: $font-size-smaller;
@@ -21,16 +21,16 @@
   }
 }
 
-.users--card_list {
+.users.-card_list {
   @include cards--card_list;
-  .user--card {
+  .user.-card {
     @include card;
   }
 }
 
-.users--card_cloud {
+.users.-card_cloud {
   @include cards--card_cloud;
-  .user--card {
+  .user.-card {
     @include card;
   }
 }
