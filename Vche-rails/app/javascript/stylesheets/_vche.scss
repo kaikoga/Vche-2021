@@ -5,7 +5,7 @@
 @import 'components/_button';
 @import 'components/_card';
 @import 'components/_editor_fields';
-@import 'components/_keyvaluechart';
+@import 'components/_keyvaluetable';
 @import 'components/_panel';
 
 @import 'models/_user';
@@ -66,14 +66,14 @@ input[type="submit"] {
 }
 
 form {
-  @include keyvaluechart;
+  @include keyvaluetable;
   .field {
-    @include keyvaluechart__keyvalue;
+    @include keyvaluetable__keyvalue;
     label {
-      @include keyvaluechart__key;
+      @include keyvaluetable__key;
     }
     input, select {
-      @include keyvaluechart__value;
+      @include keyvaluetable__value;
     }
     .field_with_errors {
       display: inline-block;

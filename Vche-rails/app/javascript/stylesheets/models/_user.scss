@@ -1,12 +1,12 @@
-.user {
-  @include keyvaluechart;
+.user--table {
+  @include keyvaluetable;
   .field {
-    @include keyvaluechart__keyvalue;
+    @include keyvaluetable__keyvalue;
     label {
-      @include keyvaluechart__key;
+      @include keyvaluetable__key;
     }
     .value {
-      @include keyvaluechart__value;
+      @include keyvaluetable__value;
     }
   }
 }
@@ -21,8 +21,15 @@
   }
 }
 
-.users {
-  @include cards;
+.users--card_list {
+  @include cards--card_list;
+  .user--card {
+    @include card;
+  }
+}
+
+.users--card_cloud {
+  @include cards--card_cloud;
   .user--card {
     @include card;
   }

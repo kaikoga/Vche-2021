@@ -1,12 +1,12 @@
-.event_schedule {
-  @include keyvaluechart;
+.event_schedule--table {
+  @include keyvaluetable;
   .field {
-    @include keyvaluechart__keyvalue;
+    @include keyvaluetable__keyvalue;
     label {
-      @include keyvaluechart__key;
+      @include keyvaluetable__key;
     }
     .value {
-      @include keyvaluechart__value;
+      @include keyvaluetable__value;
     }
   }
 }
@@ -20,8 +20,15 @@
   }
 }
 
-.event_schedules {
-  @include cards;
+.event_schedules--card_list {
+  @include cards--card_list;
+  .event_schedule--card {
+    @include card;
+  }
+}
+
+.event_schedules--card_cloud {
+  @include cards--card_cloud;
   .event_schedule--card {
     @include card;
   }

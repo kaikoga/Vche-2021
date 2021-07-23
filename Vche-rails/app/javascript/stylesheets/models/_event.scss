@@ -1,12 +1,12 @@
-.event {
-  @include keyvaluechart;
+.event--table {
+  @include keyvaluetable;
   .field {
-    @include keyvaluechart__keyvalue;
+    @include keyvaluetable__keyvalue;
     label {
-      @include keyvaluechart__key;
+      @include keyvaluetable__key;
     }
     .value {
-      @include keyvaluechart__value;
+      @include keyvaluetable__value;
     }
   }
 }
@@ -19,8 +19,15 @@
   }
 }
 
-.events {
-  @include cards;
+.events--card_cloud {
+  @include cards--card_cloud;
+  .event--card {
+    @include card;
+  }
+}
+
+.events--card_list {
+  @include cards--card_list;
   .event--card {
     @include card;
   }

@@ -1,4 +1,7 @@
-@mixin cards {
+@mixin cards--card_list {
+}
+
+@mixin cards--card_cloud {
   display: flex;
   flex-wrap: wrap;
 }

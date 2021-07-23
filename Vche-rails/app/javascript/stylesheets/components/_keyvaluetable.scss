@@ -1,12 +1,12 @@
-@mixin keyvaluechart {
+@mixin keyvaluetable {
   @include panel;
 }
 
-@mixin keyvaluechart__keyvalue {
+@mixin keyvaluetable__keyvalue {
   margin: 1rem 0px;
 }
 
-@mixin keyvaluechart__key {
+@mixin keyvaluetable__key {
   display: inline-block;
   width: 200px;
   padding-right: 1rem;
@@ -14,7 +14,7 @@
   vertical-align: middle;
 }
 
-@mixin keyvaluechart__value {
+@mixin keyvaluetable__value {
   display: inline-block;
   vertical-align: middle;
   word-break: break-all;

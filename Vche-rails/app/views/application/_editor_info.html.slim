@@ -1,14 +1,9 @@
 .editor_fields
   .editor_field
-    label = Event.human_attribute_name(:created_user)
-    span.value = resource.created_user.display_name
+    label 作成
+    span.editor = link_to(resource.created_user.display_name, resource.created_user)
+    span.date = resource.created_at
   .editor_field
-    label = Event.human_attribute_name(:created_at)
-    span.value = resource.created_at
-.editor_fields
-  .editor_field
-    label = Event.human_attribute_name(:updated_user)
-    span.value = resource.updated_user.display_name
-  .editor_field
-    label = Event.human_attribute_name(:updated_at)
-    span.value = resource.updated_at
+    label 更新：
+    span.editor = link_to(resource.updated_user.display_name, resource.updated_user)
+    span.date = resource.updated_at
