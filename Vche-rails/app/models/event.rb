@@ -37,4 +37,28 @@ class Event < ApplicationRecord
   belongs_to :updated_user, class_name: 'User'
 
   has_many :event_schedules
+  has_many :event_histories
+
+  def calendar
+    @calendar ||= scheduled
+  end
+
+  def scheduled
+    @scheduled ||= event_schedules.map do |event_schedule|
+      EventHistory.new(
+          event: self,
+          visibility: self.visibility,
+          resolution: :scheduled,
+          assembled_at: event_schedule.assemble_at,
+          opened_at: event_schedule.open_at,
+          started_at: event_schedule.start_at,
+          ended_at: event_schedule.end_at,
+          closed_at: event_schedule.close_at,
+          )
+    end.sort_by(&:started_at)
+  end
+
+  def next_schedule
+    @next_schedule ||= scheduled.first
+  end
 end

@@ -29,4 +29,6 @@ class EventHistory < ApplicationRecord
 
   include Enums::Visibility
   include Enums::Resolution
+
+  belongs_to :event
 end
