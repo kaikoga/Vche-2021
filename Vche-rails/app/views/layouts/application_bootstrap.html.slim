@@ -12,7 +12,8 @@ html
     header
       nav
         ul
-          li Vche
+          li = link_to "Vche", root_url
+          li = link_to "ユーザー", users_path
           - if current_user
             li.header__username = current_user.email
             li = link_to "アカウント設定", edit_user_path(current_user.id), class: 'nav-link'
