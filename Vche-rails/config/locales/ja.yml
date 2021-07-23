@@ -204,4 +204,6 @@ ja:
       default: "%Y/%m/%d(%a) %H:%M"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
+      mda: "%-m/%-d(%a)"
+      hm: "%-H:%M"
     pm: 午後
