@@ -24,7 +24,7 @@ class EventSchedulesController < ApplicationController
     @event_schedule.updated_user = current_user
 
     if @event_schedule.save
-      redirect_to :events, notice: 'EventSchedule was successfully created'
+      redirect_to @event, notice: 'EventSchedule was successfully created'
     else
       render :new
     end
