@@ -1,4 +1,5 @@
-/ params event, event_schedules
+- event ||= nil
+- event_schedule ||= nil
 
 = form_with(model: [event, event_schedule]) do |form|
   - if event_schedule.errors.any?
@@ -6,7 +7,7 @@
       h2
         = pluralize(event_schedule.errors.count, "error")
         |  prohibited this event_schedule from being saved:
-      ul1
+      ul
         - event_schedule.errors.each do |error|
           li error.full_message
   .field
