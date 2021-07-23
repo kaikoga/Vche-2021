@@ -138,6 +138,9 @@ GEM
       activesupport (>= 5.2)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    i18n_generators (2.2.2)
+      activerecord (>= 3.0.0)
+      railties (>= 3.0.0)
     inherited_resources (1.13.0)
       actionpack (>= 5.2, < 6.2)
       has_scope (~> 0.6)
@@ -317,6 +320,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   draper
   enumerize
+  i18n_generators
   listen (~> 3.3)
   mysql2
   public_uid
