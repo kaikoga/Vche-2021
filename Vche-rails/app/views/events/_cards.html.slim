@@ -1,7 +1,9 @@
 - event ||= nil
 - edit ||= false
+- card_cloud ||= false
+- _layout = card_cloud ? 'card_cloud' : 'table'
 
-.events.-card_cloud
+div class="events -#{_layout}"
   - events.each do |event|
     .event.-card
       span.name = event.name

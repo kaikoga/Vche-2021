@@ -8,6 +8,9 @@
     .value {
       @include keyvaluetable__value;
     }
+    .relation {
+      @include keyvaluetable__relation;
+    }
   }
 }
 

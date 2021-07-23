@@ -16,7 +16,7 @@ h1 = "#{Event.model_name.human}詳細"
 
   .field
     label = Event.human_attribute_name(:event_schedules)
-    = render 'event_schedules/cards', event: @event, event_schedules: @event.event_schedules, edit: true
+    .relation = render 'event_schedules/cards', event: @event, event_schedules: @event.event_schedules, edit: true
 
   = link_to 'Edit', edit_event_path(@event)
   = link_to 'Back', events_path

@@ -28,3 +28,9 @@
     background: $fill-lighter;
   }
 }
+
+@mixin keyvaluetable__relation {
+  display: inline-block;
+  vertical-align: middle;
+  min-height: 2.5em;
+}

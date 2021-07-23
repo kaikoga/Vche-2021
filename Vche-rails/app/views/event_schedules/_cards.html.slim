@@ -1,8 +1,10 @@
 - event ||= nil
 - event_schedules ||= nil
 - edit ||= false
+- card_cloud ||= false
+- _layout = card_cloud ? 'card_cloud' : 'table'
 
-.event_schedules.-card_cloud
+div class="event_schedules -#{_layout}"
   - event_schedules.each do |event_schedule|
     .event_schedule.-card
       span.start_at = event_schedule.start_at
