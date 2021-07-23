@@ -2,21 +2,18 @@
 - edit ||= false
 - card_cloud ||= false
 - _layout = card_cloud ? 'card_cloud' : 'table'
-- _events = events.filter(&:next_schedule).sort_by(&:next_schedule)
-- _events_by_date = _events.group_by { |event| event.next_schedule.started_at.beginning_of_day }
-- _beginning_of_week = Time.current.beginning_of_week(:sunday)
-- _recent_dates = (0...14).map { |i| _beginning_of_week + i.days }
+- calendar = EventPresenter.new(events)
 
 .event.-calendar.-cells
-  - _recent_dates.each do |date|
+  - calendar.recent_events_by_date.each do |date, events|
     .event.-calendar.-cell
       .date = l(date, format: :mda)
-      - (_events_by_date[date] || []).each do |event|
+      - events.each do |event|
         .event.-cell
           = link_to "#{l(event.next_schedule.started_at, format: :hm)} #{event.name}", event, class: 'entry'
 
 div class="events -#{_layout}"
-  - _events.each do |event|
+  - calendar.events.each do |event|
     .event.-card
       span.name = event.name
       span.hashtag = event.hashtag
