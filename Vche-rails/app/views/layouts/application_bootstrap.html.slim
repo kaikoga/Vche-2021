@@ -12,15 +12,14 @@ html
     header
       nav
         ul
-          li = link_to "Vche", root_url
-          li = link_to "ユーザー", users_path
+          li = link_to "Vche", root_url, class: 'logo'
+          li = link_to "ユーザー", users_path, class: 'button'
           - if current_user
-            li.header__username = current_user.email
-            li = link_to "アカウント設定", edit_user_path(current_user.id), class: 'nav-link'
-            li = link_to "ログアウト", :logout, method: :post, class: 'nav-link'
+            li = link_to current_user.email, current_user, class: 'header__username'
+            li = link_to "ログアウト", :logout, method: :post, class: 'button'
           - else
-            li = link_to "新規登録", new_user_path, class: 'nav-link'
-            li = link_to "ログイン", :login, class: 'nav-link'
+            li = link_to "新規登録", new_user_path, class: 'button'
+            li = link_to "ログイン", :login, class: 'button'
       div
         - if flash[:notice]
           p#notice = flash[:notice]

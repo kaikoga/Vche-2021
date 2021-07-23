@@ -23,21 +23,36 @@ h1 {
 
 header {
   nav {
-    font-size: $font-size-large;
     background: $primary_bg;
     ul {
-      display: inline-block;
       @include reset--list;
+      display: inline-block;
+      padding: 0.4rem;
       li {
         display: inline-block;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        a {}
+        margin-left: 0.4rem;
+        margin-right: 0.4rem;
+        a.logo {
+          @include reset--font;
+          color: $primary_text-darker;
+          font-size: $font-size-large;
+        }
+        a.header__username {
+          @include reset--font;
+          display: inline-block;
+          background: $primary_bg;
+          border: none;
+          margin: 0em -0.5em;
+          padding: 0.5em 1em;
+          border-radius: 2em;
+          font-size: $font-size;
+          color: $text-lighter;
+          &:hover {
+            background: $primary_bg-light;
+            color: $text-lighter;
+          }
+        }
       }
-    }
-    .header__username {
-      font-size: $font-size;
-      color: $text-lighter
     }
   }
 }
