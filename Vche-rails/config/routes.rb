@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   post 'login' => "sessions#create"
   post 'logout' => 'sessions#destroy', :as => :logout
 
-  root :to => 'events#index'
+  root :to => 'calendar#index'
 end

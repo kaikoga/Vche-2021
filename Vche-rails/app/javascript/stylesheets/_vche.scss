@@ -8,9 +8,10 @@
 @import 'components/_keyvaluetable';
 @import 'components/_panel';
 
-@import 'models/_user';
+@import 'models/_calendar';
 @import 'models/_event';
 @import 'models/_event_schedule';
+@import 'models/_user';
 
 body {
   background: $fill;

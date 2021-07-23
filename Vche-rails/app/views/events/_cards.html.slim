@@ -2,21 +2,13 @@
 - edit ||= false
 - card_cloud ||= false
 - _layout = card_cloud ? 'card_cloud' : 'table'
-- calendar = EventPresenter.new(events)
-
-.event.-calendar.-cells
-  - calendar.recent_events_by_date.each do |date, events|
-    .event.-calendar.-cell
-      .date = l(date, format: :mda)
-      - events.each do |event|
-        .event.-cell
-          = link_to "#{l(event.next_schedule.started_at, format: :hm)} #{event.name}", event, class: 'entry'
 
 div class="events -#{_layout}"
-  - calendar.events.each do |event|
+  - events.each do |event|
     .event.-card
       span.name = event.name
       span.hashtag = event.hashtag
-      span.start_at = l(event.next_schedule.started_at)
+      - if event.next_schedule
+        span.start_at = l(event.next_schedule.started_at)
       = link_to 'Show', event, class: 'button'
       = link_to 'Edit', edit_event_path(event), class: 'button' if edit

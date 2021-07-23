@@ -13,6 +13,7 @@ html
       nav
         ul
           li = link_to "Vche", root_url, class: 'logo'
+          li = link_to "イベント", events_path, class: 'button'
           li = link_to "ユーザー", users_path, class: 'button'
           - if current_user
             li = link_to current_user.email, current_user, class: 'header__username'

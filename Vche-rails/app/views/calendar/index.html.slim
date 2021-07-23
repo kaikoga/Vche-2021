@@ -1,0 +1,9 @@
+h1 = 'カレンダー'
+
+.calendar.-cells
+  - @calendar.recent_events_by_date.each do |date, events|
+    .calendar.-cell
+      .date = l(date, format: :mda)
+      - events.each do |event|
+        .event.-calendar
+          = link_to "#{l(event.next_schedule.started_at, format: :hm)} #{event.name}", event, class: 'entry'
