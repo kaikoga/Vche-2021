@@ -78,5 +78,8 @@ class Event < ApplicationRecord
     flavors.each do |flavor|
       event_flavors.create_or_find_by(flavor: flavor)
     end
+
+    flavor_tastes = flavors.map(&:taste)
+    self.taste = Flavor.taste.values.reverse.detect { |taste| flavor_tastes.include?(taste) } || :general
   end
 end

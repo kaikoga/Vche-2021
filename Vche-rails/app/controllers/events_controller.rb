@@ -34,8 +34,9 @@ class EventsController < ApplicationController
     @event = find_event
     @event.updated_user = current_user
     @event.flavors = event_flavors_params
+    @event.assign_attributes(event_params)
 
-    if @event.update(event_params)
+    if @event.save
       redirect_to @event, notice: 'Event was successfully updated.'
     else
       render :edit
@@ -63,6 +64,6 @@ class EventsController < ApplicationController
   end
 
   def event_flavors_params
-    params.require(:event_flavors)
+    params['event_flavors'] || []
   end
 end

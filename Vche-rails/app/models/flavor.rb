@@ -17,5 +17,5 @@
 #  index_flavors_on_slug   (slug) UNIQUE
 #
 class Flavor < ApplicationRecord
-
+  include Enums::Taste
 end
