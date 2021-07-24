@@ -6,10 +6,10 @@ h1 = "#{EventSchedule.model_name.human}詳細"
     .value = @event_schedule.visibility_text
   .field
     label = EventSchedule.human_attribute_name(:assemble_at)
-    .value = l(@event_schedule.assemble_at)
+    .value = l(@event_schedule.assemble_at) if @event_schedule.assemble_at
   .field
     label = EventSchedule.human_attribute_name(:open_at)
-    .value = l(@event_schedule.open_at)
+    .value = l(@event_schedule.open_at) if @event_schedule.open_at
   .field
     label = EventSchedule.human_attribute_name(:start_at)
     .value = l(@event_schedule.start_at)
@@ -18,13 +18,13 @@ h1 = "#{EventSchedule.model_name.human}詳細"
     .value = l(@event_schedule.end_at)
   .field
     label = EventSchedule.human_attribute_name(:close_at)
-    .value = l(@event_schedule.end_at)
+    .value = l(@event_schedule.close_at) if @event_schedule.close_at
   .field
     label = EventSchedule.human_attribute_name(:repeat)
     .value = @event_schedule.repeat
   .field
     label = EventSchedule.human_attribute_name(:repeat_until)
-    .value = l(@event_schedule.repeat_until)
+    .value = l(@event_schedule.repeat_until) if @event_schedule.repeat_until
 
   = link_to 'Edit', edit_event_event_schedule_path(@event_schedule), class: 'button'
   = link_to 'Back', event_path(@event), class: 'button'
