@@ -23,6 +23,9 @@ h1 = "#{EventSchedule.model_name.human}詳細"
     label = EventSchedule.human_attribute_name(:repeat)
     .value = @event_schedule.repeat
   .field
+    label = EventSchedule.human_attribute_name(:resolution)
+    .value = @event_schedule.resolution
+  .field
     label = EventSchedule.human_attribute_name(:repeat_until)
     .value = l(@event_schedule.repeat_until) if @event_schedule.repeat_until
 

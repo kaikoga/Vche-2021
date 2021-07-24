@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     enableTime: true,
     altInput: true,
     allowInput: true,
-    altFormat: 'Y/m/d H:i',
+    altFormat: 'Y/m/d(D) H:i',
     dateFormat: 'Y-m-dTH:i:S',
     locale: 'ja',
     time_24hr: true,

@@ -26,7 +26,7 @@ ja:
         start_at: 開始日時
         end_at: 終了日時
         close_at: 解散日時
-        repeat: 繰り返しタイプ
+        repeat: 頻度
         repeat_until: 繰り返し期限
   attributes:
     event_schedules: イベント予定
@@ -34,6 +34,7 @@ ja:
     name: 名前
     platform: プラットフォーム
     primary_sns: Twitter ID
+    resolution: 状態
     uid: UID
     visibility: 公開する範囲
     created_user: 作成したユーザー
@@ -46,9 +47,20 @@ ja:
         vrchat_xp: VRChat PC/Quest
         vrchat_pc: VRChat PC
         vrchat_quest: VRChat Quest
+      repeat:
+        oneshot: 単発イベント
+        every_day: 毎日
+        every_week: 毎週
+        every_other_week: 隔週
+        first_week: 第一週
+        second_week: 第二週
+        third_week: 第三週
+        fourth_week: 第四週
+        fifth_week: 第五週
+        last_week: 最終週
       resolution:
         scheduled: 開催予定
-        moved: 日程変更
+        moved: 日程が変更された
         canceled: 中止
         completed: 終了
       role:

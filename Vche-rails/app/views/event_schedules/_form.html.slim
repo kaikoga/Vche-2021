@@ -29,6 +29,12 @@
     = form.label :close_at
     = form.datetime_field :close_at
   .field
+    = form.label :repeat
+    = form.select :repeat, EventSchedule.repeat.options
+  .field
+    = form.label :resolution
+    = form.select :resolution, EventSchedule.resolution.options
+  .field
     = form.label :repeat_until
     = form.datetime_field :repeat_until
   .actions

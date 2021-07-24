@@ -57,6 +57,6 @@ class EventSchedulesController < ApplicationController
   end
 
   def event_schedule_params
-    p = params.require(:event_schedule).permit(:visibility, :assemble_at, :open_at, :start_at, :end_at, :close_at, :repeat, :repeat_until)
+    p = params.require(:event_schedule).permit(:visibility, :assemble_at, :open_at, :start_at, :end_at, :close_at, :repeat, :resolution, :repeat_until)
   end
 end
