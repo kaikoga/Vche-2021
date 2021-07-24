@@ -11,7 +11,8 @@
 #  start_at        :datetime         not null
 #  end_at          :datetime         not null
 #  close_at        :datetime
-#  repeat          :json
+#  repeat          :string(255)
+#  resolution      :string(255)
 #  repeat_until    :datetime
 #  created_user_id :bigint
 #  updated_user_id :bigint

@@ -96,7 +96,8 @@ ActiveRecord::Schema.define(version: 2021_07_20_122642) do
     t.datetime "start_at", null: false
     t.datetime "end_at", null: false
     t.datetime "close_at"
-    t.json "repeat"
+    t.string "repeat"
+    t.string "resolution"
     t.datetime "repeat_until"
     t.bigint "created_user_id"
     t.bigint "updated_user_id"
