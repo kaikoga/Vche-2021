@@ -36,9 +36,60 @@ class EventSchedule < ApplicationRecord
   include Vche::Uid
 
   include Enums::Visibility
+  include Enums::Repeat
+  include Enums::Resolution
 
   belongs_to :event
 
   belongs_to :created_user, class_name: 'User'
   belongs_to :updated_user, class_name: 'User'
+
+  def recent_schedule(dates)
+    return [at_date(start_at)] if repeat == :oneshot
+
+    dates.map{|d|puts "#{repeat} #{d.day} #{valid_date?(d)}"; d}.filter(&method(:valid_date?)).map{|date| at_date(date) }
+  end
+
+  private
+
+  def valid_date?(date)
+    case repeat.to_sym
+    when :oneshot
+      date.beginning_of_day == start_at.beginning_of_day
+    when :every_day
+      true
+    when :every_week
+      date.wday == start_at.wday
+    when :every_other_week
+      (date.beginning_of_day - beginning_of_day.day) % 14.days == 0
+    when :first_week
+      date.wday == start_at.wday && (1..7).cover?(date.day)
+    when :second_week
+      date.wday == start_at.wday && (8..14).cover?(date.day)
+    when :third_week
+      date.wday == start_at.wday && (15..21).cover?(date.day)
+    when :fourth_week
+      date.wday == start_at.wday && (22..28).cover?(date.day)
+    when :fifth_week
+      date.wday == start_at.wday && (29..31).cover?(date.day)
+    when :last_week
+      return false unless date.wday == start_at.wday
+      end_of_month = date.end_of_month.day
+      ((end_of_month - 6)..end_of_month).cover?(date.day)
+    end
+  end
+
+  def at_date(date)
+    date_options = { year: date.year, month: date.month, day: date.day }
+    EventHistory.new(
+      event: event,
+      visibility: visibility,
+      resolution: :scheduled,
+      assembled_at: assemble_at&.change(date_options),
+      opened_at: open_at&.change(date_options),
+      started_at: start_at&.change(date_options),
+      ended_at: end_at&.change(date_options),
+      closed_at: close_at&.change(date_options),
+    )
+  end
 end
