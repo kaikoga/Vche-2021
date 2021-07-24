@@ -84,6 +84,8 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
       t.datetime :ended_at, null: false
       t.datetime :closed_at
 
+      t.references :created_user, foreign_key: { to_table: :users }
+      t.references :updated_user, foreign_key: { to_table: :users }
       t.timestamps null: false
     end
 
