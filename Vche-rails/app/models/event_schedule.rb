@@ -61,7 +61,7 @@ class EventSchedule < ApplicationRecord
     when :every_week
       date.wday == start_at.wday
     when :every_other_week
-      (date.beginning_of_day - beginning_of_day.day) % 14.days == 0
+      (date.beginning_of_day - start_at.beginning_of_day) % 14.days == 0
     when :first_week
       date.wday == start_at.wday && (1..7).cover?(date.day)
     when :second_week
