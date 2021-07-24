@@ -2,7 +2,8 @@ ja:
   activerecord:
     models:
       event: イベント
-      event_schedule: イベント予定
+      event_history: イベント履歴
+      event_schedule: 定期イベント予定
       user: ユーザー
     attributes:
       event:
@@ -12,14 +13,12 @@ ja:
         info_url: 外部サイト
         flavors: カテゴリ
         taste: 雰囲気
-      user:
-        email: ログインID
-        display_name: 表示する名前
-        profile: 自己紹介
-        user_role: ユーザータイプ
-        password: パスワード
-        password_confirmation: パスワード（確認する）
-        last_login_at: 最終ログイン
+      event_history:
+        assembled_at: 集合日時
+        opened_at: 開場日時
+        started_at: 開始日時
+        ended_at: 終了日時
+        closed_at: 解散日時
       event_schedule:
         assemble_at: 集合日時
         open_at: 開場日時
@@ -28,8 +27,17 @@ ja:
         close_at: 解散日時
         repeat: 頻度
         repeat_until: 繰り返し期限
+      user:
+        email: ログインID
+        display_name: 表示する名前
+        profile: 自己紹介
+        user_role: ユーザータイプ
+        password: パスワード
+        password_confirmation: パスワード（確認する）
+        last_login_at: 最終ログイン
   attributes:
-    event_schedules: イベント予定
+    event_histories: イベント履歴
+    event_schedules: 定期イベント予定
     hashtag: ハッシュタグ
     name: 名前
     platform: プラットフォーム
@@ -48,7 +56,6 @@ ja:
         vrchat_pc: VRChat PC
         vrchat_quest: VRChat Quest
       repeat:
-        oneshot: 単発イベント
         every_day: 毎日
         every_week: 毎週
         every_other_week: 隔週

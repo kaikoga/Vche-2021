@@ -1,0 +1,13 @@
+- event ||= nil
+- event_histories ||= nil
+- edit ||= false
+- card_cloud ||= false
+- _layout = card_cloud ? 'card_cloud' : 'table'
+
+div class="event_histories -#{_layout}"
+  - event_histories.each do |event_history|
+    .event_history.-card
+      span.started_at = l(event_history.started_at)
+      span.ended_at = l(event_history.ended_at)
+      = link_to 'Show', [event, event_history], class: 'button'
+      = link_to 'Edit', edit_event_event_history_path(event, event_history), class: 'button' if edit

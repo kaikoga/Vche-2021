@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users
   resources :events do
     resources :event_schedules
+    resources :event_histories
   end
 
   get 'login' => 'sessions#new', :as => :login

@@ -1,0 +1,38 @@
+.event_history.-table {
+  @include keyvaluetable;
+  .field {
+    @include keyvaluetable__keyvalue;
+    label {
+      @include keyvaluetable__key;
+    }
+    .value {
+      @include keyvaluetable__value;
+    }
+    .relation {
+      @include keyvaluetable__relation;
+    }
+  }
+}
+
+.event_history.-card {
+  @include panel;
+  .started_at, .ended_at  {
+    font-size: $font-size-small;
+    color: $text-light;
+    margin: 0em 1em;
+  }
+}
+
+.event_histories.-card_list {
+  @include cards--card_list;
+  .event_history.-card {
+    @include card;
+  }
+}
+
+.event_histories.-card_cloud {
+  @include cards--card_cloud;
+  .event_history.-card {
+    @include card;
+  }
+}

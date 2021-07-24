@@ -39,6 +39,9 @@ class EventHistory < ApplicationRecord
 
   belongs_to :event
 
+  belongs_to :created_user, class_name: 'User'
+  belongs_to :updated_user, class_name: 'User'
+
   delegate :trust, :hashtag, to: :event
 
   def trust_unique_key

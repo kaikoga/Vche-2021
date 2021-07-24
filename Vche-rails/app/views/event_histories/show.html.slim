@@ -1,0 +1,29 @@
+h1 = "#{EventHistory.model_name.human}詳細"
+
+.event_history.-table
+  .field
+    label = EventHistory.human_attribute_name(:visibility)
+    .value = @event_history.visibility_text
+  .field
+    label = EventHistory.human_attribute_name(:resolution)
+    .value = @event_history.resolution_text
+  .field
+    label = EventHistory.human_attribute_name(:assembled_at)
+    .value = l(@event_history.assembled_at) if @event_history.assembled_at
+  .field
+    label = EventHistory.human_attribute_name(:opened_at)
+    .value = l(@event_history.opened_at) if @event_history.opened_at
+  .field
+    label = EventHistory.human_attribute_name(:started_at)
+    .value = l(@event_history.started_at)
+  .field
+    label = EventHistory.human_attribute_name(:ended_at)
+    .value = l(@event_history.ended_at)
+  .field
+    label = EventHistory.human_attribute_name(:closed_at)
+    .value = l(@event_history.closed_at) if @event_history.closed_at
+
+  = link_to 'Edit', edit_event_event_history_path(@event_history), class: 'button'
+  = link_to 'Back', event_path(@event), class: 'button'
+
+  = render 'editor_info', resource: @event_history

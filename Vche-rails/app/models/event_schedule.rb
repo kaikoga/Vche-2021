@@ -47,7 +47,7 @@ class EventSchedule < ApplicationRecord
   def recent_schedule(dates)
     return [at_date(start_at)] if repeat == :oneshot
 
-    dates.map{|d|puts "#{repeat} #{d.day} #{valid_date?(d)}"; d}.filter(&method(:valid_date?)).map{|date| at_date(date) }
+    dates.filter(&method(:valid_date?)).map{|date| at_date(date) }
   end
 
   private

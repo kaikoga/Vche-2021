@@ -5,10 +5,14 @@ class CalendarPresenter
     beginning_of_calendar = Time.current.beginning_of_week(:sunday)
     recent_dates = (0...days).map { |i| beginning_of_calendar + i.days }
 
+    # FIXME N+1
     event_histories = events
                         .flat_map(&:event_schedules)
                         .flat_map { |schedule| schedule.recent_schedule(recent_dates) }
-                        .sort_by(&:started_at)
+
+    event_histories += events.flat_map(&:event_histories)
+
+    event_histories.sort_by(&:started_at)
 
     grouped_event_histories = event_histories.group_by { |history| history.started_at.beginning_of_day }
 

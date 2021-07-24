@@ -49,4 +49,6 @@ class User < ApplicationRecord
   has_many :updated_events, class_name: 'Event', foreign_key: :updated_user_id
   has_many :created_event_schedules, class_name: 'EventSchedule', foreign_key: :created_user_id
   has_many :updated_event_schedules, class_name: 'EventSchedule', foreign_key: :updated_user_id
+  has_many :created_event_histories, class_name: 'EventHistory', foreign_key: :created_user_id
+  has_many :updated_event_histories, class_name: 'EventHistory', foreign_key: :updated_user_id
 end

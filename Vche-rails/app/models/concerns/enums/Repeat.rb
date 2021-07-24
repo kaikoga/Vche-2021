@@ -3,7 +3,6 @@ module Enums::Repeat
 
   included do
     enumerize :repeat, in: [
-        :oneshot,
         :every_day,
         :every_week,
         :every_other_week,
@@ -13,6 +12,6 @@ module Enums::Repeat
         :fourth_week,
         :fifth_week,
         :last_week
-    ], default: :oneshot
+    ], default: :every_day
   end
 end
