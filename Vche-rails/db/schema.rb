@@ -80,11 +80,15 @@ ActiveRecord::Schema.define(version: 2021_07_20_122642) do
     t.datetime "started_at", null: false
     t.datetime "ended_at", null: false
     t.datetime "closed_at"
+    t.bigint "created_user_id"
+    t.bigint "updated_user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_user_id"], name: "index_event_histories_on_created_user_id"
     t.index ["event_id", "started_at"], name: "index_event_histories_on_event_id_and_started_at", unique: true
     t.index ["event_id"], name: "index_event_histories_on_event_id"
     t.index ["uid"], name: "index_event_histories_on_uid", unique: true
+    t.index ["updated_user_id"], name: "index_event_histories_on_updated_user_id"
   end
 
   create_table "event_schedules", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -186,6 +190,8 @@ ActiveRecord::Schema.define(version: 2021_07_20_122642) do
   add_foreign_key "event_follows", "events"
   add_foreign_key "event_follows", "users"
   add_foreign_key "event_histories", "events"
+  add_foreign_key "event_histories", "users", column: "created_user_id"
+  add_foreign_key "event_histories", "users", column: "updated_user_id"
   add_foreign_key "event_schedules", "events"
   add_foreign_key "event_schedules", "users", column: "created_user_id"
   add_foreign_key "event_schedules", "users", column: "updated_user_id"
