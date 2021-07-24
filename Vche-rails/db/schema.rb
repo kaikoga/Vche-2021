@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(version: 2021_07_20_122642) do
     t.integer "trust", null: false
     t.string "user_role", null: false
     t.string "admin_role", null: false
+    t.string "profile"
     t.string "crypted_password"
     t.string "salt"
     t.datetime "created_at", precision: 6, null: false

@@ -11,6 +11,7 @@
 #  trust                        :integer          not null
 #  user_role                    :string(255)      not null
 #  admin_role                   :string(255)      not null
+#  profile                      :string(255)
 #  crypted_password             :string(255)
 #  salt                         :string(255)
 #  created_at                   :datetime         not null
