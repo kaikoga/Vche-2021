@@ -4,11 +4,14 @@
 
 @mixin keyvaluetable__keyvalue {
   margin: 1rem 0px;
+  display: flex;
+  align-items: center;
 }
 
 @mixin keyvaluetable__key {
   display: inline-block;
   width: 200px;
+  flex-shrink: 0;
   padding-right: 1rem;
   text-align: right;
   vertical-align: middle;

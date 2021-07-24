@@ -11,6 +11,7 @@
 @import 'models/_calendar';
 @import 'models/_event';
 @import 'models/_event_schedule';
+@import 'models/_flavor';
 @import 'models/_user';
 
 body {
@@ -85,14 +86,22 @@ form {
   @include keyvaluetable;
   .field {
     @include keyvaluetable__keyvalue;
-    label {
+    > label {
       @include keyvaluetable__key;
     }
-    input, select, textarea {
+    input[type="text"],
+    input[type="datetime"],
+    select, textarea {
       @include keyvaluetable__value;
     }
     .field_with_errors {
       display: inline-block;
+    }
+    .relation {
+      @include keyvaluetable__relation;
+      label {
+        display: block;
+      }
     }
   }
 }

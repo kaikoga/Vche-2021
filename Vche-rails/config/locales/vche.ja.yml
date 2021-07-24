@@ -10,6 +10,8 @@ ja:
         description: 説明
         organizer_name: 主催者
         info_url: 外部サイト
+        flavors: カテゴリ
+        taste: 雰囲気
       user:
         email: ログインID
         display_name: 表示する名前

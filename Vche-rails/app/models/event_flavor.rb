@@ -20,5 +20,6 @@
 #  fk_rails_...  (flavor_id => flavors.id)
 #
 class EventFlavor < ApplicationRecord
-
+  belongs_to :event
+  belongs_to :flavor
 end

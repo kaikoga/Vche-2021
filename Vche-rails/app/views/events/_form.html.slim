@@ -36,5 +36,12 @@
   .field
     = form.label :visibility
     = form.select :visibility, Event.visibility.options
+
+  .field
+    = form.label :flavors
+    .relation
+      - Flavor.find_each do |flavor|
+        = flavor_check_box_tag flavor, "event_flavors[]", "event_flavors_#{flavor.slug}", event.flavors.include?(flavor)
+
   .actions
     = form.submit

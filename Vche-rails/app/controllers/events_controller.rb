@@ -21,6 +21,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.created_user = current_user
     @event.updated_user = current_user
+    @event.flavors = event_flavors_params
 
     if @event.save
       redirect_to :events, notice: 'Event was successfully created'
@@ -32,6 +33,8 @@ class EventsController < ApplicationController
   def update
     @event = find_event
     @event.updated_user = current_user
+    @event.flavors = event_flavors_params
+
     if @event.update(event_params)
       redirect_to @event, notice: 'Event was successfully updated.'
     else
@@ -57,5 +60,9 @@ class EventsController < ApplicationController
       :description, :organizer_name, :primary_sns, :info_url,
       :hashtag, :platform, :visibility
     )
+  end
+
+  def event_flavors_params
+    params.require(:event_flavors)
   end
 end

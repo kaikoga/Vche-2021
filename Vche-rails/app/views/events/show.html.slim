@@ -29,9 +29,13 @@ h1 = "#{Event.model_name.human}詳細"
     label = Event.human_attribute_name(:visibility)
     .value = @event.visibility_text
   .field
+    label = Event.human_attribute_name(:flavors)
+    .relation
+      - @event.flavors.each do |flavor|
+        = flavor_tag(flavor)
+  .field
     label = Event.human_attribute_name(:taste)
     .value = @event.taste_text
-
   .field
     label = Event.human_attribute_name(:event_schedules)
     .relation

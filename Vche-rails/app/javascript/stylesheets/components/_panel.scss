@@ -4,3 +4,10 @@
   border-radius: 2em;
   border: $primary_bg solid 1px;
 }
+
+@mixin panel--small {
+  margin: 0.2rem;
+  padding: 0.2rem;
+  border-radius: 1.4em;
+  border: $primary_bg solid 1px;
+}

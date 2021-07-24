@@ -42,6 +42,10 @@ class Event < ApplicationRecord
   belongs_to :created_user, class_name: 'User'
   belongs_to :updated_user, class_name: 'User'
 
+  has_many :event_flavors, dependent: :destroy
+  has_many :flavors, through: :event_flavors
+  accepts_nested_attributes_for :event_flavors, allow_destroy: true
+
   has_many :event_schedules
   has_many :event_histories
 
@@ -66,5 +70,13 @@ class Event < ApplicationRecord
 
   def next_schedule
     @next_schedule ||= scheduled.first
+  end
+
+  def flavors=(slugs)
+    flavors = Flavor.where(slug: slugs).all
+    event_flavors.where.not(flavor: flavors).destroy_all
+    flavors.each do |flavor|
+      event_flavors.create_or_find_by(flavor: flavor)
+    end
   end
 end
