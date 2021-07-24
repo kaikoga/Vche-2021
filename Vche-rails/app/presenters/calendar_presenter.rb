@@ -12,6 +12,9 @@ class CalendarPresenter
 
     grouped_event_histories = event_histories.group_by { |history| history.started_at.beginning_of_day }
 
-    @event_histories_by_date = recent_dates.map{ |date| [date, grouped_event_histories[date] || []] }.to_h
+    @event_histories_by_date = recent_dates.each_with_object({}) do |date, h|
+      trusted_histories = Vche::Trust.filter_trusted(grouped_event_histories[date] || [])
+      h[date] = trusted_histories
+    end
   end
 end

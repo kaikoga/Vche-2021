@@ -32,4 +32,10 @@ class EventHistory < ApplicationRecord
   include Enums::Resolution
 
   belongs_to :event
+
+  delegate :trust, :hashtag, to: :event
+
+  def trust_unique_key
+    hashtag ? [hashtag, started_at] : []
+  end
 end
