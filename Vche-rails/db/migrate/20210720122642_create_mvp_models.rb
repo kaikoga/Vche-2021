@@ -3,6 +3,7 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
     add_column :users, :uid, :string, null: false, after: :email, index: { unique: true }
     add_column :users, :display_name, :string, after: :uid
     add_column :users, :primary_sns, :string, after: :display_name
+    add_column :users, :profile, :string, after: :primary_sns
     add_column :users, :visibility, :string, null: false, after: :primary_sns
     add_column :users, :trust, :integer, null: false, after: :visibility
     add_column :users, :user_role, :string, null: false, after: :trust
