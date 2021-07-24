@@ -6,6 +6,7 @@
 #  email                        :string(255)      not null
 #  uid                          :string(255)      not null
 #  display_name                 :string(255)
+#  primary_sns                  :string(255)
 #  visibility                   :string(255)      not null
 #  trust                        :integer          not null
 #  user_role                    :string(255)      not null
@@ -26,7 +27,6 @@
 #  index_users_on_email                                (email) UNIQUE
 #  index_users_on_last_logout_at_and_last_activity_at  (last_logout_at,last_activity_at)
 #  index_users_on_remember_me_token                    (remember_me_token)
-#  index_users_on_uid                                  (uid) UNIQUE
 #
 one: {}
 # column: value

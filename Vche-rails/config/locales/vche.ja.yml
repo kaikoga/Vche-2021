@@ -34,7 +34,9 @@ ja:
   enumerize:
     defaults:
       platform:
-        vrchat: VRChat
+        vrchat_xp: VRChat PC/Quest
+        vrchat_pc: VRChat PC
+        vrchat_quest: VRChat Quest
       resolution:
         scheduled: 開催予定
         moved: 日程変更
@@ -48,6 +50,12 @@ ja:
         participant: 参加者
         visitor: 訪問者
         viewer: 観客
+      taste:
+        general: 一般
+        private: 個人
+        restricted: 入場制限
+        mature: 成人向け
+        hidden: 非表示
       visibility:
         public: 公開
         shared: 共有可能

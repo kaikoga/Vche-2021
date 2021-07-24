@@ -5,7 +5,7 @@
 #  id              :bigint           not null, primary key
 #  uid             :string(255)
 #  event_id        :bigint           not null
-#  visibility      :string(255)
+#  visibility      :string(255)      not null
 #  assemble_at     :datetime
 #  open_at         :datetime
 #  start_at        :datetime         not null

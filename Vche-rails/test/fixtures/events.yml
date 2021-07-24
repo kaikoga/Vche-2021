@@ -5,9 +5,15 @@
 #  id              :bigint           not null, primary key
 #  uid             :string(255)
 #  name            :string(255)
+#  fullname        :string(255)
+#  description     :string(255)
+#  organizer_name  :string(255)
+#  primary_sns     :string(255)
+#  info_url        :string(255)
 #  hashtag         :string(255)
-#  platform        :string(255)
-#  visibility      :string(255)
+#  platform        :string(255)      not null
+#  visibility      :string(255)      not null
+#  taste           :string(255)
 #  trust           :integer
 #  created_user_id :bigint
 #  updated_user_id :bigint
@@ -17,7 +23,6 @@
 # Indexes
 #
 #  index_events_on_created_user_id  (created_user_id)
-#  index_events_on_hashtag          (hashtag) UNIQUE
 #  index_events_on_uid              (uid) UNIQUE
 #  index_events_on_updated_user_id  (updated_user_id)
 #

@@ -11,7 +11,8 @@
 #
 # Indexes
 #
-#  index_hashtag_follows_on_user_id  (user_id)
+#  index_hashtag_follows_on_user_id                       (user_id)
+#  index_hashtag_follows_on_user_id_and_hashtag_and_role  (user_id,hashtag,role) UNIQUE
 #
 # Foreign Keys
 #

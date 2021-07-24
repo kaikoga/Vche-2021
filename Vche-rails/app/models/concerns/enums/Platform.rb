@@ -3,7 +3,9 @@ module Enums::Platform
 
   included do
     enumerize :platform, in: [
-        :vrchat
+        :vrchat_xp,
+        :vrchat_pc,
+        :vrchat_quest
     ]
   end
 end

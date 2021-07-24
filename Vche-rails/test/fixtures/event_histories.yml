@@ -5,8 +5,8 @@
 #  id           :bigint           not null, primary key
 #  uid          :string(255)
 #  event_id     :bigint           not null
-#  visibility   :string(255)
-#  resolution   :string(255)
+#  visibility   :string(255)      not null
+#  resolution   :string(255)      not null
 #  assembled_at :datetime
 #  opened_at    :datetime
 #  started_at   :datetime         not null
@@ -17,8 +17,9 @@
 #
 # Indexes
 #
-#  index_event_histories_on_event_id  (event_id)
-#  index_event_histories_on_uid       (uid) UNIQUE
+#  index_event_histories_on_event_id                 (event_id)
+#  index_event_histories_on_event_id_and_started_at  (event_id,started_at) UNIQUE
+#  index_event_histories_on_uid                      (uid) UNIQUE
 #
 # Foreign Keys
 #
