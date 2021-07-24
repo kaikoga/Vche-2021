@@ -12,7 +12,7 @@
           li = error.full_message
   .field
     = form.label :visibility
-    = form.text_field :visibility
+    = form.select :visibility, Event.visibility.options
   .field
     = form.label :assemble_at
     = form.datetime_field :assemble_at
