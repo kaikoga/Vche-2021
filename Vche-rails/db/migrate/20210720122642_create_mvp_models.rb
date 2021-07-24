@@ -1,16 +1,15 @@
 class CreateMvpModels < ActiveRecord::Migration[6.1]
   def change
-    add_column :users, :uid, :string, null: false, after: :email
-    add_column :users, :display_name, :string, after: :uid, default: nil
-    add_column :users, :visibility, :string, null: false, after: :display_name
+    add_column :users, :uid, :string, null: false, after: :email, index: { unique: true }
+    add_column :users, :display_name, :string, after: :uid
+    add_column :users, :primary_sns, :string, after: :display_name
+    add_column :users, :visibility, :string, null: false, after: :primary_sns
     add_column :users, :trust, :integer, null: false, after: :visibility
     add_column :users, :user_role, :string, null: false, after: :trust
     add_column :users, :admin_role, :string, null: false, after: :user_role
 
-    add_index :users, :uid, unique: true
-
     create_table :accounts do |t|
-      t.string :uid, null: :false
+      t.string :uid, null: :false, index: { unique: true }
       t.string :name, null: :false
       t.string :display_name, null: :false
       t.string :platform, null: :false
@@ -21,11 +20,17 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
     end
 
     create_table :events do |t|
-      t.string :uid, null: :false
+      t.string :uid, null: :false, index: { unique: true }
       t.string :name, null: :false
+      t.string :fullname
+      t.string :description
+      t.string :organizer_name
+      t.string :primary_sns
+      t.string :info_url
       t.string :hashtag
-      t.string :platform
-      t.string :visibility
+      t.string :platform, null: false
+      t.string :visibility, null: false
+      t.string :taste, null: :false
       t.integer :trust
 
       t.references :created_user, foreign_key: { to_table: :users }
@@ -33,10 +38,26 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
       t.timestamps null: false
     end
 
+    create_table :flavors do |t|
+      t.string :emoji, null: :false, index: { unique: true }
+      t.string :slug, null: :false, index: { unique: true }
+      t.string :name, null: :false, index: { unique: true }
+      t.string :taste, null: :false
+
+      t.timestamps null: false
+    end
+
+    create_table :event_flavors do |t|
+      t.references :event, foreign_key: true, null: :false
+      t.references :flavor, foreign_key: true, null: :false
+
+      t.timestamps null: false
+    end
+
     create_table :event_schedules do |t|
-      t.string :uid, null: :false
+      t.string :uid, null: :false, index: { unique: true }
       t.references :event, foreign_key: true, null: false
-      t.string :visibility
+      t.string :visibility, null: false
       t.datetime :assemble_at
       t.datetime :open_at
       t.datetime :start_at, null: false
@@ -51,10 +72,10 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
     end
 
     create_table :event_histories do |t|
-      t.string :uid, null: :false
+      t.string :uid, null: :false, index: { unique: true }
       t.references :event, foreign_key: true, null: false
-      t.string :visibility
-      t.string :resolution
+      t.string :visibility, null: false
+      t.string :resolution, null: false
       t.datetime :assembled_at
       t.datetime :opened_at
       t.datetime :started_at, null: false
@@ -81,7 +102,7 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
     end
 
     create_table :event_attendances do |t|
-      t.string :uid, null: :false
+      t.string :uid, null: :false, index: { unique: true }
       t.references :user, foreign_key: true, null: false
       t.references :event, foreign_key: true, null: false
       t.datetime :started_at, null: false
@@ -91,12 +112,10 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
       t.timestamps null: false
     end
 
-    add_index :accounts, :uid, unique: true
-    add_index :events, :uid, unique: true
-    add_index :events, :hashtag, unique: true
-    add_index :event_schedules, :uid, unique: true
-    add_index :event_histories, :uid, unique: true
-    add_index :event_attendances, :uid, unique: true
+    add_index :event_flavors, [:event_id, :flavor_id], unique: true
+    add_index :event_histories, [:event_id, :started_at], unique: true
+    add_index :hashtag_follows, [:user_id, :hashtag, :role], unique: true
+    add_index :event_follows, [:user_id, :event_id, :role], unique: true
     add_index :event_attendances, [:user_id, :event_id, :started_at], unique: true
   end
 end
