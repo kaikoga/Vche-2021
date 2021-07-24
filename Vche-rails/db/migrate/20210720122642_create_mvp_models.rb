@@ -64,7 +64,8 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
       t.datetime :start_at, null: false
       t.datetime :end_at, null: false
       t.datetime :close_at
-      t.json :repeat
+      t.string :repeat
+      t.string :resolution
       t.datetime :repeat_until
 
       t.references :created_user, foreign_key: { to_table: :users }
