@@ -52,6 +52,10 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    p = params.require(:event).permit(:name, :hashtag, :platform, :visibility)
+    params.require(:event).permit(
+      :name, :fullname,
+      :description, :organizer_name, :primary_sns, :info_url,
+      :hashtag, :platform, :visibility
+    )
   end
 end

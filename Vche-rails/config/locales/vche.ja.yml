@@ -5,9 +5,15 @@ ja:
       event_schedule: イベント予定
       user: ユーザー
     attributes:
+      event:
+        fullname: 正式名称
+        description: 説明
+        organizer_name: 主催者
+        info_url: 外部サイト
       user:
         email: ログインID
         display_name: 表示する名前
+        profile: 自己紹介
         user_role: ユーザータイプ
         password: パスワード
         password_confirmation: パスワード（確認する）
@@ -25,6 +31,7 @@ ja:
     hashtag: ハッシュタグ
     name: 名前
     platform: プラットフォーム
+    primary_sns: Twitter ID
     uid: UID
     visibility: 公開する範囲
     created_user: 作成したユーザー

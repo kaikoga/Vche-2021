@@ -11,6 +11,12 @@ h1 = "#{User.model_name.human}詳細"
     label = User.human_attribute_name(:display_name)
     .value = @user.display_name
   .field
+    label = User.human_attribute_name(:primary_sns)
+    .value = @user.primary_sns
+  .field
+    label = User.human_attribute_name(:profile)
+    .value = @user.profile
+  .field
     label = User.human_attribute_name(:visibility)
     .value = @user.visibility_text
   .field
@@ -18,6 +24,6 @@ h1 = "#{User.model_name.human}詳細"
     .value = @user.user_role_text
   .field
     label = User.human_attribute_name(:last_login_at)
-    .value = l(@user.last_login_at)
+    .value = l(@user.last_login_at) if @user.last_login_at
   = link_to 'Edit', edit_user_path(@user), class: 'button'
   = link_to 'Back', users_path, class: 'button'

@@ -5,6 +5,21 @@ h1 = "#{Event.model_name.human}詳細"
     label = Event.human_attribute_name(:name)
     .value = @event.name
   .field
+    label = Event.human_attribute_name(:fullname)
+    .value = @event.fullname
+  .field
+    label = Event.human_attribute_name(:description)
+    .value = @event.description
+  .field
+    label = Event.human_attribute_name(:organizer_name)
+    .value = @event.organizer_name
+  .field
+    label = Event.human_attribute_name(:primary_sns)
+    .value = @event.primary_sns
+  .field
+    label = Event.human_attribute_name(:info_url)
+    .value = @event.info_url
+  .field
     label = Event.human_attribute_name(:hashtag)
     .value = @event.hashtag
   .field
@@ -13,6 +28,9 @@ h1 = "#{Event.model_name.human}詳細"
   .field
     label = Event.human_attribute_name(:visibility)
     .value = @event.visibility_text
+  .field
+    label = Event.human_attribute_name(:taste)
+    .value = @event.taste_text
 
   .field
     label = Event.human_attribute_name(:event_schedules)

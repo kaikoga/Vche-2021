@@ -13,11 +13,17 @@
     = form.label :email
     = form.text_field :email
   .field
-    = form.label :visibility
-    = form.select :visibility, User.visibility.options
-  .field
     = form.label :display_name
     = form.text_field :display_name
+  .field
+    = form.label :primary_sns
+    = form.text_field :primary_sns
+  .field
+    = form.label :profile
+    = form.text_area :profile
+  .field
+    = form.label :visibility
+    = form.select :visibility, User.visibility.options
   .field
     = form.label :user_role
     = form.select :user_role, User.user_role.options
