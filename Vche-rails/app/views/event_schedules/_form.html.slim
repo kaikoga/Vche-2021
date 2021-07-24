@@ -9,7 +9,7 @@
         |  prohibited this event_schedule from being saved:
       ul
         - event_schedule.errors.each do |error|
-          li error.full_message
+          li = error.full_message
   .field
     = form.label :visibility
     = form.text_field :visibility

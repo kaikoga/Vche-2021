@@ -8,7 +8,7 @@
         |  prohibited this user from being saved:
       ul
         - user.errors.each do |error|
-          li error.full_message
+          li = error.full_message
   .field
     = form.label :email
     = form.text_field :email
