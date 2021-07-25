@@ -60,8 +60,24 @@ class Event < ApplicationRecord
         started_at: event_schedule.start_at,
         ended_at: event_schedule.end_at,
         closed_at: event_schedule.close_at,
-        )
+        created_user: event_schedule.created_user,
+        updated_user: event_schedule.updated_user
+      )
     end.sort_by(&:started_at).first
+  end
+
+  def recent_schedule(recent_dates)
+    event_schedules.flat_map { |schedule| schedule.recent_schedule(recent_dates) }.concat(event_histories)
+  end
+
+  def find_schedule(start_at)
+    recent_schedule([start_at.beginning_of_day])
+      .detect { |history| history.started_at == start_at} || EventHistory.new(
+      event: self,
+      visibility: self.visibility,
+      resolution: :scheduled,
+      started_at: start_at,
+    )
   end
 
   def flavors=(slugs)

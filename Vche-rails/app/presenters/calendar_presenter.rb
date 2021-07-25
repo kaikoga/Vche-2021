@@ -6,11 +6,7 @@ class CalendarPresenter
     recent_dates = (0...days).map { |i| beginning_of_calendar + i.days }
 
     # FIXME N+1
-    event_histories = events
-                        .flat_map(&:event_schedules)
-                        .flat_map { |schedule| schedule.recent_schedule(recent_dates) }
-
-    event_histories += events.flat_map(&:event_histories)
+    event_histories = events.flat_map{ |event| event.recent_schedule(recent_dates) }
 
     event_histories.sort_by(&:started_at)
 

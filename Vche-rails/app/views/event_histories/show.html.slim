@@ -23,7 +23,8 @@ h1 = "#{EventHistory.model_name.human}詳細"
     label = EventHistory.human_attribute_name(:closed_at)
     .value = l(@event_history.closed_at) if @event_history.closed_at
 
-  = link_to 'Edit', edit_event_event_history_path(@event_history), class: 'button'
+  -if @event_history.persisted?
+    = link_to 'Edit', edit_event_event_history_path(@event_history), class: 'button'
   = link_to 'Back', event_path(@event), class: 'button'
 
   = render 'editor_info', resource: @event_history

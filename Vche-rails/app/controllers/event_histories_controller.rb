@@ -10,6 +10,12 @@ class EventHistoriesController < ApplicationController
     @event_history = find_event_history
   end
 
+  def at
+    started_at = Time.zone.parse(params[:datetime])
+    @event_history = @event.recent_schedule([started_at.beginning_of_day]).detect { |h| h.started_at = started_at }
+    render :show
+  end
+
   def new
     @event_history = EventHistory.new
   end
@@ -53,7 +59,7 @@ class EventHistoriesController < ApplicationController
   end
 
   def find_event_history
-    EventHistory.find(params[:id])
+    @event.find_schedule(Time.zone.parse(params[:id]))
   end
 
   def event_history_params

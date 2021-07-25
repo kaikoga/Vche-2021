@@ -47,4 +47,12 @@ class EventHistory < ApplicationRecord
   def trust_unique_key
     hashtag ? [hashtag, started_at] : []
   end
+
+  def to_key
+    [to_param]
+  end
+
+  def to_param
+    started_at.strftime('%Y%m%d%H%M%S')
+  end
 end
