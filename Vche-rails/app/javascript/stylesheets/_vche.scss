@@ -91,6 +91,7 @@ form {
       @include keyvaluetable__key;
     }
     input[type="text"],
+    input[type="password"],
     input[type="datetime"],
     select, textarea {
       @include keyvaluetable__value;
