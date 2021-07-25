@@ -41,15 +41,17 @@ h1 = "#{Event.model_name.human}詳細"
     label = Event.human_attribute_name(:event_schedules)
     .relation
       = render 'event_schedules/cards', event: @event, event_schedules: @event.event_schedules, edit: true
-      = link_to 'New', new_event_event_schedule_path(@event), class: 'button'
+      - if loyalty(@event).edit?
+        = link_to 'New', new_event_event_schedule_path(@event), class: 'button'
 
   .field
     label = Event.human_attribute_name(:event_histories)
     .relation
       = render 'event_histories/cards', event: @event, event_histories: @event.event_histories, edit: true
-      = link_to 'New', new_event_event_history_path(@event), class: 'button'
+      - if loyalty(@event).edit?
+        = link_to 'New', new_event_event_history_path(@event), class: 'button'
 
-  = link_to 'Edit', edit_event_path(@event), class: 'button'
-  = link_to 'Back', events_path, class: 'button'
+  - if loyalty(@event).edit?
+    = link_to '編集する', edit_event_path(@event), class: 'button'
 
   = render 'editor_info', resource: @event

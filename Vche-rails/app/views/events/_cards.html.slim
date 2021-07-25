@@ -10,5 +10,5 @@ div class="events -#{_layout}"
       span.hashtag = event.hashtag
       - if event.next_schedule
         span.start_at = l(event.next_schedule.started_at)
-      = link_to 'Show', event, class: 'button'
-      = link_to 'Edit', edit_event_path(event), class: 'button' if edit
+      = link_to '詳細', event, class: 'button'
+      = link_to '編集する', edit_event_path(event), class: 'button' if edit
