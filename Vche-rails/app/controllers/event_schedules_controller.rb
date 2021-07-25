@@ -20,6 +20,7 @@ class EventSchedulesController < ApplicationController
 
   def create
     @event_schedule = @event.event_schedules.build(event_schedule_params)
+    authorize! @event_schedule
     @event_schedule.created_user = current_user
     @event_schedule.updated_user = current_user
 
@@ -32,6 +33,7 @@ class EventSchedulesController < ApplicationController
 
   def update
     @event_schedule = find_event_schedule
+    authorize! @event_schedule
     @event_schedule.updated_user = current_user
     if @event_schedule.update(event_schedule_params)
       redirect_to @event, notice: 'EventSchedule was successfully updated.'
@@ -42,6 +44,7 @@ class EventSchedulesController < ApplicationController
 
   def destroy
     @event_schedule = find_event_schedule
+    authorize! @event_schedule
     @event_schedule.destroy
     redirect_to events_url, notice: 'EventSchedule was successfully destroyed.'
   end

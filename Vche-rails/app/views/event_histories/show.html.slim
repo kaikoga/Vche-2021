@@ -29,3 +29,5 @@ h1 = "#{EventHistory.model_name.human}詳細"
     = link_to '編集する', edit_event_event_history_path(@event, @event_history), class: 'button'
 
   = render 'editor_info', resource: @event_history
+
+= render 'events/table', event: @event

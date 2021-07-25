@@ -10,4 +10,5 @@ div class="event_schedules -#{_layout}"
       span.start_at = l(event_schedule.start_at)
       span.end_at = l(event_schedule.end_at)
       = link_to '詳細', [event, event_schedule], class: 'button'
-      = link_to '編集する', edit_event_event_schedule_path(event, event_schedule), class: 'button' if edit
+      - if edit && loyalty(event_schedule, :event_schedules).edit?
+        = link_to '編集する', edit_event_event_schedule_path(event, event_schedule), class: 'button'

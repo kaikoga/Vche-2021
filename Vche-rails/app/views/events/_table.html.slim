@@ -1,0 +1,57 @@
+- event ||= nil
+
+.event.-table
+  .field
+    label = Event.human_attribute_name(:name)
+    .value = event.name
+  .field
+    label = Event.human_attribute_name(:fullname)
+    .value = event.fullname
+  .field
+    label = Event.human_attribute_name(:description)
+    .value = event.description
+  .field
+    label = Event.human_attribute_name(:organizer_name)
+    .value = event.organizer_name
+  .field
+    label = Event.human_attribute_name(:primary_sns)
+    .value = event.primary_sns
+  .field
+    label = Event.human_attribute_name(:info_url)
+    .value = event.info_url
+  .field
+    label = Event.human_attribute_name(:hashtag)
+    .value = event.hashtag
+  .field
+    label = Event.human_attribute_name(:platform)
+    .value = event.platform_text
+  .field
+    label = Event.human_attribute_name(:visibility)
+    .value = event.visibility_text
+  .field
+    label = Event.human_attribute_name(:flavors)
+    .relation
+      - event.flavors.each do |flavor|
+        = flavor_tag(flavor)
+  .field
+    label = Event.human_attribute_name(:taste)
+    .value = event.taste_text
+
+  .field
+    label = Event.human_attribute_name(:event_schedules)
+    .relation
+      = render 'event_schedules/cards', event: event, event_schedules: event.event_schedules, edit: true
+      - if loyalty(event, :events).edit?
+        = link_to 'New', new_event_event_schedule_path(event), class: 'button'
+
+  .field
+    label = Event.human_attribute_name(:event_histories)
+    .relation
+      = render 'event_histories/cards', event: event, event_histories: event.event_histories, edit: true
+      - if loyalty(event, :events).edit?
+        = link_to 'New', new_event_event_history_path(event), class: 'button'
+
+  - if loyalty(event, :events).edit?
+    = link_to '編集する', edit_event_path(event), class: 'button'
+
+  = render 'editor_info', resource: event

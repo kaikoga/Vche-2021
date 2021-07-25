@@ -1,5 +1,6 @@
 .editor_fields {
-  float: right;
+  display: flex;
+  justify-content: flex-end;
   margin-top: 0.8em;
   .editor_field {
     display: inline-block;

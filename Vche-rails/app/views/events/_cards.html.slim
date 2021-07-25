@@ -11,4 +11,5 @@ div class="events -#{_layout}"
       - if event.next_schedule
         span.start_at = l(event.next_schedule.started_at)
       = link_to '詳細', event, class: 'button'
-      = link_to '編集する', edit_event_path(event), class: 'button' if edit
+      - if edit && loyalty(event, :events).edit?
+        = link_to '編集する', edit_event_path(event), class: 'button'

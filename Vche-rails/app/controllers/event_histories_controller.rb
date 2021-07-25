@@ -30,6 +30,7 @@ class EventHistoriesController < ApplicationController
 
   def create
     @event_history = @event.event_histories.build(event_history_params)
+    authorize! @event_history
     @event_history.created_user = current_user
     @event_history.updated_user = current_user
 
@@ -42,6 +43,7 @@ class EventHistoriesController < ApplicationController
 
   def update
     @event_history = find_event_history
+    authorize! @event_history
     @event_history.updated_user = current_user
     if @event_history.update(event_history_params)
       redirect_to @event, notice: 'EventHistory was successfully updated.'
@@ -52,6 +54,7 @@ class EventHistoriesController < ApplicationController
 
   def destroy
     @event_history = find_event_history
+    authorize! @event_history
     @event_history.destroy
     redirect_to events_url, notice: 'EventHistory was successfully destroyed.'
   end
