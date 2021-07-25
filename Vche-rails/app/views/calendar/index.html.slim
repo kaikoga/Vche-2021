@@ -6,4 +6,5 @@ h1 = 'カレンダー'
       .date = l(date, format: :mda)
       - histories.each do |history|
         .event.-calendar
-          = link_to "#{l(history.started_at, format: :hm)} #{history.event.name}", event_event_history_url(history.event, history), class: 'entry'
+          = history.event.main_flavor.emoji if history.event.main_flavor
+          = link_to "#{l(history.started_at, format: :hm)} #{history.event.name}", event_event_history_url(history.event, history), class: "entry -resolution_#{history.resolution}"

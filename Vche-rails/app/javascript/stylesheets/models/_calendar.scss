@@ -22,6 +22,21 @@
           background: $primary_bg-lighter;
           color: $text;
         }
+        &.-resolution_moved {
+          color: $text-lighter;
+          &::before {
+            content: '⚠️';
+          }
+        }
+        &.-resolution_canceled {
+          color: $text-lighter;
+          &::before {
+            content: '🛑';
+          }
+        }
+        &.-resolution_completed {
+          color: $text-lighter;
+        }
       }
     }
   }

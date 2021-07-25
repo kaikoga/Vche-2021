@@ -82,6 +82,10 @@ class Event < ApplicationRecord
     )
   end
 
+  def main_flavor
+    flavors.first
+  end
+
   def flavors=(slugs)
     flavors = Flavor.where(slug: slugs).all
     event_flavors.where.not(flavor: flavors).destroy_all
