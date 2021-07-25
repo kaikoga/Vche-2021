@@ -53,7 +53,7 @@ class Event < ApplicationRecord
     @next_schedule ||= event_schedules.map do |event_schedule|
       EventHistory.new(
         event: self,
-        visibility: self.visibility,
+        visibility: event_schedule.visibility,
         resolution: :scheduled,
         assembled_at: event_schedule.assemble_at,
         opened_at: event_schedule.open_at,
