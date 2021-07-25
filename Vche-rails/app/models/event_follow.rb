@@ -21,4 +21,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class EventFollow < ApplicationRecord
+  include Enums::Role
+
+  belongs_to :user
+  belongs_to :event
 end

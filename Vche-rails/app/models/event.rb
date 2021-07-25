@@ -49,6 +49,15 @@ class Event < ApplicationRecord
   has_many :event_schedules
   has_many :event_histories
 
+  has_many :event_follows, dependent: :destroy
+  has_many :followers, class_name: 'User', through: :event_follows
+
+  has_many :event_owners, -> { owned }, class_name: 'EventFollow'
+  has_many :owners, through: :event_owners, source: :user
+
+  has_many :event_backstage_members, -> { backstage_member }, class_name: 'EventFollow'
+  has_many :backstage_members, through: :event_backstage_members, source: :user
+
   def next_schedule
     @next_schedule ||= event_schedules.map do |event_schedule|
       EventHistory.new(

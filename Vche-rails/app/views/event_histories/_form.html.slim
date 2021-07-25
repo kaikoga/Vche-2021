@@ -1,5 +1,6 @@
 - event ||= nil
 - event_history ||= nil
+- event_history.event ||= event
 
 = form_with(model: [event, event_history]) do |form|
   - if event_history.errors.any?
@@ -16,9 +17,10 @@
   .field
     = form.label :resolution
     = form.select :resolution, EventHistory.resolution.options
-  .field
-    = form.label :assembled_at
-    = form.datetime_field :assembled_at
+  - if loyalty(event_history).backstage?
+    .field
+      = form.label :assembled_at
+      = form.datetime_field :assembled_at
   .field
     = form.label :opened_at
     = form.datetime_field :opened_at
@@ -28,8 +30,9 @@
   .field
     = form.label :ended_at
     = form.datetime_field :ended_at
-  .field
-    = form.label :closed_at
-    = form.datetime_field :closed_at
+  - if loyalty(event_history).backstage?
+    .field
+      = form.label :closed_at
+      = form.datetime_field :closed_at
   .actions
     = form.submit

@@ -11,5 +11,8 @@ module Enums::Role
         :visitor,
         :viewer
     ], default: :participant
+
+    scope :owned, ->{ where(role: :owner) }
+    scope :backstage_member, ->{ where(role: [:owner, :instance_owner, :performer, :staff]) }
   end
 end

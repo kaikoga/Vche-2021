@@ -1,5 +1,6 @@
 - event ||= nil
 - event_schedule ||= nil
+- event_schedule.event ||= event
 
 = form_with(model: [event, event_schedule]) do |form|
   - if event_schedule.errors.any?
@@ -13,9 +14,10 @@
   .field
     = form.label :visibility
     = form.select :visibility, Event.visibility.options
-  .field
-    = form.label :assemble_at
-    = form.datetime_field :assemble_at
+  - if loyalty(event_schedule).backstage?
+    .field
+      = form.label :assemble_at
+      = form.datetime_field :assemble_at
   .field
     = form.label :open_at
     = form.datetime_field :open_at
@@ -25,9 +27,10 @@
   .field
     = form.label :end_at
     = form.datetime_field :end_at
-  .field
-    = form.label :close_at
-    = form.datetime_field :close_at
+  - if loyalty(event_schedule).backstage?
+    .field
+      = form.label :close_at
+      = form.datetime_field :close_at
   .field
     = form.label :repeat
     = form.select :repeat, EventSchedule.repeat.options

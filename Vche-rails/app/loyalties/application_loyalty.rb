@@ -1,4 +1,6 @@
 class ApplicationLoyalty
+  include Banken
+
   attr_reader :user, :record
 
   def initialize(user, record)

@@ -21,9 +21,9 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.created_user = current_user
     @event.updated_user = current_user
-    @event.flavors = event_flavors_params
 
     if @event.save
+      @event.flavors = event_flavors_params
       redirect_to :events, notice: 'Event was successfully created'
     else
       render :new
@@ -32,6 +32,7 @@ class EventsController < ApplicationController
 
   def update
     @event = find_event
+    authorize! @event
     @event.updated_user = current_user
     @event.flavors = event_flavors_params
     @event.assign_attributes(event_params)
@@ -45,6 +46,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event = find_event
+    authorize! @event
     @event.destroy
     redirect_to events_url, notice: 'Event was successfully destroyed.'
   end
