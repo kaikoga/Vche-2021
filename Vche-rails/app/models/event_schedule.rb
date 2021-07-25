@@ -90,8 +90,8 @@ class EventSchedule < ApplicationRecord
       started_at: start_at&.change(date_options),
       ended_at: end_at&.change(date_options),
       closed_at: close_at&.change(date_options),
-      created_user: created_user,
-      updated_user: updated_user
+      created_user_id: created_user_id,
+      updated_user_id: updated_user_id
     )
   end
 end

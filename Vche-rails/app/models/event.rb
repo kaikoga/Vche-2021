@@ -69,8 +69,8 @@ class Event < ApplicationRecord
         started_at: event_schedule.start_at,
         ended_at: event_schedule.end_at,
         closed_at: event_schedule.close_at,
-        created_user: event_schedule.created_user,
-        updated_user: event_schedule.updated_user
+        created_user_id: event_schedule.created_user_id,
+        updated_user_id: event_schedule.updated_user_id
       )
     end.sort_by(&:started_at).first
   end
@@ -92,7 +92,7 @@ class Event < ApplicationRecord
   end
 
   def main_flavor
-    flavors.first
+    @main_flavor ||= flavors.first
   end
 
   def flavors=(slugs)
