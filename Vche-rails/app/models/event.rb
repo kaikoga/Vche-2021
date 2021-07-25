@@ -68,15 +68,17 @@ class Event < ApplicationRecord
 
   def recent_schedule(recent_dates)
     event_schedules.flat_map { |schedule| schedule.recent_schedule(recent_dates) }.concat(event_histories)
+      .index_by(&:started_at).values
   end
 
-  def find_schedule(start_at)
+  def find_or_build_history(start_at)
     recent_schedule([start_at.beginning_of_day])
-      .detect { |history| history.started_at == start_at} || EventHistory.new(
+      .detect { |history| history.started_at == start_at} ||
+    EventHistory.new(
       event: self,
       visibility: self.visibility,
-      resolution: :scheduled,
-      started_at: start_at,
+      resolution: :canceled,
+      started_at: start_at
     )
   end
 

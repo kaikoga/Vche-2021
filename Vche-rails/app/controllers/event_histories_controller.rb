@@ -22,6 +22,10 @@ class EventHistoriesController < ApplicationController
 
   def edit
     @event_history = find_event_history
+    if @event_history.new_record?
+      @event_history.save
+      redirect_to [@event, @event_history], action: :edit
+    end
   end
 
   def create
@@ -59,7 +63,7 @@ class EventHistoriesController < ApplicationController
   end
 
   def find_event_history
-    @event.find_schedule(Time.zone.parse(params[:id]))
+    @event.find_or_build_history(Time.zone.parse(params[:id]))
   end
 
   def event_history_params
