@@ -6,7 +6,7 @@ Flavor.create_or_find_by(
 )
 
 Flavor.create_or_find_by(
-  emoji: '🐱',
+  emoji: '👘',
   slug: 'avatar_meeting',
   name: 'アバター集会',
   taste: :general
