@@ -33,6 +33,7 @@
 #
 class Event < ApplicationRecord
   include Vche::Uid
+  include Vche::UidQuery
   include Vche::Trust
 
   include Enums::Platform

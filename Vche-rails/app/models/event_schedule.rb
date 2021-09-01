@@ -34,6 +34,7 @@
 #
 class EventSchedule < ApplicationRecord
   include Vche::Uid
+  include Vche::UidQuery
 
   include Enums::Visibility
   include Enums::Repeat

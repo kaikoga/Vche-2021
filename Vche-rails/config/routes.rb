@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  resources :users
-  resources :events do
-    resources :event_schedules
-    resources :event_histories
+  resources :users, param: :uid
+  resources :events, param: :uid do
+    resources :event_schedules, param: :uid
+    resources :event_histories, param: :time
   end
 
   get 'login' => 'sessions#new', :as => :login

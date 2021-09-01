@@ -54,7 +54,7 @@ class EventsController < ApplicationController
   private
 
   def find_event
-    Event.find(params[:id])
+    Event.find_by(uid: params[:uid])
   end
 
   def event_params
