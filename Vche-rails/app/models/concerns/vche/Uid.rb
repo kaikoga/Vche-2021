@@ -1,8 +1,7 @@
 module Vche::Uid
   extend ActiveSupport::Concern
 
-  UID_RANGE = ('a'..'z').to_a + ('0'..'9').to_a
-  UID_GENERATOR = PublicUid::Generators::RangeString.new(8, UID_RANGE)
+  UID_GENERATOR = PublicUid::Generators::HexStringSecureRandom.new(8)
 
   included do
     generate_public_uid column: :uid, generator: UID_GENERATOR
