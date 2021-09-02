@@ -52,11 +52,11 @@ class EventSchedulesController < ApplicationController
   private
 
   def find_parent_event
-    @event = Event.find_by(uid: params[:event_uid])
+    @event = Event.friendly.find(params[:event_id])
   end
 
   def find_event_schedule
-    EventSchedule.find_by(uid: params[:uid])
+    EventSchedule.friendly.find(params[:id])
   end
 
   def event_schedule_params

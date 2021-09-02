@@ -2,12 +2,7 @@ module Vche::UidQuery
   extend ActiveSupport::Concern
 
   included do
-    def to_key
-      [uid]
-    end
-
-    def to_param
-      uid
-    end
+    extend FriendlyId
+    friendly_id :uid
   end
 end

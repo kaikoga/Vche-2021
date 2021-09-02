@@ -55,7 +55,7 @@ class UsersController < ApplicationController
   private
 
   def find_user
-    User.find_by(uid: params[:uid])
+    User.friendly.find(params[:id])
   end
 
   def user_params

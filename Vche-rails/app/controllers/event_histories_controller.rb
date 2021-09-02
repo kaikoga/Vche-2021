@@ -62,11 +62,11 @@ class EventHistoriesController < ApplicationController
   private
 
   def find_parent_event
-    @event = Event.find_by(uid: params[:event_uid])
+    @event = Event.friendly.find(params[:event_id])
   end
 
   def find_event_history
-    @event.find_or_build_history(Time.zone.parse(params[:time]))
+    @event.find_or_build_history(Time.zone.parse(params[:id]))
   end
 
   def event_history_params
