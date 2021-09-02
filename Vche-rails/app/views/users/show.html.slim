@@ -28,3 +28,4 @@ h1 = "#{User.model_name.human}詳細"
 
   - if loyalty(@user).edit?
     = link_to '編集する', edit_user_path(@user), class: 'button'
+    = link_to 'パスワードを変更する', edit_user_password_path(@user), class: 'button'

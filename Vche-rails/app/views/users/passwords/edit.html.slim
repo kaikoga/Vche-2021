@@ -1,0 +1,4 @@
+h1 = "#{User.model_name.human}を編集する"
+div
+  = render 'form', user: @user
+  = link_to '戻る', @user, class: 'button'
