@@ -51,6 +51,29 @@ class EventsController < ApplicationController
     redirect_to events_url, notice: 'Event was successfully destroyed.'
   end
 
+
+  def follow
+    @event = find_event
+    authorize! @event
+
+    if current_user.event_follows.create!(event: @event, role: :participant)
+      redirect_to @event, notice: 'Followed.'
+    else
+      redirect_to @event
+    end
+  end
+
+  def unfollow
+    @event = find_event
+    authorize! @event
+
+    if current_user.event_follows.audience.where(event: @event).delete_all
+      redirect_to @event, notice: 'Unfollowed.'
+    else
+      redirect_to @event
+    end
+  end
+
   private
 
   def find_event

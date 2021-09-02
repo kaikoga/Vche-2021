@@ -23,4 +23,12 @@ class EventsLoyalty < ApplicationLoyalty
   def destroy?
     false
   end
+
+  def follow?
+    !user.following_event?(record)
+  end
+
+  def unfollow?
+    user.following_event_as_audience?(record)
+  end
 end

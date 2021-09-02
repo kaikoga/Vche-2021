@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   end
 
   resources :events do
+    member do
+      post :follow
+      post :unfollow
+    end
     resources :event_schedules
     resources :event_histories
   end

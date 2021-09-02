@@ -55,4 +55,16 @@ class User < ApplicationRecord
 
   has_many :event_follows, dependent: :destroy
   has_many :following_events, class_name: 'Event', through: :event_follows
+
+  def following_event?(event)
+    event_follows.where(event: event).exists?
+  end
+
+  def following_event_as_audience?(event)
+    event_follows.audience.where(event: event).exists?
+  end
+
+  def following_event_as_backstage_member?(event)
+    event_follows.backstage_member.where(event: event).exists?
+  end
 end

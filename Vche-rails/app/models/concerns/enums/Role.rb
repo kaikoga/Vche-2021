@@ -14,5 +14,6 @@ module Enums::Role
 
     scope :owned, ->{ where(role: :owner) }
     scope :backstage_member, ->{ where(role: [:owner, :instance_owner, :performer, :staff]) }
+    scope :audience, ->{ where(role: [:participant, :visitor, :viewer]) }
   end
 end
