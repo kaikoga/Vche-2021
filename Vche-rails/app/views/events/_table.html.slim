@@ -18,6 +18,9 @@
     label = Event.human_attribute_name(:organizer_name)
     .value = event.organizer_name
   .field
+    label = Event.human_attribute_name(:backstage_members)
+    .relation = render 'users/cards', users: event.backstage_members, card_cloud: true
+  .field
     label = Event.human_attribute_name(:primary_sns)
     .value = event.primary_sns
   .field

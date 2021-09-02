@@ -10,6 +10,7 @@ ja:
         fullname: 正式名称
         description: 説明
         organizer_name: 主催者
+        backstage_members: スタッフ
         info_url: 外部サイト
         flavors: カテゴリ
         taste: 雰囲気
