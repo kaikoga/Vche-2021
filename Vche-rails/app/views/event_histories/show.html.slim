@@ -30,4 +30,6 @@ h1 = "#{EventHistory.model_name.human}詳細"
 
   = render 'editor_info', resource: @event_history
 
+h2 = "#{Event.model_name.human}情報"
+
 = render 'events/table', event: @event
