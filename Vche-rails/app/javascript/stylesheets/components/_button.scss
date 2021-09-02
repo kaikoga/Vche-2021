@@ -10,4 +10,21 @@
     background: $primary_bg-lighter;
     color: $primary_text-lighter;
   }
+  &.-positive {
+    @include --button-positive;
+  }
+}
+
+@mixin button--positive {
+  @include button;
+  @include --button-positive;
+}
+
+@mixin --button-positive {
+  background: $positive_bg-light;
+  color: $positive_text;
+  &:hover {
+    background: $positive_bg-lighter;
+    color: $positive_text-lighter;
+  }
 }

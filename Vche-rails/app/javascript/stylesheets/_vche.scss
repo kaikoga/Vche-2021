@@ -79,13 +79,13 @@ header {
 }
 
 input[type="submit"] {
-  @include button;
+  @include button--positive;
   margin-left: 200px;
 }
 
 form {
   @include keyvaluetable;
-  .field {
+  > .field {
     @include keyvaluetable__keyvalue;
     > label {
       @include keyvaluetable__key;
@@ -96,8 +96,22 @@ form {
     select, textarea {
       @include keyvaluetable__value;
     }
-    .field_with_errors {
+    > .field_with_errors {
       display: inline-block;
+      > label {
+        @include keyvaluetable__key;
+        color: $negative_text;
+      }
+      input[type="text"],
+      input[type="password"],
+      input[type="datetime"],
+      select, textarea {
+        border: $negative_bg solid 2px;
+        background: $negative_fill-light;
+        &:hover {
+          background: $negative_fill-lighter;
+        }
+      }
     }
     .relation {
       @include keyvaluetable__relation;
