@@ -17,6 +17,7 @@ Rails.application.routes.draw do
         post :unattend
       end
     end
+    resources :event_follows, controller: 'events/event_follows', only: :index
   end
 
   get 'login' => 'sessions#new', :as => :login

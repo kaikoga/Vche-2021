@@ -51,7 +51,7 @@ class Event < ApplicationRecord
   has_many :event_histories
 
   has_many :event_follows, dependent: :destroy
-  has_many :followers, class_name: 'User', through: :event_follows
+  has_many :followers, through: :event_follows, source: :user
 
   has_many :event_owners, -> { owned }, class_name: 'EventFollow'
   has_many :owners, through: :event_owners, source: :user
