@@ -25,4 +25,12 @@ class EventHistoriesLoyalty < ApplicationLoyalty
     owners = record.event.owners
     owners.empty? || owners.include?(user)
   end
+
+  def attend?
+    user.following_event_as_backstage_member?(record.event) && !user.attending_event?(record)
+  end
+
+  def unattend?
+    user.following_event_as_backstage_member?(record.event) && user.attending_event_as_audience?(record)
+  end
 end

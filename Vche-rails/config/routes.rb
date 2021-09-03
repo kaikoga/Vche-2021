@@ -11,7 +11,12 @@ Rails.application.routes.draw do
       post :unfollow
     end
     resources :event_schedules
-    resources :event_histories
+    resources :event_histories do
+      member do
+        post :attend
+        post :unattend
+      end
+    end
   end
 
   get 'login' => 'sessions#new', :as => :login

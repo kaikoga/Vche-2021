@@ -28,4 +28,6 @@ class EventAttendance < ApplicationRecord
   include Vche::Uid
 
   include Enums::Role
+
+  scope :for_event_history, ->(event_history){ where(event_id: event_history.event_id, started_at: event_history.started_at) }
 end

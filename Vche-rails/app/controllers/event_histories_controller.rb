@@ -24,7 +24,7 @@ class EventHistoriesController < ApplicationController
     @event_history = find_event_history
     if @event_history.new_record?
       @event_history.save
-      redirect_to [@event, @event_history], action: :edit
+      redirect_to event_event_history_path(@event, @event_history)
     end
   end
 
@@ -35,7 +35,7 @@ class EventHistoriesController < ApplicationController
     @event_history.updated_user = current_user
 
     if @event_history.save
-      redirect_to @event, notice: 'EventHistory was successfully created'
+      redirect_to event_event_history_path(@event, @event_history), notice: 'EventHistory was successfully created'
     else
       render :new
     end
@@ -46,7 +46,7 @@ class EventHistoriesController < ApplicationController
     authorize! @event_history
     @event_history.updated_user = current_user
     if @event_history.update(event_history_params)
-      redirect_to @event, notice: 'EventHistory was successfully updated.'
+      redirect_to event_event_history_path(@event, @event_history), notice: 'EventHistory was successfully updated.'
     else
       render :edit
     end
@@ -57,6 +57,29 @@ class EventHistoriesController < ApplicationController
     authorize! @event_history
     @event_history.destroy
     redirect_to events_url, notice: 'EventHistory was successfully destroyed.'
+  end
+
+  def attend
+    @event_history = find_event_history
+    authorize! @event_history
+
+    role = current_user.following_event_as_backstage_member?(@event) || :participant
+    if current_user.event_attendances.for_event_history(@event_history).create!(role: role)
+      redirect_to event_event_history_path(@event, @event_history), notice: 'Attended.'
+    else
+      redirect_to event_event_history_path(@event, @event_history)
+    end
+  end
+
+  def unattend
+    @event_history = find_event_history
+    authorize! @event_history
+
+    if current_user.event_attendances.audience.for_event_history(@event_history).delete_all
+      redirect_to event_event_history_path(@event, @event_history), notice: 'Unattended.'
+    else
+      redirect_to event_event_history_path(@event, @event_history)
+    end
   end
 
   private

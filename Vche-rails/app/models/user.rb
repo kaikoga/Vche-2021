@@ -54,17 +54,30 @@ class User < ApplicationRecord
   has_many :updated_event_histories, class_name: 'EventHistory', foreign_key: :updated_user_id
 
   has_many :event_follows, dependent: :destroy
+  has_many :event_attendances, dependent: :destroy
   has_many :following_events, class_name: 'Event', through: :event_follows
 
   def following_event?(event)
-    event_follows.where(event: event).exists?
+    event_follows.where(event: event).first&.role
   end
 
   def following_event_as_audience?(event)
-    event_follows.audience.where(event: event).exists?
+    event_follows.audience.where(event: event).first&.role
   end
 
   def following_event_as_backstage_member?(event)
-    event_follows.backstage_member.where(event: event).exists?
+    event_follows.backstage_member.where(event: event).first&.role
+  end
+
+  def attending_event?(event_history)
+    event_attendances.for_event_history(event_history).first&.role
+  end
+
+  def attending_event_as_audience?(event_history)
+    event_attendances.audience.for_event_history(event_history).first&.role
+  end
+
+  def attending_event_as_backstage_member?(event_history)
+    event_attendances.backstage_member.for_event_history(event_history).first&.role
   end
 end
