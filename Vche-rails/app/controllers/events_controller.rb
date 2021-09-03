@@ -7,6 +7,8 @@ class EventsController < ApplicationController
 
   def show
     @event = find_event
+
+    @calendar = CalendarPresenter.new([@event], days: 35)
   end
 
   def new
