@@ -29,6 +29,7 @@ gem 'friendly_id'
 gem 'public_uid'
 gem 'rails-i18n'
 gem 'sorcery'
+gem 'view_component', require: 'view_component/engine'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
