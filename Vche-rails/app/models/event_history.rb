@@ -44,6 +44,26 @@ class EventHistory < ApplicationRecord
 
   delegate :trust, :hashtag, to: :event
 
+  def event_attendances
+    event.event_attendances.where(started_at: started_at)
+  end
+
+  def event_owners
+    event_attendances.owned
+  end
+
+  def owners
+    event_owners.map(&:user)
+  end
+
+  def event_backstage_members
+    event_attendances.backstage_member
+  end
+
+  def backstage_members
+    event_backstage_members.map(&:user)
+  end
+
   def trust_unique_key
     hashtag ? [hashtag, started_at] : []
   end

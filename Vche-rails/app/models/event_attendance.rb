@@ -29,5 +29,8 @@ class EventAttendance < ApplicationRecord
 
   include Enums::Role
 
+  belongs_to :user
+  belongs_to :event
+
   scope :for_event_history, ->(event_history){ where(event_id: event_history.event_id, started_at: event_history.started_at) }
 end

@@ -12,6 +12,9 @@
   .field
     label = EventHistory.human_attribute_name(:resolution)
     .value = event_history.resolution_text
+  .field
+    label = EventHistory.human_attribute_name(:backstage_members)
+    .relation = render 'users/cards', users: event_history.backstage_members, card_cloud: true
   - if loyalty(event_history).backstage?
     .field
       label = EventHistory.human_attribute_name(:assembled_at)
