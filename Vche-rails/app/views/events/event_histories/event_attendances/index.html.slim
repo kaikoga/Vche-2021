@@ -1,0 +1,11 @@
+h1 = EventHistory.human_attribute_name(:attendees)
+
+= render 'users/cards', users: @event_history.event_attendances.includes(:user).map(&:user), card_cloud: true
+
+h2 = "#{EventHistory.model_name.human}詳細"
+
+= render 'event_histories/table', event: @event, event_history: @event_history
+
+h2 = "#{Event.model_name.human}情報"
+
+= render 'events/table', event: @event

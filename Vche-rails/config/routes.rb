@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
     resources :event_schedules
     resources :event_histories do
+      resources :event_attendances, controller: 'events/event_histories/event_attendances', only: :index
       member do
         post :attend
         post :unattend

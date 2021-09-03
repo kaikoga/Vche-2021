@@ -6,6 +6,7 @@
     = link_to 'Attend', attend_event_event_history_path(event, event_history), method: :post, class: 'button'
   - if loyalty(event_history, :event_histories).unattend?
     = link_to 'Unattend', unattend_event_event_history_path(event, event_history), method: :post, class: 'button'
+  = link_to 'Attenders', event_event_history_event_attendances_path(event, event_history), class: 'button'
   .field
     label = EventHistory.human_attribute_name(:visibility)
     .value = event_history.visibility_text
@@ -15,7 +16,7 @@
   .field
     label = EventHistory.human_attribute_name(:backstage_members)
     .relation = render 'users/cards', users: event_history.backstage_members, card_cloud: true
-  - if loyalty(event_history).backstage?
+  - if loyalty(event_history, :event_histories).backstage?
     .field
       label = EventHistory.human_attribute_name(:assembled_at)
       .value = l(event_history.assembled_at) if event_history.assembled_at
@@ -28,12 +29,12 @@
   .field
     label = EventHistory.human_attribute_name(:ended_at)
     .value = l(event_history.ended_at)
-  - if loyalty(event_history).backstage?
+  - if loyalty(event_history, :event_histories).backstage?
     .field
       label = EventHistory.human_attribute_name(:closed_at)
       .value = l(event_history.closed_at) if event_history.closed_at
 
-  - if loyalty(event_history).edit?
+  - if loyalty(event_history, :event_histories).edit?
     = link_to '編集する', edit_event_event_history_path(event, event_history), class: 'button'
 
   = render 'editor_info', resource: event_history

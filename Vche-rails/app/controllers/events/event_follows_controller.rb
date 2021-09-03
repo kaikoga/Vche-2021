@@ -1,6 +1,7 @@
 class Events::EventFollowsController < ApplicationController
+  before_action :find_parent_event
+
   def index
-    @event = find_parent_event
     authorize! @event
   end
 

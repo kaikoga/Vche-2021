@@ -37,10 +37,11 @@ ja:
         password_confirmation: パスワード（確認する）
         last_login_at: 最終ログイン
   attributes:
+    attendees: 参加者
     backstage_members: スタッフ
     event_histories: イベント履歴
     event_schedules: 定期イベント予定
-    followers: 参加者
+    followers: フォロワー
     hashtag: ハッシュタグ
     name: 名前
     platform: プラットフォーム
