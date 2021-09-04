@@ -23,6 +23,13 @@
     @include button--panel;
     color: $text-light;
   }
+  .followers {
+    margin: 0rem 0.5rem;
+    color: $text-light;
+   .label {
+      color: $text-lighter;
+    }
+  }
   .hashtag {
     font-size: $font-size-small;
     color: $text-lighter;

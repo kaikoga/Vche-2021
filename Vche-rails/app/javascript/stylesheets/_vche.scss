@@ -79,6 +79,14 @@ a {
   }
 }
 
+.link {
+  text-decoration: none;
+  &:hover {
+    color: $text-light;
+    text-decoration: underline;
+  }
+}
+
 .strip__title {
   @include strip__title;
 }

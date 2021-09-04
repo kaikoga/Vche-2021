@@ -23,6 +23,13 @@
     @include button--panel;
     color: $text-light;
   }
+  .attendances {
+    margin: 0rem 0.5rem;
+    color: $text-light;
+    .label {
+      color: $text-lighter;
+    }
+  }
 }
 
 .event_history.-card {
