@@ -20,11 +20,39 @@
   @include --button-positive;
 }
 
+@mixin button--selected {
+  @include button;
+  @include --button-selected;
+}
+
+@mixin button--disabled {
+  @include button;
+  @include --button-disabled;
+}
+
 @mixin --button-positive {
   background: $positive_bg-light;
   color: $positive_text;
   &:hover {
     background: $positive_bg-lighter;
     color: $positive_text-lighter;
+  }
+}
+
+@mixin --button-selected {
+  background: $primary_bg-lighter;
+  color: $primary_text-lighter;
+  &:hover {
+    background: $primary_bg-lighter;
+    color: $primary_text-lighter;
+  }
+}
+
+@mixin --button-disabled {
+  background: $disabled_bg;
+  color: $disabled_text;
+  &:hover {
+    background: $disabled_bg;
+    color: $disabled_text;
   }
 }

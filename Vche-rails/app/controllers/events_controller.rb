@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
 
   def index
-    @events = Event.all
+    @events = Event.page(params[:page])
   end
 
   def show

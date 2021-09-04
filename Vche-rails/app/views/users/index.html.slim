@@ -1,3 +1,4 @@
 h1 = User.model_name.human
 
 = render 'cards', users: @users, card_cloud: true
+= paginate @users

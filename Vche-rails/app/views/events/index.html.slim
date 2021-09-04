@@ -1,5 +1,6 @@
 h1 = Event.model_name.human
 
 = render 'cards', events: @events, edit: false, card_cloud: true
+= paginate @events
 
 = link_to 'New', new_event_path, class: 'button'

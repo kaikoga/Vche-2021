@@ -78,6 +78,18 @@ header {
   margin-left: 1em;
 }
 
+.button--positive {
+  @include button--positive;
+}
+
+.button--selected {
+  @include button--selected;
+}
+
+.button--disabled {
+  @include button--disabled;
+}
+
 input[type="submit"] {
   @include button--positive;
   margin-left: 200px;
