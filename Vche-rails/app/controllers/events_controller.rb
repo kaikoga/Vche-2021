@@ -37,10 +37,8 @@ class EventsController < ApplicationController
     @event = find_event
     authorize! @event
     @event.updated_user = current_user
-    @event.flavors = event_flavors_params
-    @event.assign_attributes(event_params)
 
-    if @event.save
+    if @event.update(**event_params, flavors: event_flavors_params)
       redirect_to @event, notice: 'Event was successfully updated.'
     else
       render :edit
