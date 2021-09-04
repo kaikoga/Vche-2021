@@ -27,6 +27,7 @@ class EventsController < ApplicationController
 
     if @event.save
       @event.flavors = event_flavors_params
+      @event.event_follows.create(user: current_user, role: :owner)
       redirect_to :events, notice: 'Event was successfully created'
     else
       render :new
