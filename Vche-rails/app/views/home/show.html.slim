@@ -1,0 +1,9 @@
+h1 = 'マイページ'
+
+= render 'users/cards', users: [@user], card_cloud: true
+
+= link_to 'プロフィール', @user, class: 'button'
+
+h2 = '自分の予定'
+
+= render 'calendar/calendar', calendar: @calendar

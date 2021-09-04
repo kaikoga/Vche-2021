@@ -55,7 +55,7 @@ class User < ApplicationRecord
 
   has_many :event_follows, dependent: :destroy
   has_many :event_attendances, dependent: :destroy
-  has_many :following_events, class_name: 'Event', through: :event_follows
+  has_many :following_events, through: :event_follows, source: :event
 
   def following_event?(event)
     event_follows.where(event: event).first&.role
