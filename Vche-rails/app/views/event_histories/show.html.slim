@@ -1,5 +1,7 @@
 h1 = "#{EventHistory.model_name.human}詳細"
 
+= render 'events/strip', event: @event, user: @user
+
 = render 'table', event: @event, event_history: @event_history
 
 h2 = "#{Event.model_name.human}情報"

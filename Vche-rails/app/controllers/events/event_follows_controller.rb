@@ -3,6 +3,7 @@ class Events::EventFollowsController < ApplicationController
 
   def index
     authorize! @event
+    @user = current_user
   end
 
   private

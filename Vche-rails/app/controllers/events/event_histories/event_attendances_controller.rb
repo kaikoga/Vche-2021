@@ -4,6 +4,7 @@ class Events::EventHistories::EventAttendancesController < ApplicationController
 
   def index
     authorize! @event
+    @user = current_user
   end
 
   private

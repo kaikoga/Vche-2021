@@ -4,10 +4,12 @@ class EventHistoriesController < ApplicationController
 
   def index
     @event_histories = EventHistory.all
+    @user = current_user
   end
 
   def show
     @event_history = find_event_history
+    @user = current_user
   end
 
   def at

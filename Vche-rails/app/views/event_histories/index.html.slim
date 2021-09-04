@@ -1,5 +1,7 @@
 h1 = EventHistory.model_name.human
 
+= render 'events/strip', event: @event, user: @user
+
 = render 'cards', event: @event, event_histories: @event_histories, edit: false, card_cloud: true
 
 = link_to 'New', new_event_event_history_path(@event), class: 'button'
