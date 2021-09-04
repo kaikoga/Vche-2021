@@ -7,7 +7,10 @@
     .value = event_history.resolution_text
   .field
     label = EventHistory.human_attribute_name(:backstage_members)
-    .relation = render 'users/cards', users: event_history.backstage_members, card_cloud: true
+    .relation
+      = render 'users/cards', users: event_history.backstage_members, card_cloud: true
+      - if loyalty(event_history, 'events/event_history/event_attendances').create?
+        = link_to 'スタッフを割り当てる', event_event_history_event_attendances_path(event, event_history), class: :button
   - if loyalty(event_history, :event_histories).backstage?
     .field
       label = EventHistory.human_attribute_name(:assembled_at)

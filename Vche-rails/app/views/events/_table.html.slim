@@ -15,7 +15,10 @@
     .value = event.organizer_name
   .field
     label = Event.human_attribute_name(:backstage_members)
-    .relation = render 'users/cards', users: event.backstage_members, card_cloud: true
+    .relation
+      = render 'users/cards', users: event.backstage_members, card_cloud: true
+      - if loyalty(event, 'events/event_follows').create?
+        = link_to 'スタッフを割り当てる', event_event_follows_path(event), class: :button
   .field
     label = Event.human_attribute_name(:primary_sns)
     .value = event.primary_sns
