@@ -165,6 +165,9 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
+    kaminari-i18n (0.5.0)
+      kaminari
+      rails
     listen (3.5.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -328,6 +331,7 @@ DEPENDENCIES
   friendly_id
   i18n_generators
   kaminari
+  kaminari-i18n
   listen (~> 3.3)
   mysql2
   public_uid
