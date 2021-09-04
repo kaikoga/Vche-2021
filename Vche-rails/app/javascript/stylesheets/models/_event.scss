@@ -14,6 +14,31 @@
   }
 }
 
+.event.-strip {
+  @include panel;
+  .name {
+    font-size: $font-size-larger;
+  }
+  .following_event {
+    @include button--panel;
+    color: $text-light;
+  }
+  .hashtag {
+    font-size: $font-size-small;
+    color: $text-lighter;
+  }
+  .platform {
+    @include panel--small;
+    color: $text-light;
+  }
+  .organizer {
+    font-size: $font-size-small;
+    color: $text-light;
+  }
+  .fullname {
+  }
+}
+
 .event.-card {
   @include panel;
   .hashtag {

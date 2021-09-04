@@ -14,6 +14,18 @@
   }
 }
 
+.user.-strip {
+  @include panel;
+  .email {
+    display: inline;
+    color: $text-lighter;
+  }
+  .display_name {
+    display: inline;
+    font-size: $font-size-larger;
+  }
+}
+
 .user.-card {
   @include panel;
   .email {

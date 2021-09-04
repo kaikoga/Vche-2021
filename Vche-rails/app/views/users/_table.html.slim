@@ -1,0 +1,31 @@
+- user ||= nil
+
+.user.-table
+  .field
+    label = User.human_attribute_name(:email)
+    .value = user.email
+  .field
+    label = User.human_attribute_name(:uid)
+    .value = user.uid
+  .field
+    label = User.human_attribute_name(:display_name)
+    .value = user.display_name
+  .field
+    label = User.human_attribute_name(:primary_sns)
+    .value = user.primary_sns
+  .field
+    label = User.human_attribute_name(:profile)
+    .value = user.profile
+  .field
+    label = User.human_attribute_name(:visibility)
+    .value = user.visibility_text
+  .field
+    label = User.human_attribute_name(:user_role)
+    .value = user.user_role_text
+  .field
+    label = User.human_attribute_name(:last_login_at)
+    .value = l(user.last_login_at) if user.last_login_at
+
+  - if loyalty(user).edit?
+    = link_to '編集する', edit_user_path(user), class: 'button'
+    = link_to 'パスワードを変更する', edit_user_password_path(user), class: 'button'

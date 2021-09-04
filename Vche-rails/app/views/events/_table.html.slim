@@ -7,11 +7,6 @@
   .field
     label = Event.human_attribute_name(:fullname)
     .value = event.fullname
-  - if loyalty(event, :events).follow?
-    = link_to 'Follow', follow_event_path(event), method: :post, class: 'button'
-  - if loyalty(event, :events).unfollow?
-    = link_to 'Unfollow', unfollow_event_path(event), method: :post, class: 'button'
-  = link_to 'Followers', event_event_follows_path(event), class: 'button'
   .field
     label = Event.human_attribute_name(:description)
     .value = event.description

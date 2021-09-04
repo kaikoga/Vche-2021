@@ -1,0 +1,22 @@
+- event ||= nil
+- user ||= nil
+
+.event.-strip
+  span.name = event.name
+  - if user
+    '
+    span.following_event = user.following_event?(event)&.text || '未フォロー'
+
+    - if loyalty(event, :events).follow?
+      = link_to 'Follow', follow_event_path(event), method: :post, class: 'button'
+    - if loyalty(event, :events).unfollow?
+      = link_to 'Unfollow', unfollow_event_path(event), method: :post, class: 'button'
+    = link_to 'Followers', event_event_follows_path(event), class: 'button'
+
+  .fullname = event.fullname
+
+  span.platform = event.platform_text
+  '
+  span.organizer = event.organizer_name
+  '
+  span.hashtag = event.hashtag

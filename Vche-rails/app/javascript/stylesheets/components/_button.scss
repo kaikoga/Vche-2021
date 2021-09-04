@@ -30,6 +30,11 @@
   @include --button-disabled;
 }
 
+@mixin button--panel {
+  @include button;
+  @include --button-panel;
+}
+
 @mixin --button-positive {
   background: $positive_bg-light;
   color: $positive_text;
@@ -54,5 +59,15 @@
   &:hover {
     background: $disabled_bg;
     color: $disabled_text;
+  }
+}
+
+@mixin --button-panel {
+  background: $fill-light;
+  border: $primary_bg solid 1px;
+  margin-right: 1rem;
+  &:hover {
+    background: $fill-lighter;
+    color: inherit;
   }
 }
