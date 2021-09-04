@@ -14,6 +14,17 @@
   }
 }
 
+.event_history.-strip {
+  @include strip;
+  .started_at {
+    font-size: $font-size-large;
+  }
+  .attending_event {
+    @include button--panel;
+    color: $text-light;
+  }
+}
+
 .event_history.-card {
   @include panel;
   .started_at, .ended_at  {

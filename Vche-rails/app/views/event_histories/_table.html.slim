@@ -2,11 +2,6 @@
 - event_history ||= nil
 
 .event_history.-table
-  - if loyalty(event_history, :event_histories).attend?
-    = link_to 'Attend', attend_event_event_history_path(event, event_history), method: :post, class: 'button'
-  - if loyalty(event_history, :event_histories).unattend?
-    = link_to 'Unattend', unattend_event_event_history_path(event, event_history), method: :post, class: 'button'
-  = link_to 'Attenders', event_event_history_event_attendances_path(event, event_history), class: 'button'
   .field
     label = EventHistory.human_attribute_name(:visibility)
     .value = event_history.visibility_text
