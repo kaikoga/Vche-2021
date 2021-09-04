@@ -2,6 +2,8 @@
 - user ||= nil
 
 .event.-strip
+  - unless event.visibility == 'public'
+    span.visibility = event.visibility_text
   span.name = link_to(event.name, event, class: :strip__title)
   '
   = link_to event_event_follows_path(event), class: 'link followers' do

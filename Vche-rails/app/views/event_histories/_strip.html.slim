@@ -3,6 +3,8 @@
 - user ||= nil
 
 .event_history.-strip
+  - unless event_history.visibility == 'public'
+    span.visibility = event_history.visibility_text
   span.started_at
     | 開催:
     = link_to(l(event_history.started_at), event_event_history_url(event, event_history), class: :strip__title)

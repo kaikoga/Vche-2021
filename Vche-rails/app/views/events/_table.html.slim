@@ -29,9 +29,6 @@
     label = Event.human_attribute_name(:platform)
     .value = event.platform_text
   .field
-    label = Event.human_attribute_name(:visibility)
-    .value = event.visibility_text
-  .field
     label = Event.human_attribute_name(:flavors)
     .relation
       - event.flavors.each do |flavor|

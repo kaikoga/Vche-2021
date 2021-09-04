@@ -16,6 +16,10 @@
 
 .event.-strip {
   @include strip;
+  .visibility {
+    @include panel--small;
+    color: $text-light;
+  }
   .name {
     font-size: $font-size-larger;
   }
