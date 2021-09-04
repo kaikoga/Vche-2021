@@ -2,6 +2,10 @@ class CalendarPresenter
   attr_reader :event_histories_by_date
 
   def initialize(events, days: 28)
+    if events.respond_to?(:includes)
+      events = events.includes(:event_schedules, :event_histories, :flavors)
+    end
+
     beginning_of_calendar = Time.current.beginning_of_week(:sunday)
     recent_dates = (0...days).map { |i| beginning_of_calendar + i.days }
 
