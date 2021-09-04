@@ -27,10 +27,10 @@ class EventHistoriesLoyalty < ApplicationLoyalty
   end
 
   def attend?
-    user.following_event_as_backstage_member?(record.event) && !user.attending_event?(record)
+    !user.attending_event?(record)
   end
 
   def unattend?
-    user.following_event_as_backstage_member?(record.event) && user.attending_event_as_audience?(record)
+    user.attending_event_as_audience?(record)
   end
 end
