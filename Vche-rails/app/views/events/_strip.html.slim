@@ -2,7 +2,7 @@
 - user ||= nil
 
 .event.-strip
-  span.name = event.name
+  span.name = link_to(event.name, event, class: :strip__title)
   - if user
     '
     span.following_event = user.following_event?(event)&.text || '未フォロー'

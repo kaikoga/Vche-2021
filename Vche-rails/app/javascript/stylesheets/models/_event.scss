@@ -15,7 +15,7 @@
 }
 
 .event.-strip {
-  @include panel;
+  @include strip;
   .name {
     font-size: $font-size-larger;
   }

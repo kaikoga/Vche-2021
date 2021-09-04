@@ -1,0 +1,12 @@
+@mixin strip {
+  @include panel;
+}
+
+@mixin strip__title {
+  color: $primary_text-darker;
+  text-decoration: none;
+  &:hover {
+    color: $primary_text;
+    text-decoration: underline;
+  }
+}

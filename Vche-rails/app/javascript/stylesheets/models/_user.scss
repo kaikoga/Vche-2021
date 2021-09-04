@@ -15,7 +15,7 @@
 }
 
 .user.-strip {
-  @include panel;
+  @include strip;
   .email {
     display: inline;
     color: $text-lighter;

@@ -2,4 +2,4 @@
 
 .user.-strip
   .email = user.email
-  .display_name = user.display_name
+  .display_name = link_to(user.display_name, user, class: :strip__title)
