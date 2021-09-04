@@ -327,6 +327,7 @@ DEPENDENCIES
   enumerize
   friendly_id
   i18n_generators
+  kaminari
   listen (~> 3.3)
   mysql2
   public_uid
