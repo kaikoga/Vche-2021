@@ -1,5 +1,5 @@
-- backstage_members = @event_history.event_attendances.includes(:user).map(&:user)
-- audiences = @event_history.event_attendances.includes(:user).map(&:user)
+- event_backstage_members = @event_history.event_attendances.includes(:user)
+- event_audiences = @event_history.event_attendances.includes(:user)
 
 h1 = EventHistory.human_attribute_name(:attendees)
 
@@ -10,7 +10,7 @@ h1 = EventHistory.human_attribute_name(:attendees)
 .event_attendance.-roster
   .pane
     h2 = "スタッフ"
-    = render 'users/cards', users: backstage_members
+    = render 'event_attendances/cards', event_attendances: event_backstage_members
   .pane.-grow
     h2 = "参加者"
-    = render 'users/cards', users: audiences, card_cloud: true
+    = render 'event_attendances/cards', event_attendances: event_audiences, card_cloud: true

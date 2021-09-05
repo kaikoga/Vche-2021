@@ -8,3 +8,26 @@
   }
 }
 
+.event_follow.-card {
+  @include panel;
+  .email {
+    font-size: $font-size-smaller;
+    color: $text-lighter;
+  }
+  .display_name {
+  }
+}
+
+.event_follows.-card_list {
+  @include cards--card_list;
+  .event_follow.-card {
+    @include card;
+  }
+}
+
+.event_follows.-card_cloud {
+  @include cards--card_cloud;
+  .event_follow.-card {
+    @include card;
+  }
+}

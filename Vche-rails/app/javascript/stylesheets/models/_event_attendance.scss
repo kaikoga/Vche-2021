@@ -7,3 +7,27 @@
     }
   }
 }
+
+.event_attendance.-card {
+  @include panel;
+  .email {
+    font-size: $font-size-smaller;
+    color: $text-lighter;
+  }
+  .display_name {
+  }
+}
+
+.event_attendances.-card_list {
+  @include cards--card_list;
+  .event_attendance.-card {
+    @include card;
+  }
+}
+
+.event_attendances.-card_cloud {
+  @include cards--card_cloud;
+  .event_attendance.-card {
+    @include card;
+  }
+}
