@@ -76,7 +76,35 @@ class EventsController < ApplicationController
     end
   end
 
+  def add_user
+    @event = find_event
+    authorize! @event
+    @user = find_user
+
+    if @user.event_follows.create!(event: @event, role: :participant)
+      redirect_to @event, notice: 'Added User.'
+    else
+      redirect_to @event
+    end
+  end
+
+  def remove_user
+    @event = find_event
+    authorize! @event
+    @user = find_user
+
+    if @user.event_follows.where(event: @event).delete_all
+      redirect_to @event, notice: 'Removed User.'
+    else
+      redirect_to @event
+    end
+  end
+
   private
+
+  def find_user
+    User.friendly.find(params[:user_id])
+  end
 
   def find_event
     Event.friendly.find(params[:id])

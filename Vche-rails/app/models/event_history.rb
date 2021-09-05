@@ -64,6 +64,14 @@ class EventHistory < ApplicationRecord
     event_backstage_members.map(&:user)
   end
 
+  def event_audiences
+    event_attendances.audience
+  end
+
+  def audiences
+    event_audiences.map(&:user)
+  end
+
   def trust_unique_key
     hashtag ? [hashtag, started_at] : []
   end

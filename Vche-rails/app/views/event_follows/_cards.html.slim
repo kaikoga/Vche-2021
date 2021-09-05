@@ -9,3 +9,4 @@ div class="event_follows -#{_layout}"
       span.email = user.email
       span.display_name = user.display_name
       = link_to '詳細', user, class: 'button'
+      = link_to '削除', remove_user_event_path(event_follow.event, user_id: user), method: :post, class: 'button'

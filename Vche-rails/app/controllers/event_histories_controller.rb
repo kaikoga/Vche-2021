@@ -84,7 +84,36 @@ class EventHistoriesController < ApplicationController
     end
   end
 
+  def add_user
+    @event_history = find_event_history
+    authorize! @event_history
+    @user = find_user
+
+    role = @user.following_event_as_backstage_member?(@event) || :participant
+    if @user.event_attendances.for_event_history(@event_history).create!(role: role)
+      redirect_to event_event_history_path(@event, @event_history), notice: 'Added User.'
+    else
+      redirect_to event_event_history_path(@event, @event_history)
+    end
+  end
+
+  def remove_user
+    @event_history = find_event_history
+    authorize! @event_history
+    @user = find_user
+
+    if @user.event_attendances.for_event_history(@event_history).delete_all
+      redirect_to event_event_history_path(@event, @event_history), notice: 'Removed User.'
+    else
+      redirect_to event_event_history_path(@event, @event_history)
+    end
+  end
+
   private
+
+  def find_user
+    User.friendly.find(params[:user_id])
+  end
 
   def find_parent_event
     @event = Event.friendly.find(params[:event_id])

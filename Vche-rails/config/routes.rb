@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     member do
       post :follow
       post :unfollow
+      post :add_user
+      post :remove_user
     end
     resources :event_schedules
     resources :event_histories do
@@ -18,6 +20,8 @@ Rails.application.routes.draw do
       member do
         post :attend
         post :unattend
+        post :add_user
+        post :remove_user
       end
     end
     resources :event_follows, controller: 'events/event_follows', only: :index

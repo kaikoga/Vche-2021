@@ -31,4 +31,12 @@ class EventsLoyalty < ApplicationLoyalty
   def unfollow?
     user.following_event_as_audience?(record)
   end
+
+  def add_user?
+    user.following_event_as_backstage_member?(record)
+  end
+
+  def remove_user?
+    user.following_event_as_backstage_member?(record)
+  end
 end
