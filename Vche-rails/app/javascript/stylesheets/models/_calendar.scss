@@ -14,9 +14,12 @@
     }
     .event.-calendar {
       word-break: break-all;
+      &.-attending {
+        background: $positive_bg-light;
+        color: $positive_text-light;
+      }
       .entry {
         @include reset--font;
-        color: $text-dark;
         font-size: $font-size-small;
         &:hover {
           background: $primary_bg-lighter;

@@ -9,7 +9,7 @@ class EventsController < ApplicationController
     @event = find_event
     @user = current_user
 
-    @calendar = CalendarPresenter.new([@event], days: 35)
+    @calendar = CalendarPresenter.new([@event], user: @user, days: 35)
   end
 
   def new

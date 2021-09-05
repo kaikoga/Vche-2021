@@ -1,10 +1,11 @@
 - calendar ||= nil
 
 .calendar.-cells
-  - calendar.event_histories_by_date.each do |date, histories|
+  - calendar.cells_by_date.each do |date, cell|
     .calendar.-cell
       .date = l(date, format: :mda)
-      - histories.each do |history|
-        .event.-calendar
+      - cell.event_histories.each do |history|
+        - calendar_class = cell.attending?(history) ? "event -calendar -attending" : "event -calendar"
+        div class=calendar_class
           = history.event.main_flavor.emoji if history.event.main_flavor
           = link_to "#{l(history.started_at, format: :hm)} #{history.event.name}", event_event_history_url(history.event, history), class: "entry -resolution_#{history.resolution}"

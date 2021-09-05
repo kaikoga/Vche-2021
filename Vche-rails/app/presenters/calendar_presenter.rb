@@ -1,7 +1,7 @@
 class CalendarPresenter
-  attr_reader :event_histories_by_date
+  attr_reader :cells_by_date
 
-  def initialize(events, days: 28)
+  def initialize(events, user: nil, days: 28)
     if events.respond_to?(:includes)
       events = events.includes(:event_schedules, :event_histories, :flavors)
     end
@@ -16,9 +16,31 @@ class CalendarPresenter
 
     grouped_event_histories = event_histories.group_by { |history| history.started_at.beginning_of_day }
 
-    @event_histories_by_date = recent_dates.each_with_object({}) do |date, h|
+    if user
+      event_attendances_by_date = user.event_attendances
+        .where(started_at: beginning_of_calendar...(beginning_of_calendar + days.days))
+        .group_by { |ea| ea.started_at.beginning_of_day }
+    else
+      event_attendances_by_date = {}
+    end
+
+    @cells_by_date = recent_dates.each_with_object({}) do |date, h|
       trusted_histories = Vche::Trust.filter_trusted(grouped_event_histories[date] || [])
-      h[date] = trusted_histories
+      h[date] = Cell.new(trusted_histories, event_attendances_by_date[date] || [])
+    end
+  end
+
+  class Cell
+    attr_reader :event_histories
+    attr_reader :event_attendances
+
+    def initialize(event_histories, event_attendances)
+      @event_histories = event_histories
+      @event_attendances = event_attendances
+    end
+
+    def attending?(event_history)
+      event_attendances.detect { |ea| ea.event_id = event_history.event_id && ea.started_at == event_history.started_at }
     end
   end
 end
