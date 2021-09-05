@@ -1,0 +1,11 @@
+@mixin roster {
+  display: flex;
+}
+
+@mixin roster__pane {
+  border-left: $primary_bg solid 1px;
+}
+
+@mixin roster__pane--grow {
+  flex-grow: 1;
+}

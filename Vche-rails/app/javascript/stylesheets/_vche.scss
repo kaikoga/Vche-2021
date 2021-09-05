@@ -7,10 +7,13 @@
 @import 'components/_editor_fields';
 @import 'components/_keyvaluetable';
 @import 'components/_panel';
+@import 'components/_roster';
 @import 'components/_strip';
 
 @import 'models/_calendar';
 @import 'models/_event';
+@import 'models/_event_attendance';
+@import 'models/_event_follow';
 @import 'models/_event_history';
 @import 'models/_event_schedule';
 @import 'models/_flavor';

@@ -2,8 +2,10 @@ h1 = Event.human_attribute_name(:followers)
 
 = render 'events/strip', event: @event, user: @user
 
-= render 'users/cards', users: @event.followers, card_cloud: true
-
-h2 = Event.model_name.human
-
-= render 'events/table', event: @event
+.event_follow.-roster
+  .pane
+    h2 = "スタッフ"
+    = render 'users/cards', users: @event.followers
+  .pane.-grow
+    h2 = "参加者"
+    = render 'users/cards', users: @event.followers, card_cloud: true

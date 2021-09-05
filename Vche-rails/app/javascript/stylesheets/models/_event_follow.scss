@@ -1,0 +1,10 @@
+.event_follow.-roster {
+  @include roster;
+  > .pane {
+    @include roster__pane;
+    &.-grow {
+      @include roster__pane--grow;
+    }
+  }
+}
+

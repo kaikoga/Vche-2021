@@ -1,15 +1,16 @@
+- backstage_members = @event_history.event_attendances.includes(:user).map(&:user)
+- audiences = @event_history.event_attendances.includes(:user).map(&:user)
+
 h1 = EventHistory.human_attribute_name(:attendees)
 
 = render 'events/strip', event: @event, user: @user
 
 = render 'event_histories/strip', event: @event, event_history: @event_history, user: @user
 
-= render 'users/cards', users: @event_history.event_attendances.includes(:user).map(&:user), card_cloud: true
-
-h2 = "#{EventHistory.model_name.human}詳細"
-
-= render 'event_histories/table', event: @event, event_history: @event_history
-
-h2 = "#{Event.model_name.human}情報"
-
-= render 'events/table', event: @event
+.event_attendance.-roster
+  .pane
+    h2 = "スタッフ"
+    = render 'users/cards', users: backstage_members
+  .pane.-grow
+    h2 = "参加者"
+    = render 'users/cards', users: audiences, card_cloud: true
