@@ -17,5 +17,13 @@ module Enums::Role
     scope :active, ->{ where.not(role: :irrelevant) }
     scope :backstage_member, ->{ where(role: [:owner, :instance_owner, :performer, :staff]) }
     scope :audience, ->{ where(role: [:participant, :visitor, :viewer]) }
+
+    def role.backstage_options(new: false)
+      if new
+        options(only: [:instance_owner, :performer, :staff])
+      else
+        options(only: [:irrelevant, :instance_owner, :performer, :staff])
+      end
+    end
   end
 end

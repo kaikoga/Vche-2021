@@ -11,7 +11,7 @@ h1 = Event.human_attribute_name(:followers)
         .field
           = form.text_field :user_id
         .field
-          = form.select :role, EventFollow.role.options
+          = form.select :role, EventFollow.role.backstage_options(new: true), selected: :staff
         = form.submit 'ユーザーを追加'
   .pane.-grow
     h2 = "参加者"
