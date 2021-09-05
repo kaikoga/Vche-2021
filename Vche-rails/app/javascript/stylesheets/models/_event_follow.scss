@@ -16,6 +16,9 @@
   }
   .display_name {
   }
+  .role {
+    @include panel--small;
+  }
 }
 
 .event_follows.-card_list {

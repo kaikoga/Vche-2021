@@ -9,6 +9,7 @@ div class="event_attendances -#{_layout}"
       - user = event_attendance.user
       span.email = user.email
       span.display_name = user.display_name
+      span.role = event_attendance.role_text
       = link_to '詳細', user, class: 'button'
       - if loyalty(event_history, :event_histories).remove_user?
         = link_to '削除', remove_user_event_event_history_path(event_history.event, event_history, user_id: user), method: :post, class: 'button'
