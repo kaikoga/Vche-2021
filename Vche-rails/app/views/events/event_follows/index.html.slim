@@ -6,6 +6,13 @@ h1 = Event.human_attribute_name(:followers)
   .pane
     h2 = "スタッフ"
     = render 'event_follows/cards', event_follows: @event.event_backstage_members
+    - if loyalty(@event, :events).add_user?
+      = form_with url: add_user_event_path(@event) do |form|
+        .field
+          = form.text_field :user_id
+        .field
+          = form.select :role, EventFollow.role.options
+        = form.submit 'ユーザーを追加'
   .pane.-grow
     h2 = "参加者"
     = render 'event_follows/cards', event_follows: @event.event_audiences, card_cloud: true

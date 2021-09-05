@@ -90,7 +90,7 @@ class EventHistoriesController < ApplicationController
     @user = find_user
 
     role = @user.following_event_as_backstage_member?(@event) || :participant
-    if @user.event_attendances.for_event_history(@event_history).create!(role: role)
+    if @user.event_attendances.for_event_history(@event_history).create!(role: params[:role])
       redirect_to event_event_history_path(@event, @event_history), notice: 'Added User.'
     else
       redirect_to event_event_history_path(@event, @event_history)

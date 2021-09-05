@@ -81,7 +81,7 @@ class EventsController < ApplicationController
     authorize! @event
     @user = find_user
 
-    if @user.event_follows.create!(event: @event, role: :participant)
+    if @user.event_follows.create!(event: @event, role: params[:role])
       redirect_to @event, notice: 'Added User.'
     else
       redirect_to @event
