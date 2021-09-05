@@ -9,7 +9,7 @@
   = link_to event_event_follows_path(event), class: 'link followers' do
     span.label フォロワー
     '
-    = event.event_follows.count
+    = "#{event.event_backstage_members.count} + #{event.event_audiences.count}"
   - if user
     '
     span.following_event = user.following_event?(event)&.text || EventFollow.role.irrelevant.text
