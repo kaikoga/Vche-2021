@@ -12,7 +12,7 @@
     = event.event_follows.count
   - if user
     '
-    span.following_event = user.following_event?(event)&.text || '未フォロー'
+    span.following_event = user.following_event?(event)&.text || EventFollow.role.irrelevant.text
 
     - if loyalty(event, :events).follow?
       = link_to 'フォローする', follow_event_path(event), method: :post, class: 'button'

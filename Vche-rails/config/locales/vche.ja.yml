@@ -75,6 +75,7 @@ ja:
         canceled: 中止
         completed: 終了
       role:
+        irrelevant: 不参加
         owner: 主催
         instance_owner: インスタンスオーナー
         performer: 出演者
@@ -93,6 +94,12 @@ ja:
         shared: 共有可能
         follow: 個人ページのみ表示
         invite: 非公開
+    event_attendance:
+      role:
+        irrelevant: 不参加
+    event_follow:
+      role:
+        irrelevant: 未フォロー
     user:
       user_role:
         organizer: 主催
