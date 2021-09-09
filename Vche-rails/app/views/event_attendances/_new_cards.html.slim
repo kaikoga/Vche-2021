@@ -1,0 +1,15 @@
+- event_history ||= nil
+- event_follows ||= nil
+- card_cloud ||= false
+- _layout = card_cloud ? 'card_cloud' : 'table'
+
+div class="event_attendances -#{_layout}"
+  - event_follows.each do |event_follow|
+    - user = event_follow.user
+    .event_attendance.-card
+      span.email = user.email
+      span.display_name = user.display_name
+      span.role = EventAttendance.role.irrelevant.text
+      = link_to '詳細', user, class: 'button'
+      - if loyalty(event_history, :event_histories).add_user?
+        = link_to '追加', add_user_event_event_history_path(event_history.event, event_history, user_id: user, role: event_follow.role), method: :post, class: 'button'

@@ -82,9 +82,9 @@ class EventsController < ApplicationController
     @user = find_user
 
     if @user.event_follows.create!(event: @event, role: params[:role])
-      redirect_to @event, notice: 'Added User.'
+      redirect_to event_event_follows_url(@event), notice: 'Added User.'
     else
-      redirect_to @event
+      redirect_to event_event_follows_url(@event)
     end
   end
 
@@ -94,9 +94,9 @@ class EventsController < ApplicationController
     @user = find_user
 
     if @user.event_follows.where(event: @event).delete_all
-      redirect_to @event, notice: 'Removed User.'
+      redirect_to event_event_follows_url(@event), notice: 'Removed User.'
     else
-      redirect_to @event
+      redirect_to event_event_follows_url(@event)
     end
   end
 
