@@ -17,7 +17,7 @@
     label = Event.human_attribute_name(:backstage_members)
     .relation
       = render 'event_follows/cards', event_follows: event.event_backstage_members, card_cloud: true
-      - if loyalty(event, 'events/event_follows').create?
+      - if loyalty(event, :events).add_user?
         = link_to 'スタッフを割り当てる', event_event_follows_path(event), class: :button
   .field
     label = Event.human_attribute_name(:primary_sns)
