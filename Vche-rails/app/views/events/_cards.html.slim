@@ -6,10 +6,10 @@
 div class="events -#{_layout}"
   - events.each do |event|
     .event.-card
+      = link_to event_icon_tag(event), event
       span.name = event.name
       span.hashtag = event.hashtag
       - if event.next_schedule
         span.start_at = l(event.next_schedule.started_at)
-      = link_to '詳細', event, class: 'button'
       - if edit && loyalty(event, :events).edit?
         = link_to '編集する', edit_event_path(event), class: 'button'
