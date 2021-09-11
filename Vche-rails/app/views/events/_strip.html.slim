@@ -4,7 +4,7 @@
 .event.-strip
   - unless event.visibility == 'public'
     span.visibility = event.visibility_text
-  = link_to event_icon_tag(event, size: '64px'), event
+  = link_to event_icon_tag(event, size: :large), event
   span.name = link_to(event.name, event, class: :strip__title)
   '
   = link_to event_event_follows_path(event), class: 'link followers' do

@@ -49,3 +49,8 @@
     @include card;
   }
 }
+
+.user__icon {
+  @include icon;
+}
+
