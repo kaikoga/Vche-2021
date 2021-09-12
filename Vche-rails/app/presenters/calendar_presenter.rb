@@ -13,6 +13,8 @@ class CalendarPresenter
       @prev_month = (month == 1) ? 12 : month - 1
       @next_month = (month == 12) ? 1 : month + 1
       beginning_of_calendar = Time.zone.local(year, month, 1, 0, 0, 0).beginning_of_month.beginning_of_week(:sunday)
+      end_of_months = (Time.zone.local(year, month, 1, 0, 0, 0).beginning_of_month + months.months)
+      days += ((end_of_months - beginning_of_calendar) / 1.week.to_f).ceil * 7
     else
       @year_and_month = ''
       @prev_year = Time.current.year
@@ -20,8 +22,9 @@ class CalendarPresenter
       @prev_month = Time.current.month
       @next_month = Time.current.next_month.month
       beginning_of_calendar = Time.current.beginning_of_week(:sunday)
+      end_of_months = beginning_of_calendar + months.months
+      days += ((end_of_months - beginning_of_calendar) / 1.week.to_f).ceil * 7
     end
-    days += ((beginning_of_calendar + months.months - beginning_of_calendar) / 1.week.to_f).ceil * 7
     recent_dates = (0...days).map { |i| beginning_of_calendar + i.days }
 
     # FIXME N+1
