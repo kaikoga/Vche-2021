@@ -1,5 +1,5 @@
 .calendar__nav {
-  background: $primary_bg-lighter;
+  background: $fill-dark;
   .current {
     @include button--panel;
   }
@@ -16,7 +16,7 @@
     border-right: 1px solid $primary_text-light;
     border-bottom: 1px solid $primary_text-light;
     .date {
-      background: $primary_bg-lighter;
+      background: $primary_bg-light;
       color: $primary_text-dark;
     }
     .event.-calendar {
@@ -29,7 +29,7 @@
         @include reset--font;
         font-size: $font-size-small;
         &:hover {
-          background: $primary_bg-lighter;
+          background: $primary_bg-light;
           color: $text;
         }
         &.-resolution_moved {

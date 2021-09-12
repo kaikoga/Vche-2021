@@ -1,14 +1,14 @@
 @mixin button {
   @include reset--font;
   display: inline-block;
-  background: $primary_bg-light;
+  background: $primary_bg;
   margin-right: 1em;
   border: none;
   padding: 0.5em 1.5em;
   border-radius: 2em;
   color: $primary_text;
   &:hover {
-    background: $primary_bg-lighter;
+    background: $primary_bg-light;
     color: $primary_text-lighter;
   }
   &.-positive {
@@ -46,10 +46,10 @@
 }
 
 @mixin --button-selected {
-  background: $primary_bg-lighter;
+  background: $primary_bg-light;
   color: $primary_text-lighter;
   &:hover {
-    background: $primary_bg-lighter;
+    background: $primary_bg-light;
     color: $primary_text-lighter;
   }
 }
@@ -65,7 +65,7 @@
 
 @mixin --button-panel {
   background: $fill-light;
-  border: $primary_bg solid 1px;
+  border: $primary_bg-dark solid 1px;
   margin-right: 1rem;
   &:hover {
     background: $fill-lighter;

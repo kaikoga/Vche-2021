@@ -3,7 +3,7 @@
 }
 
 @mixin roster__pane {
-  border-left: $primary_bg solid 1px;
+  border-left: $primary_bg-dark solid 1px;
 }
 
 @mixin roster__pane--grow {
