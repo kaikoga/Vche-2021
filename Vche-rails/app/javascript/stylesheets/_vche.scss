@@ -99,10 +99,6 @@ a {
   @include button;
 }
 
-.button + .button {
-  margin-left: 1em;
-}
-
 .button--positive {
   @include button--positive;
 }

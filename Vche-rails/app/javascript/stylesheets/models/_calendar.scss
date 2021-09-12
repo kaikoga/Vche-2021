@@ -1,3 +1,10 @@
+.calendar__nav {
+  background: $primary_bg-lighter;
+  .current {
+    @include button--panel;
+  }
+}
+
 .calendar.-cells {
   display: flex;
   flex-flow: row wrap;

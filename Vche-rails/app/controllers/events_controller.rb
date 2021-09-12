@@ -9,7 +9,9 @@ class EventsController < ApplicationController
     @event = find_event
     @user = current_user
 
-    @calendar = CalendarPresenter.new([@event], user: @user, days: 35)
+    year = show_params[:year]&.to_i
+    month = show_params[:month]&.to_i
+    @calendar = CalendarPresenter.new([@event], user: @user, year: year, month: month, months: 2, days: 0)
   end
 
   def new
@@ -108,6 +110,10 @@ class EventsController < ApplicationController
 
   def find_event
     Event.friendly.find(params[:id])
+  end
+
+  def show_params
+    params.permit(:year, :month)
   end
 
   def event_params

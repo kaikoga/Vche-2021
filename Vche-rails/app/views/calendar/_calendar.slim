@@ -1,4 +1,14 @@
 - calendar ||= nil
+- # from Kaminari::Helpers::Tag
+- param_key_except_list = [:authenticity_token, :commit, :utf8, :_method, :script_name, :original_script_name].freeze
+- calendar_params = params.to_unsafe_h.with_indifferent_access.except(*param_key_except_list)
+
+nav.calendar__nav
+  = link_to("=", calendar_params.except(:year, :month), class: :button)
+  = link_to("< #{calendar.prev_year}/#{calendar.prev_month}", calendar_params.merge(year: calendar.prev_year, month: calendar.prev_month), class: :button)
+  - if calendar.year_and_month.present?
+    span.current = calendar.year_and_month
+  = link_to("#{calendar.next_year}/#{calendar.next_month} >", calendar_params.merge(year: calendar.next_year, month: calendar.next_month), class: :button)
 
 .calendar.-cells
   - calendar.cells_by_date.each do |date, cell|
