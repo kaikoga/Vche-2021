@@ -25,4 +25,11 @@ class EventFollow < ApplicationRecord
 
   belongs_to :user
   belongs_to :event
+
+  after_save :recalculate_trust
+
+  def recalculate_trust
+    event.recalculate_trust
+    event.save!
+  end
 end

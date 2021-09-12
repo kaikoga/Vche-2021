@@ -32,6 +32,9 @@
 #  fk_rails_...  (updated_user_id => users.id)
 #
 class Event < ApplicationRecord
+  OWNER_TRUST = 200000000
+  STAFF_TRUST = 100000000
+
   include Vche::Uid
   include Vche::UidQuery
   include Vche::Trust
@@ -63,6 +66,27 @@ class Event < ApplicationRecord
   has_many :audiences, through: :event_audiences, source: :user
 
   has_many :event_attendances, dependent: :destroy
+
+  before_validation :recalculate_trust
+
+  def recalculate_trust
+    trust = 0
+    root_trust = 0
+    event_follows.reload.each do |event_follow|
+      t = event_follow.user.trust
+      case
+      when event_follow.role.to_sym == :owner
+        t += OWNER_TRUST
+      when EventFollow.backstage_role?(event_follow.role)
+        t += STAFF_TRUST
+      else
+        # none
+      end
+      root_trust = [t, root_trust].max
+      trust += 1
+    end
+    self.trust = root_trust + trust
+  end
 
   def next_schedule
     @next_schedule ||= event_schedules.map do |event_schedule|
