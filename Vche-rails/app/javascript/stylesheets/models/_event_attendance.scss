@@ -15,6 +15,7 @@
     color: $text-lighter;
   }
   .display_name {
+    @include card__title;
   }
   .role {
     @include panel--small;

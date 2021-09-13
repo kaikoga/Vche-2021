@@ -52,12 +52,15 @@
 
 .event.-card {
   @include panel;
+  .name {
+    @include card__title;
+  }
   .hashtag {
     font-size: $font-size-smaller;
     color: $text-lighter;
   }
   .start_at {
-    color: $text-light;
+    @include card__text_link;
   }
 }
 

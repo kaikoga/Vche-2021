@@ -9,3 +9,21 @@
 @mixin card {
   display: inline-block;
 }
+
+@mixin card__title {
+  color: $primary_text-darker;
+  text-decoration: none;
+  &:hover {
+    color: $primary_text;
+    text-decoration: underline;
+  }
+}
+
+@mixin card__text_link {
+  color: $primary_text;
+  text-decoration: none;
+  &:hover {
+    color: $primary_text-lighter;
+    text-decoration: underline;
+  }
+}

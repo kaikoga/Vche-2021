@@ -8,7 +8,7 @@ div class="event_follows -#{_layout}"
       - user = event_follow.user
       = link_to user_icon_tag(user), user
       span.email = user.email
-      span.display_name = user.display_name
+      span.display_name = link_to user.display_name, user
       span.role = event_follow.role_text
       - if loyalty(event_follow.event, :events).add_user?
         = link_to '削除', remove_user_event_path(event_follow.event, user_id: user), method: :post, class: 'button'
