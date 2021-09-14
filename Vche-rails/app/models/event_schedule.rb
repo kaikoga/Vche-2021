@@ -54,6 +54,7 @@ class EventSchedule < ApplicationRecord
   private
 
   def valid_date?(date)
+    return false if date < start_at.beginning_of_day
     case repeat.to_sym
     when :oneshot
       date.beginning_of_day == start_at.beginning_of_day
