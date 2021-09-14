@@ -8,8 +8,8 @@ div class="event_schedules -#{_layout}"
   - event_schedules.each do |event_schedule|
     .event_schedule.-card
       span.time_span
-        - start_at, end_at = time_span_text(event_schedule.start_at, event_schedule.end_at)
-        span.repeat = event_schedule.repeat_text
+        - repeat, start_at, end_at = repeat_time_span_text(event_schedule.repeat, event_schedule.start_at, event_schedule.end_at)
+        span.repeat = repeat
         span.start_at = start_at
         span.sep -
         span.end_at = end_at
