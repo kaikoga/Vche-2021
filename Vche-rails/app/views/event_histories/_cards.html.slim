@@ -7,8 +7,9 @@
 div class="event_histories -#{_layout}"
   - event_histories.each do |event_history|
     .event_history.-card
-      span.started_at = l(event_history.started_at)
-      span.ended_at = l(event_history.ended_at)
+      span.time_span
+        span.started_at = l(event_history.started_at)
+        span.ended_at = l(event_history.ended_at)
       = link_to '詳細', [event, event_history], class: 'button'
       - if edit && loyalty(event_history, :event_histories).edit?
         = link_to '編集する', edit_event_event_history_path(event, event_history), class: 'button'

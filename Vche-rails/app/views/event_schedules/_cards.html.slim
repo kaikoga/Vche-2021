@@ -7,8 +7,10 @@
 div class="event_schedules -#{_layout}"
   - event_schedules.each do |event_schedule|
     .event_schedule.-card
-      span.start_at = l(event_schedule.start_at)
-      span.end_at = l(event_schedule.end_at)
+      span.time_span
+        span.repeat = event_schedule.repeat_text
+        span.start_at = l(event_schedule.start_at)
+        span.end_at = l(event_schedule.end_at)
       = link_to '詳細', [event, event_schedule], class: 'button'
       - if edit && loyalty(event_schedule, :event_schedules).edit?
         = link_to '編集する', edit_event_event_schedule_path(event, event_schedule), class: 'button'

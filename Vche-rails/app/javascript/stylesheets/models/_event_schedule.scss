@@ -16,10 +16,12 @@
 
 .event_schedule.-card {
   @include panel;
-  .start_at, .end_at  {
+  .time_span  {
     font-size: $font-size-small;
     color: $text-light;
-    margin: 0em 1em;
+    .start_at, .end_at {
+      margin-left: 0.5em;
+    }
   }
 }
 

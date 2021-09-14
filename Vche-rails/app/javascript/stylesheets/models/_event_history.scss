@@ -38,10 +38,12 @@
 
 .event_history.-card {
   @include panel;
-  .started_at, .ended_at  {
+  .time_span  {
     font-size: $font-size-small;
     color: $text-light;
-    margin: 0em 1em;
+    .started_at {
+      margin-left: 0.5em;
+    }
   }
 }
 
