@@ -86,7 +86,7 @@ class EventSchedule < ApplicationRecord
     EventHistory.new(
       event: event,
       visibility: visibility,
-      resolution: :scheduled,
+      resolution: Time.current < end_at.change(date_options) ? :scheduled : :completed,
       assembled_at: assemble_at&.change(date_options),
       opened_at: open_at&.change(date_options),
       started_at: start_at&.change(date_options),
