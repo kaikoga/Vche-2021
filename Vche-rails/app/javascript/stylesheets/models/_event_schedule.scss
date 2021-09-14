@@ -19,8 +19,8 @@
   .time_span  {
     font-size: $font-size-small;
     color: $text-light;
-    .start_at, .end_at {
-      margin-left: 0.5em;
+    .repeat, .start_at, .sep, .end_at {
+      margin-right: 0.5em;
     }
   }
 }

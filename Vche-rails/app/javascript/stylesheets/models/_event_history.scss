@@ -41,8 +41,8 @@
   .time_span  {
     font-size: $font-size-small;
     color: $text-light;
-    .started_at {
-      margin-left: 0.5em;
+    .started_at, .sep, .ended_at {
+      margin-right: 0.5em;
     }
   }
 }
