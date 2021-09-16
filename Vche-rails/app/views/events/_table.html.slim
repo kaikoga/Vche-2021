@@ -47,13 +47,6 @@
       - if loyalty(event, :events).edit?
         = link_to 'New', new_event_event_schedule_path(event), class: 'button'
 
-  .field
-    label = Event.human_attribute_name(:event_histories)
-    .relation
-      = render 'event_histories/cards', event: event, event_histories: event.event_histories, edit: true
-      - if loyalty(event, :events).edit?
-        = link_to 'New', new_event_event_history_path(event), class: 'button'
-
   - if loyalty(event, :events).edit?
     = link_to '編集する', edit_event_path(event), class: 'button'
 
