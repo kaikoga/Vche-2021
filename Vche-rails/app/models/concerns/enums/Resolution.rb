@@ -4,8 +4,10 @@ module Enums::Resolution
   included do
     enumerize :resolution, in: [
         :scheduled,
+        :announced,
         :moved,
         :canceled,
+        :ended,
         :completed
     ], default: :scheduled
   end

@@ -72,9 +72,11 @@ ja:
         last_week: 最終週
       resolution:
         scheduled: 開催予定
+        announced: 開催決定
         moved: 日程が変更された
         canceled: 中止
-        completed: 終了
+        ended: 終了
+        completed: 完了
       role:
         irrelevant: 不参加
         owner: 主催
