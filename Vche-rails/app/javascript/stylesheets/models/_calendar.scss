@@ -20,32 +20,42 @@
       color: $primary_text-dark;
     }
     .event.-calendar {
+      @include reset--font;
       word-break: break-all;
       &.-attending {
         background: $positive_bg-light;
         color: $positive_text-light;
       }
+      &.-resolution_scheduled {
+        color: $text-lighter;
+      }
+      &.-resolution_announced {
+      }
+      &.-resolution_moved {
+        background: $negative_fill;
+        color: $negative_text;
+        &::after {
+          content: '⚠️';
+        }
+      }
+      &.-resolution_canceled {
+        background: $negative_bg;
+        color: $negative_text;
+        &::after {
+          content: '🛑';
+        }
+      }
+      &.-resolution_ended {
+        color: $text-lighter;
+      }
+      &.-resolution_completed {
+        color: $text-lighter;
+      }
       .entry {
-        @include reset--font;
         font-size: $font-size-small;
         &:hover {
           background: $primary_bg-light;
           color: $text;
-        }
-        &.-resolution_moved {
-          color: $text-lighter;
-          &::before {
-            content: '⚠️';
-          }
-        }
-        &.-resolution_canceled {
-          color: $text-lighter;
-          &::before {
-            content: '🛑';
-          }
-        }
-        &.-resolution_completed {
-          color: $text-lighter;
         }
       }
     }

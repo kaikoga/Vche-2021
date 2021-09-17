@@ -15,7 +15,10 @@ nav.calendar__nav
     .calendar.-cell
       .date = l(date, format: :mda)
       - cell.event_histories.each do |history|
-        - calendar_class = cell.attending?(history) ? "event -calendar -attending" : "event -calendar"
+        - calendar_class = 'event -calendar'
+        - calendar_class << ' -attending' if cell.attending?(history)
+        - calendar_class << " -resolution_#{history.resolution}"
         div class=calendar_class
-          = history.event.main_flavor.emoji if history.event.main_flavor
-          = link_to "#{l(history.started_at, format: :hm)} #{history.event.name}", event_event_history_url(history.event, history), class: "entry -resolution_#{history.resolution}"
+          - event_main_flavor = history.event.main_flavor.emoji if history.event.main_flavor
+          - event_name = "#{event_main_flavor} #{l(history.started_at, format: :hm)} #{history.event.name}"
+          = link_to event_name, event_event_history_url(history.event, history), class: "entry"
