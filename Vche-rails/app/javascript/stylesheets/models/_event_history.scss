@@ -38,11 +38,15 @@
 
 .event_history.-card {
   @include panel;
+  .resolution {
+    @include panel--small;
+  }
   .time_span  {
-    font-size: $font-size-small;
-    color: $text-light;
+    @include card__title;
     .started_at, .sep, .ended_at {
-      margin-right: 0.5em;
+      &::after {
+        content: ' ';
+      }
     }
   }
 }

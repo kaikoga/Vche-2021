@@ -7,11 +7,11 @@
 div class="event_histories -#{_layout}"
   - event_histories.each do |event_history|
     .event_history.-card
-      span.time_span
+      = link_to [event, event_history], class: :time_span do
         - started_at, ended_at = time_span_text(event_history.started_at, event_history.ended_at)
         span.started_at = started_at
         span.sep -
         span.ended_at = ended_at
-      = link_to '詳細', [event, event_history], class: 'button'
+      span.resolution = event_history.resolution_text
       - if edit && loyalty(event_history, :event_histories).edit?
         = link_to '編集する', edit_event_event_history_path(event, event_history), class: 'button'

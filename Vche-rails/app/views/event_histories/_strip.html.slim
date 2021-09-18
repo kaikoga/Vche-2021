@@ -9,6 +9,7 @@
     | 開催:
     = link_to(l(event_history.started_at), event_event_history_url(event, event_history), class: :strip__title)
   '
+  span.resolution = event_history.resolution_text
   = link_to event_event_history_event_attendances_path(event, event_history), class: 'link attendances' do
     span.label 参加者
     '

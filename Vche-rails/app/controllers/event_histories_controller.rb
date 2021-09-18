@@ -3,7 +3,7 @@ class EventHistoriesController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
 
   def index
-    @event_histories = EventHistory.all
+    @event_histories = @event.event_histories.order(started_at: :desc).page(params[:page])
     @user = current_user
   end
 
