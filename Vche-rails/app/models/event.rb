@@ -89,20 +89,7 @@ class Event < ApplicationRecord
   end
 
   def next_schedule
-    @next_schedule ||= event_schedules.map do |event_schedule|
-      EventHistory.new(
-        event: self,
-        visibility: event_schedule.visibility,
-        resolution: :scheduled,
-        assembled_at: event_schedule.assemble_at,
-        opened_at: event_schedule.open_at,
-        started_at: event_schedule.start_at,
-        ended_at: event_schedule.end_at,
-        closed_at: event_schedule.close_at,
-        created_user_id: event_schedule.created_user_id,
-        updated_user_id: event_schedule.updated_user_id
-      )
-    end.sort_by(&:started_at).first
+    @next_schedule ||= event_schedules.map(&:next_schedule).compact.sort_by(&:started_at).first
   end
 
   def recent_schedule(recent_dates)

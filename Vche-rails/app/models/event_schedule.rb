@@ -51,6 +51,12 @@ class EventSchedule < ApplicationRecord
     dates.filter(&method(:valid_date?)).map{|date| at_date(date) }
   end
 
+  def next_schedule
+    return at_date(start_at) if repeat.to_sym == :oneshot
+    start = Time.current.beginning_of_day
+    (0...35).map { |i| start + i.days }.filter { |date| valid_date?(date) }.take(1).map { |date| at_date(date) }.first
+  end
+
   private
 
   def valid_date?(date)
