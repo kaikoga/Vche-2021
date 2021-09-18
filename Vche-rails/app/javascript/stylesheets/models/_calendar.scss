@@ -28,28 +28,40 @@
       }
       &.-resolution_scheduled {
         color: $text-lighter;
+        &::before {
+          content: '🗒';
+        }
       }
       &.-resolution_announced {
+        &::before {
+          content: '▶️';
+        }
       }
       &.-resolution_moved {
         background: $negative_fill;
         color: $negative_text;
-        &::after {
+        &::before {
           content: '⚠️';
         }
       }
       &.-resolution_canceled {
         background: $negative_bg;
         color: $negative_text;
-        &::after {
-          content: '🛑';
+        &::before {
+          content: '🛑️';
         }
       }
       &.-resolution_ended {
         color: $text-lighter;
+        &::before {
+          content: '✅';
+        }
       }
       &.-resolution_completed {
         color: $text-lighter;
+        &::before {
+          content: '📗';
+        }
       }
       .entry {
         font-size: $font-size-small;
