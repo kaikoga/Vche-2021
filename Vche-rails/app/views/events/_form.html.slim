@@ -32,15 +32,18 @@
     = form.text_field :hashtag
   .field
     = form.label :platform
-    = form.select :platform, Event.platform.options
+    = form.collection_select :platform, Platform.available, :id, :name
   .field
     = form.label :visibility
     = form.select :visibility, Event.visibility.options
+  .field
+    = form.label :category
+    = form.collection_select :category, Category.available, :id, :emoji_name
 
   .field
     = form.label :flavors
     .relation
-      - Flavor.find_each do |flavor|
+      - Flavor.available.find_each do |flavor|
         = flavor_check_box_tag flavor, "event_flavors[]", "event_flavors_#{flavor.slug}", event.flavors.include?(flavor)
 
   .actions

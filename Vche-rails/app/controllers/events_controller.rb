@@ -120,7 +120,7 @@ class EventsController < ApplicationController
     params.require(:event).permit(
       :name, :fullname,
       :description, :organizer_name, :primary_sns, :info_url,
-      :hashtag, :platform, :visibility
+      :hashtag, :platform_id, :category_id, :visibility
     )
   end
 

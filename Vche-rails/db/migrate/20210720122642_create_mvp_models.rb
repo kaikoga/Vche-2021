@@ -1,5 +1,32 @@
 class CreateMvpModels < ActiveRecord::Migration[6.1]
   def change
+    create_table :platforms do |t|
+      t.string :slug, null: :false, index: { unique: true }
+      t.string :name, null: :false, index: { unique: true }
+      t.boolean :available, null: :false
+
+      t.timestamps null: false
+    end
+
+    create_table :categories do |t|
+      t.string :emoji, null: :false, index: { unique: true }
+      t.string :slug, null: :false, index: { unique: true }
+      t.string :name, null: :false, index: { unique: true }
+      t.boolean :available, null: :false
+
+      t.timestamps null: false
+    end
+
+    create_table :flavors do |t|
+      t.string :emoji, null: :false, index: { unique: true }
+      t.string :slug, null: :false, index: { unique: true }
+      t.string :name, null: :false, index: { unique: true }
+      t.string :taste, null: :false
+      t.boolean :available, null: :false
+
+      t.timestamps null: false
+    end
+
     add_column :users, :uid, :string, null: false, after: :email, index: { unique: true }
     add_column :users, :display_name, :string, after: :uid
     add_column :users, :primary_sns, :string, after: :display_name
@@ -13,7 +40,7 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
       t.string :uid, null: :false, index: { unique: true }
       t.string :name, null: :false
       t.string :display_name, null: :false
-      t.string :platform, null: :false
+      t.references :platform, { foreign_key: true, null: false}
       t.string :url
       t.references :user, foreign_key: true, null: false
 
@@ -29,22 +56,14 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
       t.string :primary_sns
       t.string :info_url
       t.string :hashtag
-      t.string :platform, null: false
+      t.references :platform, { foreign_key: true, null: false}
+      t.references :category, { foreign_key: true, null: false}
       t.string :visibility, null: false
       t.string :taste, null: :false
       t.integer :trust
 
       t.references :created_user, foreign_key: { to_table: :users }
       t.references :updated_user, foreign_key: { to_table: :users }
-      t.timestamps null: false
-    end
-
-    create_table :flavors do |t|
-      t.string :emoji, null: :false, index: { unique: true }
-      t.string :slug, null: :false, index: { unique: true }
-      t.string :name, null: :false, index: { unique: true }
-      t.string :taste, null: :false
-
       t.timestamps null: false
     end
 

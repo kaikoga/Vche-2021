@@ -11,7 +11,8 @@
 #  primary_sns     :string(255)
 #  info_url        :string(255)
 #  hashtag         :string(255)
-#  platform        :string(255)      not null
+#  platform_id     :bigint           not null
+#  category_id     :bigint           not null
 #  visibility      :string(255)      not null
 #  taste           :string(255)
 #  trust           :integer
@@ -22,13 +23,17 @@
 #
 # Indexes
 #
+#  index_events_on_category_id      (category_id)
 #  index_events_on_created_user_id  (created_user_id)
+#  index_events_on_platform_id      (platform_id)
 #  index_events_on_uid              (uid) UNIQUE
 #  index_events_on_updated_user_id  (updated_user_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (category_id => categories.id)
 #  fk_rails_...  (created_user_id => users.id)
+#  fk_rails_...  (platform_id => platforms.id)
 #  fk_rails_...  (updated_user_id => users.id)
 #
 class Event < ApplicationRecord
@@ -39,13 +44,14 @@ class Event < ApplicationRecord
   include Vche::UidQuery
   include Vche::Trust
 
-  include Enums::Platform
   include Enums::Visibility
   include Enums::Taste
 
   belongs_to :created_user, class_name: 'User'
   belongs_to :updated_user, class_name: 'User'
 
+  belongs_to :platform
+  belongs_to :category
   has_many :event_flavors, dependent: :destroy
   has_many :flavors, through: :event_flavors
   accepts_nested_attributes_for :event_flavors, allow_destroy: true

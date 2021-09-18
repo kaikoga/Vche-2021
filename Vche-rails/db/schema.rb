@@ -16,11 +16,12 @@ ActiveRecord::Schema.define(version: 2021_07_20_122642) do
     t.string "uid"
     t.string "name"
     t.string "display_name"
-    t.string "platform"
+    t.bigint "platform_id", null: false
     t.string "url"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["platform_id"], name: "index_accounts_on_platform_id"
     t.index ["uid"], name: "index_accounts_on_uid", unique: true
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
@@ -32,6 +33,18 @@ ActiveRecord::Schema.define(version: 2021_07_20_122642) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
+  end
+
+  create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "emoji"
+    t.string "slug"
+    t.string "name"
+    t.boolean "available"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["emoji"], name: "index_categories_on_emoji", unique: true
+    t.index ["name"], name: "index_categories_on_name", unique: true
+    t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
   create_table "event_attendances", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -122,7 +135,8 @@ ActiveRecord::Schema.define(version: 2021_07_20_122642) do
     t.string "primary_sns"
     t.string "info_url"
     t.string "hashtag"
-    t.string "platform", null: false
+    t.bigint "platform_id", null: false
+    t.bigint "category_id", null: false
     t.string "visibility", null: false
     t.string "taste"
     t.integer "trust"
@@ -130,7 +144,9 @@ ActiveRecord::Schema.define(version: 2021_07_20_122642) do
     t.bigint "updated_user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_events_on_category_id"
     t.index ["created_user_id"], name: "index_events_on_created_user_id"
+    t.index ["platform_id"], name: "index_events_on_platform_id"
     t.index ["uid"], name: "index_events_on_uid", unique: true
     t.index ["updated_user_id"], name: "index_events_on_updated_user_id"
   end
@@ -140,6 +156,7 @@ ActiveRecord::Schema.define(version: 2021_07_20_122642) do
     t.string "slug"
     t.string "name"
     t.string "taste"
+    t.boolean "available"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["emoji"], name: "index_flavors_on_emoji", unique: true
@@ -155,6 +172,16 @@ ActiveRecord::Schema.define(version: 2021_07_20_122642) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id", "hashtag", "role"], name: "index_hashtag_follows_on_user_id_and_hashtag_and_role", unique: true
     t.index ["user_id"], name: "index_hashtag_follows_on_user_id"
+  end
+
+  create_table "platforms", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "slug"
+    t.string "name"
+    t.boolean "available"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_platforms_on_name", unique: true
+    t.index ["slug"], name: "index_platforms_on_slug", unique: true
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -182,6 +209,7 @@ ActiveRecord::Schema.define(version: 2021_07_20_122642) do
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
   end
 
+  add_foreign_key "accounts", "platforms"
   add_foreign_key "accounts", "users"
   add_foreign_key "event_attendances", "events"
   add_foreign_key "event_attendances", "users"
@@ -195,6 +223,8 @@ ActiveRecord::Schema.define(version: 2021_07_20_122642) do
   add_foreign_key "event_schedules", "events"
   add_foreign_key "event_schedules", "users", column: "created_user_id"
   add_foreign_key "event_schedules", "users", column: "updated_user_id"
+  add_foreign_key "events", "categories"
+  add_foreign_key "events", "platforms"
   add_foreign_key "events", "users", column: "created_user_id"
   add_foreign_key "events", "users", column: "updated_user_id"
   add_foreign_key "hashtag_follows", "users"

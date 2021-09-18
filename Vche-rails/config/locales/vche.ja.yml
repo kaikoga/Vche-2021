@@ -12,7 +12,7 @@ ja:
         organizer_name: 主催者
         backstage_members: スタッフ
         info_url: 外部サイト
-        flavors: カテゴリ
+        flavors: フレイバー
         taste: 雰囲気
       event_history:
         assembled_at: 集合日時
@@ -39,6 +39,7 @@ ja:
   attributes:
     attendees: 参加者
     backstage_members: スタッフ
+    category: 開催形態
     event_histories: イベント履歴
     event_schedules: イベント予定
     followers: フォロワー
@@ -55,10 +56,6 @@ ja:
     updated_at: 更新した日時
   enumerize:
     defaults:
-      platform:
-        vrchat_xp: VRChat PC/Quest
-        vrchat_pc: VRChat PC
-        vrchat_quest: VRChat Quest
       repeat:
         oneshot: 単発イベント
         every_day: 毎日

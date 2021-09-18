@@ -30,7 +30,10 @@
     .value = event.hashtag
   .field
     label = Event.human_attribute_name(:platform)
-    .value = event.platform_text
+    .value = event.platform.name
+  .field
+    label = Event.human_attribute_name(:category)
+    .value = event.category.emoji_name
   .field
     label = Event.human_attribute_name(:flavors)
     .relation
