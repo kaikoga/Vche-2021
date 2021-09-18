@@ -23,6 +23,9 @@
   .started_at {
     font-size: $font-size-large;
   }
+  .resolution {
+    @include panel--small;
+  }
   .attending_event {
     @include button--panel;
     color: $text-light;
