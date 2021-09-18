@@ -19,6 +19,13 @@
       background: $primary_bg-light;
       color: $primary_text-dark;
     }
+    &.-ended {
+      background: $disabled_bg-light;
+      .date {
+        background: $primary_bg;
+        color: $disabled_text-dark;
+      }
+    }
     .event.-calendar {
       @include reset--font;
       word-break: break-all;
@@ -38,27 +45,29 @@
         }
       }
       &.-resolution_moved {
-        background: $negative_fill;
+        background: $negative_fill-lighter;
         color: $negative_text;
         &::before {
           content: '⚠️';
         }
       }
       &.-resolution_canceled {
-        background: $negative_bg;
+        background: $negative_fill;
         color: $negative_text;
         &::before {
           content: '🛑️';
         }
       }
       &.-resolution_ended {
-        color: $text-lighter;
+        background: $disabled_bg-light;
+        color: $disabled_text;
         &::before {
           content: '✅';
         }
       }
       &.-resolution_completed {
-        color: $text-lighter;
+        background: $disabled_bg-light;
+        color: $disabled_text;
         &::before {
           content: '📗';
         }

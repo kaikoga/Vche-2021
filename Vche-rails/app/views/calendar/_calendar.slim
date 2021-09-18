@@ -12,7 +12,8 @@ nav.calendar__nav
 
 .calendar.-cells
   - calendar.cells_by_date.each do |date, cell|
-    .calendar.-cell
+    - cell_class = date < Time.current.beginning_of_day ? 'calendar -cell -ended' : 'calendar -cell'
+    div class=cell_class
       .date = l(date, format: :mda)
       - cell.event_histories.each do |history|
         - calendar_class = 'event -calendar'
