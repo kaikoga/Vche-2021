@@ -23,7 +23,7 @@
     .value = l(event_history.started_at)
   .field
     label = EventHistory.human_attribute_name(:ended_at)
-    .value = l(event_history.ended_at)
+    .value = l(event_history.ended_at) if event_history.ended_at
   - if loyalty(event_history, :event_histories).backstage?
     .field
       label = EventHistory.human_attribute_name(:closed_at)

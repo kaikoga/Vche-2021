@@ -3,9 +3,9 @@
 .editor_fields
   .editor_field
     label 作成
-    span.editor = link_to(resource.created_user.display_name, resource.created_user, class: 'button')
+    span.editor = link_to(resource.created_user.display_name, resource.created_user, class: 'button') if resource.created_user
     span.date = l(resource.created_at) if resource.created_at
   .editor_field
     label 更新：
-    span.editor = link_to(resource.updated_user.display_name, resource.updated_user, class: 'button')
+    span.editor = link_to(resource.updated_user.display_name, resource.updated_user, class: 'button') if resource.updated_user
     span.date = l(resource.updated_at) if resource.updated_at
