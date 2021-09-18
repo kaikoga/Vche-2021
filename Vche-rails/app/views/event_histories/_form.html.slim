@@ -16,7 +16,7 @@
     = form.select :visibility, EventHistory.visibility.options
   .field
     = form.label :resolution
-    = form.select :resolution, EventHistory.resolution.options
+    = form.select :resolution, EventHistory.resolution.emoji_options
   - if loyalty(event_history).backstage?
     .field
       = form.label :assembled_at
