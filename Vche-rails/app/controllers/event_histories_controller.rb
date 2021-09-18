@@ -24,10 +24,6 @@ class EventHistoriesController < ApplicationController
 
   def edit
     @event_history = find_event_history
-    if @event_history.new_record?
-      @event_history.save
-      redirect_to event_event_history_path(@event, @event_history)
-    end
   end
 
   def create
