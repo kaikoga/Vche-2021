@@ -2,4 +2,6 @@ h1 = "#{User.model_name.human}詳細"
 
 = render 'strip', user: @user
 
+= render 'calendar/calendar', calendar: @calendar
+
 = render 'table', user: @user

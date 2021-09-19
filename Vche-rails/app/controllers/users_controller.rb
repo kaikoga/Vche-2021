@@ -8,7 +8,11 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    year = show_params[:year]&.to_i
+    month = show_params[:month]&.to_i
+
     @user = find_user
+    @calendar = CalendarPresenter.new(@user.following_events, user: @user, year: year, month: month, months: 1, days: 0)
   end
 
   # GET /users/new
@@ -61,6 +65,10 @@ class UsersController < ApplicationController
 
   def find_user
     User.friendly.find(params[:id])
+  end
+
+  def show_params
+    @show_params ||= params.permit(:year, :month)
   end
 
   def user_params
