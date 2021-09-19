@@ -12,9 +12,6 @@
         - event_history.errors.each do |error|
           li = error.full_message
   .field
-    = form.label :visibility
-    = form.select :visibility, EventHistory.visibility.options
-  .field
     = form.label :resolution
     = form.select :resolution, EventHistory.resolution.emoji_options
   - if loyalty(event_history).backstage?

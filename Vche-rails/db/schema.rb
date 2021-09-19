@@ -86,7 +86,6 @@ ActiveRecord::Schema.define(version: 2021_07_20_122642) do
   create_table "event_histories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "uid"
     t.bigint "event_id", null: false
-    t.string "visibility", null: false
     t.string "resolution", null: false
     t.datetime "assembled_at"
     t.datetime "opened_at"
@@ -107,7 +106,6 @@ ActiveRecord::Schema.define(version: 2021_07_20_122642) do
   create_table "event_schedules", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "uid"
     t.bigint "event_id", null: false
-    t.string "visibility", null: false
     t.datetime "assemble_at"
     t.datetime "open_at"
     t.datetime "start_at", null: false

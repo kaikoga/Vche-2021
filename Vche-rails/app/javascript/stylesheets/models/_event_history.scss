@@ -16,10 +16,6 @@
 
 .event_history.-strip {
   @include strip;
-  .visibility {
-    @include panel--small;
-    color: $text-light;
-  }
   .started_at {
     font-size: $font-size-large;
   }

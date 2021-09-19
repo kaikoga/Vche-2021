@@ -5,7 +5,6 @@
 #  id              :bigint           not null, primary key
 #  uid             :string(255)
 #  event_id        :bigint           not null
-#  visibility      :string(255)      not null
 #  assemble_at     :datetime
 #  open_at         :datetime
 #  start_at        :datetime         not null
@@ -36,7 +35,6 @@ class EventSchedule < ApplicationRecord
   include Vche::Uid
   include Vche::UidQuery
 
-  include Enums::Visibility
   include Enums::Repeat
   include Enums::Resolution
 
@@ -91,7 +89,6 @@ class EventSchedule < ApplicationRecord
     date_options = { year: date.year, month: date.month, day: date.day }
     EventHistory.new(
       event: event,
-      visibility: visibility,
       resolution: Time.current < end_at.change(date_options) ? :scheduled : :ended,
       assembled_at: assemble_at&.change(date_options),
       opened_at: open_at&.change(date_options),

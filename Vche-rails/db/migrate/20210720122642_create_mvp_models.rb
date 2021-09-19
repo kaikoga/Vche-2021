@@ -77,7 +77,6 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
     create_table :event_schedules do |t|
       t.string :uid, null: :false, index: { unique: true }
       t.references :event, foreign_key: true, null: false
-      t.string :visibility, null: false
       t.datetime :assemble_at
       t.datetime :open_at
       t.datetime :start_at, null: false
@@ -95,7 +94,6 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
     create_table :event_histories do |t|
       t.string :uid, null: :false, index: { unique: true }
       t.references :event, foreign_key: true, null: false
-      t.string :visibility, null: false
       t.string :resolution, null: false
       t.datetime :assembled_at
       t.datetime :opened_at

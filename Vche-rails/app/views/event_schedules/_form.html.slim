@@ -11,9 +11,6 @@
       ul
         - event_schedule.errors.each do |error|
           li = error.full_message
-  .field
-    = form.label :visibility
-    = form.select :visibility, Event.visibility.options
   - if loyalty(event_schedule).backstage?
     .field
       = form.label :assemble_at

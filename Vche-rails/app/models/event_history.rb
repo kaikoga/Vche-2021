@@ -5,7 +5,6 @@
 #  id              :bigint           not null, primary key
 #  uid             :string(255)
 #  event_id        :bigint           not null
-#  visibility      :string(255)      not null
 #  resolution      :string(255)      not null
 #  assembled_at    :datetime
 #  opened_at       :datetime
@@ -34,7 +33,6 @@
 class EventHistory < ApplicationRecord
   include Vche::Uid
 
-  include Enums::Visibility
   include Enums::Resolution
 
   belongs_to :event
