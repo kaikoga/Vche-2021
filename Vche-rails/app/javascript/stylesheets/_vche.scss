@@ -20,6 +20,8 @@
 @import 'models/_flavor';
 @import 'models/_user';
 
+@import '_inline';
+
 body {
   background: $fill;
 }
@@ -109,6 +111,10 @@ a {
 
 .button--disabled {
   @include button--disabled;
+}
+
+.panel {
+  @include panel;
 }
 
 input[type="submit"] {

@@ -19,6 +19,8 @@
       = link_to 'フォローする', follow_event_path(event), method: :post, class: 'button'
     - if loyalty(event, :events).unfollow?
       = link_to 'フォロー解除', unfollow_event_path(event), method: :post, class: 'button'
+    - if loyalty(event, 'events/visibilities').edit?
+      = link_to '公開範囲を変更する', edit_event_visibility_path(event), class: 'button'
 
   = link_to '最近の開催', event_event_histories_path(event), class: 'button'
 

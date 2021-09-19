@@ -1,0 +1,12 @@
+.inline.-visibility {
+  @include panel--small;
+  color: $text-light;
+}
+
+.inline.-positive {
+  color: $positive_text;
+}
+
+.inline.-negative {
+  color: $negative_text;
+}

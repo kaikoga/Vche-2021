@@ -1,0 +1,23 @@
+h1 = "#{Event.model_name.human}を#{Event.human_attribute_name(:visibility)}を編集する"
+
+.panel
+  p
+    span.inline.-visibility 非公開
+  p
+    |
+      イベント情報は自分しか見ることができません。
+  p
+    span.inline.-visibility 共有のみ
+  p
+    |
+      イベント情報は全体カレンダーには表示されませんが、イベントに参加またはフォローしているユーザーのページには表示されます。
+      ページのURLを知っている人はアクセスできます。
+  p
+    span.inline.-visibility 公開
+  p
+    |
+      イベント情報は全体カレンダーに表示されます。
+
+div
+  = render 'form', event: @event
+  = link_to '戻る', @event, class: 'button'

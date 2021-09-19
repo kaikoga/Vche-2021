@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       end
     end
     resources :event_follows, controller: 'events/event_follows', only: :index
+    resource :visibility, controller: 'events/visibilities', only: [:edit, :update]
   end
 
   get 'login' => 'sessions#new', :as => :login
