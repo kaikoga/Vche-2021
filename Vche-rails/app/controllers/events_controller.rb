@@ -23,7 +23,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
+    @event = Event.new(create_params)
     @event.created_user = current_user
     @event.updated_user = current_user
 
@@ -41,7 +41,7 @@ class EventsController < ApplicationController
     authorize! @event
     @event.updated_user = current_user
 
-    if @event.update(**event_params, flavors: event_flavors_params)
+    if @event.update(**update_params, flavors: event_flavors_params)
       redirect_to @event, notice: 'Event was successfully updated.'
     else
       render :edit
@@ -120,11 +120,19 @@ class EventsController < ApplicationController
     params.permit(:year, :month)
   end
 
-  def event_params
+  def create_params
     params.require(:event).permit(
       :name, :fullname,
       :description, :organizer_name, :primary_sns, :info_url,
       :hashtag, :platform_id, :category_id, :visibility
+    )
+  end
+
+  def update_params
+    params.require(:event).permit(
+      :name, :fullname,
+      :description, :organizer_name, :primary_sns, :info_url,
+      :hashtag, :platform_id, :category_id
     )
   end
 

@@ -33,9 +33,10 @@
   .field
     = form.label :platform
     = form.collection_select :platform, Platform.available, :id, :name
-  .field
-    = form.label :visibility
-    = form.select :visibility, Event.visibility.options
+  - if !event.persisted?
+    .field
+      = form.label :visibility
+      = form.select :visibility, Event.visibility.options
   .field
     = form.label :category
     = form.collection_select :category, Category.available, :id, :emoji_name
