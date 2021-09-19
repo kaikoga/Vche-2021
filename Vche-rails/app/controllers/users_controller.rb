@@ -58,7 +58,9 @@ class UsersController < ApplicationController
 
   def events
     @user = find_user
-    @events = @user.events.shared_or_over.page(params[:page]) # FIXME
+
+    @backstage_events = @user.backstage_events.shared_or_over
+    @audience_events = @user.audience_events.shared_or_over.page(params[:page])
   end
 
   private
