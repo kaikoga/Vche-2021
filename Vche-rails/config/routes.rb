@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  resource :home, controller: :home, only: :show
+  resource :home, controller: :home, only: :show do
+    get :events
+  end
 
   resources :users do
+    member do
+      get :events
+    end
     resource :password, controller: 'users/passwords', only: [:edit, :update]
   end
 

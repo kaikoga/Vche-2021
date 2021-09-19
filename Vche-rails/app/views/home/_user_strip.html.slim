@@ -5,4 +5,6 @@
   .email = user.email
   .display_name = link_to(user.display_name, user, class: :strip__title)
   '
-  = link_to 'プロフィール', @user, class: 'button'
+  = link_to 'プロフィール', user, class: 'button'
+  = link_to 'カレンダー', home_path, class: 'button'
+  = link_to "フォロー中のイベント(#{user.event_follows.count})", events_home_path, class: 'button'

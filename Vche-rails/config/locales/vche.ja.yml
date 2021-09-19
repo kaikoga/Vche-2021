@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       event: イベント
+      event_follow: フォロー中のイベント
       event_history: イベント履歴
       event_schedule: イベント予定
       user: ユーザー

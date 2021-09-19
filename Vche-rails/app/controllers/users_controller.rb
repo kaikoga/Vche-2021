@@ -52,6 +52,11 @@ class UsersController < ApplicationController
     redirect_to users_url, notice: 'User was successfully destroyed.'
   end
 
+  def events
+    @user = find_user
+    @events = @user.events.follow_or_over.page(params[:page]) # FIXME
+  end
+
   private
 
   def find_user

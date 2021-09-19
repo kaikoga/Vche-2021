@@ -1,0 +1,10 @@
+h1 = 'マイページ'
+
+= render 'user_strip', user: @user
+
+h2 = EventFollow.model_name.human
+
+= render 'events/cards', events: @events, edit: false, card_cloud: true
+= paginate @events
+
+= link_to 'New', new_event_path, class: 'button'

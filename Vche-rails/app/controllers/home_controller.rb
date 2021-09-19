@@ -7,6 +7,11 @@ class HomeController < ApplicationController
     @calendar = CalendarPresenter.new(@user.following_events, user: @user, year: year, month: month, months: 1, days: 0)
   end
 
+  def events
+    @user = current_user
+    @events = @user.events.page(params[:page])
+  end
+
   private
 
   def show_params
