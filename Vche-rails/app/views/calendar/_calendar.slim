@@ -1,6 +1,6 @@
 - calendar ||= nil
 - calendar_params = filtered_params
-- taste_select ||= false
+- enable_filters ||= false
 
 nav.calendar__nav
   = link_to("=", calendar_params.except(:year, :month), class: :button)
@@ -8,7 +8,9 @@ nav.calendar__nav
   - if calendar.year_and_month.present?
     span.current = calendar.year_and_month
   = link_to("#{calendar.next_year}/#{calendar.next_month} >", calendar_params.merge(year: calendar.next_year, month: calendar.next_month), class: :button)
-  = render 'taste_select' if taste_select
+  - if enable_filters
+    = render 'category_select'
+    = render 'taste_select'
 
 .calendar.-cells
   - calendar.cells_by_date.each do |date, cell|

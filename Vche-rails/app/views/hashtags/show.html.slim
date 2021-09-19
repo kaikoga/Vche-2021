@@ -1,5 +1,6 @@
 h1 = "#{Event.human_attribute_name(:hashtag)}から#{Event.model_name.human}を調べる"
 
+= render 'category_select'
 = render 'taste_select'
 
 = render 'events/cards', events: @events, actions: :hashtag

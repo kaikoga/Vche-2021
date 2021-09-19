@@ -1,0 +1,4 @@
+- category_options = [['開催形態を選ぶ', nil]] + Category.available.map { |c| [c.emoji_name, c.slug] }
+
+= form_with(url: filtered_params, method: :get, class: '-inline') do |form|
+  = form.select :category, category_options, { selected: params[:category] }, onchange: "javascript: this.form.submit();"

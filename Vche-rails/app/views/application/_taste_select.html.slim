@@ -1,4 +1,2 @@
-- taste_params = filtered_params
-
-= form_with(url: taste_params, method: :get, class: '-inline') do |form|
+= form_with(url: filtered_params, method: :get, class: '-inline') do |form|
   = form.select :taste, Enums::Taste.select_options, { selected: params[:taste] }, onchange: "javascript: this.form.submit();"
