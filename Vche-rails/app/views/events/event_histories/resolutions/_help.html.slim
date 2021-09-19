@@ -1,0 +1,33 @@
+.panel
+  p
+    span.inline.-resolution = EventHistory::resolution_emoji_text(@event_history.resolution)
+  - case @event_history.resolution.to_sym
+  - when :scheduled
+  p
+    | 登録されたイベント予定に応じて、イベント日程の枠が確保されています。
+  p
+    span.inline.-resolution = EventHistory::resolution_emoji_text 'scheduled'
+    | をイベントカレンダーに正式に登録するには、「イベント開催を告知する」を行ってください。
+  - when :announced
+  p
+    | イベントの開催が告知され、イベントカレンダーに正式に登録されています。
+    | イベントが完了した際には、「イベントを完了する」を行ってください。
+  - when :moved
+  p このイベント日程は時間が変更されています。
+  - when :canceled
+  p このイベント日程は開催が中止されています。
+  - when :ended
+  p
+    | このイベント日程は、開催告知を行わずにイベント終了時刻を経過しています。
+    | もしこのイベントが開催されていた場合は、「イベントを完了する」を行ってください。
+  - when :completed
+  p このイベントは無事に完了しています。おつかれさまでした。
+
+  - if @event_history.resolution.to_sym.in? [:scheduled, :announced, :ended]
+    p
+      | また、
+      span.inline.-resolution = EventHistory::resolution_emoji_text 'moved'
+      | でイベントの開催日時の変更を、
+      span.inline.-resolution = EventHistory::resolution_emoji_text 'canceled'
+      | でイベントの中止を知らせることができます。
+

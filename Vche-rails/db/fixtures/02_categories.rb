@@ -21,8 +21,8 @@ Category.create_or_find_by(
 
 Category.create_or_find_by(
   emoji: '🛠',
-  slug: 'hackathon',
-  name: 'ハッカソン',
+  slug: 'workshop',
+  name: 'ワークショップ',
   available: true
 )
 
@@ -43,7 +43,7 @@ Category.create_or_find_by(
 Category.create_or_find_by(
   emoji: '🎓',
   slug: 'lesson',
-  name: '講座',
+  name: '講習会',
   available: true
 )
 
