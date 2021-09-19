@@ -1,0 +1,6 @@
+h1 = "#{Event.human_attribute_name(:hashtag)}一覧"
+
+- @hashtags.each do |hashtag|
+  = link_to hashtag.hashtag, hashtag_path(hashtag.hashtag), class: :button
+
+= paginate @hashtags

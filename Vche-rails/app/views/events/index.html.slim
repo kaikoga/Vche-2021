@@ -2,7 +2,8 @@ h1 = Event.model_name.human
 
 = render 'taste_select'
 
-= render 'cards', events: @events, edit: false, card_cloud: true
+= render 'cards', events: @events, card_cloud: true
 = paginate @events
 
 = link_to 'New', new_event_path, class: 'button'
+= link_to "#{Event.human_attribute_name(:hashtag)}一覧", hashtags_path, class: 'button'

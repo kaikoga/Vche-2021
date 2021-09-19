@@ -1,6 +1,6 @@
 - events ||= nil
-- edit ||= false
 - card_cloud ||= false
+- actions ||= nil
 - _layout = card_cloud ? 'card_cloud' : 'table'
 
 div class="events -#{_layout}"
@@ -11,6 +11,11 @@ div class="events -#{_layout}"
       span.hashtag = event.hashtag
       - next_schedule = event.next_schedule
       - if next_schedule
-        span.start_at = link_to l(event.next_schedule.started_at), event_event_history_path(event, next_schedule)
-      - if edit && loyalty(event, :events).edit?
-        = link_to '編集する', edit_event_path(event), class: 'button'
+        span.start_at = link_to l(next_schedule.started_at), event_event_history_path(event, next_schedule)
+      - if current_user
+        span.following_event = current_user.following_event?(event)&.text || EventFollow.role.irrelevant.text
+      - if actions == :hashtag
+        - if loyalty(event, :events).follow?
+          = link_to 'フォローする', follow_event_path(event), method: :post, class: 'button'
+        - if loyalty(event, :events).unfollow?
+          = link_to 'フォロー解除', unfollow_event_path(event), method: :post, class: 'button'

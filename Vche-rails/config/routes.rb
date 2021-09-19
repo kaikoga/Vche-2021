@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     resource :visibility, controller: 'events/visibilities', only: [:edit, :update]
   end
 
+  resources :hashtags, only: [:index, :show]
+
   get 'login' => 'sessions#new', :as => :login
   post 'login' => "sessions#create"
   post 'logout' => 'sessions#destroy', :as => :logout

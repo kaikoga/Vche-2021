@@ -2,6 +2,8 @@ h1 = "#{Event.model_name.human}詳細"
 
 = render 'strip', event: @event, user: @user
 
+= render 'hashtags/event_cards', hashtag: @event.hashtag
+
 = render 'calendar/calendar', calendar: @calendar
 
 = render 'table', event: @event

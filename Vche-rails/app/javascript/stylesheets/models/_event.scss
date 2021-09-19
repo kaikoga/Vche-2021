@@ -34,9 +34,8 @@
       color: $text-lighter;
     }
   }
-  .hashtag {
-    font-size: $font-size-small;
-    color: $text-lighter;
+  .fullname {
+    color: $text-light;
   }
   .platform {
     @include panel--small;
@@ -44,9 +43,11 @@
   }
   .organizer {
     font-size: $font-size-small;
-    color: $text-light;
+    color: $text-lighter;
   }
-  .fullname {
+  .hashtag {
+    font-size: $font-size-small;
+    color: $text-light;
   }
 }
 
@@ -61,6 +62,10 @@
   }
   .start_at {
     @include card__text_link;
+  }
+  .following_event {
+    @include button--panel;
+    color: $text-light;
   }
 }
 

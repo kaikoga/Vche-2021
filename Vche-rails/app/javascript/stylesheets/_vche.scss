@@ -7,6 +7,7 @@
 @import 'components/_editor_fields';
 @import 'components/_icon';
 @import 'components/_keyvaluetable';
+@import 'components/_link';
 @import 'components/_panel';
 @import 'components/_roster';
 @import 'components/_strip';
@@ -86,11 +87,7 @@ a {
 }
 
 .link {
-  text-decoration: none;
-  &:hover {
-    color: $text-light;
-    text-decoration: underline;
-  }
+  @include link;
 }
 
 .strip__title {

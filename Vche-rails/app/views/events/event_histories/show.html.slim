@@ -4,6 +4,8 @@ h1 = "#{EventHistory.model_name.human}詳細"
 
 = render 'event_histories/strip', event: @event, event_history: @event_history, user: @user
 
+= render 'hashtags/event_cards', hashtag: @event.hashtag
+
 = render 'event_histories/table', event: @event, event_history: @event_history
 
 h2 = "#{Event.model_name.human}情報"
