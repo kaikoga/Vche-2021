@@ -8,23 +8,20 @@ class EventSchedulesLoyalty < ApplicationLoyalty
   end
 
   def create?
-    owners = record.event.owners
-    owners.empty? || owners.include?(user)
+    LoyaltyTools.user_is_source?(record.event, user)
   end
 
   def update?
-    owners = record.event.owners
-    owners.empty? || owners.include?(user)
+    LoyaltyTools.user_is_source?(record.event, user)
   end
 
   def destroy?
-    owners = record.event.owners
-    owners.empty? || owners.include?(user)
+    LoyaltyTools.user_is_source?(record.event, user)
   end
 
   concerning :Model do
     def backstage?
-      record.event.backstage_members.include?(user)
+      LoyaltyTools.user_is_backstage_member?(record.event, user)
     end
   end
 end

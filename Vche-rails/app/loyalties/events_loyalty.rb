@@ -12,8 +12,7 @@ class EventsLoyalty < ApplicationLoyalty
   end
 
   def update?
-    owners = record.owners
-    owners.empty? || owners.include?(user)
+    LoyaltyTools.user_is_source?(record, user)
   end
 
   def destroy?
@@ -38,7 +37,7 @@ class EventsLoyalty < ApplicationLoyalty
 
   concerning :Model do
     def backstage?
-      record.backstage_members.include?(user)
+      LoyaltyTools.user_is_backstage_member?(record, user)
     end
   end
 end

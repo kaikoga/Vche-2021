@@ -1,7 +1,6 @@
 class Events::VisibilitiesLoyalty < ApplicationLoyalty
   def edit?
-    owners = record.owners
-    owners.empty? ? owners.include?(user) : record.created_user == user
+    LoyaltyTools.user_is_primary_source?(record, user)
   end
 
   def update?
