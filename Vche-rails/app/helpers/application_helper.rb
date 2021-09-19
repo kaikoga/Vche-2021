@@ -34,4 +34,10 @@ module ApplicationHelper
       [repeat_text, start_at_text, l(end_at)]
     end
   end
+
+  # from Kaminari::Helpers::Tag
+  PARAM_KEY_EXCEPT_LIST = [:authenticity_token, :commit, :utf8, :_method, :script_name, :original_script_name].freeze
+  def filtered_params
+    params.to_unsafe_h.with_indifferent_access.except(*PARAM_KEY_EXCEPT_LIST)
+  end
 end

@@ -2,7 +2,7 @@ Flavor.create_or_find_by(
   emoji: '🔰',
   slug: 'beginner',
   name: '初心者向け',
-  taste: :general,
+  taste: :welcome,
   available: true
 )
 
@@ -10,7 +10,7 @@ Flavor.create_or_find_by(
   emoji: '👘',
   slug: 'avatar',
   name: 'アバター集会',
-  taste: :general,
+  taste: :welcome,
   available: true
 )
 
@@ -18,7 +18,7 @@ Flavor.create_or_find_by(
   emoji: '🏢',
   slug: 'group',
   name: 'バーチャル団体',
-  taste: :general,
+  taste: :welcome,
   available: true
 )
 
@@ -26,7 +26,7 @@ Flavor.create_or_find_by(
   emoji: '🍺',
   slug: 'drinking',
   name: 'VR飲み会',
-  taste: :general,
+  taste: :welcome,
   available: true
 )
 
@@ -34,7 +34,7 @@ Flavor.create_or_find_by(
   emoji: '🎶',
   slug: 'music',
   name: '音楽イベント',
-  taste: :general,
+  taste: :welcome,
   available: true
 )
 
@@ -42,7 +42,7 @@ Flavor.create_or_find_by(
   emoji: '⚔️',
   slug: 'roleplaying',
   name: 'ロールプレイ',
-  taste: :general,
+  taste: :welcome,
   available: true
 )
 
@@ -50,7 +50,7 @@ Flavor.create_or_find_by(
   emoji: '🎨',
   slug: 'creator',
   name: 'クリエイター',
-  taste: :general,
+  taste: :welcome,
   available: true
 )
 
@@ -90,7 +90,7 @@ Flavor.create_or_find_by(
   emoji: '🍷️',
   slug: 'mature',
   name: '大人向け',
-  taste: :mature,
+  taste: :isolated,
   available: true
 )
 
@@ -98,6 +98,6 @@ Flavor.create_or_find_by(
   emoji: '❤️',
   slug: 'nsfw',
   name: 'NSFW',
-  taste: :mature,
+  taste: :isolated,
   available: false
 )

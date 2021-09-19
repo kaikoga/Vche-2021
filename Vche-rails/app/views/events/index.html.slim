@@ -1,5 +1,7 @@
 h1 = Event.model_name.human
 
+= render 'taste_select'
+
 = render 'cards', events: @events, edit: false, card_cloud: true
 = paginate @events
 

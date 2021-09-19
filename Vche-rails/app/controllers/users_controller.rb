@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     month = show_params[:month]&.to_i
 
     @user = find_user
-    @calendar = CalendarPresenter.new(@user.following_events, user: @user, year: year, month: month, months: 1, days: 0)
+    @calendar = CalendarPresenter.new(@user.following_events.follow_or_over, user: @user, year: year, month: month, months: 1, days: 0)
   end
 
   # GET /users/new

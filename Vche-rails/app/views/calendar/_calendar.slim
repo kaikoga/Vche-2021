@@ -1,7 +1,6 @@
 - calendar ||= nil
-- # from Kaminari::Helpers::Tag
-- param_key_except_list = [:authenticity_token, :commit, :utf8, :_method, :script_name, :original_script_name].freeze
-- calendar_params = params.to_unsafe_h.with_indifferent_access.except(*param_key_except_list)
+- calendar_params = filtered_params
+- taste_select ||= false
 
 nav.calendar__nav
   = link_to("=", calendar_params.except(:year, :month), class: :button)
@@ -9,6 +8,7 @@ nav.calendar__nav
   - if calendar.year_and_month.present?
     span.current = calendar.year_and_month
   = link_to("#{calendar.next_year}/#{calendar.next_month} >", calendar_params.merge(year: calendar.next_year, month: calendar.next_month), class: :button)
+  = render 'taste_select' if taste_select
 
 .calendar.-cells
   - calendar.cells_by_date.each do |date, cell|

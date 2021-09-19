@@ -5,12 +5,13 @@ class CalendarController < ApplicationController
     year = index_params[:year]&.to_i
     month = index_params[:month]&.to_i
 
-    @calendar = CalendarPresenter.new(Event.general_or_private.where('trust > ?', Event::OWNER_TRUST), user: current_user, year: year, month: month, months: 1, days: 0)
+    events = Event.public_or_over.with_taste_param(index_params[:taste]).where('trust > ?', Event::OWNER_TRUST)
+    @calendar = CalendarPresenter.new(events, user: current_user, year: year, month: month, months: 1, days: 0)
   end
 
   private
 
   def index_params
-    @index_params ||= params.permit(:year, :month)
+    @index_params ||= params.permit(:year, :month, :taste)
   end
 end

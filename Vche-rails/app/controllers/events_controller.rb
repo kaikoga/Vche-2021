@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
 
   def index
-    @events = Event.page(params[:page])
+    @events = Event.public_or_over.with_taste_param(params[:taste]).page(params[:page])
   end
 
   def show
@@ -110,6 +110,10 @@ class EventsController < ApplicationController
 
   def find_event
     Event.friendly.find(params[:id])
+  end
+
+  def index_params
+    params.permit(:taste)
   end
 
   def show_params

@@ -85,11 +85,13 @@ ja:
         visitor: 訪問者
         viewer: 観客
       taste:
-        general: 一般
-        private: 個人
-        restricted: 入場制限
-        mature: 成人向け
+        unselected: 雰囲気を選ぶ
+        welcome: 水色
+        accessible: 緑色
+        restricted: オレンジ
+        isolated: 赤色
         hidden: 非表示
+        all: 全て表示
       visibility:
         public: 公開
         shared: 共有可能
