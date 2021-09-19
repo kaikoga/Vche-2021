@@ -9,9 +9,9 @@
     label = EventHistory.human_attribute_name(:backstage_members)
     .relation
       = render 'event_attendances/cards', event_history: event_history, event_attendances: event_history.event_backstage_members, card_cloud: true
-      - if loyalty(event_history, :event_histories).add_user?
+      - if loyalty(event_history, 'events/event_histories').add_user?
         = link_to 'スタッフを割り当てる', event_event_history_event_attendances_path(event, event_history), class: :button
-  - if loyalty(event_history, :event_histories).backstage?
+  - if loyalty(event_history, 'events/event_histories').backstage?
     .field
       label = EventHistory.human_attribute_name(:assembled_at)
       .value = l(event_history.assembled_at) if event_history.assembled_at
@@ -24,12 +24,12 @@
   .field
     label = EventHistory.human_attribute_name(:ended_at)
     .value = l(event_history.ended_at) if event_history.ended_at
-  - if loyalty(event_history, :event_histories).backstage?
+  - if loyalty(event_history, 'events/event_histories').backstage?
     .field
       label = EventHistory.human_attribute_name(:closed_at)
       .value = l(event_history.closed_at) if event_history.closed_at
 
-  - if loyalty(event_history, :event_histories).edit?
+  - if loyalty(event_history, 'events/event_histories').edit?
     = link_to '編集する', edit_event_event_history_path(event, event_history), class: 'button'
 
   = render 'editor_info', resource: event_history

@@ -13,5 +13,5 @@ div class="event_histories -#{_layout}"
         span.sep -
         span.ended_at = ended_at
       span.resolution = event_history.resolution_emoji_text
-      - if edit && loyalty(event_history, :event_histories).edit?
+      - if edit && loyalty(event_history, 'events/event_histories').edit?
         = link_to '編集する', edit_event_event_history_path(event, event_history), class: 'button'

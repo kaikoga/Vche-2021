@@ -1,4 +1,4 @@
-class EventHistoriesLoyalty < ApplicationLoyalty
+class Events::EventHistoriesLoyalty < ApplicationLoyalty
   def index?
     true
   end

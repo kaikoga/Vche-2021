@@ -11,5 +11,5 @@ div class="event_attendances -#{_layout}"
       span.email = user.email
       span.display_name = link_to user.display_name, user
       span.role = EventAttendance.role.irrelevant.text
-      - if loyalty(event_history, :event_histories).add_user?
+      - if loyalty(event_history, 'events/event_histories').add_user?
         = link_to '追加', add_user_event_event_history_path(event_history.event, event_history, user_id: user, role: event_follow.role), method: :post, class: 'button'

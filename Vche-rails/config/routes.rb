@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       post :remove_user
     end
     resources :event_schedules
-    resources :event_histories do
+    resources :event_histories, controller: 'events/event_histories' do
       resources :event_attendances, controller: 'events/event_histories/event_attendances', only: :index
       member do
         post :attend
