@@ -2,7 +2,7 @@
 - event_history ||= nil
 - event_history.event ||= event
 
-= form_with(model: [event, event_history]) do |form|
+= form_with(model: [event, event_history], class: '-table') do |form|
   - if event_history.errors.any?
     #error_explanation
       h2

@@ -116,7 +116,7 @@ input[type="submit"] {
   margin-left: 200px;
 }
 
-form {
+form.-table {
   @include keyvaluetable;
   > .field {
     @include keyvaluetable__keyvalue;
@@ -152,5 +152,16 @@ form {
         display: block;
       }
     }
+  }
+}
+
+form.-inline {
+  display: inline;
+  input[type="text"],
+  input[type="password"],
+  input[type="datetime"],
+  select, textarea {
+    @include keyvaluetable__value;
+    width: inherit;
   }
 }

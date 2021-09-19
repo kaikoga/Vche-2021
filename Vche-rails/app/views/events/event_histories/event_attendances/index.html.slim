@@ -14,7 +14,7 @@ h1 = EventHistory.human_attribute_name(:attendees)
     = render 'event_attendances/cards', event_history: @event_history, event_attendances: event_backstage_members
     = render 'event_attendances/new_cards', event_history: @event_history, event_follows: event_new_backstage_members
     - if loyalty(@event_history, :event_histories).add_user?
-      = form_with url: add_user_event_event_history_path(@event_history.event, @event_history) do |form|
+      = form_with url: add_user_event_event_history_path(@event_history.event, @event_history), class: '-table' do |form|
         .field
           = form.text_field :user_id
         .field

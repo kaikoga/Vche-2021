@@ -1,6 +1,6 @@
 - user ||= nil
 
-= form_with(model: user) do |form|
+= form_with(model: user, class: '-table') do |form|
   - if user.errors.any?
     #error_explanation
       h2

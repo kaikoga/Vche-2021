@@ -2,7 +2,7 @@
 - event_schedule ||= nil
 - event_schedule.event ||= event
 
-= form_with(model: [event, event_schedule]) do |form|
+= form_with(model: [event, event_schedule], class: '-table') do |form|
   - if event_schedule.errors.any?
     #error_explanation
       h2

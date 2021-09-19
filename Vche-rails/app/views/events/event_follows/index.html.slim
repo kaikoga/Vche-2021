@@ -7,7 +7,7 @@ h1 = Event.human_attribute_name(:followers)
     h2 = "スタッフ"
     = render 'event_follows/cards', event_follows: @event.event_backstage_members
     - if loyalty(@event, :events).add_user?
-      = form_with url: add_user_event_path(@event) do |form|
+      = form_with url: add_user_event_path(@event), class: '-table' do |form|
         .field
           = form.text_field :user_id
         .field

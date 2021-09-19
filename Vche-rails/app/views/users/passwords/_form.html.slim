@@ -1,6 +1,6 @@
 - user ||= nil
 
-= form_with(model: user, url: user_password_path(user)) do |form|
+= form_with(model: user, url: user_password_path(user), class: '-table') do |form|
   - if user.errors.any?
     #error_explanation
       h2

@@ -1,6 +1,6 @@
 - event ||= nil
 
-= form_with(model: event) do |form|
+= form_with(model: event, class: '-table') do |form|
   - if event.errors.any?
     #error_explanation
       h2
