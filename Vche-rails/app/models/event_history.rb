@@ -42,6 +42,8 @@ class EventHistory < ApplicationRecord
 
   delegate :trust, :hashtag, to: :event
 
+  after_save :cleanup_stale_schedule
+
   def event_attendances
     event.event_attendances.where(started_at: started_at)
   end
@@ -80,5 +82,14 @@ class EventHistory < ApplicationRecord
 
   def to_param
     started_at.strftime('%Y%m%d%H%M%S')
+  end
+
+  private
+
+  def cleanup_stale_schedule
+    return unless resolution.in? ['moved', 'canceled', 'completed']
+
+    oneshot_event_schedules = event.event_schedules.where(start_at: started_at, repeat: :oneshot)
+    oneshot_event_schedules.delete_all
   end
 end
