@@ -9,7 +9,8 @@ class HomeController < ApplicationController
 
   def events
     @user = current_user
-    @events = @user.events.page(params[:page])
+    @backstage_events = @user.backstage_events
+    @audience_events = @user.audience_events.page(params[:page])
   end
 
   private

@@ -55,6 +55,14 @@ class User < ApplicationRecord
 
   has_many :event_follows, dependent: :destroy
   has_many :events, through: :event_follows
+
+  has_many :owned_follows, -> { owned }, class_name: 'EventFollow'
+  has_many :owned_events, through: :owned_follows, source: :event
+  has_many :backstage_follows, -> { backstage_member }, class_name: 'EventFollow'
+  has_many :backstage_events, through: :backstage_follows, source: :event
+  has_many :audience_follows, -> { audience }, class_name: 'EventFollow'
+  has_many :audience_events, through: :audience_follows, source: :event
+
   has_many :event_attendances, dependent: :destroy
   has_many :following_events, through: :event_follows, source: :event
 

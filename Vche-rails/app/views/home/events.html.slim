@@ -2,9 +2,17 @@ h1 = 'マイページ'
 
 = render 'user_strip', user: @user
 
-h2 = EventFollow.model_name.human
+- backstage_events = @backstage_events.to_a
+- if backstage_events.any?
+  h2 = User.human_attribute_name(:backstage_events)
 
-= render 'events/cards', events: @events, card_cloud: true
-= paginate @events
+  = render 'events/cards', events: @backstage_events, card_cloud: true
+
+- audience_events = @audience_events.to_a
+- if audience_events.any?
+  h2 = User.human_attribute_name(:audience_events)
+
+  = render 'events/cards', events: audience_events, card_cloud: true
+  = paginate @audience_events
 
 = link_to 'New', new_event_path, class: 'button'

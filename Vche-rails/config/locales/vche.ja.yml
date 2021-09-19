@@ -30,6 +30,8 @@ ja:
         repeat: 頻度
         repeat_until: 繰り返し期限
       user:
+        audience_events: フォロー中のイベント
+        backstage_events: スタッフ中のイベント
         email: ログインID
         display_name: 表示する名前
         profile: 自己紹介
