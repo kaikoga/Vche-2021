@@ -7,10 +7,6 @@ class EventsLoyalty < ApplicationLoyalty
     true
   end
 
-  def backstage?
-    record.backstage_members.include?(user)
-  end
-
   def create?
     true
   end
@@ -38,5 +34,11 @@ class EventsLoyalty < ApplicationLoyalty
 
   def remove_user?
     user.following_event_as_backstage_member?(record)
+  end
+
+  concerning :Model do
+    def backstage?
+      record.backstage_members.include?(user)
+    end
   end
 end
