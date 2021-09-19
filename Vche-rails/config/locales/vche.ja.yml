@@ -67,6 +67,8 @@ ja:
         third_week: 第三週
         fourth_week: 第四週
         fifth_week: 第五週
+        odd_week: 奇数週
+        even_week: 偶数週
         last_week: 最終週
       resolution:
         scheduled: 開催予定

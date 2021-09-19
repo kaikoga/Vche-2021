@@ -69,15 +69,19 @@ class EventSchedule < ApplicationRecord
     when :every_other_week
       (date.beginning_of_day - start_at.beginning_of_day) % 14.days == 0
     when :first_week
-      date.wday == start_at.wday && (1..7).cover?(date.day)
+      date.wday == start_at.wday && ((date.day + 6) / 7) == 1
     when :second_week
-      date.wday == start_at.wday && (8..14).cover?(date.day)
+      date.wday == start_at.wday && ((date.day + 6) / 7) == 2
     when :third_week
-      date.wday == start_at.wday && (15..21).cover?(date.day)
+      date.wday == start_at.wday && ((date.day + 6) / 7) == 3
     when :fourth_week
-      date.wday == start_at.wday && (22..28).cover?(date.day)
+      date.wday == start_at.wday && ((date.day + 6) / 7) == 4
     when :fifth_week
-      date.wday == start_at.wday && (29..31).cover?(date.day)
+      date.wday == start_at.wday && ((date.day + 6) / 7) == 5
+    when :even_week
+      date.wday == start_at.wday && ((date.day + 6) / 7).even?
+    when :odd_week
+      date.wday == start_at.wday && ((date.day + 6) / 7).odd?
     when :last_week
       return false unless date.wday == start_at.wday
       end_of_month = date.end_of_month.day

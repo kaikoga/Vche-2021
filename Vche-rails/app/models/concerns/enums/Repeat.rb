@@ -12,6 +12,8 @@ module Enums::Repeat
       :third_week,
       :fourth_week,
       :fifth_week,
+      :odd_week,
+      :even_week,
       :last_week
     ], default: :every_day
   end

@@ -18,7 +18,7 @@ module ApplicationHelper
     when :every_other_week
       repeat_text = EventSchedule.repeat.find_value(repeat).text
       start_at_text = l(start_at)
-    when :every_week, :first_week, :second_week, :third_week, :fourth_week, :fifth_week, :last_week
+    when :every_week, :first_week, :second_week, :third_week, :fourth_week, :fifth_week, :even_week, :odd_week, :last_week
       repeat_text = "#{EventSchedule.repeat.find_value(repeat).text} #{l(start_at, format: '%A')}"
       start_at_text = l(start_at, format: :hm)
     else
