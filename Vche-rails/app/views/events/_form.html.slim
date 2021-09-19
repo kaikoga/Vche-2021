@@ -32,14 +32,14 @@
     = form.text_field :hashtag
   .field
     = form.label :platform
-    = form.collection_select :platform, Platform.available, :id, :name
+    = form.collection_select :platform_id, Platform.available, :id, :name
   - if !event.persisted?
     .field
       = form.label :visibility
       = form.select :visibility, Event.visibility.options
   .field
     = form.label :category
-    = form.collection_select :category, Category.available, :id, :emoji_name
+    = form.collection_select :category_id, Category.available, :id, :emoji_name
 
   .field
     = form.label :flavors

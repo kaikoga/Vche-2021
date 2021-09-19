@@ -94,8 +94,7 @@ ja:
         all: 全て表示
       visibility:
         public: 公開
-        shared: 共有可能
-        follow: 個人ページのみ表示
+        shared: 共有のみ
         invite: 非公開
     event_attendance:
       role:
