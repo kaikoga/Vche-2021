@@ -6,6 +6,6 @@ class HashtagsController < ApplicationController
   end
 
   def show
-    @events = Event.public_or_over.with_taste_param(params[:taste]).where(hashtag: params[:id]).page(params[:page])
+    @events = Event.public_or_over.with_taste_param(params[:taste]).where(hashtag: params[:id]).order(trust: :desc).page(params[:page])
   end
 end
