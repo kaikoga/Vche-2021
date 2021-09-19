@@ -117,11 +117,6 @@ a {
   @include panel;
 }
 
-input[type="submit"] {
-  @include button--positive;
-  margin-left: 200px;
-}
-
 form.-table {
   @include keyvaluetable;
   > .field {
@@ -159,6 +154,10 @@ form.-table {
       }
     }
   }
+  input[type="submit"] {
+    @include button--positive;
+    margin-left: 200px;
+  }
 }
 
 form.-inline {
@@ -169,5 +168,8 @@ form.-inline {
   select, textarea {
     @include keyvaluetable__value;
     width: inherit;
+  }
+  > input[type="submit"] {
+    @include button--positive;
   }
 }

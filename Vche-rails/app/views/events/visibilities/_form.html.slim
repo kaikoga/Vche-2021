@@ -1,6 +1,6 @@
 - event ||= nil
 
-= form_with(model: event, class: '-table') do |form|
+= form_with(model: event, url: event_visibility_url(event), method: :patch, class: '-table') do |form|
   - if event.errors.any?
     #error_explanation
       h2

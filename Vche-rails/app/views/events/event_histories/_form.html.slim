@@ -1,0 +1,35 @@
+- event ||= nil
+- event_history ||= nil
+- event_history.event ||= event
+
+= form_with(model: [event, event_history], class: '-table') do |form|
+  - if event_history.errors.any?
+    #error_explanation
+      h2
+        = pluralize(event_history.errors.count, "error")
+        |  prohibited this event_history from being saved:
+      ul
+        - event_history.errors.each do |error|
+          li = error.full_message
+  .field
+    = form.label :resolution
+    = form.select :resolution, EventHistory.resolution.emoji_options
+  - if loyalty(event_history).backstage?
+    .field
+      = form.label :assembled_at
+      = form.datetime_field :assembled_at
+  .field
+    = form.label :opened_at
+    = form.datetime_field :opened_at
+  .field
+    = form.label :started_at
+    = form.datetime_field :started_at
+  .field
+    = form.label :ended_at
+    = form.datetime_field :ended_at
+  - if loyalty(event_history).backstage?
+    .field
+      = form.label :closed_at
+      = form.datetime_field :closed_at
+  .actions
+    = form.submit

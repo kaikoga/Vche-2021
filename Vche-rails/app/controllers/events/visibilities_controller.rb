@@ -8,7 +8,7 @@ class Events::VisibilitiesController < ApplicationController
   def update
     authorize! @event
     if @event.update(update_params)
-      redirect_to @event, notice: 'User password was successfully updated.'
+      redirect_to @event, notice: 'Event visibility was successfully updated.'
     else
       render :edit
     end

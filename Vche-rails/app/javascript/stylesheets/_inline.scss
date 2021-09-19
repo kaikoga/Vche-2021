@@ -1,4 +1,5 @@
-.inline.-visibility {
+.inline.-visibility,
+.inline.-resolution {
   @include panel--small;
   color: $text-light;
 }

@@ -3,7 +3,7 @@ class Events::EventHistories::EventAttendancesController < ApplicationController
   before_action :find_parent_event_history
 
   def index
-    authorize! @event
+    authorize! @event_history
     @user = current_user
   end
 

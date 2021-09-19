@@ -28,6 +28,7 @@ Rails.application.routes.draw do
         post :add_user
         post :remove_user
       end
+      resource :resolution, controller: 'events/event_histories/resolutions', only: [:edit, :update]
     end
     resources :event_follows, controller: 'events/event_follows', only: :index
     resource :visibility, controller: 'events/visibilities', only: [:edit, :update]

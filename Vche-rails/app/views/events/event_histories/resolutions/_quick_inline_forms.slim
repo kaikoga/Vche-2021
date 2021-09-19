@@ -1,0 +1,7 @@
+- event ||= nil
+- event_history ||= nil
+
+- if event_history.resolution.to_sym.in?([:scheduled])
+  = render 'events/event_histories/resolutions/inline_form', event: event, event_history: event_history, resolution: :announced, submit_label: 'イベント開催を告知する'
+- if event_history.resolution.to_sym.in?([:announced, :ended]) && event_history.ended_at < Time.current
+  = render 'events/event_histories/resolutions/inline_form', event: event, event_history: event_history, resolution: :completed, submit_label: 'イベントを完了する'

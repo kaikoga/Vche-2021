@@ -1,0 +1,19 @@
+- event ||= nil
+- event_history ||= nil
+
+= form_with(model: event_history, url: event_event_history_resolution_path(event, event_history), method: :patch, class: '-table') do |form|
+  - if event_history.errors.any?
+    #error_explanation
+      h2
+        = pluralize(event.errors.count, "error")
+        |  prohibited event_history event from being saved:
+      ul
+        - event_history.errors.each do |error|
+          li = error.full_message
+  .field
+    = form.label :resolution
+    = form.select :resolution, EventHistory.resolution.emoji_options
+
+  .actions
+    - if loyalty(event_history, 'events/event_histories/resolutions').update?
+      = form.submit '手動で状態を更新する'

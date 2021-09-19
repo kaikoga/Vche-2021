@@ -1,0 +1,9 @@
+- event ||= nil
+- event_history ||= nil
+- resolution ||= nil
+- submit_label ||= nil
+
+- if loyalty(event_history, 'events/event_histories/resolutions').update?
+  = form_with(model: event_history, url: event_event_history_resolution_path(event, event_history), method: :patch, class: '-inline') do |form|
+    = form.hidden_field :resolution, value: resolution
+    = form.submit submit_label

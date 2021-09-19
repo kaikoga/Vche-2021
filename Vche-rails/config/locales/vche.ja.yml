@@ -71,7 +71,7 @@ ja:
       resolution:
         scheduled: 開催予定
         announced: 開催決定
-        moved: 日程が変更された
+        moved: 日時変更
         canceled: 中止
         ended: 終了
         completed: 完了

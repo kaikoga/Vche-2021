@@ -1,5 +1,7 @@
 h1 = "#{Event.model_name.human}を#{Event.human_attribute_name(:visibility)}を編集する"
 
+= render 'events/strip', event: @event, user: @user
+
 .panel
   p
     span.inline.-visibility 非公開

@@ -19,6 +19,10 @@ module Enums::Resolution
       resolution_emoji + resolution_text
     end
 
+    def self.resolution_emoji_text(resolution)
+      Enums::Resolution.resolution_emoji(resolution) + self.resolution.find_value(resolution).text
+    end
+
     def resolution.emoji_options(**kwargs)
       options(kwargs).map { |name, value| ["#{Enums::Resolution.resolution_emoji(value)}#{name}", value] }
     end
