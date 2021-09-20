@@ -1,7 +1,7 @@
 - categories = Category.all.index_by(&:slug).symbolize_keys
 
 .panel
-  p 開催形態を選ぶ場合、以下の資料を参考にしてください。
+  p 開催形態を選ぶ場合、以下を参考にしてください。
   p
     span.inline.-category = categories[:meetup].emoji_name
     | 参加者同士がコミュニケーションを取る、最も基本的な集会です。 例：アバター集会、改変集会
@@ -16,7 +16,7 @@
     | 参加者同士がその場で創作活動を行うイベントです。 例：ワールドジャム、お絵描き大会
   p
     span.inline.-category = categories[:game].emoji_name
-    | 参加者同士が技術の巧拙を競い合う競技会です。 例：VRスポーツ、カードゲーム大会
+    | 参加者同士が技術の巧拙を競い合います。 例：VRスポーツ、カードゲーム大会
   p
     span.inline.-category = categories[:performance].emoji_name
     | 出演者は様々なパフォーマンスで一般参加者を楽しませます。 例：音楽イベント、朗読会

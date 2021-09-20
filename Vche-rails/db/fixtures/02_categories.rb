@@ -29,7 +29,7 @@ Category.create_or_find_by(
 Category.create_or_find_by(
   emoji: '👾',
   slug: 'game',
-  name: 'ゲーム大会',
+  name: '競技会',
   available: true
 )
 
