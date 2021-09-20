@@ -28,11 +28,11 @@ class EventsLoyalty < ApplicationLoyalty
   end
 
   def add_user?
-    user.following_event_as_backstage_member?(record)
+    LoyaltyTools.user_is_owner?(record, user)
   end
 
   def remove_user?
-    user.following_event_as_backstage_member?(record)
+    LoyaltyTools.user_is_owner?(record, user)
   end
 
   concerning :Model do

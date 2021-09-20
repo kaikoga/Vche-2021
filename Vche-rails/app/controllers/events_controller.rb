@@ -95,7 +95,9 @@ class EventsController < ApplicationController
     authorize! @event
     @user = find_user
 
-    if @user.event_follows.where(event: @event).delete_all
+    if @event.owner_ids.include? @user.id
+      redirect_to select_event_owner_url(@event)
+    elsif @user.event_follows.where(event: @event).delete_all
       redirect_to event_event_follows_url(@event), notice: 'Removed User.'
     else
       redirect_to event_event_follows_url(@event)
