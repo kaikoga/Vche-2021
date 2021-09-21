@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2021_07_20_122642) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["event_id"], name: "index_event_follows_on_event_id"
-    t.index ["user_id", "event_id", "role"], name: "index_event_follows_on_user_id_and_event_id_and_role", unique: true
+    t.index ["user_id", "event_id"], name: "index_event_follows_on_user_id_and_event_id", unique: true
     t.index ["user_id"], name: "index_event_follows_on_user_id"
   end
 

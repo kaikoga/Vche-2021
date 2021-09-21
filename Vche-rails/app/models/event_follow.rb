@@ -11,9 +11,9 @@
 #
 # Indexes
 #
-#  index_event_follows_on_event_id                       (event_id)
-#  index_event_follows_on_user_id                        (user_id)
-#  index_event_follows_on_user_id_and_event_id_and_role  (user_id,event_id,role) UNIQUE
+#  index_event_follows_on_event_id              (event_id)
+#  index_event_follows_on_user_id               (user_id)
+#  index_event_follows_on_user_id_and_event_id  (user_id,event_id) UNIQUE
 #
 # Foreign Keys
 #

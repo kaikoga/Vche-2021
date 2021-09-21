@@ -136,7 +136,7 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
     add_index :event_flavors, [:event_id, :flavor_id], unique: true
     add_index :event_histories, [:event_id, :started_at], unique: true
     add_index :hashtag_follows, [:user_id, :hashtag, :role], unique: true
-    add_index :event_follows, [:user_id, :event_id, :role], unique: true
+    add_index :event_follows, [:user_id, :event_id], unique: true
     add_index :event_attendances, [:user_id, :event_id, :started_at], unique: true
   end
 end
