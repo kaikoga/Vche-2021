@@ -5,14 +5,16 @@ h1 = Event.human_attribute_name(:followers)
 .event_follow.-roster
   .pane
     h2 = "スタッフ"
+    - if loyalty(@event, 'events/owners').introduction?
+      = link_to '主催になる', introduction_event_owner_path(@event), class: :button
     = render 'event_follows/cards', event_follows: @event.event_backstage_members
-    - if loyalty(@event, :events).add_user?
-      = form_with url: add_user_event_path(@event), class: '-table' do |form|
-        .field
-          = form.text_field :user_id
-        .field
-          = form.select :role, EventFollow.role.backstage_options(new: true), selected: :staff
-        = form.submit 'ユーザーを追加'
+      - if loyalty(@event, :events).add_user?
+        = form_with url: add_user_event_path(@event), class: '-table' do |form|
+          .field
+            = form.text_field :user_id
+          .field
+            = form.select :role, EventFollow.role.backstage_options(new: true), selected: :staff
+          = form.submit 'ユーザーを追加'
   .pane.-grow
     h2 = "参加者"
     = render 'event_follows/cards', event_follows: @event.event_audiences, card_cloud: true

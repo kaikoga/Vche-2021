@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     resources :event_follows, controller: 'events/event_follows', only: :index
 
     resource :owner, controller: 'events/owners', only: [:edit, :update] do
-      get :select
+      get :introduction
     end
     resource :visibility, controller: 'events/visibilities', only: [:edit, :update]
   end

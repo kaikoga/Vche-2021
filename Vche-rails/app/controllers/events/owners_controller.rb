@@ -1,7 +1,7 @@
 class Events::OwnersController < ApplicationController
   before_action :find_parent_event
 
-  def select
+  def introduction
     authorize! @event
   end
 
@@ -11,11 +11,8 @@ class Events::OwnersController < ApplicationController
 
   def update
     authorize! @event
-    if false
-      redirect_to @event, notice: 'Event owner was successfully updated.'
-    else
-      render :edit
-    end
+    @event.owner = (User.find(update_params[:owner_id]))
+    redirect_to @event, notice: 'Event owner was successfully updated.'
   end
 
   private

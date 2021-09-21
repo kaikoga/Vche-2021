@@ -126,4 +126,9 @@ class Event < ApplicationRecord
     flavor_tastes = flavors.map(&:taste)
     self.taste = Flavor.taste.values.reverse.detect { |taste| flavor_tastes.include?(taste) } || :welcome
   end
+
+  def owner=(user)
+    event_owners.update_all(role: :staff)
+    event_follows.create_or_find_by!(user: user).update!(role: :owner)
+  end
 end
