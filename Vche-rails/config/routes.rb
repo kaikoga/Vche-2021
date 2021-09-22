@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :events do
+    get :select, on: :new
     member do
       post :follow
       post :unfollow

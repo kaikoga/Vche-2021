@@ -1,4 +1,5 @@
 - event ||= nil
+- role ||= nil
 
 = form_with(model: event, class: '-table') do |form|
   - if event.errors.any?
@@ -47,5 +48,9 @@
       - Flavor.available.find_each do |flavor|
         = flavor_check_box_tag flavor, "event_flavors[]", "event_flavors_#{flavor.slug}", event.flavors.include?(flavor)
 
+  = hidden_field_tag :role, role if role
   .actions
-    = form.submit
+    - if role == :owner
+      = form.submit '主催するイベントを登録する'
+    - else
+      = form.submit

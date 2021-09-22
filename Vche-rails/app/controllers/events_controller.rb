@@ -14,8 +14,19 @@ class EventsController < ApplicationController
     @calendar = CalendarPresenter.new([@event], user: @user, year: year, month: month, months: 2, days: 0)
   end
 
+  def select
+  end
+
   def new
     @event = Event.new
+    @role = params[:role] == 'owner' ? :owner : :participant
+
+    if @role == :owner
+      @event.organizer_name = current_user.display_name
+      @event.primary_sns = "https://twitter.com/#{current_user.email}"
+      @event.info_url = "https://twitter.com/#{current_user.email}"
+      @event.visibility = :shared
+    end
   end
 
   def edit
@@ -26,11 +37,11 @@ class EventsController < ApplicationController
     @event = Event.new(create_params)
     @event.created_user = current_user
     @event.updated_user = current_user
+    role = params[:role] == 'owner' ? :owner : :participant
 
     if @event.save
       @event.flavors = event_flavors_params
-      # @event.event_follows.create(user: current_user, role: :owner)
-      @event.event_follows.create(user: current_user, role: :participant)
+      @event.event_follows.create(user: current_user, role: role)
       redirect_to :events, notice: 'Event was successfully created'
     else
       render :new

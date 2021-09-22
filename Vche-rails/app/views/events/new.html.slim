@@ -1,6 +1,6 @@
 h1 = "#{Event.model_name.human}を新しく登録する"
 div
-  = render 'form', event: @event
+  = render 'form', event: @event, role: @role
   = link_to 'Back', events_path, class: 'button'
 
 = render 'help' unless @event.persisted?
