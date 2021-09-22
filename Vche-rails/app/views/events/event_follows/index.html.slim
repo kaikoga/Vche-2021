@@ -7,7 +7,7 @@ h1 = Event.human_attribute_name(:followers)
     h2 = "スタッフ"
     - if loyalty(@event, 'events/owners').introduction?
       = link_to '主催になる', introduction_event_owner_path(@event), class: :button
-    = render 'event_follows/cards', event_follows: @event.event_backstage_members
+    = render 'event_follows/cards', event_follows: @event.event_backstage_members, actions: :remove
       - if loyalty(@event, :events).add_user?
         = form_with url: add_user_event_path(@event), class: '-table' do |form|
           .field
@@ -17,4 +17,4 @@ h1 = Event.human_attribute_name(:followers)
           = form.submit 'ユーザーを追加'
   .pane.-grow
     h2 = "参加者"
-    = render 'event_follows/cards', event_follows: @event.event_audiences, card_cloud: true
+    = render 'event_follows/cards', event_follows: @event.event_audiences, card_cloud: true, actions: :remove

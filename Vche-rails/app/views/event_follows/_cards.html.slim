@@ -1,5 +1,6 @@
 - event_follows ||= nil
 - card_cloud ||= false
+- actions ||= nil
 - _layout = card_cloud ? 'card_cloud' : 'table'
 
 div class="event_follows -#{_layout}"
@@ -10,8 +11,13 @@ div class="event_follows -#{_layout}"
       span.email = user.email
       span.display_name = link_to user.display_name, user
       span.role = event_follow.role_text
-      - if loyalty(event_follow.event, :events).remove_user?
-        - if user == current_user
-          = link_to '変更', remove_user_event_path(event_follow.event, user_id: user), method: :post, class: 'button'
-        - else
-          = link_to '削除', remove_user_event_path(event_follow.event, user_id: user), method: :post, class: 'button'
+      - case actions
+      - when :remove
+        - if loyalty(event_follow.event, :events).remove_user?
+          - if user == current_user
+            = link_to '変更', remove_user_event_path(event_follow.event, user_id: user), method: :post, class: 'button'
+          - else
+            = link_to '削除', remove_user_event_path(event_follow.event, user_id: user), method: :post, class: 'button'
+      - when :owner
+        - if user != current_user
+          = link_to '主催を移譲する', event_owner_path(event_follow.event, "event[owner_id]" => user), method: :patch, class: 'button', data: { confirm: "この操作は取り消せません。\n本当に主催を変更しますか？ \n新しい主催: #{user.display_name} \nイベント: #{event_follow.event.name}" }

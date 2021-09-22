@@ -11,7 +11,7 @@ class Events::OwnersController < ApplicationController
 
   def update
     authorize! @event
-    @event.owner = (User.find(update_params[:owner_id]))
+    @event.owner = (User.friendly.find(update_params[:owner_id]))
     redirect_to @event, notice: 'Event owner was successfully updated.'
   end
 
