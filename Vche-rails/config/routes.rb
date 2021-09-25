@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     member do
       get :events
     end
+    resources :accounts, controller: 'users/accounts'
     resource :password, controller: 'users/passwords', only: [:edit, :update]
   end
 

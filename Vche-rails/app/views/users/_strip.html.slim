@@ -5,3 +5,7 @@
   .email = user.email
   .display_name = link_to(user.display_name, user, class: :strip__title)
   = link_to "フォロー中のイベント(#{user.event_follows.count})", events_user_path(user), class: 'button'
+
+  = render 'accounts/cards', accounts: user.accounts, card_cloud: true
+
+  = link_to "#{Account.model_name.human}一覧", user_accounts_url(user), class: :button

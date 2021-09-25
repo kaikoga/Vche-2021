@@ -1,4 +1,4 @@
-.user.-table {
+.account.-table {
   @include keyvaluetable;
   .field {
     @include keyvaluetable__keyvalue;
@@ -14,44 +14,44 @@
   }
 }
 
-.user.-strip {
+.account.-strip {
   @include strip;
   .email {
     display: inline;
     color: $text-lighter;
   }
-  > .display_name {
+  .display_name {
     display: inline;
-    font-size: $font-size-larger;
+    font-size: $font-size-large;
   }
 }
 
-.user.-card {
+.account.-card {
   @include panel;
-  .email {
-    font-size: $font-size-smaller;
-    color: $text-lighter;
-  }
   .display_name {
     @include card__title;
+    font-size: $font-size-large;
+  }
+  .platform {
+    @include panel__small;
   }
 }
 
-.users.-card_list {
+.accounts.-card_list {
   @include cards--card_list;
-  .user.-card {
+  .account.-card {
     @include card;
   }
 }
 
-.users.-card_cloud {
+.accounts.-card_cloud {
   @include cards--card_cloud;
-  .user.-card {
+  .account.-card {
     @include card;
   }
 }
 
-.user__icon {
+.account__icon {
   @include icon;
 }
 

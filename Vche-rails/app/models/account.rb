@@ -25,6 +25,8 @@
 #
 class Account < ApplicationRecord
   include Vche::Uid
+  include Vche::UidQuery
 
-  include Enums::Platform
+  belongs_to :user
+  belongs_to :platform
 end

@@ -8,3 +8,7 @@
   = link_to 'プロフィール', user, class: 'button'
   = link_to 'カレンダー', home_path, class: 'button'
   = link_to "フォロー中のイベント(#{user.event_follows.count})", events_home_path, class: 'button'
+
+  = render 'accounts/cards', accounts: user.accounts, card_cloud: true
+
+  = link_to "#{Account.model_name.human}一覧", user_accounts_url(user), class: :button

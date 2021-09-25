@@ -1,12 +1,16 @@
 ja:
   activerecord:
     models:
+      account: アカウント
       event: イベント
       event_follow: フォロー中のイベント
       event_history: イベント履歴
       event_schedule: イベント予定
       user: ユーザー
     attributes:
+      account:
+        display_name: 表示する名前
+        url: URL
       event:
         fullname: 正式名称
         description: 説明

@@ -1,0 +1,10 @@
+- accounts ||= nil
+- card_cloud ||= false
+- _layout = card_cloud ? 'card_cloud' : 'table'
+
+div class="accounts -#{_layout}"
+  - accounts.each do |account|
+    .account.-card
+      = link_to account_icon_tag(account), [account.user, account]
+      span.display_name = link_to account.display_name, [account.user, account]
+      span.platform = account.platform.name
