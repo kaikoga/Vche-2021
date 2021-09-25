@@ -22,8 +22,8 @@ class Users::AccountsController < ApplicationController
   end
 
   def create
-    authorize!
     @account = @user.accounts.new(account_params)
+    authorize! @account
 
     if @account.save
       redirect_to user_accounts_path(@user), notice: 'Account was successfully created'

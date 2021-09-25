@@ -38,6 +38,7 @@ class EventsController < ApplicationController
     @event.created_user = current_user
     @event.updated_user = current_user
     role = params[:role] == 'owner' ? :owner : :participant
+    authorize! @event
 
     if @event.save
       @event.flavors = event_flavors_params
