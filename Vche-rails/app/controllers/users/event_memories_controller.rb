@@ -57,7 +57,7 @@ class Users::EventMemoriesController < ApplicationController
   end
 
   def find_event_memory
-    EventMemory.friendly.find(params[:id])
+    @user.event_memories.find_by(uid: params[:id])
   end
 
   def new_params

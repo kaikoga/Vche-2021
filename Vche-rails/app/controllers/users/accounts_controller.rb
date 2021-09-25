@@ -56,7 +56,7 @@ class Users::AccountsController < ApplicationController
   end
 
   def find_account
-    Account.friendly.find(params[:id])
+    @user.accounts.find_by(uid: params[:id])
   end
 
   def account_params

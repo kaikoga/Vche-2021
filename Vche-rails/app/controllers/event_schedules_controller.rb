@@ -58,7 +58,7 @@ class EventSchedulesController < ApplicationController
   end
 
   def find_event_schedule
-    EventSchedule.friendly.find(params[:id])
+    @event.event_schedules.find_by(uid: params[:id])
   end
 
   def event_schedule_params
