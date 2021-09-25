@@ -18,6 +18,7 @@
 @import 'models/_event_attendance';
 @import 'models/_event_follow';
 @import 'models/_event_history';
+@import 'models/_event_memory';
 @import 'models/_event_schedule';
 @import 'models/_flavor';
 @import 'models/_user';
@@ -125,7 +126,8 @@ form.-table {
     input[type="text"],
     input[type="password"],
     input[type="datetime"],
-    select, textarea {
+    select, textarea,
+    .value {
       @include keyvaluetable__value;
     }
     > .field_with_errors {
@@ -137,7 +139,8 @@ form.-table {
       input[type="text"],
       input[type="password"],
       input[type="datetime"],
-      select, textarea {
+      select, textarea,
+      .value {
         border: $negative_bg solid 2px;
         background: $negative_fill-light;
         &:hover {

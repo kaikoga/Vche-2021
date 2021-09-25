@@ -1,0 +1,56 @@
+.event_memory.-table {
+  @include keyvaluetable;
+  .field {
+    @include keyvaluetable__keyvalue;
+    label {
+      @include keyvaluetable__key;
+    }
+    .value {
+      @include keyvaluetable__value;
+    }
+    .relation {
+      @include keyvaluetable__relation;
+    }
+  }
+}
+
+.event_memory.-strip {
+  @include strip;
+  .email {
+    display: inline;
+    color: $text-lighter;
+  }
+  .display_name {
+    display: inline;
+    font-size: $font-size-large;
+  }
+}
+
+.event_memory.-card {
+  @include panel;
+  .display_name {
+    @include card__title;
+  }
+  .platform {
+    @include panel__small;
+  }
+}
+
+.event_memories.-card_list {
+  @include cards--card_list;
+  .event_memory.-card {
+    @include card;
+  }
+}
+
+.event_memories.-card_cloud {
+  @include cards--card_cloud;
+  .event_memory.-card {
+    @include card;
+  }
+}
+
+.event_memory__icon {
+  @include icon;
+}
+

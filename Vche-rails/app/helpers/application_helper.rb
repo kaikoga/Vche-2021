@@ -1,6 +1,8 @@
 module ApplicationHelper
   def icon_size_num(size)
     case size
+    when :small then '32px'
+    when :medium then '48px'
     when :large then '64px'
     else '48px'
     end

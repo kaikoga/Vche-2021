@@ -103,6 +103,24 @@ ActiveRecord::Schema.define(version: 2021_07_20_122642) do
     t.index ["updated_user_id"], name: "index_event_histories_on_updated_user_id"
   end
 
+  create_table "event_memories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.datetime "started_at", null: false
+    t.datetime "published_at", null: false
+    t.string "hashtag"
+    t.text "body", null: false
+    t.json "urls", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_event_memories_on_event_id"
+    t.index ["published_at"], name: "index_event_memories_on_published_at"
+    t.index ["uid"], name: "index_event_memories_on_uid", unique: true
+    t.index ["user_id", "published_at"], name: "index_event_memories_on_user_id_and_published_at"
+    t.index ["user_id"], name: "index_event_memories_on_user_id"
+  end
+
   create_table "event_schedules", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "uid"
     t.bigint "event_id", null: false
@@ -218,6 +236,8 @@ ActiveRecord::Schema.define(version: 2021_07_20_122642) do
   add_foreign_key "event_histories", "events"
   add_foreign_key "event_histories", "users", column: "created_user_id"
   add_foreign_key "event_histories", "users", column: "updated_user_id"
+  add_foreign_key "event_memories", "events"
+  add_foreign_key "event_memories", "users"
   add_foreign_key "event_schedules", "events"
   add_foreign_key "event_schedules", "users", column: "created_user_id"
   add_foreign_key "event_schedules", "users", column: "updated_user_id"

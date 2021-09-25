@@ -1,0 +1,28 @@
+- event_memory ||= nil
+
+= form_with(model: [user, event_memory], class: '-table') do |form|
+  - if event_memory.errors.any?
+    #error_explanation
+      h2
+        = pluralize(event_memory.errors.count, "error")
+        |  prohibited this user from being saved:
+      ul
+        - event_memory.errors.each do |error|
+          li = error.full_message
+  .field
+    = form.label :name
+    .value = event_memory.event.name
+  .field
+    = form.label :started_at
+    .value = l(event_memory.started_at)
+  .field
+    = form.label :body
+    = form.text_area :body
+  .field
+    = form.label :urls
+    = form.text_area :urls, value: event_memory.urls.join("\n")
+  - unless event_memory.persisted?
+    = form.hidden_field :event_id, value: event_memory.event_id
+    = form.hidden_field :started_at, value: event_memory.started_at_to_s
+  .actions
+    = form.submit

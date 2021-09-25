@@ -35,6 +35,10 @@ class Events::EventHistoriesLoyalty < ApplicationLoyalty
     LoyaltyTools.user_is_backstage_member?(record, user)
   end
 
+  def memory?
+    user.attending_event?(record)
+  end
+
   concerning :Model do
     def backstage?
       LoyaltyTools.user_is_backstage_member?(record.event, user)

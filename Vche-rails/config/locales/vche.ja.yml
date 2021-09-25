@@ -5,6 +5,7 @@ ja:
       event: イベント
       event_follow: フォロー中のイベント
       event_history: イベント履歴
+      event_memory: 参加記録
       event_schedule: イベント予定
       user: ユーザー
     attributes:
@@ -25,6 +26,11 @@ ja:
         started_at: 開始日時
         ended_at: 終了日時
         closed_at: 解散日時
+      event_memory:
+        name: イベント名
+        started_at: 開催日時
+        body: 本文
+        urls: URL
       event_schedule:
         assemble_at: 集合日時
         open_at: 開場日時

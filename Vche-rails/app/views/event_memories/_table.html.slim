@@ -1,0 +1,18 @@
+- event_memory ||= nil
+
+.event_memory.-table
+  .field
+    label = EventMemory.human_attribute_name(:name)
+    .value = event_memory.event.name
+  .field
+    label = EventMemory.human_attribute_name(:started_at)
+    .value = event_memory.started_at
+  .field
+    label = EventMemory.human_attribute_name(:body)
+    .value = event_memory.body
+  - event_memory.urls.each do |url|
+    blockquote.twitter-tweet data={ conversation: :none, dnt: true }
+      a href="#{url}"
+
+  - if loyalty(event_memory, 'users/event_memories').edit?
+    = link_to '編集する', edit_user_event_memory_path(user, event_memory), class: 'button'

@@ -133,10 +133,24 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
       t.timestamps null: false
     end
 
+    create_table :event_memories do |t|
+      t.string :uid, null: :false, index: { unique: true }
+      t.references :user, foreign_key: true, null: false
+      t.references :event, foreign_key: true, null: false
+      t.datetime :started_at, null: false
+      t.datetime :published_at, null: false, index: true
+      t.string :hashtag
+      t.text :body, null: false
+      t.json :urls, null: false
+
+      t.timestamps null: false
+    end
+
     add_index :event_flavors, [:event_id, :flavor_id], unique: true
     add_index :event_histories, [:event_id, :started_at], unique: true
     add_index :hashtag_follows, [:user_id, :hashtag, :role], unique: true
     add_index :event_follows, [:user_id, :event_id], unique: true
     add_index :event_attendances, [:user_id, :event_id, :started_at], unique: true
+    add_index :event_memories, [:user_id, :published_at]
   end
 end
