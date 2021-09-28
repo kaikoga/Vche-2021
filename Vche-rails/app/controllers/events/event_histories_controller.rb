@@ -5,16 +5,19 @@ class Events::EventHistoriesController < ApplicationController
   def index
     @event_histories = @event.event_histories.order(started_at: :desc).page(params[:page])
     @user = current_user
+    authorize!
   end
 
   def show
     @event_history = find_event_history
+    authorize! @event_history
     @user = current_user
   end
 
   def at
     started_at = Time.zone.parse(params[:datetime])
     @event_history = @event.recent_schedule([started_at.beginning_of_day]).detect { |h| h.started_at = started_at }
+    authorize! @event_history
     render :show
   end
 

@@ -4,11 +4,13 @@ class EventSchedulesController < ApplicationController
 
   def index
     @event_schedules = EventSchedule.all
+    authorize!
     @user = current_user
   end
 
   def show
     @event_schedule = find_event_schedule
+    authorize! @event_schedule
     @user = current_user
   end
 

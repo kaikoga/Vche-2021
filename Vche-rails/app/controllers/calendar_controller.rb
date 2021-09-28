@@ -2,6 +2,7 @@ class CalendarController < ApplicationController
   skip_before_action :require_login
 
   def index
+    authorize!
     year = index_params[:year]&.to_i
     month = index_params[:month]&.to_i
 

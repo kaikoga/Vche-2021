@@ -3,11 +3,13 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.public_or_over.with_category_param(params[:category]).with_taste_param(params[:taste]).page(params[:page])
+    authorize!
   end
 
   def show
     @event = find_event
     @user = current_user
+    authorize!
 
     year = show_params[:year]&.to_i
     month = show_params[:month]&.to_i

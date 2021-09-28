@@ -1,8 +1,13 @@
 class SessionsController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
 
+  def new
+    authorize!
+  end
+
   def create
     @user = login(params[:email], params[:password])
+    authorize!
 
     if @user
       redirect_back_or_to(:home, notice: 'Login successful')
@@ -13,6 +18,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    authorize!
     logout
     redirect_back_or_to(:root, notice: 'Logged out!')
   end

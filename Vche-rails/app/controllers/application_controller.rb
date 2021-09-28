@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   layout 'application_bootstrap'
 
   before_action :require_login
+  after_action :verify_authorized unless Rails.env.production?
 
   rescue_from Banken::NotAuthorizedError, with: :not_authorized
 
