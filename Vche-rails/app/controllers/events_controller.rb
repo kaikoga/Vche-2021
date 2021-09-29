@@ -16,12 +16,20 @@ class EventsController < ApplicationController
     @calendar = CalendarPresenter.new([@event], user: @user, year: year, month: month, months: 2, days: 0)
   end
 
+  def info
+    @event = find_event
+    @user = current_user
+    authorize!
+  end
+
   def select
+    authorize!
   end
 
   def new
     @event = Event.new
     @role = params[:role] == 'owner' ? :owner : :participant
+    authorize! @event
 
     if @role == :owner
       @event.organizer_name = current_user.display_name
@@ -33,6 +41,7 @@ class EventsController < ApplicationController
 
   def edit
     @event = find_event
+    authorize! @event
   end
 
   def create

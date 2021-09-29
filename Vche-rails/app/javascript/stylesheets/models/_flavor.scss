@@ -1,8 +1,0 @@
-.flavor_tag {
-  @include panel--small;
-  display: inline-block;
-  background: $fill-light;
-  &:hover {
-    background: $fill-lighter;
-  }
-}

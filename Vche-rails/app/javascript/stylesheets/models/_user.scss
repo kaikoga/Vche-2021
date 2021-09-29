@@ -1,3 +1,7 @@
+.user.-pretty {
+  @include panel;
+}
+
 .user.-table {
   @include keyvaluetable;
   .field {

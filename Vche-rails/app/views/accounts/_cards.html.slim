@@ -7,4 +7,4 @@ div class="accounts -#{_layout}"
     .account.-card
       = link_to account_icon_tag(account), [account.user, account]
       span.display_name = link_to account.display_name, [account.user, account]
-      span.platform = account.platform.name
+      = inline_platform_tag account.platform

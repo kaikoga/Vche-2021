@@ -7,6 +7,14 @@ class UsersLoyalty < ApplicationLoyalty
     true
   end
 
+  def info?
+    true
+  end
+
+  def events?
+    true
+  end
+
   def create?
     true
   end

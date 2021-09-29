@@ -1,3 +1,19 @@
+.event_history.-pretty {
+  @include keyvaluetable;
+  .field {
+    @include keyvaluetable__keyvalue;
+    label {
+      @include keyvaluetable__key;
+    }
+    .value {
+      @include keyvaluetable__value;
+    }
+    .relation {
+      @include keyvaluetable__relation;
+    }
+  }
+}
+
 .event_history.-table {
   @include keyvaluetable;
   .field {

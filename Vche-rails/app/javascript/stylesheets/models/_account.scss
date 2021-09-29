@@ -32,9 +32,6 @@
     @include card__title;
     font-size: $font-size-large;
   }
-  .platform {
-    @include panel__small;
-  }
 }
 
 .accounts.-card_list {

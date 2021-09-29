@@ -1,0 +1,5 @@
+h1 = "#{Event.model_name.human}情報"
+
+= render 'strip', event: @event, user: @user
+
+= render 'table', event: @event

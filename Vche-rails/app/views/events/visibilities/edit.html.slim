@@ -4,18 +4,18 @@ h1 = "#{Event.model_name.human}を#{Event.human_attribute_name(:visibility)}を�
 
 .panel
   p
-    span.inline.-visibility 非公開
+    = inline_visibility_tag :invite
   p
     |
       イベント情報は自分しか見ることができません。
   p
-    span.inline.-visibility 共有のみ
+    = inline_visibility_tag :shared
   p
     |
       イベント情報は全体カレンダーには表示されませんが、イベントに参加またはフォローしているユーザーのページには表示されます。
       ページのURLを知っている人はアクセスできます。
   p
-    span.inline.-visibility 公開
+    = inline_visibility_tag :public
   p
     |
       イベント情報は全体カレンダーに表示されます。

@@ -21,4 +21,8 @@ class Flavor < ApplicationRecord
   include Enums::Taste
 
   scope :available, -> { where(available: true) }
+
+  def emoji_name
+    emoji + name
+  end
 end

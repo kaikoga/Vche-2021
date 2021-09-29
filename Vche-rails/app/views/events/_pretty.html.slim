@@ -1,0 +1,32 @@
+- event ||= nil
+
+.event.-pretty
+  h3 = event.fullname
+  = inline_category_tag(event.category)
+  - event.flavors.each do |flavor|
+    = inline_flavor_tag(flavor)
+  p = event.description
+  .field
+    label = Event.human_attribute_name(:backstage_members)
+    .relation
+      = render 'event_follows/cards', event_follows: event.event_backstage_members, card_cloud: true
+      - if loyalty(event, :events).add_user?
+        = link_to 'スタッフを割り当てる', event_event_follows_path(event), class: :button
+  .field
+    label
+    .relation
+      = link_to event.primary_sns, event.primary_sns, class: :button
+      = link_to event.info_url, event.info_url, class: :button
+  .field
+    label = Event.human_attribute_name(:event_schedules)
+    .relation
+      = render 'event_schedules/cards', event: event, event_schedules: event.event_schedules, edit: true
+      - if loyalty(event, :events).edit?
+        = link_to 'New', new_event_event_schedule_path(event), class: 'button'
+
+  - if loyalty(event, :events).info?
+    = link_to '情報を見る', info_event_path(event), class: :button
+  - if loyalty(event, :events).edit?
+    = link_to '編集する', edit_event_path(event), class: 'button'
+
+  = render 'editor_info', resource: event

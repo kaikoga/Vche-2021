@@ -14,6 +14,12 @@ class Events::EventHistoriesController < ApplicationController
     @user = current_user
   end
 
+  def info
+    @event_history = find_event_history
+    authorize! @event_history
+    @user = current_user
+  end
+
   def at
     started_at = Time.zone.parse(params[:datetime])
     @event_history = @event.recent_schedule([started_at.beginning_of_day]).detect { |h| h.started_at = started_at }

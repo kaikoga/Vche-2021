@@ -7,6 +7,10 @@ class Events::EventHistoriesLoyalty < ApplicationLoyalty
     true
   end
 
+  def info?
+    true
+  end
+
   def create?
     LoyaltyTools.user_is_source?(record.event, user)
   end

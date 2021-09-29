@@ -3,29 +3,29 @@
 .panel
   p 開催形態を選ぶ場合、以下を参考にしてください。
   p
-    span.inline.-category = categories[:meetup].emoji_name
+    = inline_category_tag(categories[:meetup])
     | 参加者同士がコミュニケーションを取る、最も基本的な集会です。 例：アバター集会、改変集会
   p
-    span.inline.-category = categories[:exhibition].emoji_name
+    = inline_category_tag(categories[:exhibition])
     | 作ったものが公開される常設または期間限定のワールドです。 例：バーチャル即売会、時限公開ワールド
   p
-    span.inline.-category = categories[:world_tour].emoji_name
+    = inline_category_tag(categories[:world_tour])
     | 様々なワールドを巡るイベントです。 例：初心者ワールドツアー、温泉巡り
   p
-    span.inline.-category = categories[:workshop].emoji_name
+    = inline_category_tag(categories[:workshop])
     | 参加者同士がその場で創作活動を行うイベントです。 例：ワールドジャム、お絵描き大会
   p
-    span.inline.-category = categories[:game].emoji_name
+    = inline_category_tag(categories[:game])
     | 参加者同士が技術の巧拙を競い合います。 例：VRスポーツ、カードゲーム大会
   p
-    span.inline.-category = categories[:performance].emoji_name
+    = inline_category_tag(categories[:performance])
     | 出演者は様々なパフォーマンスで一般参加者を楽しませます。 例：音楽イベント、朗読会
   p
-    span.inline.-category = categories[:lesson].emoji_name
+    = inline_category_tag(categories[:lesson])
     | 出演者は一般参加者に様々な技術を伝えます。 例：初心者案内会、ボイストレーニング会
   p
-    span.inline.-category = categories[:service].emoji_name
+    = inline_category_tag(categories[:service])
     | 出演者が一般参加者に対して直接接客を行うイベントです。 例：喫茶店、酒場
   p
-    span.inline.-category = categories[:consultation].emoji_name
+    = inline_category_tag(categories[:consultation])
     | 出演者が一般参加者に対して個別に相談を受けるイベントです。 例：カウンセリング、占い

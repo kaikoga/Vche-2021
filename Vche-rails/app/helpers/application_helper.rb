@@ -1,4 +1,16 @@
 module ApplicationHelper
+  def inline_visibility_tag(value)
+    tag.span class: 'inline -visibility' do
+      Event.visibility.find_value(value).text
+    end
+  end
+
+  def inline_resolution_tag(value)
+    tag.span class: 'inline -resolution' do
+      EventHistory::resolution_emoji_text(value)
+    end
+  end
+
   def icon_size_num(size)
     case size
     when :small then '32px'

@@ -38,7 +38,7 @@
     label = Event.human_attribute_name(:flavors)
     .relation
       - event.flavors.each do |flavor|
-        = flavor_tag(flavor)
+        = inline_flavor_tag(flavor)
   .field
     label = Event.human_attribute_name(:taste)
     .value = event.taste_text

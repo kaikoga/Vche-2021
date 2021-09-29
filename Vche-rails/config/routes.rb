@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
+      get :info
       get :events
     end
     resources :accounts, controller: 'users/accounts'
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
   resources :events do
     get :select, on: :new
     member do
+      get :info
       post :follow
       post :unfollow
       post :add_user
@@ -26,6 +28,7 @@ Rails.application.routes.draw do
     resources :event_histories, controller: 'events/event_histories' do
       resources :event_attendances, controller: 'events/event_histories/event_attendances', only: :index
       member do
+        get :info
         post :attend
         post :unattend
         post :add_user

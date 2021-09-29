@@ -1,7 +1,7 @@
 module FlavorHelper
-  def flavor_tag(flavor)
-    content_tag(:span, class: :flavor_tag) do
-      flavor.emoji + flavor.name
+  def inline_flavor_tag(flavor)
+    tag.span class: 'inline -flavor' do
+      flavor.emoji_name
     end
   end
 
