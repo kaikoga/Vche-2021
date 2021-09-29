@@ -5,3 +5,8 @@ h1 = "#{EventHistory.model_name.human}詳細"
 = render 'event_histories/strip', event: @event, event_history: @event_history, user: @user
 
 = render 'event_histories/pretty', event: @event, event_history: @event_history
+
+h2 = EventMemory.model_name.human
+
+- EventMemory.for_event_history(@event_history).recent.each do |event_memory|
+  = render 'event_memories/pretty', event_memory: event_memory

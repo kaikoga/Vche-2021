@@ -1,5 +1,5 @@
-h1 = "#{EventMemory.model_name.human}詳細"
+h1 = EventMemory.model_name.human
 
 = render 'users/strip', user: @user
 
-= render 'event_memories/table', user: @user, event_memory: @event_memory
+= render 'event_memories/pretty', user: @user, event_memory: @event_memory

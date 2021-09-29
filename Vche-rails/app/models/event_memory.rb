@@ -35,6 +35,7 @@ class EventMemory < ApplicationRecord
   belongs_to :event
 
   scope :for_event_history, ->(event_history){ where(event_id: event_history.event_id, started_at: event_history.started_at) }
+  scope :recent, -> { order(published_at: :desc).limit(5) }
 
   before_validation :update_published_at
   before_validation :default_urls

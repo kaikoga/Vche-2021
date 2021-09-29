@@ -5,3 +5,8 @@ h1 = 'マイページ'
 h2 = '自分の予定'
 
 = render 'calendar/calendar', calendar: @calendar
+
+h2 = EventMemory.model_name.human
+
+- EventMemory.where(user: @user).recent.each do |event_memory|
+  = render 'event_memories/pretty', event_memory: event_memory

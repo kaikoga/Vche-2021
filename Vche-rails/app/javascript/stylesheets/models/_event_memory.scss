@@ -1,3 +1,17 @@
+.event_memory.-pretty {
+  @include panel;
+  .name {
+    font-size: $font-size-large;
+    padding-right: 1em;
+  }
+  .started_at {
+    color: $text-lighter;
+  }
+  .published_at {
+    color: $text-lighter;
+  }
+}
+
 .event_memory.-table {
   @include keyvaluetable;
   .field {

@@ -1,0 +1,18 @@
+- event_memory ||= nil
+
+.event_memory.-pretty
+  = render 'users/cards', users: [event_memory.user], card_cloud: :true
+  div
+    span.published_at = "#{l(event_memory.published_at)} 更新"
+
+  div
+    span.name = link_to event_memory.event.name, event_memory.event, class: :link
+    span.started_at = link_to l(event_memory.started_at), event_event_history_path(event_memory.event, event_memory.started_at_to_s), class: :link
+  div = event_memory.body
+
+  - event_memory.urls.each do |url|
+    blockquote.twitter-tweet data={ conversation: :none, dnt: true }
+      a href="#{url}"
+
+  - if loyalty(event_memory, 'users/event_memories').edit?
+    = link_to '編集する', edit_user_event_memory_path(event_memory.user, event_memory), class: 'button'
