@@ -1,4 +1,6 @@
 @mixin cards--card_list {
+  display: flex;
+  flex-direction: column;
 }
 
 @mixin cards--card_cloud {
@@ -7,7 +9,9 @@
 }
 
 @mixin card {
-  display: inline-block;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: last baseline;
 }
 
 @mixin card__title {

@@ -1,15 +1,16 @@
 - event_follows ||= nil
 - card_cloud ||= false
 - actions ||= nil
-- _layout = card_cloud ? 'card_cloud' : 'table'
+- _layout = card_cloud ? 'card_cloud' : 'card_list'
 
 div class="event_follows -#{_layout}"
   - event_follows.each do |event_follow|
     .event_follow.-card
       - user = event_follow.user
       = link_to user_icon_tag(user), user
-      span.email = user.email
-      span.display_name = link_to user.display_name, user
+      div
+        div.email = user.email
+        div.display_name = link_to user.display_name, user
       span.role = event_follow.role_text
       - case actions
       - when :remove

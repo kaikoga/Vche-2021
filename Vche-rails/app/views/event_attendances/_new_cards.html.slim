@@ -1,7 +1,7 @@
 - event_history ||= nil
 - event_follows ||= nil
 - card_cloud ||= false
-- _layout = card_cloud ? 'card_cloud' : 'table'
+- _layout = card_cloud ? 'card_cloud' : 'card_list'
 
 div class="event_attendances -#{_layout}"
   - event_follows.each do |event_follow|

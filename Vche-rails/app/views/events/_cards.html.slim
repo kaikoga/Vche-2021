@@ -1,7 +1,7 @@
 - events ||= nil
 - card_cloud ||= false
 - actions ||= nil
-- _layout = card_cloud ? 'card_cloud' : 'table'
+- _layout = card_cloud ? 'card_cloud' : 'card_list'
 
 div class="events -#{_layout}"
   - events.each do |event|
