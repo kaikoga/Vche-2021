@@ -33,7 +33,7 @@
 
 @mixin button--roundbox {
   @include button;
-  @include --button-panel;
+  @include --button-roundbox;
 }
 
 @mixin --button-positive {
@@ -63,7 +63,7 @@
   }
 }
 
-@mixin --button-panel {
+@mixin --button-roundbox {
   background: $fill-light;
   border: $primary_bg-dark solid 1px;
   margin-right: 1rem;
