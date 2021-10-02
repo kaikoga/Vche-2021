@@ -64,6 +64,7 @@
 }
 
 @mixin --button-roundbox {
+  box-sizing: border-box;
   background: $fill-light;
   border: $primary_bg-dark solid 1px;
   margin-right: 1rem;

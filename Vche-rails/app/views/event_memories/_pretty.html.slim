@@ -1,14 +1,14 @@
 - event_memory ||= nil
 
 .event_memory.-pretty
-  = render 'users/cards', users: [event_memory.user], card_cloud: :true
   div
+    = render 'users/cards', users: [event_memory.user], card_cloud: :true
     span.published_at = "#{l(event_memory.published_at)} 更新"
 
   div
     span.name = link_to event_memory.event.name, event_memory.event, class: :link
     span.started_at = link_to l(event_memory.started_at), event_event_history_path(event_memory.event, event_memory.started_at_to_s), class: :link
-  div = event_memory.body
+  .body = event_memory.body
 
   - event_memory.urls.each do |url|
     blockquote.twitter-tweet data={ conversation: :none, dnt: true }

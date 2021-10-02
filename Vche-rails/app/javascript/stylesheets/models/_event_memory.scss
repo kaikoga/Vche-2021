@@ -1,14 +1,19 @@
 .event_memory.-pretty {
   @include panel--roundbox;
+  .published_at {
+    vertical-align: bottom;
+    color: $text-lighter;
+  }
   .name {
     font-size: $font-size-large;
-    padding-right: 1em;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
   .started_at {
     color: $text-lighter;
   }
-  .published_at {
-    color: $text-lighter;
+  .body {
+    padding: 1rem;
   }
 }
 

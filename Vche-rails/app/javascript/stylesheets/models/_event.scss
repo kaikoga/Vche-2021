@@ -1,3 +1,8 @@
+.event__nav {
+  padding-left: 1rem;
+  background: $fill-dark;
+}
+
 .event.-pretty {
   @include keyvaluetable;
   .field {

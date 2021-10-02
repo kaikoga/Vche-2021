@@ -1,4 +1,5 @@
 .calendar__nav {
+  padding-left: 1rem;
   background: $fill-dark;
   .current {
     @include button--roundbox;
