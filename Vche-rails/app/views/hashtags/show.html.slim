@@ -8,3 +8,5 @@ nav.event__nav
   = render 'events/cards', events: @events, actions: :hashtag
 .panel
   = paginate @events
+
+= render 'calendar/calendar', calendar: @calendar, enable_filters: true
