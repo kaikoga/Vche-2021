@@ -31,7 +31,7 @@
   @include --button-disabled;
 }
 
-@mixin button--panel {
+@mixin button--roundbox {
   @include button;
   @include --button-panel;
 }

@@ -39,7 +39,7 @@
     @include roundbox--small;
   }
   .attending_event {
-    @include button--panel;
+    @include button--roundbox;
     color: $text-light;
   }
   .attendances {

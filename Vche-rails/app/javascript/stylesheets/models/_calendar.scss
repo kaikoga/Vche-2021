@@ -1,7 +1,7 @@
 .calendar__nav {
   background: $fill-dark;
   .current {
-    @include button--panel;
+    @include button--roundbox;
   }
 }
 

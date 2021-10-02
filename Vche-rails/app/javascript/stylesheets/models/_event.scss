@@ -40,7 +40,7 @@
     font-size: $font-size-larger;
   }
   .following_event {
-    @include button--panel;
+    @include button--roundbox;
     color: $text-light;
   }
   .followers {
@@ -80,7 +80,7 @@
     @include card__text_link;
   }
   .following_event {
-    @include button--panel;
+    @include button--roundbox;
     color: $text-light;
   }
 }
