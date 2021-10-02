@@ -13,7 +13,7 @@
 }
 
 @mixin card {
-  @include roundbox;
+  @include roundbox--medium;
   display: inline-flex;
   flex-wrap: nowrap;
   align-items: last baseline;

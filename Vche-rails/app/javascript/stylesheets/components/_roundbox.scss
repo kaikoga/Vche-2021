@@ -4,6 +4,12 @@
   border: $primary_bg-dark solid 1px;
 }
 
+@mixin roundbox--medium {
+  padding: 0.6rem;
+  border-radius: 1em;
+  border: $primary_bg-dark solid 1px;
+}
+
 @mixin roundbox--small {
   margin: 0.2rem;
   padding: 0.2rem;
