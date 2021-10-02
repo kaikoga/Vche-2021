@@ -1,4 +1,6 @@
 h1 = "#{Event.model_name.human}を編集する"
-div
-  = render 'form', event: @event, owner: nil
+
+= render 'form', event: @event, owner: nil
+
+.panel
   = link_to '戻る', @event, class: 'button'

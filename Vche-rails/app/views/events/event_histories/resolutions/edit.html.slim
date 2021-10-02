@@ -6,10 +6,11 @@ h1 = "#{Event.model_name.human}の#{EventHistory.human_attribute_name(:resolutio
 
 = render 'help'
 
-.panel
+.panel--roundbox
   = render 'quick_inline_forms', event: @event, event_history: @event_history
 
-div
   = render 'form', event: @event, event_history: @event_history
+
+.panel
   = link_to '戻る', [@event, @event_history], class: 'button'
 

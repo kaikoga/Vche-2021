@@ -116,6 +116,10 @@ a {
   @include panel;
 }
 
+.panel.-roundbox {
+  @include panel--roundbox;
+}
+
 form.-table {
   @include keyvaluetable;
   > .field {

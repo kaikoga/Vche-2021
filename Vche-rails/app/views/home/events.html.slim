@@ -6,13 +6,17 @@ h1 = 'マイページ'
 - if backstage_events.any?
   h2 = User.human_attribute_name(:backstage_events)
 
-  = render 'events/cards', events: @backstage_events, card_cloud: true
+  .panel
+    = render 'events/cards', events: @backstage_events, card_cloud: true
 
 - audience_events = @audience_events.to_a
 - if audience_events.any?
   h2 = User.human_attribute_name(:audience_events)
 
-  = render 'events/cards', events: audience_events, card_cloud: true
-  = paginate @audience_events
+  .panel
+    = render 'events/cards', events: audience_events, card_cloud: true
+  .panel
+    = paginate @audience_events
 
-= link_to 'New', new_event_path, class: 'button'
+.panel
+  = link_to "新規#{Event.model_name.human}", new_event_path, class: 'button'

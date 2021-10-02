@@ -3,8 +3,11 @@ h1 = Event.model_name.human
 = render 'category_select'
 = render 'taste_select'
 
-= render 'cards', events: @events, card_cloud: true
-= paginate @events
+.panel
+  = render 'cards', events: @events, card_cloud: true
+.panel
+  = paginate @events
 
-= link_to 'New', select_new_event_path, class: 'button'
-= link_to "#{Event.human_attribute_name(:hashtag)}一覧", hashtags_path, class: 'button'
+.panel
+  = link_to "新規#{Event.model_name.human}", select_new_event_path, class: 'button'
+  = link_to "#{Event.human_attribute_name(:hashtag)}一覧", hashtags_path, class: 'button'

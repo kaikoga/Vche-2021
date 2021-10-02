@@ -1,6 +1,7 @@
 = render 'events/strip', event: @event
 
-.panel
+.panel--roundbox
   p イベントの主催を他のスタッフに変更します。
 
-= render 'event_follows/cards', event_follows: @event.event_backstage_members, actions: :owner
+.panel
+  = render 'event_follows/cards', event_follows: @event.event_backstage_members, actions: :owner

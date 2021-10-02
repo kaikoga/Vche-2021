@@ -1,5 +1,5 @@
 @mixin keyvaluetable {
-  @include panel;
+  @include panel--roundbox;
 }
 
 @mixin keyvaluetable__keyvalue {

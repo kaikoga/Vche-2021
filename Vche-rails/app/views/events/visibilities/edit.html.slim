@@ -2,7 +2,7 @@ h1 = "#{Event.model_name.human}を#{Event.human_attribute_name(:visibility)}を�
 
 = render 'events/strip', event: @event, user: @user
 
-.panel
+.panel--roundbox
   p
     = inline_visibility_tag :invite
   p
@@ -20,6 +20,7 @@ h1 = "#{Event.model_name.human}を#{Event.human_attribute_name(:visibility)}を�
     |
       イベント情報は全体カレンダーに表示されます。
 
-div
-  = render 'form', event: @event
+= render 'form', event: @event
+
+.panel
   = link_to '戻る', @event, class: 'button'

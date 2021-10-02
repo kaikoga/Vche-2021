@@ -1,4 +1,8 @@
 @mixin panel {
-  @include roundbox;
   margin: 1rem;
+}
+
+@mixin panel--roundbox {
+  margin: 1rem;
+  @include roundbox;
 }

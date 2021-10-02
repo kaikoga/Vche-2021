@@ -4,5 +4,7 @@
 
 - if _events.count > 1
   h2 = "関連イベント #{hashtag}"
-  = render 'events/cards', events: _events, card_cloud: true
-  = link_to hashtag, hashtag_path(hashtag), class: :button
+  .panel
+    = render 'events/cards', events: _events, card_cloud: true
+  .panel
+    = link_to hashtag, hashtag_path(hashtag), class: :button

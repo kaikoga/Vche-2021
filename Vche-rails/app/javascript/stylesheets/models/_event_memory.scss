@@ -1,5 +1,5 @@
 .event_memory.-pretty {
-  @include panel;
+  @include panel--roundbox;
   .name {
     font-size: $font-size-large;
     padding-right: 1em;

@@ -3,5 +3,7 @@ h1 = "#{Event.human_attribute_name(:hashtag)}から#{Event.model_name.human}を�
 = render 'category_select'
 = render 'taste_select'
 
-= render 'events/cards', events: @events, actions: :hashtag
-= paginate @events
+.panel
+  = render 'events/cards', events: @events, actions: :hashtag
+.panel
+  = paginate @events

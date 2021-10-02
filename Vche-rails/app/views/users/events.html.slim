@@ -6,11 +6,14 @@ h1 = User.model_name.human
 - if backstage_events.any?
   h2 = User.human_attribute_name(:backstage_events)
 
-  = render 'events/cards', events: @backstage_events, card_cloud: true
+  .panel
+    = render 'events/cards', events: @backstage_events, card_cloud: true
 
 - audience_events = @audience_events.to_a
 - if audience_events.any?
   h2 = User.human_attribute_name(:audience_events)
 
-  = render 'events/cards', events: audience_events, card_cloud: true
-  = paginate @audience_events
+  .panel
+    = render 'events/cards', events: audience_events, card_cloud: true
+  .panel
+    = paginate @audience_events

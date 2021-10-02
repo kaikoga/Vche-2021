@@ -1,5 +1,5 @@
 @mixin strip {
-  @include panel;
+  @include panel--roundbox;
 }
 
 @mixin strip__title {

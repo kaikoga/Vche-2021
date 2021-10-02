@@ -2,6 +2,8 @@ h1 = EventSchedule.model_name.human
 
 = render 'events/strip', event: @event, user: @user
 
-= render 'cards', event: @event, event_schedules: @event_schedules, edit: false, card_cloud: true
+.panel
+  = render 'cards', event: @event, event_schedules: @event_schedules, edit: false, card_cloud: true
 
-= link_to 'New', new_event_event_schedule_path(@event), class: 'button'
+.panel
+  = link_to "新規#{EventSchedule.model_name.human}", new_event_event_schedule_path(@event), class: 'button'

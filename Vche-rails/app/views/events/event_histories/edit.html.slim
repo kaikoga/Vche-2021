@@ -1,4 +1,6 @@
 h1 = "#{EventHistory.model_name.human}を編集する"
-div
-  = render 'form', event: @event, event_history: @event_history
+
+= render 'form', event: @event, event_history: @event_history
+
+.panel
   = link_to '戻る', [@event, @event_history], class: 'button'
