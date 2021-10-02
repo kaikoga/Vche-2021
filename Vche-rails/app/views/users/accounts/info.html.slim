@@ -1,0 +1,5 @@
+h1 = "#{Account.model_name.human}情報"
+
+= render 'users/strip', user: @user
+
+= render 'accounts/table', user: @user, account: @account

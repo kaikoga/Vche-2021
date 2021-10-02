@@ -10,7 +10,11 @@ Rails.application.routes.draw do
       get :info
       get :events
     end
-    resources :accounts, controller: 'users/accounts'
+    resources :accounts, controller: 'users/accounts' do
+      member do
+        get :info
+      end
+    end
     resources :event_memories, controller: 'users/event_memories'
     resource :password, controller: 'users/passwords', only: [:edit, :update]
   end

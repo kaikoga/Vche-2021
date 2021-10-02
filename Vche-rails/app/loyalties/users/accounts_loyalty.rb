@@ -7,6 +7,10 @@ class Users::AccountsLoyalty < ApplicationLoyalty
     true
   end
 
+  def info?
+    true
+  end
+
   def create?
     user == record.user
   end

@@ -11,6 +11,11 @@ class Users::AccountsController < ApplicationController
     @account = find_account
   end
 
+  def info
+    authorize!
+    @account = find_account
+  end
+
   def new
     @account = @user.accounts.build
     authorize! @account
