@@ -9,7 +9,7 @@
 }
 
 .event_attendance.-card {
-  @include panel;
+  @include card;
   .email {
     font-size: $font-size-smaller;
     color: $text-lighter;
@@ -18,20 +18,14 @@
     @include card__title;
   }
   .role {
-    @include panel--small;
+    @include roundbox--small;
   }
 }
 
 .event_attendances.-card_list {
   @include cards--card_list;
-  .event_attendance.-card {
-    @include card;
-  }
 }
 
 .event_attendances.-card_cloud {
   @include cards--card_cloud;
-  .event_attendance.-card {
-    @include card;
-  }
 }

@@ -15,7 +15,7 @@
 }
 
 .event_schedule.-card {
-  @include panel;
+  @include card;
   .time_span  {
     @include card__title;
     .repeat, .start_at, .sep, .end_at {
@@ -28,14 +28,8 @@
 
 .event_schedules.-card_list {
   @include cards--card_list;
-  .event_schedule.-card {
-    @include card;
-  }
 }
 
 .event_schedules.-card_cloud {
   @include cards--card_cloud;
-  .event_schedule.-card {
-    @include card;
-  }
 }

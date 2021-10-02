@@ -33,7 +33,7 @@
 .event.-strip {
   @include strip;
   .visibility {
-    @include panel--small;
+    @include roundbox--small;
     color: $text-light;
   }
   .name {
@@ -54,7 +54,7 @@
     color: $text-light;
   }
   .platform {
-    @include panel--small;
+    @include roundbox--small;
     color: $text-light;
   }
   .organizer {
@@ -68,7 +68,7 @@
 }
 
 .event.-card {
-  @include panel;
+  @include card;
   .name {
     @include card__title;
   }
@@ -87,16 +87,10 @@
 
 .events.-card_cloud {
   @include cards--card_cloud;
-  .event.-card {
-    @include card;
-  }
 }
 
 .events.-card_list {
   @include cards--card_list;
-  .event--card {
-    @include card;
-  }
 }
 
 .event__icon {

@@ -41,27 +41,21 @@
 }
 
 .event_memory.-card {
-  @include panel;
+  @include card;
   .display_name {
     @include card__title;
   }
   .platform {
-    @include panel__small;
+    @include roundbox--small;
   }
 }
 
 .event_memories.-card_list {
   @include cards--card_list;
-  .event_memory.-card {
-    @include card;
-  }
 }
 
 .event_memories.-card_cloud {
   @include cards--card_cloud;
-  .event_memory.-card {
-    @include card;
-  }
 }
 
 .event_memory__icon {

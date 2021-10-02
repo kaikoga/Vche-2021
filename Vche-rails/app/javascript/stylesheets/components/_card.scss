@@ -1,14 +1,19 @@
 @mixin cards--card_list {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem 0.5rem;
+  padding: 1rem 1rem;
 }
 
 @mixin cards--card_cloud {
   display: flex;
   flex-wrap: wrap;
+  gap: 0.5rem 0.5rem;
+  padding: 1rem 1rem;
 }
 
 @mixin card {
+  @include roundbox;
   display: inline-flex;
   flex-wrap: nowrap;
   align-items: last baseline;

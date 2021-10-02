@@ -31,7 +31,7 @@
 }
 
 .user.-card {
-  @include panel;
+  @include card;
   .email {
     font-size: $font-size-smaller;
     color: $text-lighter;
@@ -43,16 +43,10 @@
 
 .users.-card_list {
   @include cards--card_list;
-  .user.-card {
-    @include card;
-  }
 }
 
 .users.-card_cloud {
   @include cards--card_cloud;
-  .user.-card {
-    @include card;
-  }
 }
 
 .user__icon {

@@ -27,7 +27,7 @@
 }
 
 .account.-card {
-  @include panel;
+  @include card;
   .display_name {
     @include card__title;
     font-size: $font-size-large;
@@ -36,16 +36,10 @@
 
 .accounts.-card_list {
   @include cards--card_list;
-  .account.-card {
-    @include card;
-  }
 }
 
 .accounts.-card_cloud {
   @include cards--card_cloud;
-  .account.-card {
-    @include card;
-  }
 }
 
 .account__icon {

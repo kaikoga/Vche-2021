@@ -3,7 +3,7 @@
 .inline.-platform,
 .inline.-visibility,
 .inline.-resolution {
-  @include panel--small;
+  @include roundbox--small;
   color: $text-light;
 }
 

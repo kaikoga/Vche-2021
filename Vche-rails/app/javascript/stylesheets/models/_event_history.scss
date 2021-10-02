@@ -36,7 +36,7 @@
     font-size: $font-size-large;
   }
   .resolution {
-    @include panel--small;
+    @include roundbox--small;
   }
   .attending_event {
     @include button--panel;
@@ -52,9 +52,9 @@
 }
 
 .event_history.-card {
-  @include panel;
+  @include card;
   .resolution {
-    @include panel--small;
+    @include roundbox--small;
   }
   .time_span  {
     @include card__title;
@@ -68,14 +68,8 @@
 
 .event_histories.-card_list {
   @include cards--card_list;
-  .event_history.-card {
-    @include card;
-  }
 }
 
 .event_histories.-card_cloud {
   @include cards--card_cloud;
-  .event_history.-card {
-    @include card;
-  }
 }

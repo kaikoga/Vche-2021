@@ -1,13 +1,4 @@
 @mixin panel {
+  @include roundbox;
   margin: 1rem;
-  padding: 1rem;
-  border-radius: 2em;
-  border: $primary_bg-dark solid 1px;
-}
-
-@mixin panel--small {
-  margin: 0.2rem;
-  padding: 0.2rem;
-  border-radius: 1.4em;
-  border: $primary_bg-dark solid 1px;
 }
