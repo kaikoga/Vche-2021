@@ -32,11 +32,11 @@ class Events::EventHistoriesLoyalty < ApplicationLoyalty
   end
 
   def add_user?
-    LoyaltyTools.user_is_backstage_member?(record, user)
+    LoyaltyTools.user_is_backstage_member?(record.event, user)
   end
 
   def remove_user?
-    LoyaltyTools.user_is_backstage_member?(record, user)
+    LoyaltyTools.user_is_backstage_member?(record.event, user)
   end
 
   def memory?

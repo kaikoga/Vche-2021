@@ -1,5 +1,6 @@
 - event_history ||= nil
-- event_attendances ||= nil
+- event_attendances ||= []
+- event_follows ||= []
 - card_cloud ||= false
 - _layout = card_cloud ? 'card_cloud' : 'card_list'
 
@@ -14,3 +15,13 @@ div class="event_attendances -#{_layout}"
       span.role = event_attendance.role_text
       - if loyalty(event_history, 'events/event_histories').remove_user?
         = link_to '削除', remove_user_event_event_history_path(event_history.event, event_history, user_id: user), method: :post, class: 'button'
+  - event_follows.each do |event_follow|
+    .event_attendance.-card
+      - user = event_follow.user
+      = link_to user_icon_tag(user), user
+      div
+        div.email = user.email
+        div.display_name = link_to user.display_name, user
+      span.role = EventAttendance.role.irrelevant.text
+      - if loyalty(event_history, 'events/event_histories').add_user?
+        = link_to '追加', add_user_event_event_history_path(event_history.event, event_history, user_id: user, role: event_follow.role), method: :post, class: 'button'
