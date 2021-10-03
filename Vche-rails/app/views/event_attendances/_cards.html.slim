@@ -16,7 +16,7 @@ div class="event_attendances -#{_layout}"
 
       - if loyalty(event_history, 'events/event_histories').change_user? && EventFollow.backstage_role?(event_attendance.role)
         = form_with(url: change_user_event_event_history_path(event_history.event, event_history, user_id: user), method: :post, class: '-inline') do |form|
-          = form.select :role, EventAttendance.role.backstage_options(new: true), {selected: event_attendance.role}, onchange: "javascript: this.form.submit();"
+          = form.select :role, EventAttendance.role.backstage_options(owner: true), {selected: event_attendance.role}, onchange: "javascript: this.form.submit();"
       - else
         span.role = event_attendance.role_text
 

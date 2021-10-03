@@ -26,11 +26,11 @@ module Enums::Role
       [:participant, :visitor, :viewer].include?(role.to_sym)
     end
 
-    def role.backstage_options(new: false)
-      if new
-        options(only: [:instance_owner, :performer, :staff])
+    def role.backstage_options(owner: false)
+      if owner
+        options(only: [:owner, :instance_owner, :performer, :staff])
       else
-        options(only: [:irrelevant, :instance_owner, :performer, :staff])
+        options(only: [:instance_owner, :performer, :staff])
       end
     end
   end

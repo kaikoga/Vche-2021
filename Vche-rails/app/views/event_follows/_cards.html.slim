@@ -17,7 +17,7 @@ div class="event_follows -#{_layout}"
       - op = Operations::Event::UpdateUserRole.new(event: event, user: user, role: :staff)
       - if loyalty(event, :events).change_user? && user != current_user && actions == :backstage && op.valid?
         = form_with(url: change_user_event_url(event, user_id: user), method: :post, class: '-inline') do |form|
-          = form.select :role, EventFollow.role.backstage_options(new: true), {selected: event_follow.role}, onchange: "javascript: this.form.submit();"
+          = form.select :role, EventFollow.role.backstage_options(owner: false), {selected: event_follow.role}, onchange: "javascript: this.form.submit();"
       - else
         span.role = event_follow.role_text
 
