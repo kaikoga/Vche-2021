@@ -12,7 +12,7 @@ class HashtagsController < ApplicationController
 
     year = show_params[:year]&.to_i
     month = show_params[:month]&.to_i
-    @calendar = CalendarPresenter.new(@events, user: @user, year: year, month: month, months: 1, days: 0)
+    @calendar = CalendarPresenter.new(@events, user: current_user, year: year, month: month, months: 1, days: 0)
   end
 
   def show_params

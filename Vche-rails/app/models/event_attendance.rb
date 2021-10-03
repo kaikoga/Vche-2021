@@ -33,4 +33,8 @@ class EventAttendance < ApplicationRecord
   belongs_to :event
 
   scope :for_event_history, ->(event_history){ where(event_id: event_history.event_id, started_at: event_history.started_at) }
+
+  def find_or_build_history
+    event.find_or_build_history(started_at)
+  end
 end

@@ -32,7 +32,7 @@ class CalendarPresenter
 
     event_histories.sort_by(&:started_at)
 
-    grouped_event_histories = event_histories.group_by { |history| history.started_at.beginning_of_day }
+    event_histories_by_date = event_histories.group_by { |history| history.started_at.beginning_of_day }
 
     if user
       event_attendances_by_date = user.event_attendances
@@ -43,8 +43,12 @@ class CalendarPresenter
     end
 
     @cells_by_date = recent_dates.each_with_object({}) do |date, h|
-      trusted_histories = Vche::Trust.filter_trusted(grouped_event_histories[date] || [])
-      h[date] = Cell.new(trusted_histories, event_attendances_by_date[date] || [])
+      event_histories_of_date = event_histories_by_date[date] || []
+      event_attendances_of_date = event_attendances_by_date[date] || []
+      trusted_histories = Vche::Trust.filter_trusted(event_histories_of_date)
+      alien_histories = event_attendances_of_date.map { |a| event_histories_of_date.detect { |h| h.event_id == a.event_id } || a.find_or_build_history }.compact
+      visible_histories = trusted_histories | alien_histories
+      h[date] = Cell.new(visible_histories, event_attendances_of_date)
     end
   end
 
