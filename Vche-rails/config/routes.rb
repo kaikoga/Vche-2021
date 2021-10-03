@@ -57,4 +57,6 @@ Rails.application.routes.draw do
   post 'logout' => 'sessions#destroy', :as => :logout
 
   root :to => 'calendar#index'
+
+  ActiveAdmin.routes(self)
 end
