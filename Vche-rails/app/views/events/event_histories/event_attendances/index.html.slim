@@ -18,7 +18,7 @@ h1 = EventHistory.human_attribute_name(:attendees)
           .field
             = form.text_field :user_id
           .field
-            = form.select :role, EventAttendance.role.backstage_options(owner: true), selected: :staff
+            = form.select :role, EventAttendance.role.options(except: :irrelevant), selected: :staff
           = form.submit 'ユーザーを追加'
   .pane.-grow
     h2 = "参加者"
