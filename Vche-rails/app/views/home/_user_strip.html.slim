@@ -12,5 +12,4 @@
 
   .panel
     = render 'accounts/cards', accounts: user.accounts, card_cloud: true
-
-  = link_to "#{Account.model_name.human}一覧", user_accounts_url(user), class: :button
+    = link_to "#{Account.model_name.human}一覧", user_accounts_url(user), class: :button
