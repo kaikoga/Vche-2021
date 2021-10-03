@@ -1,5 +1,8 @@
 @mixin strip {
   @include panel--roundbox;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem 0.5rem;
 }
 
 @mixin strip__title {
