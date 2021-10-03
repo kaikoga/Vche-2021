@@ -2,7 +2,7 @@ h1 = "#{Event.model_name.human}を#{Event.human_attribute_name(:visibility)}を�
 
 = render 'events/strip', event: @event, user: @user
 
-.panel--roundbox
+.panel.-roundbox
   p
     = inline_visibility_tag :invite
   p
