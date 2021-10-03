@@ -107,11 +107,12 @@ class EventsController < ApplicationController
     authorize! @event
     @user = find_user
 
-    if @user.event_follows.create!(event: @event, role: params[:role])
-      redirect_to event_event_follows_url(@event), notice: 'Added User.'
-    else
-      redirect_to event_event_follows_url(@event)
-    end
+    Operations::Event::UpdateUserRole.new(event: @event, user: @user, role: params[:role]).perform!
+    redirect_to event_event_follows_url(@event), notice: 'Added User.'
+  rescue ActiveRecord::RecordInvalid
+    redirect_to event_event_follows_url(@event)
+  rescue Operations::Event::UpdateUserRole::UserIsOwner
+    redirect_to edit_event_owner_url(@event)
   end
 
   def change_user
@@ -119,13 +120,12 @@ class EventsController < ApplicationController
     authorize! @event
     @user = find_user
 
-    if @event.owner_ids.include? @user.id
-      redirect_to edit_event_owner_url(@event)
-    elsif @user.event_follows.find_by!(event: @event).update(role: params[:role])
-      redirect_to event_event_follows_url(@event), notice: 'Changed User.'
-    else
-      redirect_to event_event_follows_url(@event)
-    end
+    Operations::Event::UpdateUserRole.new(event: @event, user: @user, role: params[:role]).perform!
+    redirect_to event_event_follows_url(@event), notice: 'Changed User.'
+  rescue ActiveRecord::RecordInvalid
+    redirect_to event_event_follows_url(@event)
+  rescue Operations::Event::UpdateUserRole::UserIsOwner
+    redirect_to edit_event_owner_url(@event)
   end
 
   def remove_user
@@ -133,13 +133,12 @@ class EventsController < ApplicationController
     authorize! @event
     @user = find_user
 
-    if @event.owner_ids.include? @user.id
-      redirect_to edit_event_owner_url(@event)
-    elsif @user.event_follows.find_by!(event: @event).destroy_all
-      redirect_to event_event_follows_url(@event), notice: 'Removed User.'
-    else
-      redirect_to event_event_follows_url(@event)
-    end
+    Operations::Event::UpdateUserRole.new(event: @event, user: @user, role: :irrelevant).perform!
+    redirect_to event_event_follows_url(@event), notice: 'Changed User.'
+  rescue ActiveRecord::RecordInvalid
+    redirect_to event_event_follows_url(@event)
+  rescue Operations::Event::UpdateUserRole::UserIsOwner
+    redirect_to edit_event_owner_url(@event)
   end
 
   private
