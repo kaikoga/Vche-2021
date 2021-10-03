@@ -8,7 +8,7 @@ h1 = Event.human_attribute_name(:followers)
     .panel
       - if loyalty(@event, 'events/owners').introduction?
         = link_to '主催になる', introduction_event_owner_path(@event), class: :button
-      = render 'event_follows/cards', event_follows: @event.event_backstage_members, actions: :remove
+      = render 'event_follows/cards', event_follows: @event.event_backstage_members, actions: :backstage
       - if loyalty(@event, :events).add_user?
         = form_with url: add_user_event_path(@event), class: '-table' do |form|
           .field
@@ -19,4 +19,4 @@ h1 = Event.human_attribute_name(:followers)
   .pane.-grow
     h2 = "参加者"
     .panel
-      = render 'event_follows/cards', event_follows: @event.event_audiences, card_cloud: true, actions: :remove
+      = render 'event_follows/cards', event_follows: @event.event_audiences, card_cloud: true, actions: :audience

@@ -7,7 +7,7 @@ class Operations::Operation
   end
 
   def perform!
-    raise ActiveRecord::RecordInvalid unless valid?
+    validate
     perform
   end
 end

@@ -116,7 +116,7 @@ class Events::EventHistoriesController < ApplicationController
     authorize! @event_history
     @user = find_user
 
-    Operations::EventHistory::UpdateUserRole.new(event_history: @event_history, user: @user, role: :irrelevant).perform!
+    Operations::EventHistory::UpdateUserRole.new(event_history: @event_history, user: @user, role: nil).perform!
     redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: 'Removed User.'
   rescue ActiveRecord::RecordInvalid
     redirect_to event_event_history_event_attendances_path(@event, @event_history)

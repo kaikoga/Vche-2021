@@ -14,14 +14,15 @@ div class="event_follows -#{_layout}"
         div.email = user.email
         div.display_name = link_to user.display_name, user
 
-      - if loyalty(event, :events).change_user? && user != current_user && EventFollow.backstage_role?(event_follow.role) && actions == :remove
+      - op = Operations::Event::UpdateUserRole.new(event: event, user: user, role: :staff)
+      - if loyalty(event, :events).change_user? && user != current_user && actions == :backstage && op.valid?
         = form_with(url: change_user_event_url(event, user_id: user), method: :post, class: '-inline') do |form|
           = form.select :role, EventFollow.role.backstage_options(new: true), {selected: event_follow.role}, onchange: "javascript: this.form.submit();"
       - else
         span.role = event_follow.role_text
 
       - case actions
-      - when :remove
+      - when :backstage, :audience
         - if loyalty(event, :events).remove_user?
           - if user == current_user
             = link_to '変更', remove_user_event_path(event, user_id: user), method: :post, class: 'button'

@@ -133,7 +133,7 @@ class EventsController < ApplicationController
     authorize! @event
     @user = find_user
 
-    Operations::Event::UpdateUserRole.new(event: @event, user: @user, role: :irrelevant).perform!
+    Operations::Event::UpdateUserRole.new(event: @event, user: @user, role: nil).perform!
     redirect_to event_event_follows_url(@event), notice: 'Changed User.'
   rescue ActiveRecord::RecordInvalid
     redirect_to event_event_follows_url(@event)
