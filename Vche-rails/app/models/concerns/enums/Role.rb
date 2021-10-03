@@ -19,11 +19,11 @@ module Enums::Role
     scope :audience, ->{ where(role: [:participant, :visitor, :viewer]) }
 
     def self.backstage_role?(role)
-      [:owner, :instance_owner, :performer, :staff].include?(role.to_sym)
+      [:owner, :instance_owner, :performer, :staff].include?(role&.to_sym)
     end
 
     def self.audience_role?(role)
-      [:participant, :visitor, :viewer].include?(role.to_sym)
+      [:participant, :visitor, :viewer].include?(role&.to_sym)
     end
 
     def role.backstage_options(owner: false)

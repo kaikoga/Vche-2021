@@ -98,6 +98,8 @@ class Events::EventHistoriesController < ApplicationController
     redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: 'Added User.'
   rescue ActiveRecord::RecordInvalid
     redirect_to event_event_history_event_attendances_path(@event, @event_history)
+  rescue Operations::EventHistory::UpdateUserRole::Outsider
+    redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: 'Cannot touch outsider.'
   end
 
   def change_user
@@ -109,6 +111,8 @@ class Events::EventHistoriesController < ApplicationController
     redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: 'Changed User.'
   rescue ActiveRecord::RecordInvalid
     redirect_to event_event_history_event_attendances_path(@event, @event_history)
+  rescue Operations::EventHistory::UpdateUserRole::Outsider
+    redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: 'Cannot touch outsider.'
   end
 
   def remove_user
@@ -120,6 +124,8 @@ class Events::EventHistoriesController < ApplicationController
     redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: 'Removed User.'
   rescue ActiveRecord::RecordInvalid
     redirect_to event_event_history_event_attendances_path(@event, @event_history)
+  rescue Operations::EventHistory::UpdateUserRole::Outsider
+    redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: 'Cannot touch outsider.'
   end
 
   private

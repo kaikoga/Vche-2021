@@ -1,4 +1,5 @@
 class Operations::EventHistory::UpdateUserRole < Operations::Operation
+  class Outsider < StandardError; end
 
   def initialize(event_history:, user:, role:)
     @event_history = event_history
@@ -8,6 +9,7 @@ class Operations::EventHistory::UpdateUserRole < Operations::Operation
 
   def validate
     raise ArgumentError if role == :irrelevant
+    raise Outsider unless EventAttendance.backstage_role?(role) || EventAttendance.backstage_role?(current_role)
   end
 
   def perform
@@ -24,6 +26,6 @@ class Operations::EventHistory::UpdateUserRole < Operations::Operation
   attr_reader :event_history, :user, :role
 
   def current_role
-    user.event_attendances.for_event_history(event_history)&.role || :irrelevant
+    user.event_attendances.for_event_history(event_history).first&.role&.to_sym || :irrelevant
   end
 end
