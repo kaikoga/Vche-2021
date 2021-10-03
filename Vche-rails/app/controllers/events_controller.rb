@@ -114,6 +114,20 @@ class EventsController < ApplicationController
     end
   end
 
+  def change_user
+    @event = find_event
+    authorize! @event
+    @user = find_user
+
+    if @event.owner_ids.include? @user.id
+      redirect_to edit_event_owner_url(@event)
+    elsif @user.event_follows.find_by!(event: @event).update(role: params[:role])
+      redirect_to event_event_follows_url(@event), notice: 'Changed User.'
+    else
+      redirect_to event_event_follows_url(@event)
+    end
+  end
+
   def remove_user
     @event = find_event
     authorize! @event
@@ -121,7 +135,7 @@ class EventsController < ApplicationController
 
     if @event.owner_ids.include? @user.id
       redirect_to edit_event_owner_url(@event)
-    elsif @user.event_follows.where(event: @event).delete_all
+    elsif @user.event_follows.find_by!(event: @event).destroy_all
       redirect_to event_event_follows_url(@event), notice: 'Removed User.'
     else
       redirect_to event_event_follows_url(@event)

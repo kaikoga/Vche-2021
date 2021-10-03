@@ -57,7 +57,7 @@ class User < ApplicationRecord
   has_many :updated_event_histories, class_name: 'EventHistory', foreign_key: :updated_user_id
 
   has_many :event_follows, dependent: :destroy
-  has_many :events, through: :event_follows
+  has_many :following_events, through: :event_follows, source: :event
 
   has_many :owned_follows, -> { owned }, class_name: 'EventFollow'
   has_many :owned_events, through: :owned_follows, source: :event
@@ -67,7 +67,6 @@ class User < ApplicationRecord
   has_many :audience_events, through: :audience_follows, source: :event
 
   has_many :event_attendances, dependent: :destroy
-  has_many :following_events, through: :event_follows, source: :event
 
   def following_event?(event)
     event_follows.where(event: event).first&.role

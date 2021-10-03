@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       post :follow
       post :unfollow
       post :add_user
+      post :change_user
       post :remove_user
     end
     resources :event_schedules
@@ -36,6 +37,7 @@ Rails.application.routes.draw do
         post :attend
         post :unattend
         post :add_user
+        post :change_user
         post :remove_user
       end
       resource :resolution, controller: 'events/event_histories/resolutions', only: [:edit, :update]

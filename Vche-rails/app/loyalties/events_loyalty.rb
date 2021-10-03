@@ -39,6 +39,10 @@ class EventsLoyalty < ApplicationLoyalty
     LoyaltyTools.user_is_owner?(record, user)
   end
 
+  def change_user?
+    LoyaltyTools.user_is_owner?(record, user)
+  end
+
   def remove_user?
     LoyaltyTools.user_is_owner?(record, user)
   end

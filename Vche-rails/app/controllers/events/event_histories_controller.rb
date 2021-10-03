@@ -101,12 +101,24 @@ class Events::EventHistoriesController < ApplicationController
     end
   end
 
+  def change_user
+    @event_history = find_event_history
+    authorize! @event_history
+    @user = find_user
+
+    if @user.event_attendances.for_event_history(@event_history).update(role: params[:role])
+      redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: 'Changed User.'
+    else
+      redirect_to event_event_history_event_attendances_path(@event, @event_history)
+    end
+  end
+
   def remove_user
     @event_history = find_event_history
     authorize! @event_history
     @user = find_user
 
-    if @user.event_attendances.for_event_history(@event_history).delete_all
+    if @user.event_attendances.for_event_history(@event_history).destroy_all
       redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: 'Removed User.'
     else
       redirect_to event_event_history_event_attendances_path(@event, @event_history)
