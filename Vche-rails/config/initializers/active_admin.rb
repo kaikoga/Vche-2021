@@ -249,6 +249,15 @@ ActiveAdmin.setup do |config|
   #     end
   #   end
 
+  # see /gems/activeadmin/lib/active_admin/menu_item.rb
+  config.namespace :admin do |admin|
+    admin.build_menu do |menu|
+      menu.add id: :master, label: 'マスター', priority: 10
+      menu.add id: :event, label: 'イベント', priority: 11
+      menu.add id: :user, label: 'ユーザー', priority: 12
+    end
+  end
+
   # == Download Links
   #
   # You can disable download links on resource listing pages,
@@ -349,5 +358,13 @@ class ActiveAdmin::BaseController
     if current_user.admin_role.to_sym != :admin
       redirect_to :root
     end
+  end
+end
+
+class ActiveAdmin::ResourceController
+  alias_method :scoped_collection_base, :scoped_collection
+  def scoped_collection
+    base = scoped_collection_base
+    base.respond_to?(:friendly) ? base.friendly : base
   end
 end
