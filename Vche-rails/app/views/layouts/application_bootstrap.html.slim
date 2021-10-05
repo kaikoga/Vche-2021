@@ -29,3 +29,9 @@ html
         - if flash[:alert]
           p#alert = flash[:alert]
     = yield
+    footer
+      nav
+        ul
+          li Vche (c) 2021.
+          li
+            address = link_to '開発者', 'https://twitter.com/kaikoga', class: 'link'

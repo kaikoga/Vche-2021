@@ -27,6 +27,9 @@
 
 body {
   background: $fill;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 h1, h2 {
@@ -65,6 +68,25 @@ header {
             color: $text-lighter;
           }
         }
+      }
+    }
+  }
+}
+
+footer {
+  margin-top: auto;
+  nav {
+    background: $primary_bg-dark;
+    ul {
+      @include reset--list;
+      display: inline-block;
+      padding: 0.4rem;
+      li {
+        display: inline-block;
+        margin-left: 0.4rem;
+        margin-right: 0.4rem;
+        font-size: $font-size-small;
+        color: $text-lighter;
       }
     }
   }
