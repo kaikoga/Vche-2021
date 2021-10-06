@@ -1,12 +1,21 @@
 ja:
   activerecord:
     models:
+      agreement: 利用規約
+      category: 開催形態
+      comment: コメント
       account: アカウント
       event: イベント
+      event_attendance: 参加状態
+      event_categories: イベントの開催形態
+      event_flavor: イベントのフレイバー
       event_follow: フォロー中のイベント
       event_history: イベント履歴
       event_memory: 参加報告
       event_schedule: イベント予定
+      feedback: お問い合わせ
+      flavor: フレイバー
+      platform: プラットフォーム
       user: ユーザー
     attributes:
       account:
@@ -39,6 +48,10 @@ ja:
         close_at: 解散日時
         repeat: 頻度
         repeat_until: 繰り返し期限
+      feedback:
+        body: 本文
+        resolved_at: 解決日時
+        title: お問い合わせ内容
       user:
         audience_events: フォローしているイベント
         backstage_events: スタッフをしているイベント

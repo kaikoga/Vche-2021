@@ -255,6 +255,7 @@ ActiveAdmin.setup do |config|
       menu.add id: :master, label: 'マスター', priority: 10
       menu.add id: :event, label: 'イベント', priority: 11
       menu.add id: :user, label: 'ユーザー', priority: 12
+      menu.add id: :support, label: 'サポート', priority: 19
     end
   end
 

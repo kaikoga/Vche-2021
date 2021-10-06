@@ -148,8 +148,11 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
     end
 
     create_table :feedbacks do |t|
-      t.references :user, foreign_key: true, null: false
+      t.references :user
+      t.string :user_uid
+      t.text :title, null: false
       t.text :body, null: false
+      t.datetime :resolved_at
 
       t.timestamps null: false
     end

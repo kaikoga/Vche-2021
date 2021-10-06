@@ -192,8 +192,11 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
   end
 
   create_table "feedbacks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
+    t.string "user_uid"
+    t.text "title", null: false
     t.text "body", null: false
+    t.datetime "resolved_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_feedbacks_on_user_id"
@@ -278,6 +281,5 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
   add_foreign_key "events", "platforms"
   add_foreign_key "events", "users", column: "created_user_id"
   add_foreign_key "events", "users", column: "updated_user_id"
-  add_foreign_key "feedbacks", "users"
   add_foreign_key "hashtag_follows", "users"
 end

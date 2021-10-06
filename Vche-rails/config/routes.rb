@@ -59,6 +59,12 @@ Rails.application.routes.draw do
   get 'tos' => 'agreements#tos', :as => :tos
   get 'privacy_policy' => 'agreements#privacy_policy', :as => :privacy_policy
 
+  resources :feedbacks, only: [:new, :create] do
+    collection do
+      get :done
+    end
+  end
+
   root :to => 'calendar#index'
 
   ActiveAdmin.routes(self)

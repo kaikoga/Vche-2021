@@ -1,0 +1,30 @@
+- feedback ||= nil
+- user ||= nil
+
+= form_with(model: feedback, class: '-table') do |form|
+  - if feedback.errors.any?
+    #error_explanation
+      h2
+        = pluralize(feedback.errors.count, "error")
+        |  prohibited this feedback from being saved:
+      ul
+        - feedback.errors.each do |error|
+          li = error.full_message
+  .field
+    = form.label :title
+    = form.select :title, ['不具合報告', '機能追加要望', '利用規約違反の通報', 'コンテンツの削除依頼', 'アカウントの復旧依頼', '退会したい', '利用規約に関する質問', 'その他のお問い合わせ']
+  .field
+    = form.label :body
+    = form.text_area :body, rows: 15
+
+  = hidden_field_tag :user_id, user if user
+
+  p
+    | お問い合わせへの対応や返信が必要な場合は、返信可能な連絡先を本文に含めてください。
+    | 返信先をお知らせいただけない場合、対応は致しかねます。
+  p
+    | また、回答または対応にはお時間をいただく場合がございます。
+    | あらかじめご承知ください。
+
+  .actions
+    = form.submit '送信する'
