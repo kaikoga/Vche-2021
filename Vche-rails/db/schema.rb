@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
 
   create_table "agreements", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "slug", null: false
+    t.text "title", null: false
     t.text "body", null: false
     t.text "published_at", null: false
     t.text "effective_at", null: false

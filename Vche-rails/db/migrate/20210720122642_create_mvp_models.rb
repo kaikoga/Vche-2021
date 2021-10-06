@@ -156,6 +156,7 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
 
     create_table :agreements do |t|
       t.string :slug, null: false
+      t.text :title, null: false
       t.text :body, null: false
       t.text :published_at, null: false
       t.text :effective_at, null: false
