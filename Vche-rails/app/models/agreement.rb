@@ -12,11 +12,13 @@
 #  updated_at   :datetime         not null
 #
 class Agreement < ApplicationRecord
+  scope :recent, -> { where('published_at < ?', Time.current).order(published_at: :desc) }
+
   def self.by_slug(slug)
-    self.where('published_at < ?', Time.current).where(slug: slug).first
+    self.recent.where(slug: slug).first
   end
 
   def self.modified_at
-    self.order(published_at: :desc).limit(1).pluck(:published_at).first
+    self.recent.limit(1).pluck(:published_at).first
   end
 end

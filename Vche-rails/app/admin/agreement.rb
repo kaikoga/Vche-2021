@@ -13,4 +13,16 @@
 #
 ActiveAdmin.register Agreement do
   menu parent: :master
+
+  index do
+    selectable_column
+    id_column
+    column :slug
+    column :title
+    column :published_at
+    column :effective_at
+    column :created_at
+    column :updated_at
+    actions
+  end
 end
