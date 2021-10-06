@@ -7,11 +7,12 @@
 #  uid                          :string(255)      not null
 #  display_name                 :string(255)
 #  primary_sns                  :string(255)
+#  profile                      :string(255)
 #  visibility                   :string(255)      not null
 #  trust                        :integer          not null
 #  user_role                    :string(255)      not null
 #  admin_role                   :string(255)      not null
-#  profile                      :string(255)
+#  agreed_at                    :datetime
 #  crypted_password             :string(255)
 #  salt                         :string(255)
 #  created_at                   :datetime         not null

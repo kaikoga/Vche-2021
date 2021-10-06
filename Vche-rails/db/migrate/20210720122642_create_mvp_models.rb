@@ -31,10 +31,11 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
     add_column :users, :display_name, :string, after: :uid
     add_column :users, :primary_sns, :string, after: :display_name
     add_column :users, :profile, :string, after: :primary_sns
-    add_column :users, :visibility, :string, null: false, after: :primary_sns
+    add_column :users, :visibility, :string, null: false, after: :profile
     add_column :users, :trust, :integer, null: false, after: :visibility
     add_column :users, :user_role, :string, null: false, after: :trust
     add_column :users, :admin_role, :string, null: false, after: :user_role
+    add_column :users, :agreed_at, :datetime, after: :admin_role
 
     create_table :accounts do |t|
       t.string :uid, null: :false, index: { unique: true }
@@ -142,6 +143,22 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
       t.string :hashtag
       t.text :body, null: false
       t.json :urls, null: false
+
+      t.timestamps null: false
+    end
+
+    create_table :feedbacks do |t|
+      t.references :user, foreign_key: true, null: false
+      t.text :body, null: false
+
+      t.timestamps null: false
+    end
+
+    create_table :agreements do |t|
+      t.string :slug, null: false
+      t.text :body, null: false
+      t.text :published_at, null: false
+      t.text :effective_at, null: false
 
       t.timestamps null: false
     end
