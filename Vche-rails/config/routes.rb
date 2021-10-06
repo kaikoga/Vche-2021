@@ -56,6 +56,9 @@ Rails.application.routes.draw do
   post 'login' => "sessions#create"
   post 'logout' => 'sessions#destroy', :as => :logout
 
+  get 'tos' => 'agreements#tos', :as => :tos
+  get 'privacy_policy' => 'agreements#privacy_policy', :as => :privacy_policy
+
   root :to => 'calendar#index'
 
   ActiveAdmin.routes(self)

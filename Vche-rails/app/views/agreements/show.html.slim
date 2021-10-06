@@ -1,3 +1,7 @@
-h1 = 'カレンダー'
+- md_processor = Qiita::Markdown::Processor.new(hostname: "example.com")
+- md_html = md_processor.call(@agreement.body)[:output]
 
-= render 'calendar', calendar: @calendar, enable_filters: true
+h1 = @agreement.title
+
+.panel.-roundbox
+  == md_html
