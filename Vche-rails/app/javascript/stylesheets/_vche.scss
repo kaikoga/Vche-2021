@@ -213,7 +213,7 @@ form.-inline {
   input[type="datetime"],
   select, textarea {
     @include keyvaluetable__value;
-    vertical-align: inherit;
+    vertical-align: bottom;
     width: inherit;
   }
   > input[type="submit"] {
