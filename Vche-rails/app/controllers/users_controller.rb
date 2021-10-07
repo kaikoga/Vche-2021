@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(create_params)
     authorize! @user
 
     if @user.save
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   def update
     @user = find_user
     authorize! @user
-    if @user.update(user_params)
+    if @user.update(update_params)
       redirect_to @user, notice: 'User was successfully updated.'
     else
       render :edit
@@ -76,7 +76,11 @@ class UsersController < ApplicationController
     @show_params ||= params.permit(:year, :month)
   end
 
-  def user_params
+  def create_params
+    params.require(:user).permit(:email, :visibility, :user_role, :display_name, :primary_sns, :profile, :password, :password_confirmation)
+  end
+
+  def update_params
     params.require(:user).permit(:email, :visibility, :user_role, :display_name, :primary_sns, :profile)
   end
 end

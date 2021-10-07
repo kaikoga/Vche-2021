@@ -24,8 +24,14 @@
   .field
     = form.label :visibility
     = form.select :visibility, User.visibility.options
-  .field
-    = form.label :user_role
-    = form.select :user_role, User.user_role.options
+
+  - unless user.persisted?
+    .field
+      = form.label :password
+      = form.password_field :password
+    .field
+      = form.label :password_confirmation
+      = form.password_field :password_confirmation
+
   .actions
     = form.submit
