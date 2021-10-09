@@ -9,8 +9,8 @@ module Enums::Role
         :performer,
         :staff,
         :participant,
-        :visitor,
-        :viewer,
+        # :visitor,
+        # :viewer,
     ], default: :participant
 
     scope :owned, ->{ where(role: :owner) }
