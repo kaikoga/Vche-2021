@@ -84,22 +84,24 @@ class EventsController < ApplicationController
     @event = find_event
     authorize! @event
 
-    if current_user.event_follows.create!(event: @event, role: :participant)
-      redirect_to @event, notice: 'Followed.'
-    else
-      redirect_to @event
-    end
+    Operations::Event::UpdateUserFollow.new(event: @event, user: current_user, role: params[:role] || :participant).perform!
+    redirect_to @event, notice: 'Followed.'
+  rescue ActiveRecord::RecordInvalid
+    redirect_to @event
+  rescue Operations::Event::UpdateUserFollow::UserIsBackstage
+    redirect_to @event
   end
 
   def unfollow
     @event = find_event
     authorize! @event
 
-    if current_user.event_follows.audience.where(event: @event).delete_all
-      redirect_to @event, notice: 'Unfollowed.'
-    else
-      redirect_to @event
-    end
+    Operations::Event::UpdateUserFollow.new(event: @event, user: current_user, role: nil).perform!
+    redirect_to @event, notice: 'Unfollowed.'
+  rescue ActiveRecord::RecordInvalid
+    redirect_to @event
+  rescue Operations::Event::UpdateUserFollow::UserIsBackstage
+    redirect_to @event
   end
 
   def add_user

@@ -70,23 +70,25 @@ class Events::EventHistoriesController < ApplicationController
     @event_history = find_event_history
     authorize! @event_history
 
-    role = current_user.following_event_as_backstage_member?(@event) || :participant
-    if current_user.event_attendances.for_event_history(@event_history).create!(role: role)
-      redirect_to event_event_history_path(@event, @event_history), notice: 'Attended.'
-    else
-      redirect_to event_event_history_path(@event, @event_history)
-    end
+    role = current_user.following_event?(@event) || :participant
+    Operations::EventHistory::UpdateUserAttendance.new(event_history: @event_history, user: current_user, role: role).perform!
+    redirect_to event_event_history_path(@event, @event_history), notice: 'Attended.'
+  rescue ActiveRecord::RecordInvalid
+    redirect_to event_event_history_path(@event, @event_history)
+  rescue Operations::EventHistory::UpdateUserAttendance::UserIsAudience
+    redirect_to event_event_history_path(@event, @event_history)
   end
 
   def unattend
     @event_history = find_event_history
     authorize! @event_history
 
-    if current_user.event_attendances.audience.for_event_history(@event_history).delete_all
-      redirect_to event_event_history_path(@event, @event_history), notice: 'Unattended.'
-    else
-      redirect_to event_event_history_path(@event, @event_history)
-    end
+    Operations::EventHistory::UpdateUserAttendance.new(event_history: @event_history, user: current_user, role: nil).perform!
+    redirect_to event_event_history_path(@event, @event_history), notice: 'Unattended.'
+  rescue ActiveRecord::RecordInvalid
+    redirect_to event_event_history_path(@event, @event_history)
+  rescue Operations::EventHistory::UpdateUserAttendance::UserIsAudience
+    redirect_to event_event_history_path(@event, @event_history)
   end
 
   def add_user
