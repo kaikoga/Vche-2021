@@ -1,4 +1,4 @@
-class Events::EventHistories::EventAttendancesController < ApplicationController
+class Events::EventHistories::EventAttendancesController < ApplicationController::Bootstrap
   before_action :find_parent_event
   before_action :find_parent_event_history
 

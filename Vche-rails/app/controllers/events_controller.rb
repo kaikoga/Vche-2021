@@ -1,4 +1,4 @@
-class EventsController < ApplicationController
+class EventsController < ApplicationController::Bootstrap
   skip_before_action :require_login, only: [:index, :show]
 
   def index

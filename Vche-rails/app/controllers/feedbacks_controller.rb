@@ -1,4 +1,4 @@
-class FeedbacksController < ApplicationController
+class FeedbacksController < ApplicationController::Bootstrap
   skip_before_action :require_login
 
   def new

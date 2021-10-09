@@ -1,4 +1,4 @@
-class Events::VisibilitiesController < ApplicationController
+class Events::VisibilitiesController < ApplicationController::Bootstrap
   before_action :find_parent_event
 
   def edit

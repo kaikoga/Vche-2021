@@ -1,4 +1,4 @@
-class EventSchedulesController < ApplicationController
+class EventSchedulesController < ApplicationController::Bootstrap
   before_action :find_parent_event
   skip_before_action :require_login, only: [:index, :show]
 

@@ -1,4 +1,4 @@
-class Events::EventFollowsController < ApplicationController
+class Events::EventFollowsController < ApplicationController::Bootstrap
   before_action :find_parent_event
 
   def index

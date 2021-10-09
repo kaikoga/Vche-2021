@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class HomeController < ApplicationController::Bootstrap
   def show
     year = show_params[:year]&.to_i
     month = show_params[:month]&.to_i

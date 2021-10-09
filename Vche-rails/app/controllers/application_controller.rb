@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   include Banken
 
-  layout 'application_bootstrap'
-
   before_action :require_login
   after_action :verify_authorized unless Rails.env.production?
 
@@ -16,5 +14,9 @@ class ApplicationController < ActionController::Base
 
   def not_authorized
     redirect_to root_path, alert: "Not allowed"
+  end
+
+  class Bootstrap < ApplicationController
+    layout 'application_bootstrap'
   end
 end

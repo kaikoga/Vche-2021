@@ -1,4 +1,4 @@
-class Events::EventHistories::ResolutionsController < ApplicationController
+class Events::EventHistories::ResolutionsController < ApplicationController::Bootstrap
   before_action :find_parent_event
   before_action :find_parent_event_history
 

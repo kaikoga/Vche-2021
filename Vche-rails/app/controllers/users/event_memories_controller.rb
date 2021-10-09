@@ -1,4 +1,4 @@
-class Users::EventMemoriesController < ApplicationController
+class Users::EventMemoriesController < ApplicationController::Bootstrap
   before_action :find_parent_user
 
   def index

@@ -1,4 +1,4 @@
-class CalendarController < ApplicationController
+class CalendarController < ApplicationController::Bootstrap
   skip_before_action :require_login
 
   def index

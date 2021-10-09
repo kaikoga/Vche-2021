@@ -1,4 +1,4 @@
-class Events::OwnersController < ApplicationController
+class Events::OwnersController < ApplicationController::Bootstrap
   before_action :find_parent_event
 
   def introduction

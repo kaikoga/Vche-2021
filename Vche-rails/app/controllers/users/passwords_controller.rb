@@ -1,4 +1,4 @@
-class Users::PasswordsController < ApplicationController
+class Users::PasswordsController < ApplicationController::Bootstrap
   def edit
     @user = find_user
     authorize! @user

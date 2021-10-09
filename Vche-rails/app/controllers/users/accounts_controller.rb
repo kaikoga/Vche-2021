@@ -1,4 +1,4 @@
-class Users::AccountsController < ApplicationController
+class Users::AccountsController < ApplicationController::Bootstrap
   before_action :find_parent_user
 
   def index
