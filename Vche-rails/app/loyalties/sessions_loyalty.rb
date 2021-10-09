@@ -10,4 +10,8 @@ class SessionsLoyalty < ApplicationLoyalty
   def destroy?
     true
   end
+
+  def purge?
+    true
+  end
 end

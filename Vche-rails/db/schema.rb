@@ -256,6 +256,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.datetime "last_logout_at"
     t.datetime "last_activity_at"
     t.string "last_login_from_ip_address"
+    t.datetime "invalidate_sessions_before"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at"
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"

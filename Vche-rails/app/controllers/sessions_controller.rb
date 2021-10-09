@@ -22,4 +22,11 @@ class SessionsController < ApplicationController
     logout
     redirect_back_or_to(:root, notice: 'Logged out!')
   end
+
+  def purge
+    authorize!
+    invalidate_active_sessions!
+    logout
+    redirect_back_or_to(:root, notice: 'Logged out all sessions!')
+  end
 end

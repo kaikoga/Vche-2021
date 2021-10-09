@@ -55,6 +55,7 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new', :as => :login
   post 'login' => "sessions#create"
   post 'logout' => 'sessions#destroy', :as => :logout
+  post '/sessions/purge' => 'sessions#purge', :as => :purge_sessions
 
   get 'tos' => 'agreements#tos', :as => :tos
   get 'privacy_policy' => 'agreements#privacy_policy', :as => :privacy_policy
