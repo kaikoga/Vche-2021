@@ -94,6 +94,8 @@ class EventSchedule < ApplicationRecord
     EventHistory.new(
       event: event,
       resolution: Time.current < end_at.change(date_options) ? :scheduled : :ended,
+      capacity: event.capacity,
+      default_audience_role: event.default_audience_role,
       assembled_at: assemble_at&.change(date_options),
       opened_at: open_at&.change(date_options),
       started_at: start_at&.change(date_options),

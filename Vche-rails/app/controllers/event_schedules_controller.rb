@@ -16,10 +16,12 @@ class EventSchedulesController < ApplicationController
 
   def new
     @event_schedule = EventSchedule.new
+    authorize! @event
   end
 
   def edit
     @event_schedule = find_event_schedule
+    authorize! @event_schedule
   end
 
   def create

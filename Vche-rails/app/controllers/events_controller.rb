@@ -84,7 +84,7 @@ class EventsController < ApplicationController
     @event = find_event
     authorize! @event
 
-    Operations::Event::UpdateUserFollow.new(event: @event, user: current_user, role: params[:role] || :participant).perform!
+    Operations::Event::UpdateUserFollow.new(event: @event, user: current_user, role: params[:role] || @event.default_audience_role).perform!
     redirect_to @event, notice: 'Followed.'
   rescue ActiveRecord::RecordInvalid
     redirect_to @event
@@ -165,7 +165,8 @@ class EventsController < ApplicationController
     params.require(:event).permit(
       :name, :fullname,
       :description, :organizer_name, :primary_sns, :info_url,
-      :hashtag, :platform_id, :category_id, :visibility
+      :hashtag, :platform_id, :category_id, :visibility,
+      :capacity, :default_audience_role
     )
   end
 
@@ -173,7 +174,8 @@ class EventsController < ApplicationController
     params.require(:event).permit(
       :name, :fullname,
       :description, :organizer_name, :primary_sns, :info_url,
-      :hashtag, :platform_id, :category_id
+      :hashtag, :platform_id, :category_id,
+      :capacity, :default_audience_role
     )
   end
 

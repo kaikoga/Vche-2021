@@ -7,6 +7,10 @@ class EventSchedulesLoyalty < ApplicationLoyalty
     true
   end
 
+  def new?
+    LoyaltyTools.user_is_source?(record, user)
+  end
+
   def create?
     LoyaltyTools.user_is_source?(record.event, user)
   end

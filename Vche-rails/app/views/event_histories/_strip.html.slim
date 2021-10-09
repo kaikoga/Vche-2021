@@ -12,7 +12,7 @@
     = link_to event_event_history_event_attendances_path(event, event_history), class: 'link attendances' do
       span.label 参加者
       '
-      = "#{event_history.event_backstage_members.count} + #{event_history.event_audiences.count}"
+      = capacity_and_attendance_text(event_history)
     - if user
       '
       span.attending_event = user.attending_event?(event_history)&.text || EventAttendance.role.irrelevant.text

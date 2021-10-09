@@ -1,4 +1,8 @@
 h1 = "#{EventHistory.model_name.human}を新しく登録する"
-div
-  = render 'form', event: @event, event_history: @event_history
+
+= render 'events/strip', event: @event, user: @user
+
+= render 'form', event: @event, event_history: @event_history
+
+.panel
   = link_to 'Back', event_path(@event), class: 'button'

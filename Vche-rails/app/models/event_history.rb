@@ -2,19 +2,21 @@
 #
 # Table name: event_histories
 #
-#  id              :bigint           not null, primary key
-#  uid             :string(255)
-#  event_id        :bigint           not null
-#  resolution      :string(255)      not null
-#  assembled_at    :datetime
-#  opened_at       :datetime
-#  started_at      :datetime         not null
-#  ended_at        :datetime         not null
-#  closed_at       :datetime
-#  created_user_id :bigint
-#  updated_user_id :bigint
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                    :bigint           not null, primary key
+#  uid                   :string(255)
+#  event_id              :bigint           not null
+#  resolution            :string(255)      not null
+#  capacity              :integer          not null
+#  default_audience_role :string(255)      not null
+#  assembled_at          :datetime
+#  opened_at             :datetime
+#  started_at            :datetime         not null
+#  ended_at              :datetime         not null
+#  closed_at             :datetime
+#  created_user_id       :bigint
+#  updated_user_id       :bigint
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
 #
 # Indexes
 #
@@ -34,6 +36,7 @@ class EventHistory < ApplicationRecord
   include Vche::Uid
 
   include Enums::Resolution
+  include Enums::DefaultAudienceRole
 
   belongs_to :event
 

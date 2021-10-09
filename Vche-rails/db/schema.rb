@@ -111,6 +111,8 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.string "uid"
     t.bigint "event_id", null: false
     t.string "resolution", null: false
+    t.integer "capacity", null: false
+    t.string "default_audience_role", null: false
     t.datetime "assembled_at"
     t.datetime "opened_at"
     t.datetime "started_at", null: false
@@ -179,6 +181,8 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.bigint "category_id", null: false
     t.string "visibility", null: false
     t.string "taste"
+    t.integer "capacity", null: false
+    t.string "default_audience_role", null: false
     t.integer "trust"
     t.bigint "created_user_id"
     t.bigint "updated_user_id"

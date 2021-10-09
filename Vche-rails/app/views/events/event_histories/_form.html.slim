@@ -14,6 +14,7 @@
   .field
     = form.label :resolution
     = form.select :resolution, EventHistory.resolution.emoji_options
+
   - if loyalty(event_history).backstage?
     .field
       = form.label :assembled_at
@@ -31,5 +32,13 @@
     .field
       = form.label :closed_at
       = form.datetime_field :closed_at
+
+  .field
+    = form.label :capacity
+    = form.text_field :capacity
+  .field
+    = form.label :default_audience_role
+    = form.select :default_audience_role, EventAttendance.role.audience_options
+
   .actions
     = form.submit

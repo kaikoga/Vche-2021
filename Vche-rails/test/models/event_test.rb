@@ -2,24 +2,26 @@
 #
 # Table name: events
 #
-#  id              :bigint           not null, primary key
-#  uid             :string(255)
-#  name            :string(255)
-#  fullname        :string(255)
-#  description     :string(255)
-#  organizer_name  :string(255)
-#  primary_sns     :string(255)
-#  info_url        :string(255)
-#  hashtag         :string(255)
-#  platform_id     :bigint           not null
-#  category_id     :bigint           not null
-#  visibility      :string(255)      not null
-#  taste           :string(255)
-#  trust           :integer
-#  created_user_id :bigint
-#  updated_user_id :bigint
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                    :bigint           not null, primary key
+#  uid                   :string(255)
+#  name                  :string(255)
+#  fullname              :string(255)
+#  description           :string(255)
+#  organizer_name        :string(255)
+#  primary_sns           :string(255)
+#  info_url              :string(255)
+#  hashtag               :string(255)
+#  platform_id           :bigint           not null
+#  category_id           :bigint           not null
+#  visibility            :string(255)      not null
+#  taste                 :string(255)
+#  capacity              :integer          not null
+#  default_audience_role :string(255)      not null
+#  trust                 :integer
+#  created_user_id       :bigint
+#  updated_user_id       :bigint
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
 #
 # Indexes
 #

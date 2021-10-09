@@ -44,6 +44,13 @@
     .value = event.taste_text
 
   .field
+    label = Event.human_attribute_name(:capacity)
+    .value = event.capacity
+  .field
+    label = Event.human_attribute_name(:default_audience_role)
+    .value = EventFollow.role.find_value(event.default_audience_role).text
+
+  .field
     label = Event.human_attribute_name(:event_schedules)
     .relation
       = render 'event_schedules/cards', event: event, event_schedules: event.event_schedules, edit: true

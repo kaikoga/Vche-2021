@@ -26,6 +26,6 @@ class Operations::Event::UpdateUserFollow < Operations::Operation
   attr_reader :event, :user, :role
 
   def current_role
-    user.event_follows.find_by(event: event)&.role.to_sym || :irrelevant
+    user.event_follows.find_by(event: event)&.role&.to_sym || :irrelevant
   end
 end

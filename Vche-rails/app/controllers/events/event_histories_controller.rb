@@ -28,11 +28,13 @@ class Events::EventHistoriesController < ApplicationController
   end
 
   def new
-    @event_history = EventHistory.new
+    authorize! @event
+    @event_history = @event.event_histories.build
   end
 
   def edit
     @event_history = find_event_history
+    authorize! @event_history
   end
 
   def create
@@ -70,7 +72,7 @@ class Events::EventHistoriesController < ApplicationController
     @event_history = find_event_history
     authorize! @event_history
 
-    role = current_user.following_event?(@event) || :participant
+    role = current_user.following_event?(@event) || @event_history.default_audience_role
     Operations::EventHistory::UpdateUserAttendance.new(event_history: @event_history, user: current_user, role: role).perform!
     redirect_to event_event_history_path(@event, @event_history), notice: 'Attended.'
   rescue ActiveRecord::RecordInvalid
@@ -145,6 +147,8 @@ class Events::EventHistoriesController < ApplicationController
   end
 
   def event_history_params
-    p = params.require(:event_history).permit(:visibility, :assembled_at, :opened_at, :started_at, :ended_at, :closed_at, :resolution)
+    p = params.require(:event_history).permit(
+      :resolution, :capacity, :default_audience_role,
+      :assembled_at, :opened_at, :started_at, :ended_at, :closed_at)
   end
 end

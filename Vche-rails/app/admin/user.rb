@@ -23,6 +23,7 @@
 #  last_logout_at               :datetime
 #  last_activity_at             :datetime
 #  last_login_from_ip_address   :string(255)
+#  invalidate_sessions_before   :datetime
 #
 # Indexes
 #

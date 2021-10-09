@@ -66,6 +66,9 @@ ja:
     attendees: 参加者
     backstage_members: スタッフ
     category: 開催形態
+    capacity: 定員
+    default_audience_role: デフォルトの参加方法
+    event: イベント
     event_histories: イベント履歴
     event_schedules: イベント予定
     followers: フォロワー
@@ -74,7 +77,10 @@ ja:
     platform: プラットフォーム
     primary_sns: Twitter ID
     resolution: 状態
+    role: 参加方法
+    trust: Trust
     uid: UID
+    user: ユーザー
     visibility: 公開する範囲
     created_user: 作成したユーザー
     updated_user: 更新したユーザー
@@ -109,6 +115,7 @@ ja:
         performer: 出演者
         staff: スタッフ
         participant: 参加者
+        applicant: 参加希望
         visitor: 訪問者
         viewer: 観客
       taste:

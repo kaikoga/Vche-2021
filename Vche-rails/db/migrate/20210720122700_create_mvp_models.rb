@@ -61,7 +61,9 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
       t.references :category, { foreign_key: true, null: false}
       t.string :visibility, null: false
       t.string :taste, null: :false
-      t.integer :trust
+      t.integer :capacity, null: false
+      t.string :default_audience_role, null: false
+      t.integer :trust, null: :false
 
       t.references :created_user, foreign_key: { to_table: :users }
       t.references :updated_user, foreign_key: { to_table: :users }
@@ -96,6 +98,8 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
       t.string :uid, null: :false, index: { unique: true }
       t.references :event, foreign_key: true, null: false
       t.string :resolution, null: false
+      t.integer :capacity, null: false
+      t.string :default_audience_role, null: false
       t.datetime :assembled_at
       t.datetime :opened_at
       t.datetime :started_at, null: false

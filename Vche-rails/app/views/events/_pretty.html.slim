@@ -1,7 +1,7 @@
 - event ||= nil
 
+h2 = event.fullname
 .event.-pretty
-  h3 = event.fullname
   = inline_category_tag(event.category)
   - event.flavors.each do |flavor|
     = inline_flavor_tag(flavor)
@@ -23,6 +23,10 @@
       = render 'event_schedules/cards', event: event, event_schedules: event.event_schedules, edit: true
       - if loyalty(event, :events).edit?
         = link_to "新規#{EventSchedule.model_name.human}", new_event_event_schedule_path(event), class: 'button'
+
+  .field
+    label = Event.human_attribute_name(:capacity)
+    .value = event.capacity
 
   - if loyalty(event, :events).info?
     = link_to '情報を見る', info_event_path(event), class: :button
