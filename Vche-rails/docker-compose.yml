@@ -16,6 +16,7 @@ services:
       - app_bundler-dev:/usr/local/bundle
       - app_node_modules-dev:/vche/node_modules
       - app_tmp_cache-dev:/vche/tmp/cache
+      - app_tmp_pids-dev:/vche/tmp/pids
     ports:
       - "3000:3000"
     depends_on:
@@ -53,6 +54,8 @@ volumes:
   app_node_modules-dev:
     driver: local
   app_tmp_cache-dev:
+    driver: local
+  app_tmp_pids-dev:
     driver: local
   db_mysql-dev:
     driver: local
