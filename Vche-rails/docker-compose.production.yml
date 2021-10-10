@@ -1,0 +1,36 @@
+version: '3.9'
+
+# NOTE: This docker-compose is for running RAILS_ENV=production app in local Docker. Not for deployment.
+
+services:
+  app: &app
+    image: vche-rails
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      RAILS_ENV: production
+      SECRET_KEY_BASE: 7cb138c6247733ca8cc866bc53c712415bf5cf7ca6d19d1fdc0ce1cd71380b33c1536842c23893d0f6f30a93525239b66416451f0fb368ce49c13fcced10f814
+      DATABASE_URL: mysql2://root:password@db/vche_production
+      RAILS_SERVE_STATIC_FILES: 1
+    volumes:
+      - ./log:/vche/log
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - '3306:3306'
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - db_mysql-production:/var/lib/mysql
+
+volumes:
+  db_mysql-production:
+    driver: local

@@ -1,16 +1,21 @@
 version: '3.9'
 
+# docker-compose is for development
+
 services:
   app: &app
-    image: vche-dev
+    image: vche-rails-dev
     build:
       context: .
       dockerfile: Dockerfile-dev
     environment:
-      - "WEBPACKER_DEV_SERVER_HOST=webpack"
+      RAILS_ENV: development
+      WEBPACKER_DEV_SERVER_HOST: webpack
     volumes:
       - .:/vche
-      - app_bundler:/usr/local/bundle
+      - app_bundler-dev:/usr/local/bundle
+      - app_node_modules-dev:/vche/node_modules
+      - app_tmp_cache-dev:/vche/tmp/cache
     ports:
       - "3000:3000"
     depends_on:
@@ -26,8 +31,12 @@ services:
       - "3035:3035"
     depends_on:
       - app
-    tty: false
-    stdin_open: false
+    tty: true
+    stdin_open: true
+    entrypoint:
+      - "prehook"
+      - "yarn"
+      - "--"
   db:
     image: mysql:8.0
     environment:
@@ -36,10 +45,14 @@ services:
       - '3306:3306'
     command: --default-authentication-plugin=mysql_native_password
     volumes:
-      - db_mysql:/var/lib/mysql
+      - db_mysql-dev:/var/lib/mysql
 
 volumes:
-  app_bundler:
+  app_bundler-dev:
     driver: local
-  db_mysql:
+  app_node_modules-dev:
+    driver: local
+  app_tmp_cache-dev:
+    driver: local
+  db_mysql-dev:
     driver: local

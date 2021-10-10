@@ -1,24 +1,24 @@
-# README
+# Vche-rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Vche implementation in Ruby on Rails.
+This application is intended to be runned in Docker.
 
-Things you may want to cover:
+## Architecture
 
-* Ruby version
+### Core Designs
 
-* System dependencies
+- Old style Web application (Not-SPA)
+- Semantic CSS with SCSS
+- Banken
+- Operations
 
-* Configuration
+### Intentional Derailments
 
-* Database creation
+- Enumerize over AR::Enum
+- Environment variables over credentials
+  - because we use Docker
 
-* Database initialization
+### Flavor Preferences
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Sorcery over Devise + Omniauth
+- Slim over Haml

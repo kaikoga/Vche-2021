@@ -1,6 +1,6 @@
 class AgreementsController < ApplicationController::Bootstrap
   skip_before_action :require_login
-  skip_after_action :verify_authorized
+  skip_after_action :verify_authorized unless Rails.env.production?
 
   def tos
     @agreement = Agreement.by_slug(:tos)

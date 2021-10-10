@@ -350,7 +350,7 @@ end
 
 class ActiveAdmin::BaseController
   # Our nice chihuahua for admin
-  skip_after_action :verify_authorized
+  skip_after_action :verify_authorized unless Rails.env.production?
   before_action :authorize_admin
 
   private
