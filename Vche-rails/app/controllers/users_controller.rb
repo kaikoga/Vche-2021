@@ -12,7 +12,7 @@ class UsersController < ApplicationController::Bootstrap
 
     @user = find_user
     authorize! @user
-    @calendar = CalendarPresenter.new(@user.following_events.shared_or_over, user: @user, year: year, month: month, months: 1, days: 0)
+    @calendar = CalendarPresenter.new(@user.following_events.invite_or_over, user: @user, year: year, month: month, months: 1, days: 0)
   end
 
   def info

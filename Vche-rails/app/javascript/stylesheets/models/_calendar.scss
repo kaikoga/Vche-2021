@@ -79,6 +79,9 @@
           background: $primary_bg-light;
           color: $text;
         }
+        &.-masked {
+          font-style: oblique;
+        }
       }
     }
   }

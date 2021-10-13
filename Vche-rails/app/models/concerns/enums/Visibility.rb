@@ -11,7 +11,7 @@ module Enums::Visibility
 
     scope :public_or_over, ->{ where(visibility: :public) }
     scope :shared_or_over, ->{ where(visibility: [:public, :shared]) }
-    scope :invite_or_over, ->{ where.not(visibility: :invite) }
+    scope :invite_or_over, ->{ where.not(visibility: :secret) }
     scope :secret_or_over, ->{ all }
 
     def visible?
