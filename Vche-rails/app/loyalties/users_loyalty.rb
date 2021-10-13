@@ -16,7 +16,7 @@ class UsersLoyalty < ApplicationLoyalty
   end
 
   def create?
-    true
+    !user
   end
 
   def update?

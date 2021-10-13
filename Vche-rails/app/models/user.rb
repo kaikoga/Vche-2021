@@ -48,6 +48,8 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true
 
+  validates :visibility, inclusion: { in: %w(public), message: "を絞ったユーザーは未実装です" }
+
   has_many :accounts
   has_many :event_memories
 

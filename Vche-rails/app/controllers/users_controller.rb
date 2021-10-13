@@ -2,7 +2,7 @@ class UsersController < ApplicationController::Bootstrap
   skip_before_action :require_login, only: [:index, :new, :create]
 
   def index
-    @users = User.page(params[:page])
+    @users = User.public_or_over.page(params[:page])
     authorize!
   end
 
@@ -29,7 +29,7 @@ class UsersController < ApplicationController::Bootstrap
   end
 
   def new
-    @user = User.new
+    @user = User.new(visibility: :public)
     authorize! @user
   end
 
