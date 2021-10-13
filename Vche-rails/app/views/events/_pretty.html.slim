@@ -2,6 +2,7 @@
 
 h2 = event.fullname
 .event.-pretty
+  = inline_visibility_tag(event.visibility)
   = inline_category_tag(event.category)
   - event.flavors.each do |flavor|
     = inline_flavor_tag(flavor)

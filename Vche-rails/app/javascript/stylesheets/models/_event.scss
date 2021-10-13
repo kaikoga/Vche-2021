@@ -37,10 +37,6 @@
 
 .event.-strip {
   @include strip;
-  .visibility {
-    @include roundbox--small;
-    color: $text-light;
-  }
   .name {
     font-size: $font-size-larger;
   }

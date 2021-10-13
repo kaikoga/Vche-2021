@@ -6,6 +6,7 @@
 div class="events -#{_layout}"
   - events.each do |event|
     .event.-card
+      = inline_visibility_tag(event.visibility, hide_public: true)
       = link_to event_icon_tag(event), event
       span.name = link_to event.name, event
       span.hashtag = event.hashtag
