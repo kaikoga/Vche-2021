@@ -4,15 +4,15 @@ class UsersLoyalty < ApplicationLoyalty
   end
 
   def show?
-    true
+    LoyaltyTools.user_accessible?(record, user)
   end
 
   def info?
-    true
+    LoyaltyTools.user_accessible?(record, user)
   end
 
   def events?
-    true
+    LoyaltyTools.user_accessible?(record, user)
   end
 
   def create?

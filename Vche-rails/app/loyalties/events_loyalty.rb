@@ -4,15 +4,15 @@ class EventsLoyalty < ApplicationLoyalty
   end
 
   def show?
-    true
+    LoyaltyTools.event_accessible?(record, user)
   end
 
   def info?
-    true
+    LoyaltyTools.event_accessible?(record, user)
   end
 
   def select?
-    true
+    LoyaltyTools.event_accessible?(record, user)
   end
 
   def create?
@@ -28,11 +28,11 @@ class EventsLoyalty < ApplicationLoyalty
   end
 
   def follow?
-    !user.following_event?(record)
+    LoyaltyTools.event_accessible?(record, user) && !user.following_event?(record)
   end
 
   def unfollow?
-    user.following_event_as_audience?(record)
+    LoyaltyTools.event_accessible?(record, user) && user.following_event_as_audience?(record)
   end
 
   def add_user?

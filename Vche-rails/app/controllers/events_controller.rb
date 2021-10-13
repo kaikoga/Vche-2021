@@ -9,7 +9,7 @@ class EventsController < ApplicationController::Bootstrap
   def show
     @event = find_event
     @user = current_user
-    authorize!
+    authorize! @event
 
     year = show_params[:year]&.to_i
     month = show_params[:month]&.to_i
@@ -19,11 +19,11 @@ class EventsController < ApplicationController::Bootstrap
   def info
     @event = find_event
     @user = current_user
-    authorize!
+    authorize! @event
   end
 
   def select
-    authorize!
+    authorize! @event
   end
 
   def new

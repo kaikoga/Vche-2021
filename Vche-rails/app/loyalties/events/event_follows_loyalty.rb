@@ -1,5 +1,5 @@
 class Events::EventFollowsLoyalty < ApplicationLoyalty
   def index?
-    true
+    LoyaltyTools.event_accessible?(record, user)
   end
 end

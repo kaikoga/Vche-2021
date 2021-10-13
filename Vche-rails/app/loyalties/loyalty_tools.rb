@@ -28,4 +28,26 @@ module LoyaltyTools
   def user_is_primary_source?(event, user)
     event_has_owner?(event) ? user_is_owner?(event, user) : user_is_source?(event, user)
   end
+
+  def event_accessible?(event, user)
+    case event.visibility.to_sym
+    when :public, :shared
+      true
+    when :invite, :secret
+      event.followers.include?(user) || user_is_creator?(event, user)
+    else
+      false
+    end
+  end
+
+  def user_accessible?(record, user)
+    case record.visibility.to_sym
+    when :public, :shared
+      true
+    when :invite, :secret
+      record == user # TODO: user_follows
+    else
+      false
+    end
+  end
 end

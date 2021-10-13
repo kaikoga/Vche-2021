@@ -5,7 +5,7 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
   def index
     @event_histories = @event.event_histories.order(started_at: :desc).page(params[:page])
     @user = current_user
-    authorize!
+    authorize! @event
   end
 
   def show

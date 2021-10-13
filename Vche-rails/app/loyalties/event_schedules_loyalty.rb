@@ -1,10 +1,10 @@
 class EventSchedulesLoyalty < ApplicationLoyalty
   def index?
-    true
+    LoyaltyTools.event_accessible?(record, user)
   end
 
   def show?
-    true
+    LoyaltyTools.event_accessible?(record.event, user)
   end
 
   def new?

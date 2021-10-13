@@ -3,8 +3,8 @@ class EventSchedulesController < ApplicationController::Bootstrap
   skip_before_action :require_login, only: [:index, :show]
 
   def index
-    @event_schedules = EventSchedule.all
-    authorize!
+    @event_schedules = @event.event_schedules
+    authorize! @event
     @user = current_user
   end
 
@@ -15,7 +15,7 @@ class EventSchedulesController < ApplicationController::Bootstrap
   end
 
   def new
-    @event_schedule = EventSchedule.new
+    @event_schedule = @event.event_schedules.build
     authorize! @event
   end
 

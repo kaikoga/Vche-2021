@@ -128,8 +128,9 @@ ja:
         all: 全て表示
       visibility:
         public: 公開
-        shared: 共有のみ
+        shared: 共有
         invite: 非公開
+        secret: 秘密
     event_attendance:
       role:
         irrelevant: 不参加
