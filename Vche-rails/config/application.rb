@@ -24,4 +24,12 @@ module Vche
     config.i18n.default_locale = :ja
     config.time_zone = "Tokyo"
   end
+
+  module_function
+
+  def env
+    @env ||= ActiveSupport::StringInquirer.new(ENV["VCHE_ENV"].presence || raise('Please set VCHE_ENV'))
+  end
+
+  puts "VCHE_ENV=#{Vche.env}"
 end

@@ -13,7 +13,16 @@ html
     header
       nav
         ul
-          li = link_to "Vche", root_url, class: 'logo'
+          - if Vche.env.release?
+            li = link_to "Vche", root_url, class: 'logo'
+          - elsif Vche.env.nightbug?
+            li = link_to "Vche nightbug", root_url, class: 'logo'
+          - elsif Vche.env.production?
+            li = link_to "Vche production", root_url, class: 'logo'
+          - elsif Vche.env.local?
+            li = link_to "Vche local", root_url, class: 'logo'
+          - else
+            li = link_to "Vche unknown", root_url, class: 'logo'
           li = link_to "イベント", events_path, class: 'button'
           li = link_to "ユーザー", users_path, class: 'button'
           - if current_user

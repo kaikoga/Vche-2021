@@ -10,6 +10,7 @@ services:
       dockerfile: Dockerfile-dev
     environment:
       RAILS_ENV: development
+      VCHE_ENV: local
       WEBPACKER_DEV_SERVER_HOST: webpack
     volumes:
       - .:/vche
@@ -32,8 +33,8 @@ services:
       - "3035:3035"
     depends_on:
       - app
-    tty: true
     stdin_open: true
+    tty: true
     entrypoint:
       - "prehook"
       - "yarn"
