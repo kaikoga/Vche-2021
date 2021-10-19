@@ -36,4 +36,5 @@ CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
 
 ENTRYPOINT [ \
   "prehook", "ruby -v", "--", \
-  "prehook", "bundle install -j3", "--"]
+  "prehook", "bundle install -j3", "--", \
+  "prehook", "rm -f /vche/tmp/pids/server.pid", "--"]
