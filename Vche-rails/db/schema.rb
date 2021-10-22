@@ -243,8 +243,8 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.string "email", null: false
     t.string "uid", null: false
     t.string "display_name"
-    t.string "primary_sns"
-    t.string "profile"
+    t.text "primary_sns"
+    t.text "profile"
     t.string "visibility", null: false
     t.integer "trust", null: false
     t.string "user_role", null: false
