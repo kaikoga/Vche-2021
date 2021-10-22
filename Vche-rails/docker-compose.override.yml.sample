@@ -1,0 +1,8 @@
+version: '3.9'
+
+services:
+  app:
+    environment:
+      VCHE_TWITTER_KEY: ''
+      VCHE_TWITTER_SECRET: ''
+      VCHE_TWITTER_CALLBACK_URL: ''

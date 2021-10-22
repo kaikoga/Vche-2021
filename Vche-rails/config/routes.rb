@@ -57,6 +57,9 @@ Rails.application.routes.draw do
   post 'logout' => 'sessions#destroy', :as => :logout
   post '/sessions/purge' => 'sessions#purge', :as => :purge_sessions
 
+  get 'oauth/:provider/oauth', to: 'oauths#oauth', :as => :auth_at_provider
+  get 'oauth/:provider/callback', to: 'oauths#callback'
+
   get 'tos' => 'agreements#tos', :as => :tos
   get 'privacy_policy' => 'agreements#privacy_policy', :as => :privacy_policy
 

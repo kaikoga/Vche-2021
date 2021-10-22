@@ -42,6 +42,9 @@ class User < ApplicationRecord
 
   authenticates_with_sorcery!
 
+  has_many :authentications, :dependent => :destroy
+  accepts_nested_attributes_for :authentications
+
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
@@ -96,5 +99,9 @@ class User < ApplicationRecord
 
   def attending_event_as_backstage_member?(event_history)
     event_attendances.backstage_member.for_event_history(event_history).first&.role
+  end
+
+  def id_twitter=(value)
+    self.email = "@@#{value}@twitter.com"
   end
 end
