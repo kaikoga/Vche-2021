@@ -9,6 +9,7 @@
 #  description           :string(255)
 #  organizer_name        :string(255)
 #  primary_sns           :string(255)
+#  primary_sns_name      :string(255)
 #  info_url              :string(255)
 #  hashtag               :string(255)
 #  platform_id           :bigint           not null
@@ -49,6 +50,7 @@ class Event < ApplicationRecord
   include Enums::DefaultAudienceRole
   include Enums::Visibility
   include Enums::Taste
+  include Enums::PrimarySns
 
   belongs_to :created_user, class_name: 'User'
   belongs_to :updated_user, class_name: 'User'

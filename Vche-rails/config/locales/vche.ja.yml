@@ -75,7 +75,9 @@ ja:
     hashtag: ハッシュタグ
     name: 名前
     platform: プラットフォーム
-    primary_sns: Twitter ID
+    primary_sns: SNS
+    primary_sns_name: Twitter ID
+    primary_sns_url: Twitter URL
     resolution: 状態
     role: 参加方法
     trust: Trust

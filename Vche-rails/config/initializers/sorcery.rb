@@ -131,7 +131,7 @@ Rails.application.config.sorcery.configure do |config|
   config.twitter.user_info_mapping = {
     id_twitter: 'id_str',
     display_name: 'name',
-    primary_sns: 'screen_name',
+    primary_twitter_name: 'screen_name',
     profile: 'description'
   }
   #

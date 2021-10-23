@@ -175,6 +175,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.string "description"
     t.string "organizer_name"
     t.string "primary_sns"
+    t.string "primary_sns_name"
     t.string "info_url"
     t.string "hashtag"
     t.bigint "platform_id", null: false
@@ -244,6 +245,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.string "uid", null: false
     t.string "display_name"
     t.text "primary_sns"
+    t.text "primary_sns_name"
     t.text "profile"
     t.string "visibility", null: false
     t.integer "trust", null: false

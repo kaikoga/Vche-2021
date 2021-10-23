@@ -2,8 +2,6 @@ class OauthsController < ApplicationController
   skip_before_action :require_login, raise: false
   skip_after_action :verify_authorized, raise: false
 
-  USER_INFO_MAPPING_LOGIN = { primary_sns: 'screen_name' }.freeze
-
   # sends the user on a trip to the provider,
   # and after authorizing there back to the callback url.
   def oauth
@@ -16,7 +14,7 @@ class OauthsController < ApplicationController
 
     if @user = login_from(provider)
       # Keep user data to date
-      @user.update!(user_attrs(USER_INFO_MAPPING_LOGIN, @user_hash))
+      @user.update!(user_attrs(user_info_mapping_login(provider), @user_hash))
 
       redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
     else
@@ -44,6 +42,13 @@ class OauthsController < ApplicationController
   end
 
   private
+
+  def user_info_mapping_login(provider)
+    case provider
+    when 'twitter' then { primary_twitter_name: 'screen_name' }
+    else {}
+    end
+  end
 
   def auth_params
     params.permit(:provider)

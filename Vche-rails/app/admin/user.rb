@@ -7,6 +7,7 @@
 #  uid                          :string(255)      not null
 #  display_name                 :string(255)
 #  primary_sns                  :text(65535)
+#  primary_sns_name             :text(65535)
 #  profile                      :text(65535)
 #  visibility                   :string(255)      not null
 #  trust                        :integer          not null
@@ -54,6 +55,7 @@ ActiveAdmin.register User do
   filter :uid
   filter :display_name
   filter :primary_sns
+  filter :primary_sns_name
   filter :visibility
   filter :trust
   filter :user_role

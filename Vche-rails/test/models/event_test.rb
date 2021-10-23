@@ -9,6 +9,7 @@
 #  description           :string(255)
 #  organizer_name        :string(255)
 #  primary_sns           :string(255)
+#  primary_sns_name      :string(255)
 #  info_url              :string(255)
 #  hashtag               :string(255)
 #  platform_id           :bigint           not null

@@ -30,7 +30,8 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
     add_column :users, :uid, :string, null: false, after: :email, index: { unique: true }
     add_column :users, :display_name, :string, after: :uid
     add_column :users, :primary_sns, :text, after: :display_name
-    add_column :users, :profile, :text, after: :primary_sns
+    add_column :users, :primary_sns_name, :text, after: :primary_sns
+    add_column :users, :profile, :text, after: :primary_sns_name
     add_column :users, :visibility, :string, null: false, after: :profile
     add_column :users, :trust, :integer, null: false, after: :visibility
     add_column :users, :user_role, :string, null: false, after: :trust
@@ -55,6 +56,7 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
       t.string :description
       t.string :organizer_name
       t.string :primary_sns
+      t.string :primary_sns_name
       t.string :info_url
       t.string :hashtag
       t.references :platform, { foreign_key: true, null: false}

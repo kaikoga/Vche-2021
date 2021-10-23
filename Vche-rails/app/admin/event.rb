@@ -9,6 +9,7 @@
 #  description           :string(255)
 #  organizer_name        :string(255)
 #  primary_sns           :string(255)
+#  primary_sns_name      :string(255)
 #  info_url              :string(255)
 #  hashtag               :string(255)
 #  platform_id           :bigint           not null
@@ -67,6 +68,7 @@ ActiveAdmin.register Event do
   filter :description
   filter :organizer_name
   filter :primary_sns
+  filter :primary_sns_name
   filter :info_url
   filter :hashtag
   filter :platform, as: :select, collection: Platform.all
