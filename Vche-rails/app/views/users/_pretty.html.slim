@@ -5,7 +5,7 @@
   .field
     label
     .relation
-      = link_to user_twitter_id(user), user_twitter_url(user), class: :button
+      = link_to user.primary_sns_name, user.primary_sns_url, class: :button
 
   - if loyalty(user).info?
     = link_to '情報を見る', info_user_path(user), class: :button
