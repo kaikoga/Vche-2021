@@ -32,7 +32,7 @@
 
 .user.-strip {
   @include strip;
-  .user__email {
+  .user__primary_sns_name {
     display: inline;
     color: $text-lighter;
   }
@@ -44,7 +44,7 @@
 
 .user.-card {
   @include card;
-  .email {
+  .primary_sns_name {
     font-size: $font-size-smaller;
     color: $text-lighter;
   }

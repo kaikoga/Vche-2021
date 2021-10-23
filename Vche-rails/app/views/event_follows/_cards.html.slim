@@ -11,7 +11,7 @@ div class="event_follows -#{_layout}"
 
       = link_to user_icon_tag(user), user
       div
-        div.email = user.email
+        div.primary_sns_name = user.primary_sns_name
         div.display_name = link_to user.display_name, user
 
       - op = Operations::Event::UpdateUserRole.new(event: event, user: user, role: :staff)

@@ -3,7 +3,7 @@
 .user.-strip
   div
     = link_to user_icon_tag(user, size: :large), user
-    .user__email = user.email
+    .user__primary_sns_name = user.primary_sns_name
     .user__display_name = link_to(user.display_name, user, class: :strip__title)
     = link_to "フォロー中のイベント(#{user.following_events.shared_or_over.count})", events_user_path(user), class: 'button'
     = link_to EventMemory.model_name.human, user_event_memories_path(user), class: 'button'

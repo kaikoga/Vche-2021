@@ -27,7 +27,7 @@ html
           li = link_to "ユーザー", users_path, class: 'button'
           - if current_user
             li = link_to "マイページ", :home, class: 'button'
-            li = link_to current_user.email, current_user, class: 'header__username'
+            li = link_to current_user.primary_sns_name, current_user, class: 'header__username'
             li = link_to "ログアウト", :logout, method: :post, class: 'button'
           - else
             li = link_to "新規登録", new_user_path, class: 'button'

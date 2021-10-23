@@ -11,7 +11,7 @@ div class="event_attendances -#{_layout}"
 
       = link_to user_icon_tag(user), user
       div
-        div.email = user.email
+        div.primary_sns_name = user.primary_sns_name
         div.display_name = link_to user.display_name, user
 
       - if loyalty(event_history, 'events/event_histories').change_user? && EventFollow.backstage_role?(event_attendance.role)
@@ -29,7 +29,7 @@ div class="event_attendances -#{_layout}"
 
       = link_to user_icon_tag(user), user
       div
-        div.email = user.email
+        div.primary_sns_name = user.primary_sns_name
         div.display_name = link_to user.display_name, user
 
       span.role = EventAttendance.role.irrelevant.text

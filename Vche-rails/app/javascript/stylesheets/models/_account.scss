@@ -32,7 +32,7 @@
 
 .account.-strip {
   @include strip;
-  .email {
+  .primary_sns_name {
     display: inline;
     color: $text-lighter;
   }

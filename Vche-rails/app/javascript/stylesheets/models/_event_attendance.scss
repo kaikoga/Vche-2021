@@ -10,7 +10,7 @@
 
 .event_attendance.-card {
   @include card;
-  .email {
+  .primary_sns_name {
     font-size: $font-size-smaller;
     color: $text-lighter;
   }
