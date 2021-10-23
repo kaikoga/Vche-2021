@@ -20,8 +20,8 @@
       - if loyalty(event, :events).add_user?
         = link_to 'スタッフを割り当てる', event_event_follows_path(event), class: :button
   .field
-    label = Event.human_attribute_name(:primary_sns)
-    .value = event.primary_sns
+    label = Event.human_attribute_name(:primary_sns_url)
+    .value = event.primary_sns_url
   .field
     label = Event.human_attribute_name(:info_url)
     .value = event.info_url

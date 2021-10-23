@@ -164,7 +164,7 @@ class EventsController < ApplicationController::Bootstrap
   def create_params
     params.require(:event).permit(
       :name, :fullname,
-      :description, :organizer_name, :primary_sns, :info_url,
+      :description, :organizer_name, :primary_sns_url, :info_url,
       :hashtag, :platform_id, :category_id, :visibility,
       :capacity, :default_audience_role
     )
@@ -173,7 +173,7 @@ class EventsController < ApplicationController::Bootstrap
   def update_params
     params.require(:event).permit(
       :name, :fullname,
-      :description, :organizer_name, :primary_sns, :info_url,
+      :description, :organizer_name, :primary_sns_url, :info_url,
       :hashtag, :platform_id, :category_id,
       :capacity, :default_audience_role
     )
