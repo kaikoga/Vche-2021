@@ -1,4 +1,4 @@
-FROM ruby:2.7.4-slim AS base
+FROM ruby:3.0.2-slim AS base
 
 # Dockerfile for deployment
 
