@@ -14,15 +14,28 @@ services:
       SECRET_KEY_BASE: 7cb138c6247733ca8cc866bc53c712415bf5cf7ca6d19d1fdc0ce1cd71380b33c1536842c23893d0f6f30a93525239b66416451f0fb368ce49c13fcced10f814
       DATABASE_URL: mysql2://root:password@db/vche_production
       RAILS_SERVE_STATIC_FILES: 1
-      VCHE_SOCKET: "unix://vche/tmp/sockets/puma.sock"
+      RAILS_LOG_TO_STDOUT: 1
+      VCHE_SOCKET: "unix:///vche/tmp/sockets/vche.sock"
     volumes:
       - ./log:/vche/log
+      - vche_socket:/vche/tmp/sockets
     ports:
       - "3000:3000"
     depends_on:
       - db
     stdin_open: true
     tty: true
+  nginx:
+    image: kaikoga/vche-nginx
+    build:
+      context: dockerfiles/vche-nginx
+      dockerfile: Dockerfile
+    volumes:
+      - vche_socket:/vche/tmp/sockets
+    ports:
+      - "8080:80"
+    depends_on:
+      - app
   db:
     image: mysql:8.0
     environment:
@@ -34,5 +47,7 @@ services:
       - db_mysql-production:/var/lib/mysql
 
 volumes:
+  vche_socket:
+    driver: local
   db_mysql-production:
     driver: local

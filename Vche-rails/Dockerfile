@@ -46,7 +46,7 @@ RUN bundle install -j3
 
 # precompile assets
 COPY . /vche/
-RUN SECRET_KEY_BASE=1 bundle exec rake assets:precompile
+RUN SECRET_KEY_BASE=1 VCHE_ENV=1 bundle exec rake assets:precompile
 
 ######################################################################
 
@@ -70,7 +70,7 @@ COPY --from=builder /vche/public/packs/ /vche/public/packs/
 EXPOSE 3000
 
 # Start the main process.
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+CMD ["bundle", "exec", "rails", "server"]
 
 ENTRYPOINT [ \
   "prehook", "ruby -v", "--"]
