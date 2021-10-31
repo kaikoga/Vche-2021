@@ -36,6 +36,7 @@ class User < ApplicationRecord
   include Vche::Uid
   include Vche::UidQuery
   include Vche::Trust
+  include Vche::AgreedAt
 
   include Enums::Visibility
   include Enums::UserRole

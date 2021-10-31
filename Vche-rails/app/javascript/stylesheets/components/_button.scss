@@ -14,11 +14,19 @@
   &.-positive {
     @include --button-positive;
   }
+  &.-negative {
+    @include --button-negative;
+  }
 }
 
 @mixin button--positive {
   @include button;
   @include --button-positive;
+}
+
+@mixin button--negative {
+  @include button;
+  @include --button-negative;
 }
 
 @mixin button--selected {
@@ -42,6 +50,15 @@
   &:hover {
     background: $positive_bg-lighter;
     color: $positive_text-lighter;
+  }
+}
+
+@mixin --button-negative {
+  background: $negative_bg-light;
+  color: $negative_text;
+  &:hover {
+    background: $negative_bg-lighter;
+    color: $negative_text-lighter;
   }
 }
 

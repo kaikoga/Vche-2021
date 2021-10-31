@@ -1,0 +1,9 @@
+- agreement ||= nil
+
+- _md_processor = Qiita::Markdown::Processor.new(hostname: "vche.jp")
+- _md_html = _md_processor.call(agreement.body)[:output]
+
+h1 id=agreement.slug = agreement.title
+
+.panel.-roundbox
+  == _md_html

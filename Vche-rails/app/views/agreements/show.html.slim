@@ -1,7 +1,1 @@
-- md_processor = Qiita::Markdown::Processor.new(hostname: "example.com")
-- md_html = md_processor.call(@agreement.body)[:output]
-
-h1 = @agreement.title
-
-.panel.-roundbox
-  == md_html
+= render 'pretty', agreement: @agreement

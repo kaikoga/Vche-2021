@@ -63,6 +63,13 @@ Rails.application.routes.draw do
   get 'tos' => 'agreements#tos', :as => :tos
   get 'privacy_policy' => 'agreements#privacy_policy', :as => :privacy_policy
 
+  resources :agreements, only: [] do
+    collection do
+      get :confirm
+      post :agree
+    end
+  end
+
   resources :feedbacks, only: [:new, :create] do
     collection do
       get :done

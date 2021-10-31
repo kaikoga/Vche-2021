@@ -18,5 +18,16 @@ class ApplicationController < ActionController::Base
 
   class Bootstrap < ApplicationController
     layout 'application_bootstrap'
+
+    before_action :require_agreement
+
+    private
+
+    def require_agreement
+      return unless current_user
+      unless current_user.agreed?(Agreement.modified_at)
+        redirect_to confirm_agreements_path
+      end
+    end
   end
 end
