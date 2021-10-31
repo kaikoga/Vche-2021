@@ -4,7 +4,9 @@ h1 = "#{Event.model_name.human}を新しく登録する"
   p 以下のリンクから既に登録されているイベント情報を探すことができます。
   p
     = link_to('カレンダーからイベントを探す', root_path, class: :button)
+  p
     = link_to('ハッシュタグからイベントを探す', hashtags_path, class: :button)
+  p
     = link_to('最近登録されたイベントを探す', events_path, class: :button)
   p まだ誰も登録していないイベントをあなたのカレンダーに追加したい場合、以下からイベント情報を新規登録できます。
   p
