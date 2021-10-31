@@ -246,6 +246,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.string "display_name"
     t.text "primary_sns"
     t.text "primary_sns_name"
+    t.text "icon_url"
     t.text "profile"
     t.string "visibility", null: false
     t.integer "trust", null: false

@@ -8,6 +8,7 @@
 #  display_name                 :string(255)
 #  primary_sns                  :text(65535)
 #  primary_sns_name             :text(65535)
+#  icon_url                     :text(65535)
 #  profile                      :text(65535)
 #  visibility                   :string(255)      not null
 #  trust                        :integer          not null
@@ -108,5 +109,9 @@ class User < ApplicationRecord
 
   def id_twitter=(value)
     self.email = "@@#{value}@twitter.com"
+  end
+
+  def twitter_icon_url=(value)
+    self.icon_url = value.sub('_normal.', '_x96.')
   end
 end

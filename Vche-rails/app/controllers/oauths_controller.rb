@@ -45,7 +45,7 @@ class OauthsController < ApplicationController
 
   def user_info_mapping_login(provider)
     case provider
-    when 'twitter' then { primary_twitter_name: 'screen_name' }
+    when 'twitter' then { primary_twitter_name: 'screen_name', twitter_icon_url: 'profile_image_url_https' }
     else {}
     end
   end

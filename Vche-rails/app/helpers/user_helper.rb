@@ -3,6 +3,7 @@ module UserHelper
     class_name = size ? "user__icon -#{size}" : 'user__icon'
     size_num = icon_size_num(size)
 
-    image_tag('/user_128x128.png', class: class_name, width: size_num, height: size_num, alt: user.display_name, title: user.display_name)
+    image_url = user.icon_url.presence || '/user_128x128.png'
+    image_tag(image_url, class: class_name, width: size_num, height: size_num, alt: user.display_name, title: user.display_name)
   end
 end

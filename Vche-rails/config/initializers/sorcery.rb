@@ -132,7 +132,8 @@ Rails.application.config.sorcery.configure do |config|
     id_twitter: 'id_str',
     display_name: 'name',
     primary_twitter_name: 'screen_name',
-    profile: 'description'
+    profile: 'description',
+    twitter_icon_url: 'profile_image_url_https'
   }
   #
   # config.facebook.key = ""
