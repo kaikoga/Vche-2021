@@ -52,8 +52,10 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 
   validates :email, uniqueness: true
-
   validates :visibility, inclusion: { in: %w(public), message: "を絞ったユーザーは未実装です" }
+
+  validates :display_name, length: { in: 1..31 }
+  validates :profile, length: { in: 0..4095 }, allow_blank: true
 
   has_many :accounts
   has_many :event_memories

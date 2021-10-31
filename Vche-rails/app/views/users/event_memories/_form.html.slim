@@ -22,7 +22,7 @@
     = form.label :urls
     = form.text_area :urls, value: event_memory.urls.join("\n")
   - unless event_memory.persisted?
-    = form.hidden_field :event_id, value: event_memory.event_id
+    = form.hidden_field :event_id, value: event_memory.event.uid
     = form.hidden_field :started_at, value: event_memory.started_at_to_s
   .actions
     = form.submit

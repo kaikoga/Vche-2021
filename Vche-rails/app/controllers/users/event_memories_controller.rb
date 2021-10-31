@@ -61,11 +61,14 @@ class Users::EventMemoriesController < ApplicationController::Bootstrap
   end
 
   def new_params
-    params.permit(:user_id, :event_id, :started_at)
+    new_params = params.permit(:user_id, :event_id, :started_at)
+    new_params[:event_id] = Event.friendly.find(new_params[:event_id]).id
+    new_params
   end
 
   def create_params
     create_params = params.require(:event_memory).permit(:event_id, :started_at, :body, :urls)
+    create_params[:event_id] = Event.friendly.find(create_params[:event_id]).id
     create_params[:urls] = create_params[:urls].each_line.to_a.compact
     create_params
   end

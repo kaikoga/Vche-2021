@@ -58,7 +58,6 @@ class Event < ApplicationRecord
   validates :description, length: { in: 1..4095 }, allow_blank: true
   validates :organizer_name, length: { in: 1..63 }, allow_blank: true
   validates :info_url, length: { in: 1..255 }, allow_blank: true
-  validates :hashtag, length: { in: 0..63 }, allow_blank: true
   validates :capacity, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   belongs_to :created_user, class_name: 'User'
