@@ -25,4 +25,4 @@ yarn-debug.log*
 .DS_Store
 .generators
 
-
+/lib/tasks/docker.rake
