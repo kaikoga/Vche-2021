@@ -77,7 +77,7 @@ ja:
     platform: プラットフォーム
     primary_sns: SNS
     primary_sns_name: Twitter ID
-    primary_sns_url: Twitter URL
+    primary_sns_url: Twitter アカウント
     resolution: 状態
     role: 参加方法
     trust: Trust
