@@ -6,7 +6,7 @@ module FlavorHelper
   end
 
   def flavor_check_box_tag(flavor, name, id, checked)
-    label_tag id, class: :flavor_tag do
+    label_tag id, class: 'inline -flavor' do
       check_box_tag(name, flavor.slug, checked, id: id) + flavor.emoji + flavor.name
     end
   end

@@ -6,7 +6,7 @@
 #  uid                   :string(255)
 #  name                  :string(255)
 #  fullname              :string(255)
-#  description           :string(255)
+#  description           :text(65535)
 #  organizer_name        :string(255)
 #  primary_sns           :string(255)
 #  primary_sns_name      :string(255)
@@ -45,12 +45,21 @@ class Event < ApplicationRecord
 
   include Vche::Uid
   include Vche::UidQuery
+  include Vche::Hashtag
   include Vche::Trust
 
   include Enums::DefaultAudienceRole
   include Enums::Visibility
   include Enums::Taste
   include Enums::PrimarySns
+
+  validates :name, length: { in: 1..31 }
+  validates :fullname, length: { in: 1..255 }, allow_blank: true
+  validates :description, length: { in: 1..4095 }, allow_blank: true
+  validates :organizer_name, length: { in: 1..63 }, allow_blank: true
+  validates :info_url, length: { in: 1..255 }, allow_blank: true
+  validates :hashtag, length: { in: 0..63 }, allow_blank: true
+  validates :capacity, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   belongs_to :created_user, class_name: 'User'
   belongs_to :updated_user, class_name: 'User'

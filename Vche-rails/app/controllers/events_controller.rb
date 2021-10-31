@@ -27,7 +27,7 @@ class EventsController < ApplicationController::Bootstrap
   end
 
   def new
-    @event = Event.new
+    @event = Event.new(capacity: 0)
     @role = params[:role] == 'owner' ? :owner : :participant
     authorize! @event
 
@@ -54,7 +54,7 @@ class EventsController < ApplicationController::Bootstrap
     if @event.save
       @event.flavors = event_flavors_params
       @event.event_follows.create(user: current_user, role: role)
-      redirect_to :events, notice: 'Event was successfully created'
+      redirect_to @event, notice: 'Event was successfully created'
     else
       render :new
     end

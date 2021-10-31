@@ -6,7 +6,7 @@
 #  uid                   :string(255)
 #  name                  :string(255)
 #  fullname              :string(255)
-#  description           :string(255)
+#  description           :text(65535)
 #  organizer_name        :string(255)
 #  primary_sns           :string(255)
 #  primary_sns_name      :string(255)

@@ -42,7 +42,7 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
       t.string :uid, null: :false, index: { unique: true }
       t.string :name, null: :false
       t.string :display_name, null: :false
-      t.references :platform, { foreign_key: true, null: false}
+      t.references :platform, foreign_key: true, null: false
       t.string :url
       t.references :user, foreign_key: true, null: false
 
@@ -53,14 +53,14 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
       t.string :uid, null: :false, index: { unique: true }
       t.string :name, null: :false
       t.string :fullname
-      t.string :description
+      t.text :description
       t.string :organizer_name
       t.string :primary_sns
       t.string :primary_sns_name
       t.string :info_url
       t.string :hashtag
-      t.references :platform, { foreign_key: true, null: false}
-      t.references :category, { foreign_key: true, null: false}
+      t.references :platform, foreign_key: true, null: false
+      t.references :category, foreign_key: true, null: false
       t.string :visibility, null: false
       t.string :taste, null: :false
       t.integer :capacity, null: false

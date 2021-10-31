@@ -172,7 +172,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.string "uid"
     t.string "name"
     t.string "fullname"
-    t.string "description"
+    t.text "description"
     t.string "organizer_name"
     t.string "primary_sns"
     t.string "primary_sns_name"
