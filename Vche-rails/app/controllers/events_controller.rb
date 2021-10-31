@@ -23,7 +23,7 @@ class EventsController < ApplicationController::Bootstrap
   end
 
   def select
-    authorize! @event
+    authorize!
   end
 
   def new

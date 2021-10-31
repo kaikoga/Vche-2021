@@ -12,7 +12,7 @@ class EventsLoyalty < ApplicationLoyalty
   end
 
   def select?
-    LoyaltyTools.event_accessible?(record, user)
+    true
   end
 
   def create?
