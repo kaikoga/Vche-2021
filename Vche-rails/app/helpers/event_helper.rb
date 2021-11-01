@@ -1,5 +1,7 @@
 module EventHelper
   def event_icon_tag(event, size: :medium)
+    return tag.span
+
     class_name = size ?  "event__icon -#{size}" : 'event__icon'
     size_num = icon_size_num(size)
 

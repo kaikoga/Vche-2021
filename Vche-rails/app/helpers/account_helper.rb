@@ -1,5 +1,7 @@
 module AccountHelper
   def account_icon_tag(account, size: :medium)
+    return tag.span
+
     class_name = size ? "account__icon -#{size}" : 'account__icon'
     size_num = icon_size_num(size)
 
