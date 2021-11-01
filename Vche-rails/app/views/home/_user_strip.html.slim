@@ -13,4 +13,5 @@
 
   div
     = render 'accounts/cards', accounts: user.accounts, card_cloud: true
-    = link_to "#{Account.model_name.human}一覧", user_accounts_url(user), class: :button
+    = link_to "#{Account.model_name.human}一覧", user_accounts_path(user), class: :button
+    = link_to "新規#{Account.model_name.human}", new_user_account_path(user), class: 'button'
