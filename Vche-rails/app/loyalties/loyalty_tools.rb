@@ -50,4 +50,8 @@ module LoyaltyTools
       false
     end
   end
+
+  def password_login?
+    Rails.application.config.x.password_login?
+  end
 end

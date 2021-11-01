@@ -30,8 +30,9 @@ html
             li = link_to current_user.primary_sns_name, current_user, class: 'header__username'
             li = link_to "ログアウト", :logout, method: :post, class: 'button'
           - else
-            li = link_to "新規登録", new_user_path, class: 'button'
-            li = link_to "ログイン", :login, class: 'button'
+            - if loyalty(nil, :sessions).new?
+              li = link_to "新規登録", new_user_path, class: 'button'
+              li = link_to "ログイン", :login, class: 'button'
             li = link_to "Twitter", auth_at_provider_path(:provider => :twitter), class: 'button'
       div
         - if flash[:notice]

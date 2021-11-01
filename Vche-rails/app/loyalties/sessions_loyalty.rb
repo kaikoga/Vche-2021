@@ -1,10 +1,10 @@
 class SessionsLoyalty < ApplicationLoyalty
   def new?
-    true
+    LoyaltyTools.password_login?
   end
 
   def create?
-    true
+    LoyaltyTools.password_login?
   end
 
   def destroy?

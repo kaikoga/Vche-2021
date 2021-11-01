@@ -7,6 +7,14 @@ require "rails/all"
 Bundler.require(*Rails.groups)
 
 module Vche
+  module_function
+
+  def env
+    @env ||= ActiveSupport::StringInquirer.new(ENV["VCHE_ENV"].presence || raise('Please set VCHE_ENV'))
+  end
+
+  puts "VCHE_ENV=#{Vche.env}"
+
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
@@ -23,13 +31,7 @@ module Vche
 
     config.i18n.default_locale = :ja
     config.time_zone = "Tokyo"
+
+    config.x.password_login = Vche.env.local?
   end
-
-  module_function
-
-  def env
-    @env ||= ActiveSupport::StringInquirer.new(ENV["VCHE_ENV"].presence || raise('Please set VCHE_ENV'))
-  end
-
-  puts "VCHE_ENV=#{Vche.env}"
 end
