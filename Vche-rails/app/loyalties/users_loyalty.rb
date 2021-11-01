@@ -1,6 +1,6 @@
 class UsersLoyalty < ApplicationLoyalty
   def index?
-    true
+    Vche.env.local?
   end
 
   def show?

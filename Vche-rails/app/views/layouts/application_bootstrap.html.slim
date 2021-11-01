@@ -24,7 +24,8 @@ html
           - else
             li = link_to "Vche unknown", root_url, class: 'logo'
           li = link_to "イベント", events_path, class: 'button'
-          li = link_to "ユーザー", users_path, class: 'button'
+          - if loyalty(nil, :users).index?
+            li = link_to "ユーザー", users_path, class: 'button'
           - if current_user
             li = link_to "マイページ", :home, class: 'button'
             li = link_to current_user.primary_sns_name, current_user, class: 'header__username'
