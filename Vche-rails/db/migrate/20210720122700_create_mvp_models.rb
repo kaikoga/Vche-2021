@@ -167,8 +167,8 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
       t.string :slug, null: false
       t.text :title, null: false
       t.text :body, null: false
-      t.text :published_at, null: false
-      t.text :effective_at, null: false
+      t.datetime :published_at, null: false
+      t.datetime :effective_at, null: false
 
       t.timestamps null: false
     end

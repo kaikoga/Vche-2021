@@ -2,3 +2,12 @@
   height: 60vh;
   overflow-y: scroll;
 }
+
+.agreement.-pretty {
+  @include panel--roundbox;
+  .published_at {
+    font-size: $font-size-small;
+    color: $text-light;
+    text-align: right;
+  }
+}

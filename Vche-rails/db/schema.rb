@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.string "slug", null: false
     t.text "title", null: false
     t.text "body", null: false
-    t.text "published_at", null: false
-    t.text "effective_at", null: false
+    t.datetime "published_at", null: false
+    t.datetime "effective_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

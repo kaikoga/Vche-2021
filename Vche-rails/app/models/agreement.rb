@@ -6,8 +6,8 @@
 #  slug         :string(255)      not null
 #  title        :text(65535)      not null
 #  body         :text(65535)      not null
-#  published_at :text(65535)      not null
-#  effective_at :text(65535)      not null
+#  published_at :datetime         not null
+#  effective_at :datetime         not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
