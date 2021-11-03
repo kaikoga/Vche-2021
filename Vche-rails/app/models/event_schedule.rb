@@ -38,6 +38,8 @@ class EventSchedule < ApplicationRecord
   include Enums::Repeat
   include Enums::Resolution
 
+  validates :resolution, inclusion: { in: %w(scheduled), message: "これは不定期開催機能の実装予定地です" }
+
   belongs_to :event
 
   belongs_to :created_user, class_name: 'User'
