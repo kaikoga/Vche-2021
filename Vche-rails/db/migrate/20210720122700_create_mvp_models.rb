@@ -41,7 +41,6 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
 
     create_table :accounts do |t|
       t.string :uid, null: :false, index: { unique: true }
-      t.string :name, null: :false
       t.string :display_name, null: :false
       t.references :platform, foreign_key: true, null: false
       t.string :url

@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
 
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "uid"
-    t.string "name"
     t.string "display_name"
     t.bigint "platform_id", null: false
     t.string "url"

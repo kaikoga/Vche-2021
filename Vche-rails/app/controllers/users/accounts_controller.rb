@@ -65,6 +65,6 @@ class Users::AccountsController < ApplicationController::Bootstrap
   end
 
   def account_params
-    params.require(:account).permit(:name, :display_name, :platform_id, :url)
+    params.require(:account).permit(:display_name, :platform_id, :url)
   end
 end

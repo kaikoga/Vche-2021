@@ -1,7 +1,6 @@
 vrchat_pc = Platform.find_by!(slug: :vrchat_pc)
 
 Account.create_or_find_by(
-  name: 'kaikoga',
   display_name: 'kaikoga',
   platform: vrchat_pc,
   url: 'kaikogakaikoga',

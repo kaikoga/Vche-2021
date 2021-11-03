@@ -19,7 +19,7 @@ ja:
       user: ユーザー
     attributes:
       account:
-        display_name: 表示する名前
+        display_name: 表示名
         url: URL
       event:
         fullname: 正式名称
@@ -56,7 +56,7 @@ ja:
         audience_events: フォローしているイベント
         backstage_events: スタッフをしているイベント
         email: ログインID
-        display_name: 表示する名前
+        display_name: 表示名
         profile: 自己紹介
         user_role: ユーザータイプ
         password: パスワード

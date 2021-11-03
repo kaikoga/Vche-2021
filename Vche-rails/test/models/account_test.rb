@@ -4,7 +4,6 @@
 #
 #  id           :bigint           not null, primary key
 #  uid          :string(255)
-#  name         :string(255)
 #  display_name :string(255)
 #  platform_id  :bigint           not null
 #  url          :string(255)
