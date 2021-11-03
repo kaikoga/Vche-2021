@@ -6,4 +6,4 @@ div class="event_memories -#{_layout}"
   - event_memories.each do |event_memory|
     .event_memory.-card
       = link_to event_memory_icon_tag(event_memory, size: :small), [event_memory.user, event_memory]
-      span.display_name = link_to "#{l(event_memory.started_at)} #{event_memory.event.name}", [event_memory.user, event_memory]
+      span.display_name = link_to "#{l(event_memory.started_at)} #{visible_event_name(event_memory)}", [event_memory.user, event_memory]

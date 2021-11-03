@@ -61,6 +61,7 @@ class User < ApplicationRecord
 
   has_many :accounts
   has_many :event_memories
+  has_many :shared_or_over_event_memories, -> { joins(:event).merge(Event.shared_or_over) }, class_name: 'EventMemory'
 
   has_many :created_events, class_name: 'Event', foreign_key: :created_user_id
   has_many :updated_events, class_name: 'Event', foreign_key: :updated_user_id

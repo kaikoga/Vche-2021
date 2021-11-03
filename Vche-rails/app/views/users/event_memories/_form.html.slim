@@ -26,3 +26,8 @@
     = form.hidden_field :started_at, value: event_memory.started_at_to_s
   .actions
     = form.submit
+
+- unless event_memory.persisted?
+  .panel.-roundbox
+    | 注意：参加報告の内容は誰でも読むことができます。
+    | 非公開または秘密のイベントの参加報告を投稿する場合、イベント名は隠れますが開催時刻は公開されます。

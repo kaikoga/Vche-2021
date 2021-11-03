@@ -3,7 +3,7 @@
 .event_memory.-table
   .field
     label = EventMemory.human_attribute_name(:name)
-    .value = event_memory.event.name
+    .value = visible_event_name(event_memory)
   .field
     label = EventMemory.human_attribute_name(:started_at)
     .value = event_memory.started_at

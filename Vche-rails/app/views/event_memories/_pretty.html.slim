@@ -6,7 +6,10 @@
     span.published_at = "#{l(event_memory.published_at)} 更新"
 
   div
-    span.name = link_to event_memory.event.name, event_memory.event, class: :link
+    - if loyalty(event_memory.event, 'events').show?
+      span.name = link_to visible_event_name(event_memory), event_memory.event, class: :link
+    - else
+      span.name = visible_event_name(event_memory)
     span.started_at = link_to l(event_memory.started_at), event_event_history_path(event_memory.event, event_memory.started_at_to_s), class: :link
   .body = event_memory.body
 
