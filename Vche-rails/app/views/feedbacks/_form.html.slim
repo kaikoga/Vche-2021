@@ -21,10 +21,20 @@
 
   p
     | お問い合わせへの対応や返信が必要な場合は、返信可能な連絡先を本文に含めてください。
-    | 返信先をお知らせいただけない場合、対応を行うことは保証致しかねます。
+    br
+    | 返信先をお知らせいただけない場合、対応完了を報告できないため対応が難しくなります！
   p
     | また、回答または対応にはお時間をいただく場合がございます。
     | あらかじめご承知ください。
-
   .actions
     = form.submit '送信する'
+
+.panel.-roundbox
+  p
+    | または、以下の連絡先を試してみることもできます。
+    br
+    | ※以下の連絡先を利用した場合、全てのやり取りは公開されます！
+  .actions
+    = link_to 'GitHubのIssue', support_github_url, class: :button
+    = link_to 'サポートTwitter', support_twitter_url, class: :button
+    = link_to 'サポートDiscord', support_discord_url, class: :button

@@ -52,6 +52,6 @@ module LoyaltyTools
   end
 
   def password_login?
-    Rails.application.config.x.password_login?
+    Rails.application.config.x.vche.password_login
   end
 end

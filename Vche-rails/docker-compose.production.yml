@@ -11,6 +11,13 @@ services:
     environment:
       RAILS_ENV: production
       VCHE_ENV: production
+      VCHE_SUPPORT_EMAIL: support@example.com
+      VCHE_SUPPORT_GITHUB: https://example.com/github
+      VCHE_SUPPORT_TWITTER: https://example.com/twitter
+      VCHE_SUPPORT_DISCORD: https://example.com/discord
+      VCHE_TWITTER_KEY: ''
+      VCHE_TWITTER_SECRET: ''
+      VCHE_TWITTER_CALLBACK_URL: ''
       SECRET_KEY_BASE: 7cb138c6247733ca8cc866bc53c712415bf5cf7ca6d19d1fdc0ce1cd71380b33c1536842c23893d0f6f30a93525239b66416451f0fb368ce49c13fcced10f814
       DATABASE_URL: mysql2://root:password@db/vche_production
       RAILS_SERVE_STATIC_FILES: 1

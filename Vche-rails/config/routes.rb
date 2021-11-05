@@ -78,5 +78,21 @@ Rails.application.routes.draw do
 
   root :to => 'calendar#index'
 
+  direct :support_email do
+    Rails.application.config.x.vche.support_email
+  end
+
+  direct :support_github do
+    Rails.application.config.x.vche.support_github
+  end
+
+  direct :support_twitter do
+    Rails.application.config.x.vche.support_twitter
+  end
+
+  direct :support_discord do
+    Rails.application.config.x.vche.support_discord
+  end
+
   ActiveAdmin.routes(self)
 end

@@ -32,6 +32,11 @@ module Vche
     config.i18n.default_locale = :ja
     config.time_zone = "Tokyo"
 
-    config.x.password_login = Vche.env.local?
+    config.x.vche.password_login = Vche.env.local?
+
+    config.x.vche.support_email = ENV.fetch('VCHE_SUPPORT_EMAIL') { 'support@example.com' }
+    config.x.vche.support_github = ENV.fetch('VCHE_SUPPORT_GITHUB') { 'https://example.com/github' }
+    config.x.vche.support_twitter = ENV.fetch('VCHE_SUPPORT_TWITTER') { 'https://example.com/twitter' }
+    config.x.vche.support_discord = ENV.fetch('VCHE_SUPPORT_DISCORD') { 'https://example.com/discord' }
   end
 end
