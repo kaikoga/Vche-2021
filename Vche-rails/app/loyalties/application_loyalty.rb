@@ -35,4 +35,11 @@ class ApplicationLoyalty
   def destroy?
     false
   end
+
+  concerning :Global do
+    # admin is outside control of banken (see /config/initializers/active_admin.rb)
+    def admin?
+      user&.admin_role == 'admin'
+    end
+  end
 end

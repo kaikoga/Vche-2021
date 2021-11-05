@@ -17,4 +17,6 @@
 #
 class Feedback < ApplicationRecord
   belongs_to :user, optional: :true
+
+  scope :unresolved, ->{ where(resolved_at: nil) }
 end
