@@ -4,16 +4,19 @@ class ApplicationController < ActionController::Base
   before_action :require_login
   after_action :verify_authorized unless Rails.env.production?
 
-  rescue_from Banken::NotAuthorizedError, with: :not_authorized
+  if Rails.application.config.x.vche.pretty_not_found
+    rescue_from Banken::NotAuthorizedError, with: :not_found
+    rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  end
 
   private
 
   def not_authenticated
-    redirect_to login_path, alert: "Please login first"
+    render 'error_not_authenticated'
   end
 
-  def not_authorized
-    redirect_to root_path, alert: "Not allowed"
+  def not_found
+    render 'error_not_found'
   end
 
   class Bootstrap < ApplicationController

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController::Bootstrap
-  skip_before_action :require_login, only: [:index, :new, :create]
+  skip_before_action :require_login, only: [:index, :new, :create, :show]
 
   def index
     @users = User.public_or_over.page(params[:page])

@@ -33,6 +33,7 @@ module Vche
     config.time_zone = "Tokyo"
 
     config.x.vche.password_login = Vche.env.local?
+    config.x.vche.pretty_not_found = !Vche.env.local?
 
     config.x.vche.support_email = ENV.fetch('VCHE_SUPPORT_EMAIL') { 'support@example.com' }
     config.x.vche.support_github = ENV.fetch('VCHE_SUPPORT_GITHUB') { 'https://example.com/github' }
