@@ -24,11 +24,11 @@ class Events::EventHistoriesLoyalty < ApplicationLoyalty
   end
 
   def attend?
-    LoyaltyTools.event_accessible?(record.event, user) && !user.attending_event?(record)
+    LoyaltyTools.event_accessible?(record.event, user) && user && !user.attending_event?(record)
   end
 
   def unattend?
-    LoyaltyTools.event_accessible?(record.event, user) && user.attending_event_as_audience?(record)
+    LoyaltyTools.event_accessible?(record.event, user) && user && user.attending_event_as_audience?(record)
   end
 
   def add_user?
@@ -44,7 +44,7 @@ class Events::EventHistoriesLoyalty < ApplicationLoyalty
   end
 
   def memory?
-    LoyaltyTools.event_accessible?(record.event, user) && user.attending_event?(record)
+    LoyaltyTools.event_accessible?(record.event, user) && user && user.attending_event?(record)
   end
 
   concerning :Model do

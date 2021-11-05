@@ -28,11 +28,11 @@ class EventsLoyalty < ApplicationLoyalty
   end
 
   def follow?
-    LoyaltyTools.event_accessible?(record, user) && !user.following_event?(record)
+    LoyaltyTools.event_accessible?(record, user) && user && !user.following_event?(record)
   end
 
   def unfollow?
-    LoyaltyTools.event_accessible?(record, user) && user.following_event_as_audience?(record)
+    LoyaltyTools.event_accessible?(record, user) && user && user.following_event_as_audience?(record)
   end
 
   def add_user?
