@@ -1,0 +1,28 @@
+.event_follow_request.-pretty {
+  @include panel--roundbox;
+  .name {
+    @include card__title;
+    font-size: $font-size-large;
+  }
+  .hashtag {
+    font-size: $font-size-small;
+    color: $text-lighter;
+  }
+  .role {
+    @include roundbox--small;
+    color: $text-lighter;
+  }
+}
+
+.event_follow_requests.-card_cloud {
+  @include cards--card_cloud;
+}
+
+.event_follow_requests.-card_list {
+  @include cards--card_list;
+}
+
+.event__icon {
+  @include icon;
+}
+

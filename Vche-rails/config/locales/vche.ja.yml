@@ -2,14 +2,17 @@ ja:
   activerecord:
     models:
       agreement: 利用規約
+      account: アカウント
+      authentication: 外部連携
       category: 開催形態
       comment: コメント
-      account: アカウント
       event: イベント
       event_attendance: 参加状態
       event_categories: イベントの開催形態
       event_flavor: イベントのフレイバー
       event_follow: フォロー中のイベント
+      event_follow_request: 参加依頼
+      event_follow_request_archive: 参加依頼ログ
       event_history: イベント履歴
       event_memory: 参加報告
       event_schedule: イベント予定
@@ -29,6 +32,8 @@ ja:
         info_url: 外部サイト
         flavors: フレイバー
         taste: 雰囲気
+      event_follow_request_archive:
+        action: 処理結果
       event_history:
         assembled_at: 集合日時
         opened_at: 開場日時
@@ -63,6 +68,7 @@ ja:
         password_confirmation: パスワード（確認する）
         last_login_at: 最終ログイン
   attributes:
+    approver: 承認者
     attendees: 参加者
     backstage_members: スタッフ
     category: 開催形態

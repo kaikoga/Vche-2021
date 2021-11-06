@@ -1,0 +1,16 @@
+h1 = EventFollowRequest.model_name.human
+
+= render 'home/user_strip', user: @user
+
+-if @event_follow_requests.any?
+  - @event_follow_requests.each do |event_follow_request|
+    = render 'event_follow_requests/pretty', event_follow_request: event_follow_request
+  .panel.-roundbox
+    p
+      | このページからイベントのスタッフに加わった場合、スタッフを外れるには主催ユーザーの操作が必要になります。
+      | 信頼できるイベントの参加依頼を受け付けるようにしてください。
+- else
+  .panel = "#{EventFollowRequest.model_name.human}はありません。"
+
+.panel
+  = paginate @event_follow_requests

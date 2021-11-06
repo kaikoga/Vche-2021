@@ -5,6 +5,15 @@ Rails.application.routes.draw do
     get :events
   end
 
+  namespace :my do
+    resources :event_follow_requests, only: :index do
+      member do
+        post :accept
+        post :decline
+      end
+    end
+  end
+
   resources :users do
     member do
       get :info

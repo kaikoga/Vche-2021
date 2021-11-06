@@ -95,6 +95,33 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.index ["flavor_id"], name: "index_event_flavors_on_flavor_id"
   end
 
+  create_table "event_follow_request_archives", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.bigint "approver_id", null: false
+    t.string "role", null: false
+    t.string "message", null: false
+    t.string "action", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["approver_id"], name: "index_event_follow_request_archives_on_approver_id"
+    t.index ["event_id"], name: "index_event_follow_request_archives_on_event_id"
+    t.index ["user_id"], name: "index_event_follow_request_archives_on_user_id"
+  end
+
+  create_table "event_follow_requests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.bigint "approver_id", null: false
+    t.string "role", null: false
+    t.string "message", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["approver_id"], name: "index_event_follow_requests_on_approver_id"
+    t.index ["event_id"], name: "index_event_follow_requests_on_event_id"
+    t.index ["user_id"], name: "index_event_follow_requests_on_user_id"
+  end
+
   create_table "event_follows", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "event_id", null: false
@@ -274,6 +301,9 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
   add_foreign_key "event_attendances", "users"
   add_foreign_key "event_flavors", "events"
   add_foreign_key "event_flavors", "flavors"
+  add_foreign_key "event_follow_requests", "events"
+  add_foreign_key "event_follow_requests", "users"
+  add_foreign_key "event_follow_requests", "users", column: "approver_id"
   add_foreign_key "event_follows", "events"
   add_foreign_key "event_follows", "users"
   add_foreign_key "event_histories", "events"

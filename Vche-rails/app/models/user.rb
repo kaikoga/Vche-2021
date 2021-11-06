@@ -70,6 +70,11 @@ class User < ApplicationRecord
   has_many :created_event_histories, class_name: 'EventHistory', foreign_key: :created_user_id
   has_many :updated_event_histories, class_name: 'EventHistory', foreign_key: :updated_user_id
 
+  has_many :event_follow_requests, dependent: :destroy
+  has_many :follow_requesting_events, through: :event_follow_requests, source: :event
+
+  has_many :event_follow_request_archives
+
   has_many :event_follows, dependent: :destroy
   has_many :following_events, through: :event_follows, source: :event
 

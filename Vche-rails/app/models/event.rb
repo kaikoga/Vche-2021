@@ -72,6 +72,11 @@ class Event < ApplicationRecord
   has_many :event_schedules
   has_many :event_histories
 
+  has_many :event_follow_requests, dependent: :destroy
+  has_many :follow_requesters, through: :event_follow_requests, source: :user
+
+  has_many :event_follow_request_archives
+
   has_many :event_follows, dependent: :destroy
   has_many :followers, through: :event_follows, source: :user
 
