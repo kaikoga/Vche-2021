@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.bigint "event_id", null: false
     t.bigint "approver_id", null: false
     t.string "role", null: false
+    t.datetime "started_at"
     t.string "message", null: false
     t.string "action", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -114,6 +115,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.bigint "event_id", null: false
     t.bigint "approver_id", null: false
     t.string "role", null: false
+    t.datetime "started_at"
     t.string "message", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

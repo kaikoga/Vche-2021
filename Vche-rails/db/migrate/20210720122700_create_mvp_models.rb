@@ -126,6 +126,7 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
       t.references :event, foreign_key: true, null: false
       t.references :approver, foreign_key: { to_table: :users }, null: false
       t.string :role, null: false
+      t.datetime :started_at
       t.string :message, null: false
 
       t.timestamps null: false
@@ -136,6 +137,7 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
       t.references :event, null: false
       t.references :approver, null: false
       t.string :role, null: false
+      t.datetime :started_at
       t.string :message, null: false
       t.string :action, null: false
 

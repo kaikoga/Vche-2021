@@ -11,7 +11,11 @@ class My::EventFollowRequestsController < ApplicationController::Bootstrap
     @event_follow_request = @user.event_follow_requests.find_by!(event: @event)
     authorize! @event_follow_request
     @event_follow_request.accept
-    redirect_to @event, notice: 'Accepted.'
+    if @event_follow_request.started_at
+      redirect_to [@event, @event_follow_request.find_or_build_history], notice: 'Accepted.'
+    else
+      redirect_to @event, notice: 'Accepted.'
+    end
   end
 
   def decline
@@ -20,7 +24,7 @@ class My::EventFollowRequestsController < ApplicationController::Bootstrap
     @event_follow_request = @user.event_follow_requests.find_by!(event: @event)
     authorize! @event_follow_request
     @event_follow_request.decline
-    redirect_to @event, notice: 'Declined.'
+    redirect_to my_event_follow_requests_url, notice: 'Declined.'
   end
 
   private

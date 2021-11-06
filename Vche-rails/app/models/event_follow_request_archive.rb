@@ -7,6 +7,7 @@
 #  event_id    :bigint           not null
 #  approver_id :bigint           not null
 #  role        :string(255)      not null
+#  started_at  :datetime
 #  message     :string(255)      not null
 #  action      :string(255)      not null
 #  created_at  :datetime         not null

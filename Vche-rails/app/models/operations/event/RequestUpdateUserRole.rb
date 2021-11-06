@@ -16,10 +16,11 @@ class Operations::Event::RequestUpdateUserRole < Operations::Operation
 
   def perform
     if role
-      event_follow_request = user.event_follow_requests.create_or_find_by!(event: event, approver: approver, message: 'スタッフへの参画を依頼されています')
+      event_follow_request = user.event_follow_requests.
+        create_or_find_by!(event: event, approver: approver, message: '')
       event_follow_request.update!(role: role)
     else
-      user.event_follow_requests.find_by!(event: event).destroy!
+      user.event_follow_requests.where(event: event, started_at: nil).destroy_all
     end
   end
 

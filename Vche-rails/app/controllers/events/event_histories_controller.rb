@@ -98,11 +98,11 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
     authorize! @event_history
     @user = find_user
 
-    Operations::EventHistory::UpdateUserRole.new(event_history: @event_history, user: @user, role: params[:role]).perform!
+    Operations::EventHistory::RequestUpdateUserRole.new(event_history: @event_history, user: @user, approver: @user, role: params[:role]).perform!
     redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: 'Added User.'
   rescue ActiveRecord::RecordInvalid
     redirect_to event_event_history_event_attendances_path(@event, @event_history)
-  rescue Operations::EventHistory::UpdateUserRole::Outsider
+  rescue Operations::EventHistory::RequestUpdateUserRole::Outsider
     redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: 'Cannot touch outsider.'
   end
 

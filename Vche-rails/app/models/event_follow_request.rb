@@ -7,6 +7,7 @@
 #  event_id    :bigint           not null
 #  approver_id :bigint           not null
 #  role        :string(255)      not null
+#  started_at  :datetime
 #  message     :string(255)      not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -32,8 +33,16 @@ class EventFollowRequest < ApplicationRecord
   belongs_to :event
   belongs_to :approver, class_name: 'User'
 
+  def find_or_build_history
+    event.find_or_build_history(started_at) if started_at
+  end
+
   def accept
-    Operations::Event::UpdateUserRole.new(event: event, user: user, role: role).perform
+    if started_at
+      Operations::EventHistory::UpdateUserRole.new(event_history: find_or_build_history, user: user, role: role).perform
+    else
+      Operations::Event::UpdateUserRole.new(event: event, user: user, role: role).perform
+    end
     archive(action: 'accept')
   rescue Operations::Event::UpdateUserRole::UserIsOwner
     archive(action: 'already_owner')

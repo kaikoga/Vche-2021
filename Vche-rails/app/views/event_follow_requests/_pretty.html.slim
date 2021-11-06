@@ -1,5 +1,6 @@
 - event_follow_request ||= nil
 - _event = event_follow_request.event
+- _event_history = event_follow_request.find_or_build_history
 
 .event_follow_request.-pretty
   div
@@ -7,9 +8,17 @@
     = link_to event_icon_tag(_event), _event
     span.name = link_to _event.name, _event
     span.hashtag = _event.hashtag
+    - if _event_history
+      span.started_at = link_to l(_event_history.started_at), event_event_history_path(_event, _event_history)
+      | 開催分
+    - else
+      |
   .panel
     span.role = event_follow_request.role_text
-    = event_follow_request.message
+    - if _event_history
+      | として、特定の開催回への参加を依頼されています。
+    - else
+      | として、今後のスタッフへの参画を依頼されています。スタッフとしてイベントをフォローします。
   div
     - if loyalty(event_follow_request, 'my/event_follow_requests').decline?
       = link_to '無視する', decline_my_event_follow_request_path(_event), method: :post, class: 'button -negative'

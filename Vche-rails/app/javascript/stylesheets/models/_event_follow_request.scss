@@ -8,6 +8,9 @@
     font-size: $font-size-small;
     color: $text-lighter;
   }
+  .started_at {
+    @include card__text_link;
+  }
   .role {
     @include roundbox--small;
     color: $text-lighter;
