@@ -27,7 +27,8 @@
 class EventFollowRequest < ApplicationRecord
   include Enums::Role
 
-  validates :role, exclusion: { in: %w(owner irrelevant), message: "の参加方法ではフォロー申請できません" }
+  validates :role, if: -> { started_at == nil }, exclusion: { in: %w(owner irrelevant), message: "ではフォロー申請できません" }
+  validates :role, if: -> { started_at != nil }, exclusion: { in: %w(irrelevant), message: "ではフォロー申請できません" }
 
   belongs_to :user
   belongs_to :event
@@ -40,22 +41,26 @@ class EventFollowRequest < ApplicationRecord
   def accept
     if started_at
       Operations::EventHistory::UpdateUserRole.new(event_history: find_or_build_history, user: user, role: role).perform
+      archive(action: 'accept')
+      destroy!
     else
       Operations::Event::UpdateUserRole.new(event: event, user: user, role: role).perform
+      archive(action: 'accept')
+      user.event_follow_requests.where(event: event).destroy_all
     end
-    archive(action: 'accept')
   rescue Operations::Event::UpdateUserRole::UserIsOwner
     archive(action: 'already_owner')
+    destroy!
   end
 
   def decline
     archive(action: 'decline')
+    destroy!
   end
 
   private
 
   def archive(**options)
     EventFollowRequestArchive.create(**attributes.except('id', 'updated_at'), **options)
-    destroy!
   end
 end

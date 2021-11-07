@@ -16,11 +16,9 @@ class Operations::Event::RequestUpdateUserRole < Operations::Operation
 
   def perform
     if role
-      event_follow_request = user.event_follow_requests.
-        create_or_find_by!(event: event, approver: approver, message: '')
-      event_follow_request.update!(role: role)
+      event_follow_requests.find_or_create_by!({}).update!(approver: approver, role: role, message: '')
     else
-      user.event_follow_requests.where(event: event, started_at: nil).destroy_all
+      event_follow_requests.destroy_all
     end
   end
 
@@ -28,7 +26,11 @@ class Operations::Event::RequestUpdateUserRole < Operations::Operation
 
   attr_reader :event, :user, :approver, :role
 
+  def event_follow_requests
+    user.event_follow_requests.where(event: event, started_at: nil)
+  end
+
   def current_role
-    user.event_follow_requests.find_by(event: event)&.role&.to_sym || :irrelevant
+    user.event_follows.find_by(event: event)&.role&.to_sym || :irrelevant
   end
 end
