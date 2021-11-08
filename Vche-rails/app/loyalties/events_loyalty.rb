@@ -36,11 +36,11 @@ class EventsLoyalty < ApplicationLoyalty
   end
 
   def add_user?
-    LoyaltyTools.user_is_owner?(record, user)
+    LoyaltyTools.user_is_owner?(record, user) && LoyaltyTools.event_allow_backstage?(record)
   end
 
   def change_user?
-    LoyaltyTools.user_is_owner?(record, user)
+    LoyaltyTools.user_is_owner?(record, user) && LoyaltyTools.event_allow_backstage?(record)
   end
 
   def remove_user?

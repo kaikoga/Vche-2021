@@ -29,6 +29,10 @@ module LoyaltyTools
     event_has_owner?(event) ? user_is_owner?(event, user) : user_is_source?(event, user)
   end
 
+  def event_allow_backstage?(event)
+    event.visible? || Rails.application.config.x.vche.allow_private_backstage
+  end
+
   def event_accessible?(event, user)
     case event.visibility.to_sym
     when :public, :shared

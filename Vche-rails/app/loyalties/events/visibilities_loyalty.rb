@@ -4,10 +4,18 @@ class Events::VisibilitiesLoyalty < ApplicationLoyalty
   end
 
   def update?
-    if record.owners.empty?
-      edit? && record.event_audiences.empty?
+    if Rails.application.config.x.vche.allow_private_backstage
+      if LoyaltyTools.event_has_owner?(record)
+        edit? && record.event_audiences.empty?
+      else
+        edit? && record.event_audiences.where.not(user: record.created_user).empty?
+      end
     else
-      edit? && record.event_audiences.where.not(user: record.created_user).empty?
+      if LoyaltyTools.event_has_owner?(record)
+        edit? && record.event_follows.where.not(role: :owner).empty?
+      else
+        edit? && record.event_follows.where.not(user: record.created_user).empty?
+      end
     end
   end
 end
