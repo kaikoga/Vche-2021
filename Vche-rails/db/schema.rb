@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_10_03_225811) do
 
-  create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.string "uid"
     t.string "display_name"
     t.bigint "platform_id", null: false
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
-  create_table "active_admin_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "active_admin_comments", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
   end
 
-  create_table "agreements", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "agreements", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.string "slug", null: false
     t.text "title", null: false
     t.text "body", null: false
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "authentications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "authentications", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "provider", null: false
     t.string "uid", null: false
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
   end
 
-  create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.string "emoji"
     t.string "slug"
     t.string "name"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
-  create_table "event_attendances", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "event_attendances", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.string "uid"
     t.bigint "user_id", null: false
     t.bigint "event_id", null: false
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.index ["user_id"], name: "index_event_attendances_on_user_id"
   end
 
-  create_table "event_flavors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "event_flavors", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.bigint "event_id"
     t.bigint "flavor_id"
     t.datetime "created_at", precision: 6, null: false
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.index ["flavor_id"], name: "index_event_flavors_on_flavor_id"
   end
 
-  create_table "event_follow_requests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "event_follow_requests", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.string "uid"
     t.bigint "user_id", null: false
     t.bigint "event_id", null: false
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.index ["user_id"], name: "index_event_follow_requests_on_user_id"
   end
 
-  create_table "event_follows", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "event_follows", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "event_id", null: false
     t.string "role"
@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.index ["user_id"], name: "index_event_follows_on_user_id"
   end
 
-  create_table "event_histories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "event_histories", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.string "uid"
     t.bigint "event_id", null: false
     t.string "resolution", null: false
@@ -147,7 +147,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.index ["updated_user_id"], name: "index_event_histories_on_updated_user_id"
   end
 
-  create_table "event_memories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "event_memories", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.string "uid"
     t.bigint "user_id", null: false
     t.bigint "event_id", null: false
@@ -165,7 +165,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.index ["user_id"], name: "index_event_memories_on_user_id"
   end
 
-  create_table "event_schedules", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "event_schedules", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.string "uid"
     t.bigint "event_id", null: false
     t.datetime "assemble_at"
@@ -186,7 +186,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.index ["updated_user_id"], name: "index_event_schedules_on_updated_user_id"
   end
 
-  create_table "events", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "events", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.string "uid"
     t.string "name"
     t.string "fullname"
@@ -214,7 +214,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.index ["updated_user_id"], name: "index_events_on_updated_user_id"
   end
 
-  create_table "feedbacks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "feedbacks", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.bigint "user_id"
     t.string "user_uid"
     t.text "title", null: false
@@ -225,7 +225,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.index ["user_id"], name: "index_feedbacks_on_user_id"
   end
 
-  create_table "flavors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "flavors", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.string "emoji"
     t.string "slug"
     t.string "name"
@@ -238,7 +238,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.index ["slug"], name: "index_flavors_on_slug", unique: true
   end
 
-  create_table "hashtag_follows", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "hashtag_follows", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "hashtag"
     t.string "role"
@@ -248,7 +248,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.index ["user_id"], name: "index_hashtag_follows_on_user_id"
   end
 
-  create_table "platforms", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "platforms", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.string "slug"
     t.string "name"
     t.boolean "available"
@@ -258,7 +258,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.index ["slug"], name: "index_platforms_on_slug", unique: true
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "uid", null: false
     t.string "display_name"
