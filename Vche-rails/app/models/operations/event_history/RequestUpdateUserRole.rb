@@ -15,7 +15,10 @@ class Operations::EventHistory::RequestUpdateUserRole < Operations::Operation
 
   def perform
     if role
-      event_follow_requests.find_or_create_by!({}).update!(approver: approver, role: role, message: '')
+      event_follow_requests.find_or_initialize_by({}).tap do |efr|
+        efr.assign_attributes(approver: approver, role: role, message: '')
+        efr.save!
+      end
     else
       event_follow_requests.destroy_all
     end

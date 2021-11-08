@@ -95,32 +95,22 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.index ["flavor_id"], name: "index_event_flavors_on_flavor_id"
   end
 
-  create_table "event_follow_request_archives", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "event_id", null: false
-    t.bigint "approver_id", null: false
-    t.string "role", null: false
-    t.datetime "started_at"
-    t.string "message", null: false
-    t.string "action", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["approver_id"], name: "index_event_follow_request_archives_on_approver_id"
-    t.index ["event_id"], name: "index_event_follow_request_archives_on_event_id"
-    t.index ["user_id"], name: "index_event_follow_request_archives_on_user_id"
-  end
-
   create_table "event_follow_requests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "uid"
     t.bigint "user_id", null: false
     t.bigint "event_id", null: false
     t.bigint "approver_id", null: false
     t.string "role", null: false
     t.datetime "started_at"
     t.string "message", null: false
+    t.string "state"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["approver_id", "state"], name: "index_event_follow_requests_on_approver_id_and_state"
     t.index ["approver_id"], name: "index_event_follow_requests_on_approver_id"
+    t.index ["event_id", "state"], name: "index_event_follow_requests_on_event_id_and_state"
     t.index ["event_id"], name: "index_event_follow_requests_on_event_id"
+    t.index ["uid"], name: "index_event_follow_requests_on_uid", unique: true
     t.index ["user_id"], name: "index_event_follow_requests_on_user_id"
   end
 

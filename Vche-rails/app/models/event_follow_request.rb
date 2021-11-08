@@ -3,20 +3,25 @@
 # Table name: event_follow_requests
 #
 #  id          :bigint           not null, primary key
+#  uid         :string(255)
 #  user_id     :bigint           not null
 #  event_id    :bigint           not null
 #  approver_id :bigint           not null
 #  role        :string(255)      not null
 #  started_at  :datetime
 #  message     :string(255)      not null
+#  state       :string(255)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 # Indexes
 #
-#  index_event_follow_requests_on_approver_id  (approver_id)
-#  index_event_follow_requests_on_event_id     (event_id)
-#  index_event_follow_requests_on_user_id      (user_id)
+#  index_event_follow_requests_on_approver_id            (approver_id)
+#  index_event_follow_requests_on_approver_id_and_state  (approver_id,state)
+#  index_event_follow_requests_on_event_id               (event_id)
+#  index_event_follow_requests_on_event_id_and_state     (event_id,state)
+#  index_event_follow_requests_on_uid                    (uid) UNIQUE
+#  index_event_follow_requests_on_user_id                (user_id)
 #
 # Foreign Keys
 #
@@ -27,12 +32,17 @@
 class EventFollowRequest < ApplicationRecord
   include Enums::Role
 
+  include Vche::Uid
+  include Vche::UidQuery
+
   validates :role, if: -> { started_at == nil }, exclusion: { in: %w(owner irrelevant), message: "ではフォロー申請できません" }
   validates :role, if: -> { started_at != nil }, exclusion: { in: %w(irrelevant), message: "ではフォロー申請できません" }
 
   belongs_to :user
   belongs_to :event
   belongs_to :approver, class_name: 'User'
+
+  scope :active, -> { where(state: nil) }
 
   def find_or_build_history
     event.find_or_build_history(started_at) if started_at
@@ -41,26 +51,21 @@ class EventFollowRequest < ApplicationRecord
   def accept
     if started_at
       Operations::EventHistory::UpdateUserRole.new(event_history: find_or_build_history, user: user, role: role).perform
-      archive(action: 'accept')
-      destroy!
+      update!(state: 'accepted')
     else
       Operations::Event::UpdateUserRole.new(event: event, user: user, role: role).perform
-      archive(action: 'accept')
-      user.event_follow_requests.where(event: event).destroy_all
+      update!(state: 'accepted')
+      user.event_follow_requests.where(event: event, state: nil).update_all(state: 'canceled')
     end
   rescue Operations::Event::UpdateUserRole::UserIsOwner
-    archive(action: 'already_owner')
-    destroy!
+    update!(state: 'already_owner')
   end
 
   def decline
-    archive(action: 'decline')
-    destroy!
+    update!(state: 'declined')
   end
 
-  private
-
-  def archive(**options)
-    EventFollowRequestArchive.create(**attributes.except('id', 'updated_at'), **options)
+  def withdraw
+    update!(state: 'withdrawed')
   end
 end

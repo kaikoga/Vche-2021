@@ -111,7 +111,7 @@ class EventsController < ApplicationController::Bootstrap
 
     Operations::Event::RequestUpdateUserRole.new(event: @event, user: @user, approver: @user, role: params[:role]).perform!
     redirect_to event_event_follows_url(@event), notice: 'Requested User.'
-  rescue ActiveRecord::RecordInvalid
+  rescue ActiveRecord::RecordInvalid => e
     redirect_to event_event_follows_url(@event)
   rescue Operations::Event::RequestUpdateUserRole::UserIsOwner
     redirect_to edit_event_owner_url(@event)

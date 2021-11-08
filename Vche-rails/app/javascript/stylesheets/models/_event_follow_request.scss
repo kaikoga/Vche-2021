@@ -17,6 +17,30 @@
   }
 }
 
+.event_follow_request.-card {
+  @include card;
+  flex-direction: column;
+  align-items: first baseline;
+  .primary_sns_name {
+    font-size: $font-size-smaller;
+    color: $text-lighter;
+  }
+  .display_name {
+    @include card__title;
+  }
+  .hashtag {
+    font-size: $font-size-small;
+    color: $text-lighter;
+  }
+  .started_at {
+    @include card__text_link;
+  }
+  .role {
+    @include roundbox--small;
+    color: $text-lighter;
+  }
+}
+
 .event_follow_requests.-card_cloud {
   @include cards--card_cloud;
 }

@@ -122,24 +122,14 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
     end
 
     create_table :event_follow_requests do |t|
+      t.string :uid, null: :false, index: { unique: true }
       t.references :user, foreign_key: true, null: false
       t.references :event, foreign_key: true, null: false
       t.references :approver, foreign_key: { to_table: :users }, null: false
       t.string :role, null: false
       t.datetime :started_at
       t.string :message, null: false
-
-      t.timestamps null: false
-    end
-
-    create_table :event_follow_request_archives do |t|
-      t.references :user, null: false
-      t.references :event, null: false
-      t.references :approver, null: false
-      t.string :role, null: false
-      t.datetime :started_at
-      t.string :message, null: false
-      t.string :action, null: false
+      t.string :state
 
       t.timestamps null: false
     end
@@ -200,6 +190,8 @@ class CreateMvpModels < ActiveRecord::Migration[6.1]
     add_index :event_histories, [:event_id, :started_at], unique: true
     add_index :hashtag_follows, [:user_id, :hashtag, :role], unique: true
     add_index :event_follows, [:user_id, :event_id], unique: true
+    add_index :event_follow_requests, [:event_id, :state]
+    add_index :event_follow_requests, [:approver_id, :state]
     add_index :event_attendances, [:user_id, :event_id, :started_at], unique: true
     add_index :event_memories, [:user_id, :published_at]
   end

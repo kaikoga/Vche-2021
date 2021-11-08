@@ -1,0 +1,9 @@
+h1 = Event.human_attribute_name(:followers)
+
+= render 'events/strip', event: @event, user: @user
+
+.event_follow.-roster
+  .pane.-grow
+    h2 = EventFollowRequest.model_name.human
+    .panel
+      = render 'event_follow_requests/cards', event_follow_requests: @event_follow_requests

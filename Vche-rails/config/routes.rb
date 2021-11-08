@@ -52,6 +52,11 @@ Rails.application.routes.draw do
       resource :resolution, controller: 'events/event_histories/resolutions', only: [:edit, :update]
     end
     resources :event_follows, controller: 'events/event_follows', only: :index
+    resources :event_follow_requests, controller: 'events/event_follow_requests', only: :index do
+      member do
+        post :withdraw
+      end
+    end
 
     resource :owner, controller: 'events/owners', only: [:edit, :update] do
       get :introduction
