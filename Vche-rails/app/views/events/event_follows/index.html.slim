@@ -16,9 +16,7 @@ h1 = Event.human_attribute_name(:followers)
           .field
             = form.select :role, EventFollow.role.backstage_options(owner: false), selected: :staff
           = form.submit 'ユーザーを追加'
-      - if loyalty(@event, 'events/event_follow_requests').index?
-        - if @event.event_follow_requests.active.exists?
-          = link_to 'イベントの参加依頼を管理する', event_event_follow_requests_path(@event), class: :button
+      = render 'events/event_follow_requests/link', event: @event
   .pane.-grow
     h2 = "参加者"
     .panel

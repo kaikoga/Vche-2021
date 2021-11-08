@@ -1,0 +1,6 @@
+- event ||= nil
+- count ||= event.event_follow_requests.active.count
+
+- if loyalty(event, 'events/event_follow_requests').index?
+  - if count > 0
+    = link_to "イベントの参加依頼を管理する(#{count})", event_event_follow_requests_path(event), class: :button

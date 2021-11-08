@@ -11,6 +11,7 @@
       = render 'event_attendances/cards', event_history: event_history, event_attendances: event_history.event_backstage_members, card_cloud: true
       - if loyalty(event_history, 'events/event_histories').add_user?
         = link_to 'スタッフを割り当てる', event_event_history_event_attendances_path(event, event_history), class: :button
+      = render 'events/event_follow_requests/link', event: @event
   - if loyalty(event_history, 'events/event_histories').backstage?
     .field
       label = EventHistory.human_attribute_name(:assembled_at)
