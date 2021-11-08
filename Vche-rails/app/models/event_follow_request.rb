@@ -55,7 +55,6 @@ class EventFollowRequest < ApplicationRecord
     else
       Operations::Event::UpdateUserRole.new(event: event, user: user, role: role).perform
       update!(state: 'accepted')
-      user.event_follow_requests.where(event: event, state: nil).update_all(state: 'canceled')
     end
   rescue Operations::Event::UpdateUserRole::UserIsOwner
     update!(state: 'already_owner')
