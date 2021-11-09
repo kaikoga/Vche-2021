@@ -13,7 +13,11 @@ module Vche
     @env ||= ActiveSupport::StringInquirer.new(ENV["VCHE_ENV"].presence || raise('Please set VCHE_ENV'))
   end
 
-  puts "VCHE_ENV=#{Vche.env}"
+  def version
+    @version ||= File.read(File.join(__dir__, "../VCHE_VERSION")) || 'unknown'
+  end
+
+  puts "VCHE_ENV=#{Vche.env} VCHE_VERSION=#{Vche.version}"
 
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
