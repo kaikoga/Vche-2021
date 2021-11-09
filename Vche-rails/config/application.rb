@@ -14,7 +14,7 @@ module Vche
   end
 
   def version
-    @version ||= File.read(File.join(__dir__, "../VCHE_VERSION")) || 'unknown'
+    @version ||= File.read(File.join(__dir__, "../VCHE_VERSION")).strip || 'unknown'
   end
 
   puts "VCHE_ENV=#{Vche.env} VCHE_VERSION=#{Vche.version}"

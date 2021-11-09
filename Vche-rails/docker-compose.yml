@@ -4,7 +4,7 @@ version: '3.9'
 
 services:
   app: &app
-    image: vche-rails-dev
+    image: kaikoga/vche-rails-dev
     build:
       context: .
       dockerfile: Dockerfile-dev
