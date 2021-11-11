@@ -25,4 +25,6 @@ ActiveAdmin.register Agreement do
     column :updated_at
     actions
   end
+
+  permit_params :slug, :title, :published_at, :effective_at
 end
