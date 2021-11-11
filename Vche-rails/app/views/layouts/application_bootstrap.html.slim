@@ -14,7 +14,7 @@ html
       nav
         ul
           - if Vche.env.release?
-            li = link_to "Vche", root_url, class: 'logo'
+            li = link_to "Vche β", root_url, class: 'logo'
           - elsif Vche.env.nightbug?
             li = link_to "Vche nightbug", root_url, class: 'logo'
           - elsif Vche.env.production?
@@ -51,4 +51,4 @@ html
           li = link_to 'お問い合わせ', new_feedback_path, class: 'link'
           li
             address = link_to 'Twitter', support_twitter_url, class: 'link'
-          li = "version #{Vche.version}"
+          li = "version #{Vche.version} Early Access."
