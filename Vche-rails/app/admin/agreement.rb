@@ -26,5 +26,5 @@ ActiveAdmin.register Agreement do
     actions
   end
 
-  permit_params :slug, :title, :published_at, :effective_at
+  permit_params :slug, :title, :body, :published_at, :effective_at
 end
