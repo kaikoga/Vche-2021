@@ -4,7 +4,7 @@
 = form_with(model: event, class: '-table') do |form|
   = render_errors_header form
 
-  = render_text_field form, :name
+  = render_text_field form, :name, required: true
   = render_text_field form, :fullname
   = render_text_field form, :description
   = render_text_field form, :organizer_name

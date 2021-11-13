@@ -11,9 +11,9 @@
 
   = render_field form, :open_at do
     = form.datetime_field :open_at
-  = render_field form, :start_at do
+  = render_field form, :start_at, required: true do
     = form.datetime_field :start_at
-  = render_field form, :end_at do
+  = render_field form, :end_at, required: true do
     = form.datetime_field :end_at
 
   - if loyalty(event_schedule).backstage?

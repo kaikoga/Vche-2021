@@ -7,7 +7,7 @@
 
   = render_field form, :title do
     = form.select :title, ['不具合報告', '表示崩れの報告', '機能追加要望', '利用規約違反の通報', 'コンテンツの削除依頼', 'アカウントの復旧依頼', '退会したい', '利用規約に関する質問', 'その他のお問い合わせ']
-  = render_field form, :body do
+  = render_field form, :body, required: true do
     = form.text_area :body, rows: 15
 
   = hidden_field_tag :user_id, user if user

@@ -16,6 +16,10 @@
   padding-right: 1rem;
   text-align: right;
   vertical-align: middle;
+  &.-required::after {
+    content: '(*)';
+    color: $negative_text-lighter;
+  }
 }
 
 @mixin keyvaluetable__value {

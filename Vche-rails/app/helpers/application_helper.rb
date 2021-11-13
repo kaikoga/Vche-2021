@@ -59,12 +59,12 @@ module ApplicationHelper
     render 'errors_header', form: form
   end
 
-  def render_field(form, field_name, label: nil, &block)
-    render 'field', form: form, label: label, field_name: field_name, &block
+  def render_field(form, field_name, label: nil, required: false, &block)
+    render 'field', form: form, label: label, field_name: field_name, required: required, &block
   end
 
-  def render_text_field(form, field_name, label: nil)
-    render 'field', form: form, label: label, field_name: field_name do
+  def render_text_field(form, field_name, required: false, label: nil)
+    render 'field', form: form, label: label, field_name: field_name, required: required do
       form.text_field field_name
     end
   end
