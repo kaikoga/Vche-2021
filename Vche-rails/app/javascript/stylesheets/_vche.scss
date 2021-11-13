@@ -59,12 +59,10 @@ header {
     background: $primary_bg-dark;
     ul {
       @include reset--list;
-      display: inline-block;
-      padding: 0.4rem;
+      display: flex;
+      padding: 0.4rem 0.8rem;
+      gap: 0.4rem 1.2rem;
       li {
-        display: inline-block;
-        margin-left: 0.4rem;
-        margin-right: 0.4rem;
         a.logo {
           @include reset--font;
           color: $primary_text-darker;
@@ -96,12 +94,11 @@ footer {
     background: $primary_bg-dark;
     ul {
       @include reset--list;
-      display: inline-block;
-      padding: 0.4rem;
+      display: flex;
+      padding: 0.5rem 0.8rem;
+      gap: 0.8rem;
       li {
         display: inline-block;
-        margin-left: 0.4rem;
-        margin-right: 0.4rem;
         font-size: $font-size-small;
         color: $text-lighter;
       }
@@ -144,6 +141,23 @@ a {
 
 .button {
   @include button;
+}
+
+/* FIXME: this does not work with form submits, ideally introduce .actions */
+.button + .button {
+  margin-left: 0.4rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* delete me */
+.actions > .button + .button,
+.calendar__nav > .button + .button,
+{
+  margin-left: 0;
 }
 
 .panel {
@@ -209,7 +223,7 @@ form.-inline {
   input[type="datetime"],
   select, textarea {
     @include keyvaluetable__value;
-    vertical-align: bottom;
+    vertical-align: inherit;
     width: inherit;
   }
   > input[type="submit"] {

@@ -34,9 +34,10 @@
     label = EventHistory.human_attribute_name(:capacity)
     .value = event_history.capacity
 
-  - if loyalty(event_history, 'events/event_histories').info?
-    = link_to '情報を見る', info_event_event_history_path(@event, @event_history), class: :button
-  - if loyalty(event_history, 'events/event_histories').edit?
-    = link_to '編集する', edit_event_event_history_path(event, event_history), class: 'button'
+  .actions
+    - if loyalty(event_history, 'events/event_histories').info?
+      = link_to '情報を見る', info_event_event_history_path(@event, @event_history), class: :button
+    - if loyalty(event_history, 'events/event_histories').edit?
+      = link_to '編集する', edit_event_event_history_path(event, event_history), class: 'button'
 
   = render 'editor_info', resource: event_history

@@ -58,7 +58,8 @@
       - if loyalty(event, :events).edit?
         = link_to "新規#{EventSchedule.model_name.human}", new_event_event_schedule_path(event), class: 'button'
 
-  - if loyalty(event, :events).edit?
-    = link_to '編集する', edit_event_path(event), class: 'button'
+  .actions
+    - if loyalty(event, :events).edit?
+      = link_to '編集する', edit_event_path(event), class: 'button'
 
   = render 'editor_info', resource: event

@@ -37,7 +37,8 @@
     label = EventHistory.human_attribute_name(:default_audience_role)
     .value = EventAttendance.role.find_value(event_history.default_audience_role).text
 
-  - if loyalty(event_history, 'events/event_histories').edit?
-    = link_to '編集する', edit_event_event_history_path(event, event_history), class: 'button'
+  .actions
+    - if loyalty(event_history, 'events/event_histories').edit?
+      = link_to '編集する', edit_event_event_history_path(event, event_history), class: 'button'
 
   = render 'editor_info', resource: event_history

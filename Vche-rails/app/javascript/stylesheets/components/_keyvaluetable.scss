@@ -1,9 +1,11 @@
 @mixin keyvaluetable {
   @include panel--roundbox;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 @mixin keyvaluetable__keyvalue {
-  margin: 1rem 0px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;

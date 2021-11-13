@@ -17,5 +17,6 @@
     blockquote.twitter-tweet data={ conversation: :none, dnt: true }
       a href="#{url}"
 
-  - if loyalty(event_memory, 'users/event_memories').edit?
-    = link_to '編集する', edit_user_event_memory_path(event_memory.user, event_memory), class: 'button'
+  .actions
+    - if loyalty(event_memory, 'users/event_memories').edit?
+      = link_to '編集する', edit_user_event_memory_path(event_memory.user, event_memory), class: 'button'
