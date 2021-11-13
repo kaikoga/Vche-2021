@@ -1,19 +1,12 @@
 - user ||= nil
 
 = form_with(model: user, url: user_password_path(user), class: '-table') do |form|
-  - if user.errors.any?
-    #error_explanation
-      h2
-        = pluralize(user.errors.count, "error")
-        |  prohibited this user from being saved:
-      ul
-        - user.errors.each do |error|
-          li = error.full_message
-  .field
-    = form.label :password
+  = render_errors_header form
+
+  = render_field form, :password do
     = form.password_field :password
-  .field
-    = form.label :password_confirmation
+  = render_field form, :password_confirmation do
     = form.password_field :password_confirmation
+
   .actions
     = form.submit

@@ -1,37 +1,25 @@
 - user ||= nil
 
 = form_with(model: user, class: '-table') do |form|
-  - if user.errors.any?
-    #error_explanation
-      h2
-        = pluralize(user.errors.count, "error")
-        |  prohibited this user from being saved:
-      ul
-        - user.errors.each do |error|
-          li = error.full_message
-  - unless user.persisted?
-    .field
-      = form.label :email
-      = form.text_field :email
-    .field
-      = form.label :password
-      = form.password_field :password
-    .field
-      = form.label :password_confirmation
-      = form.password_field :password_confirmation
-  .field
-    = form.label :display_name
-    = form.text_field :display_name
-  .field
-    = form.label :primary_sns_url
-    = form.text_field :primary_sns_url
-  .field
-    = form.label :profile
-    = form.text_area :profile
-  .field
-    = form.label :visibility
-    = form.select :visibility, User.visibility.options
+  = render_errors_header form
 
+  = render_field form, :open_at do
+    = form.datetime_field :open_at
+
+  - unless user.persisted?
+    = render_text_field form, :email
+    = render_field form, :password do
+      = form.password_field :password
+    = render_field form, :password_confirmation do
+      = form.password_field :password_confirmation
+
+  = render_text_field form, :display_name
+  = render_text_field form, :primary_sns_url
+
+  = render_field form, :profile do
+    = form.text_area :profile
+  = render_field form, :visibility do
+    = form.select :visibility, User.visibility.options
 
   .actions
     = form.submit

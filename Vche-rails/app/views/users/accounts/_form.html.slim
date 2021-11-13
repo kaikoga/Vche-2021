@@ -2,22 +2,14 @@
 - account ||= nil
 
 = form_with(model: [user, account], class: '-table') do |form|
-  - if account.errors.any?
-    #error_explanation
-      h2
-        = pluralize(account.errors.count, "error")
-        |  prohibited this user from being saved:
-      ul
-        - account.errors.each do |error|
-          li = error.full_message
-  .field
-    = form.label :display_name
-    = form.text_field :display_name
-  .field
-    = form.label :platform
+  = render_errors_header form
+
+  = render_text_field form, :display_name
+
+  = render_field form, :platform_id do
     = form.collection_select :platform_id, Platform.available, :id, :name
-  .field
-    = form.label :url
-    = form.text_field :url
+
+  = render_text_field form, :url
+
   .actions
     = form.submit

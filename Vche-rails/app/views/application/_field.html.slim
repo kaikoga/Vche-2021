@@ -1,0 +1,10 @@
+- form ||= nil
+- field_name ||= nil
+- label ||= nil
+
+.field
+  = form.label field_name, label
+  = yield
+  - if form.object
+    - form.object.errors.full_messages_for(field_name).each do |message|
+      .error_message = message
