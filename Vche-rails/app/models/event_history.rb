@@ -38,12 +38,18 @@ class EventHistory < ApplicationRecord
   include Enums::Resolution
   include Enums::DefaultAudienceRole
 
+  validates :event_id, presence: true
+  validates :started_at, presence: true
+  validates :ended_at, presence: true
+
   belongs_to :event
 
   belongs_to :created_user, class_name: 'User'
   belongs_to :updated_user, class_name: 'User'
 
   delegate :trust, :hashtag, to: :event
+
+  before_validation :recalculate_capacity
 
   after_save :cleanup_stale_schedule
 
@@ -84,10 +90,14 @@ class EventHistory < ApplicationRecord
   end
 
   def to_param
-    started_at.strftime('%Y%m%d%H%M%S')
+    started_at&.strftime('%Y%m%d%H%M%S')
   end
 
   private
+
+  def recalculate_capacity
+    self.capacity ||= 0
+  end
 
   def cleanup_stale_schedule
     return unless resolution.in? ['moved', 'canceled', 'completed']
