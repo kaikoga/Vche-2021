@@ -1,6 +1,6 @@
 - event ||= nil
 
-= form_with(model: event, url: event_visibility_url(event), method: :patch, class: '-table') do |form|
+= form_with(model: event, url: event_visibility_path(event), method: :patch, class: '-table') do |form|
   = render_errors_header form
 
   = render_field form, :visibility do

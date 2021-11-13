@@ -8,7 +8,7 @@
     remote       : data-remote
 span class="page#{' current' if page.current?}"
   - if page.current?
-    .button--selected == page
+    .button.-selected == page
   - else
     == link_to page, url, remote: remote, rel: page.rel, class: :button
 '

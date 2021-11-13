@@ -17,8 +17,10 @@ h2 = event.fullname
   .field
     label
     .relation
-      = link_to event.primary_sns_url, event.primary_sns_url, class: :button
-      = link_to event.info_url, event.info_url, class: :button
+      - if event.primary_sns_url.present?
+        = external_link_to event.primary_sns_url, event.primary_sns_url, class: 'button -external'
+      - if event.info_url.present?
+        = external_link_to event.info_url, event.info_url, class: 'button -external'
   .field
     label = Event.human_attribute_name(:event_schedules)
     .relation
