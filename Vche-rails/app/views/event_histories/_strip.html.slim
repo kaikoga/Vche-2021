@@ -16,13 +16,14 @@
     - if user
       '
       span.attending_event = user.attending_event?(event_history)&.text || EventAttendance.role.irrelevant.text
-      - if loyalty(event_history, 'events/event_histories').attend?
-        = link_to '参加する', attend_event_event_history_path(event, event_history), method: :post, class: 'button'
-      - if loyalty(event_history, 'events/event_histories').unattend?
-        = link_to '参加を解除', unattend_event_event_history_path(event, event_history), method: :post, class: 'button'
-      - if loyalty(event_history, 'events/event_histories/resolutions').update?
-        = render 'events/event_histories/resolutions/quick_inline_forms', event: event, event_history: event_history
-      - if loyalty(event_history, 'events/event_histories/resolutions').edit?
-        = link_to '状態を変更する', edit_event_event_history_resolution_path(event, event_history), class: 'button'
-      - if loyalty(event_history, 'events/event_histories').memory?
-        = link_to '参加報告を書く', new_user_event_memory_path(user, event_id: event, started_at: event_history), class: 'button'
+      span.actions
+        - if loyalty(event_history, 'events/event_histories').attend?
+          = link_to '参加する', attend_event_event_history_path(event, event_history), method: :post, class: 'button'
+        - if loyalty(event_history, 'events/event_histories').unattend?
+          = link_to '参加を解除', unattend_event_event_history_path(event, event_history), method: :post, class: 'button'
+        - if loyalty(event_history, 'events/event_histories/resolutions').update?
+          = render 'events/event_histories/resolutions/quick_inline_forms', event: event, event_history: event_history
+        - if loyalty(event_history, 'events/event_histories/resolutions').edit?
+          = link_to '状態を変更する', edit_event_event_history_resolution_path(event, event_history), class: 'button'
+        - if loyalty(event_history, 'events/event_histories').memory?
+          = link_to '参加報告を書く', new_user_event_memory_path(user, event_id: event, started_at: event_history), class: 'button'

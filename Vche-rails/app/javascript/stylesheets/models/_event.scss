@@ -1,6 +1,8 @@
 .event__nav {
   padding-left: 1rem;
   background: $fill-dark;
+  display: flex;
+  gap: 0.5rem;
 }
 
 .event.-pretty {

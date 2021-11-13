@@ -8,5 +8,5 @@ h1 = EventHistory.model_name.human
   = paginate @event_histories
 
 - if loyalty(@event, 'events/event_histories').new?
-  .panel
+  .panel.actions
     = link_to "新規#{EventHistory.model_name.human}", new_event_event_history_path(@event), class: 'button'

@@ -143,21 +143,16 @@ a {
   @include button;
 }
 
-/* FIXME: this does not work with form submits, ideally introduce .actions */
-.button + .button {
-  margin-left: 0.4rem;
-}
-
-.actions {
+div.actions {
   display: flex;
   gap: 0.5rem;
+  align-items: baseline;
 }
 
-/* delete me */
-.actions > .button + .button,
-.calendar__nav > .button + .button,
-{
-  margin-left: 0;
+span.actions {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: baseline;
 }
 
 .panel {
