@@ -13,7 +13,7 @@ class EventsController < ApplicationController::Bootstrap
 
     year = show_params[:year]&.to_i
     month = show_params[:month]&.to_i
-    @calendar = CalendarPresenter.new([@event], user: @user, year: year, month: month, months: 2, days: 0)
+    @calendar = CalendarPresenter.new([@event], year: year, month: month, months: 2, days: 0)
   end
 
   def info
