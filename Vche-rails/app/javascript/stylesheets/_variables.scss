@@ -16,6 +16,7 @@ $fill-lighter: #ffffff;
 
 $_primary_hue: 115;
 $_secondary_hue: 25;
+$_tertiary_hue: 175;
 
 $primary_text-darker: hsl($_primary_hue, 100%, 10%);
 $primary_text-dark: hsl($_primary_hue, 50%, 20%);
@@ -42,6 +43,11 @@ $negative_bg-lighter: hsl($_secondary_hue, 100%, 80%);
 $negative_fill: #fcf6f6;
 $negative_fill-light: #fcf9f9;
 $negative_fill-lighter: #fffcfc;
+
+$external_text: hsl($_tertiary_hue, 15%, 30%);
+$external_text-lighter: hsl($_tertiary_hue, 25%, 70%);
+$external_bg: hsl($_tertiary_hue, 50%, 83%);
+$external_bg-light: hsl($_tertiary_hue, 50%, 90%);
 
 $disabled_text-dark: #444444;
 $disabled_text: #777777;

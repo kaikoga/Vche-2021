@@ -17,6 +17,15 @@
   &.-negative {
     @include --button-negative;
   }
+  &.-external {
+    @include --button-external;
+  }
+  &.-selected {
+    @include --button-external;
+  }
+  &.-disabled {
+    @include --button-external;
+  }
 }
 
 @mixin button--positive {
@@ -27,6 +36,11 @@
 @mixin button--negative {
   @include button;
   @include --button-negative;
+}
+
+@mixin button--external {
+  @include button;
+  @include --button-external;
 }
 
 @mixin button--selected {
@@ -59,6 +73,15 @@
   &:hover {
     background: $negative_bg-lighter;
     color: $negative_text-lighter;
+  }
+}
+
+@mixin --button-external {
+  background: $external_bg;
+  color: $external_text;
+  &:hover {
+    background: $external_bg-light;
+    color: $external_text-lighter;
   }
 }
 

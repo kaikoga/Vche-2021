@@ -141,22 +141,6 @@ a {
   @include button;
 }
 
-.button--positive {
-  @include button--positive;
-}
-
-.button--negative {
-  @include button--negative;
-}
-
-.button--selected {
-  @include button--selected;
-}
-
-.button--disabled {
-  @include button--disabled;
-}
-
 .panel {
   @include panel;
 }

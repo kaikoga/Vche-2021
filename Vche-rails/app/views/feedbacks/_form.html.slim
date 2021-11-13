@@ -28,6 +28,6 @@
     br
     | ※以下の連絡先を利用した場合、全てのやり取りは公開されます！
   .actions
-    = link_to 'GitHubのIssue', support_github_url, class: :button
-    = link_to 'サポートTwitter', support_twitter_url, class: :button
-    = link_to 'サポートDiscord', support_discord_url, class: :button
+    = external_link_to 'GitHubのIssue', support_github_url, class: 'button -external'
+    = external_link_to 'サポートTwitter', support_twitter_url, class: 'button -external'
+    = external_link_to 'サポートDiscord', support_discord_url, class: 'button -external'

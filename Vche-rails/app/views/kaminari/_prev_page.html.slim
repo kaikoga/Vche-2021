@@ -7,7 +7,7 @@
     remote       : data-remote
 span.prev
   - if current_page.first?
-    .button--disabled == t('views.pagination.previous').html_safe
+    .button.-disabled == t('views.pagination.previous').html_safe
   - else
     == link_to t('views.pagination.previous').html_safe, url, rel: 'prev', remote: remote, class: :button
 '
