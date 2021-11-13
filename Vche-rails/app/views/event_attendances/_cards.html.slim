@@ -34,5 +34,5 @@ div class="event_attendances -#{_layout}"
 
       span.role = EventAttendance.role.irrelevant.text
 
-      - if loyalty(event_history, 'events/event_histories').add_user?
-        = link_to '追加', add_user_event_event_history_path(event_history.event, event_history, user_id: user, role: event_follow.role), method: :post, class: 'button'
+      - if loyalty(event_history, 'events/event_histories').change_user?
+        = link_to '追加', change_user_event_event_history_path(event_history.event, event_history, user_id: user, role: event_follow.role), method: :post, class: 'button'
