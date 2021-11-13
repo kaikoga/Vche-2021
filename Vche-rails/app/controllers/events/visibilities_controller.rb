@@ -3,6 +3,7 @@ class Events::VisibilitiesController < ApplicationController::Bootstrap
 
   def edit
     authorize! @event
+    @user = current_user
   end
 
   def update
