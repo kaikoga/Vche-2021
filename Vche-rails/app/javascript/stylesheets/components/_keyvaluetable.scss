@@ -35,6 +35,9 @@
   &:hover {
     background: $fill-lighter;
   }
+  &.pre {
+    white-space: break-spaces;
+  }
 }
 
 @mixin keyvaluetable__relation {

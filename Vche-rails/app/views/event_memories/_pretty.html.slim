@@ -11,7 +11,7 @@
     - else
       span.name = visible_event_name(event_memory)
     span.started_at = link_to l(event_memory.started_at), event_event_history_path(event_memory.event, event_memory.started_at_to_s), class: :link
-  .body = event_memory.body
+  p.pre = event_memory.body
 
   - event_memory.urls.each do |url|
     blockquote.twitter-tweet data={ conversation: :none, dnt: true }

@@ -9,7 +9,7 @@
     .value = event.fullname
   .field
     label = Event.human_attribute_name(:description)
-    .value = event.description
+    .value.pre = event.description
   .field
     label = Event.human_attribute_name(:organizer_name)
     .value = event.organizer_name

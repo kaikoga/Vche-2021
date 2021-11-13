@@ -6,7 +6,7 @@ h2 = event.fullname
   = inline_category_tag(event.category)
   - event.flavors.each do |flavor|
     = inline_flavor_tag(flavor)
-  p = event.description
+  p.pre = event.description
   .field
     label = Event.human_attribute_name(:backstage_members)
     .relation

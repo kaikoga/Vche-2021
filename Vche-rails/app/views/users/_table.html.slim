@@ -12,7 +12,7 @@
     .value = user.primary_sns_url
   .field
     label = User.human_attribute_name(:profile)
-    .value = user.profile
+    .value.pre = user.profile
   .field
     label = User.human_attribute_name(:visibility)
     .value = user.visibility_text

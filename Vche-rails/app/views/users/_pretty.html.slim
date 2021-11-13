@@ -1,7 +1,7 @@
 - user ||= nil
 
 .user.-pretty
-  p = User.human_attribute_name(:profile)
+  p.pre = user.profile
 
   - if user.primary_sns_url.present?
     .field

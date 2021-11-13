@@ -121,6 +121,11 @@ p, ol {
   margin: 1rem 2rem;
   width: 600px;
 }
+
+p.pre {
+  white-space: break-spaces;
+}
+
 a {
   color: inherit;
   text-decoration: none;
