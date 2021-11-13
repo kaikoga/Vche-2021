@@ -1,4 +1,6 @@
-= render 'events/strip', event: @event
+h1 = "#{Event.model_name.human}の#{EventFollow.role.find_value(:owner).text}になる"
+
+= render 'events/strip', event: @event, user: @user
 
 .panel.-roundbox
   p

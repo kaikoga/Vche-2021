@@ -3,10 +3,12 @@ class Events::OwnersController < ApplicationController::Bootstrap
 
   def introduction
     authorize! @event
+    @user = current_user
   end
 
   def edit
     authorize! @event
+    @user = current_user
   end
 
   def update

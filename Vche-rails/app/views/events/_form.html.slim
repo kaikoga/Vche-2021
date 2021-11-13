@@ -6,7 +6,8 @@
 
   = render_text_field form, :name, required: true
   = render_text_field form, :fullname
-  = render_text_field form, :description
+  = render_field form, :description do
+    = form.text_area :description, rows: 15
   = render_text_field form, :organizer_name
   = render_text_field form, :primary_sns_url
   = render_text_field form, :info_url

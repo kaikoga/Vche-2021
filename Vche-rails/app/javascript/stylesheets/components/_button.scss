@@ -2,7 +2,6 @@
   @include reset--font;
   display: inline-block;
   background: $primary_bg;
-  margin-right: 1em;
   border: none;
   padding: 0.5em 1.5em;
   border-radius: 2em;
@@ -107,7 +106,6 @@
   box-sizing: border-box;
   background: $fill-light;
   border: $primary_bg-dark solid 1px;
-  margin-right: 1rem;
   &:hover {
     background: $fill-lighter;
     color: inherit;

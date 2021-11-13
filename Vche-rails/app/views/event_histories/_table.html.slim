@@ -9,9 +9,10 @@
     label = EventHistory.human_attribute_name(:backstage_members)
     .relation
       = render 'event_attendances/cards', event_history: event_history, event_attendances: event_history.event_backstage_members, card_cloud: true
-      - if loyalty(event_history, 'events/event_histories').add_user?
-        = link_to 'スタッフを割り当てる', event_event_history_event_attendances_path(event, event_history), class: :button
-      = render 'events/event_follow_requests/link', event: @event
+      span.actions
+        - if loyalty(event_history, 'events/event_histories').add_user?
+          = link_to 'スタッフを割り当てる', event_event_history_event_attendances_path(event, event_history), class: :button
+        = render 'events/event_follow_requests/link', event: @event
   - if loyalty(event_history, 'events/event_histories').backstage?
     .field
       label = EventHistory.human_attribute_name(:assembled_at)
@@ -37,7 +38,8 @@
     label = EventHistory.human_attribute_name(:default_audience_role)
     .value = EventAttendance.role.find_value(event_history.default_audience_role).text
 
-  - if loyalty(event_history, 'events/event_histories').edit?
-    = link_to '編集する', edit_event_event_history_path(event, event_history), class: 'button'
+  .actions
+    - if loyalty(event_history, 'events/event_histories').edit?
+      = link_to '編集する', edit_event_event_history_path(event, event_history), class: 'button'
 
   = render 'editor_info', resource: event_history

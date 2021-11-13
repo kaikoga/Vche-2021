@@ -9,7 +9,7 @@
     .value = event.fullname
   .field
     label = Event.human_attribute_name(:description)
-    .value = event.description
+    .value.pre = event.description
   .field
     label = Event.human_attribute_name(:organizer_name)
     .value = event.organizer_name
@@ -17,9 +17,10 @@
     label = Event.human_attribute_name(:backstage_members)
     .relation
       = render 'event_follows/cards', event_follows: event.event_backstage_members, card_cloud: true
-      - if loyalty(event, :events).add_user?
-        = link_to 'スタッフを割り当てる', event_event_follows_path(event), class: :button
-      = render 'events/event_follow_requests/link', event: @event
+      span.actions
+        - if loyalty(event, :events).add_user?
+          = link_to 'スタッフを割り当てる', event_event_follows_path(event), class: :button
+        = render 'events/event_follow_requests/link', event: @event
   .field
     label = Event.human_attribute_name(:primary_sns_url)
     .value = event.primary_sns_url
@@ -58,7 +59,8 @@
       - if loyalty(event, :events).edit?
         = link_to "新規#{EventSchedule.model_name.human}", new_event_event_schedule_path(event), class: 'button'
 
-  - if loyalty(event, :events).edit?
-    = link_to '編集する', edit_event_path(event), class: 'button'
+  .actions
+    - if loyalty(event, :events).edit?
+      = link_to '編集する', edit_event_path(event), class: 'button'
 
   = render 'editor_info', resource: event

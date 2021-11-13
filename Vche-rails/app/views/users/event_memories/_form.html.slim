@@ -9,9 +9,9 @@
     .value = l(event_memory.started_at)
 
   = render_field form, :body do
-    = form.text_area :body
+    = form.text_area :body, rows: 15
   = render_field form, :urls do
-    = form.text_area :urls, value: event_memory.urls.join("\n")
+    = form.text_area :urls, rows: 5, value: event_memory.urls.join("\n")
 
   - unless event_memory.persisted?
     = form.hidden_field :event_id, value: event_memory.event.uid

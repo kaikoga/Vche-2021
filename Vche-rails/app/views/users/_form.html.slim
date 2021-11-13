@@ -14,7 +14,7 @@
   = render_text_field form, :primary_sns_url
 
   = render_field form, :profile do
-    = form.text_area :profile
+    = form.text_area :profile, rows: 15
   = render_field form, :visibility do
     = form.select :visibility, User.visibility.options
 
