@@ -197,6 +197,9 @@ form.-table {
         }
       }
     }
+    > .error_message {
+      @include keyvaluetable__error_message;
+    }
     .relation {
       @include keyvaluetable__relation;
       label {

@@ -5,6 +5,7 @@
 @mixin keyvaluetable__keyvalue {
   margin: 1rem 0px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 }
 
@@ -15,6 +16,10 @@
   padding-right: 1rem;
   text-align: right;
   vertical-align: middle;
+  &.-required::after {
+    content: '(*)';
+    color: $negative_text-lighter;
+  }
 }
 
 @mixin keyvaluetable__value {
@@ -36,4 +41,11 @@
   display: inline-block;
   vertical-align: middle;
   min-height: 2.5em;
+}
+
+@mixin keyvaluetable__error_message {
+  font-size: $font-size-small;
+  color: $negative_text;
+  padding-left: 200px;
+  flex: 0 0 100%;
 }

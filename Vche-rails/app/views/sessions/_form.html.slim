@@ -1,9 +1,9 @@
-= form_with url: login_path, method: :post, class: '-table' do |f|
-  .field
-    = f.label :email, User.human_attribute_name(:email)
-    = f.text_field :email
-  .field
-    = f.label :password, User.human_attribute_name(:password)
-    = f.password_field :password
+= form_with url: login_path, method: :post, class: '-table' do |form|
+  = render_errors_header form
+
+  = render_text_field form, :email, label: User.human_attribute_name(:email)
+  = render_field form, :password, label: User.human_attribute_name(:password) do
+    = form.password_field :password
+
   .actions
-    = f.submit "Login"
+    = form.submit "Login"

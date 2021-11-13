@@ -91,6 +91,8 @@ class Event < ApplicationRecord
 
   has_many :event_attendances, dependent: :destroy
 
+  before_validation :recalculate_capacity
+
   before_validation :recalculate_trust
 
   # scope :with_category_param, ->(category_param) { category_param.present? ? where(category: Category.find_by(slug: category_param)) : all }
@@ -149,5 +151,11 @@ class Event < ApplicationRecord
   def owner=(user)
     event_owners.update_all(role: :staff)
     event_follows.create_or_find_by!(user: user).update!(role: :owner)
+  end
+
+  private
+
+  def recalculate_capacity
+    self.capacity ||= 0
   end
 end

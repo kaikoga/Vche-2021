@@ -3,39 +3,30 @@
 - event_schedule.event ||= event
 
 = form_with(model: [event, event_schedule], class: '-table') do |form|
-  - if event_schedule.errors.any?
-    #error_explanation
-      h2
-        = pluralize(event_schedule.errors.count, "error")
-        |  prohibited this event_schedule from being saved:
-      ul
-        - event_schedule.errors.each do |error|
-          li = error.full_message
+  = render_errors_header form
+
   - if loyalty(event_schedule).backstage?
-    .field
-      = form.label :assemble_at
+    = render_field form, :assemble_at do
       = form.datetime_field :assemble_at
-  .field
-    = form.label :open_at
+
+  = render_field form, :open_at do
     = form.datetime_field :open_at
-  .field
-    = form.label :start_at
+  = render_field form, :start_at, required: true do
     = form.datetime_field :start_at
-  .field
-    = form.label :end_at
+  = render_field form, :end_at, required: true do
     = form.datetime_field :end_at
+
   - if loyalty(event_schedule).backstage?
-    .field
-      = form.label :close_at
+    = render_field form, :close_at do
       = form.datetime_field :close_at
-  .field
-    = form.label :repeat
+
+  = render_field form, :repeat do
     = form.select :repeat, EventSchedule.repeat.options
-  .field
-    = form.label :resolution
+  = render_field form, :resolution do
     = form.select :resolution, EventSchedule.resolution.options
-  .field
-    = form.label :repeat_until
+
+  = render_field form, :repeat_until do
     = form.datetime_field :repeat_until
+
   .actions
     = form.submit
