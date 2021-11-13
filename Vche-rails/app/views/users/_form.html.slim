@@ -3,9 +3,6 @@
 = form_with(model: user, class: '-table') do |form|
   = render_errors_header form
 
-  = render_field form, :open_at do
-    = form.datetime_field :open_at
-
   - unless user.persisted?
     = render_text_field form, :email
     = render_field form, :password do
