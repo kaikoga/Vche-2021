@@ -72,14 +72,6 @@ class EventsController < ApplicationController::Bootstrap
     end
   end
 
-  def destroy
-    @event = find_event
-    authorize! @event
-    @event.destroy
-    redirect_to events_url, notice: I18n.t('notice.events.destroy.success')
-  end
-
-
   def follow
     @event = find_event
     authorize! @event

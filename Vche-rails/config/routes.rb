@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users do
+  resources :users, except: [:destroy] do
     member do
       get :info
       get :events
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     resource :password, controller: 'users/passwords', only: [:edit, :update]
   end
 
-  resources :events do
+  resources :events, except: [:destroy] do
     get :select, on: :new
     member do
       get :info

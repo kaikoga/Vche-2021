@@ -59,13 +59,6 @@ class UsersController < ApplicationController::Bootstrap
     end
   end
 
-  def destroy
-    @user = find_user
-    authorize! @user
-    @user.destroy
-    redirect_to users_url, notice: I18n.t('notice.users.destroy.success')
-  end
-
   private
 
   def find_user
