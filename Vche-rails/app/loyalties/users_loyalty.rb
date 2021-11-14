@@ -22,8 +22,4 @@ class UsersLoyalty < ApplicationLoyalty
   def update?
     user == record
   end
-
-  def destroy?
-    false
-  end
 end

@@ -14,3 +14,5 @@
   .actions
     - if loyalty(account, 'users/accounts').edit?
       = link_to '編集する', edit_user_account_path(user, account), class: 'button'
+    - if loyalty(account, 'users/accounts').destroy?
+      = link_to '削除する', user_account_path(user, account), method: :delete, class: 'button -negative'

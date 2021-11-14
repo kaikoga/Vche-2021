@@ -1,0 +1,95 @@
+ja:
+  notice:
+    users/accounts:
+      create:
+        success: 'アカウント情報を追加しました'
+      update:
+        success: 'アカウント情報を更新しました'
+      destroy:
+        success: 'アカウント情報を削除しました'
+    events/event_follow_requests:
+      withdraw:
+        success: '参加依頼を取り下げました'
+    my/event_follow_requests:
+      accept:
+        success: '参加依頼を受け入れました'
+      decline:
+        success: '参加依頼を辞退しました'
+    events/event_histories:
+      create:
+        success: 'EventHistory was successfully created.'
+      update:
+        success: 'イベント履歴を更新しました'
+      destroy:
+        success: 'EventHistory was successfully destroyed.'
+      attend:
+        success: 'イベントに参加しました'
+      unattend:
+        success: 'イベントの参加を解除しました'
+      add_user:
+        success: 'イベントの開催回への参加依頼を送信しました'
+        outsider: '関係者以外の状態は変更できません'
+      change_user:
+        success: 'イベントの開催回への参加状態を更新しました'
+        outsider: '関係者以外の状態は変更できません'
+      remove_user:
+        success: 'イベントの開催回への参加を解除しました'
+        outsider: '関係者以外の状態は変更できません'
+    users/event_memories:
+      create:
+        success: 'イベントの参加記録をしたためました'
+      update:
+        success: 'イベントの参加記録をしたためました'
+      destroy:
+        success: 'イベントの参加記録を心の中にしまいました'
+    event_schedules:
+      create:
+        success: 'イベント予定を追加しました'
+      update:
+        success: 'イベント予定を更新しました'
+      destroy:
+        success: 'イベント予定を削除しました'
+    events:
+      create:
+        success: 'イベントを追加しました'
+      update:
+        success: 'イベントを変更しました'
+      follow:
+        success: 'イベントをフォローしました'
+      unfollow:
+        success: 'イベントのフォローを解除しました'
+      add_user:
+        success: 'イベントの参加依頼を送信しました'
+      change_user:
+        success: 'イベントの参加状態を更新しました'
+      remove_user:
+        success: 'イベントの参加を解除しました'
+    oauths:
+      callback:
+        success: '%{provider}でログインに成功しました'
+        failure: '%{provider}でログインに失敗しました'
+    events/owners:
+      update:
+        success: 'イベントの主催を更新しました。'
+    users/passwords:
+      update:
+        success: 'パスワードを更新しました'
+    events/event_histories/resolutions:
+      update:
+        success: 'イベントの状態を更新しました'
+    sessions:
+      create:
+        success: 'ログインに成功しました'
+        failure: 'ログインに失敗しました'
+      destroy:
+        success: 'ログアウトしました'
+      purge:
+        success: '全てのセッションからログアウトしました'
+    users:
+      create:
+        success: 'ユーザーを作成しました'
+      update:
+        success: 'ユーザーを更新しました'
+    events/visibilities:
+      update:
+        success: 'イベントの公開範囲を更新しました'

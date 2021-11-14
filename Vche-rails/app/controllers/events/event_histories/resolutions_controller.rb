@@ -9,7 +9,7 @@ class Events::EventHistories::ResolutionsController < ApplicationController::Boo
   def update
     authorize! @event_history
     if @event_history.update(update_params)
-      redirect_to [@event, @event_history], notice: 'Event resolution was successfully updated.'
+      redirect_to [@event, @event_history], notice: I18n.t('notice.events/event_histories/resolutions.update.success')
     else
       render :edit
     end

@@ -11,9 +11,9 @@ class SessionsController < ApplicationController::Bootstrap
     authorize!
 
     if @user
-      redirect_back_or_to(:home, notice: 'Login successful')
+      redirect_back_or_to :home, notice: I18n.t('notice.sessions.create.success')
     else
-      flash.now[:alert] = 'Login failed'
+      flash.now[:alert] = I18n.t('notice.sessions.create.failure')
       render action: 'new'
     end
   end
@@ -21,13 +21,13 @@ class SessionsController < ApplicationController::Bootstrap
   def destroy
     authorize!
     logout
-    redirect_back_or_to(:root, notice: 'Logged out!')
+    redirect_back_or_to :root, notice: I18n.t('notice.sessions.destroy.success')
   end
 
   def purge
     authorize!
     invalidate_active_sessions!
     logout
-    redirect_back_or_to(:root, notice: 'Logged out all sessions!')
+    redirect_back_or_to :root, notice: I18n.t('notice.sessions.purge.success')
   end
 end

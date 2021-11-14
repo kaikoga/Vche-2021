@@ -11,7 +11,7 @@ class Events::EventFollowRequestsController < ApplicationController::Bootstrap
     @event_follow_request = @event.event_follow_requests.active.find_by!(uid: params[:id])
     authorize! @event_follow_request
     @event_follow_request.withdraw
-    redirect_to event_event_follow_requests_path(@event), notice: 'Withdrawed event follow request.'
+    redirect_to event_event_follow_requests_path(@event), notice: I18n.t('notice.events/event_follow_requests.withdraw.success')
   end
 
   private

@@ -54,7 +54,7 @@ class EventsController < ApplicationController::Bootstrap
     if @event.save
       @event.flavors = event_flavors_params
       @event.event_follows.create(user: current_user, role: role)
-      redirect_to @event, notice: 'Event was successfully created'
+      redirect_to @event, notice: I18n.t('notice.events.create.success')
     else
       render :new
     end
@@ -66,26 +66,18 @@ class EventsController < ApplicationController::Bootstrap
     @event.updated_user = current_user
 
     if @event.update(**update_params, flavors: event_flavors_params)
-      redirect_to @event, notice: 'Event was successfully updated.'
+      redirect_to @event, notice: I18n.t('notice.events.update.success')
     else
       render :edit
     end
   end
-
-  def destroy
-    @event = find_event
-    authorize! @event
-    @event.destroy
-    redirect_to events_url, notice: 'Event was successfully destroyed.'
-  end
-
 
   def follow
     @event = find_event
     authorize! @event
 
     Operations::Event::UpdateUserFollow.new(event: @event, user: current_user, role: params[:role] || @event.default_audience_role).perform!
-    redirect_to @event, notice: 'Followed.'
+    redirect_to @event, notice: I18n.t('notice.events.follow.success')
   rescue ActiveRecord::RecordInvalid
     redirect_to @event
   rescue Operations::Event::UpdateUserFollow::UserIsBackstage
@@ -97,7 +89,7 @@ class EventsController < ApplicationController::Bootstrap
     authorize! @event
 
     Operations::Event::UpdateUserFollow.new(event: @event, user: current_user, role: nil).perform!
-    redirect_to @event, notice: 'Unfollowed.'
+    redirect_to @event, notice: I18n.t('notice.events.unfollow.success')
   rescue ActiveRecord::RecordInvalid
     redirect_to @event
   rescue Operations::Event::UpdateUserFollow::UserIsBackstage
@@ -110,7 +102,7 @@ class EventsController < ApplicationController::Bootstrap
     @user = find_user
 
     Operations::Event::RequestUpdateUserRole.new(event: @event, user: @user, approver: @user, role: params[:role]).perform!
-    redirect_to event_event_follows_url(@event), notice: 'Requested User.'
+    redirect_to event_event_follows_url(@event), notice: I18n.t('notice.events.add_user.success')
   rescue ActiveRecord::RecordInvalid => e
     redirect_to event_event_follows_url(@event)
   rescue Operations::Event::RequestUpdateUserRole::UserIsOwner
@@ -123,7 +115,7 @@ class EventsController < ApplicationController::Bootstrap
     @user = find_user
 
     Operations::Event::UpdateUserRole.new(event: @event, user: @user, role: params[:role]).perform!
-    redirect_to event_event_follows_url(@event), notice: 'Changed User.'
+    redirect_to event_event_follows_url(@event), notice: I18n.t('notice.events.change_user.success')
   rescue ActiveRecord::RecordInvalid
     redirect_to event_event_follows_url(@event)
   rescue Operations::Event::UpdateUserRole::UserIsOwner
@@ -136,7 +128,7 @@ class EventsController < ApplicationController::Bootstrap
     @user = find_user
 
     Operations::Event::UpdateUserRole.new(event: @event, user: @user, role: nil).perform!
-    redirect_to event_event_follows_url(@event), notice: 'Changed User.'
+    redirect_to event_event_follows_url(@event), notice: I18n.t('notice.events.remove_user.success')
   rescue ActiveRecord::RecordInvalid
     redirect_to event_event_follows_url(@event)
   rescue Operations::Event::UpdateUserRole::UserIsOwner
