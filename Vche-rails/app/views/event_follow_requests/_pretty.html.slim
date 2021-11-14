@@ -21,6 +21,6 @@
       | として、今後のスタッフへの参画を依頼されています。スタッフとしてイベントをフォローします。
   .actions
     - if loyalty(event_follow_request, 'my/event_follow_requests').decline?
-      = link_to '無視する', decline_my_event_follow_request_path(event_follow_request), method: :post, class: 'button -negative'
+      = link_to '辞退する', decline_my_event_follow_request_path(event_follow_request), method: :post, class: 'button -negative'
     - if loyalty(event_follow_request, 'my/event_follow_requests').accept?
       = link_to '受け入れる', accept_my_event_follow_request_path(event_follow_request), method: :post, class: 'button -positive'
