@@ -31,7 +31,7 @@ class EventSchedulesController < ApplicationController::Bootstrap
     @event_schedule.updated_user = current_user
 
     if @event_schedule.save
-      redirect_to @event, notice: I18n.t('notice.event_schedules.destroy.success')
+      redirect_to @event, notice: I18n.t('notice.event_schedules.create.success')
     else
       render :new
     end
@@ -42,7 +42,7 @@ class EventSchedulesController < ApplicationController::Bootstrap
     authorize! @event_schedule
     @event_schedule.updated_user = current_user
     if @event_schedule.update(event_schedule_params)
-      redirect_to @event, notice: I18n.t('notice.event_schedules.destroy.success')
+      redirect_to @event, notice: I18n.t('notice.event_schedules.update.success')
     else
       render :edit
     end
