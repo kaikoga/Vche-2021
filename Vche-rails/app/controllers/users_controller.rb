@@ -43,7 +43,7 @@ class UsersController < ApplicationController::Bootstrap
     authorize! @user
 
     if @user.save
-      redirect_to :users, notice: 'User was successfully created'
+      redirect_to :users, notice: I18n.t('notice.users.create.success')
     else
       render :new
     end
@@ -53,7 +53,7 @@ class UsersController < ApplicationController::Bootstrap
     @user = find_user
     authorize! @user
     if @user.update(update_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+      redirect_to @user, notice: I18n.t('notice.users.update.success')
     else
       render :edit
     end
@@ -63,7 +63,7 @@ class UsersController < ApplicationController::Bootstrap
     @user = find_user
     authorize! @user
     @user.destroy
-    redirect_to users_url, notice: 'User was successfully destroyed.'
+    redirect_to users_url, notice: I18n.t('notice.users.destroy.success')
   end
 
   private

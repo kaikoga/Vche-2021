@@ -27,7 +27,7 @@ class Users::EventMemoriesController < ApplicationController::Bootstrap
     authorize! @event_memory
 
     if @event_memory.save
-      redirect_to user_event_memories_path(@user), notice: 'EventMemory was successfully created'
+      redirect_to user_event_memories_path(@user), notice: I18n.t('notice.users/event_memories.create.success')
     else
       render :new
     end
@@ -37,7 +37,7 @@ class Users::EventMemoriesController < ApplicationController::Bootstrap
     @event_memory = find_event_memory
     authorize! @event_memory
     if @event_memory.update(update_params)
-      redirect_to [@user, @event_memory], notice: 'EventMemory was successfully updated.'
+      redirect_to [@user, @event_memory], notice: I18n.t('notice.users/event_memories.update.success')
     else
       render :edit
     end
@@ -47,7 +47,7 @@ class Users::EventMemoriesController < ApplicationController::Bootstrap
     @event_memory = find_event_memory
     authorize! @event_memory
     @event_memory.destroy
-    redirect_to users_url, notice: 'EventMemory was successfully destroyed.'
+    redirect_to users_url, notice: I18n.t('notice.users/event_memories.destroy.success')
   end
 
   private

@@ -1,0 +1,99 @@
+ja:
+  notice:
+    users/accounts:
+      create:
+        success: 'Account was successfully created.'
+      update:
+        success: 'Account was successfully updated.'
+      destroy:
+        success: 'Account was successfully destroyed.'
+    events/event_follow_requests:
+      withdraw:
+        success: 'Withdrawed event follow request.'
+    my/event_follow_requests:
+      accept:
+        success: 'Accepted.'
+      decline:
+        success: 'Declined.'
+    events/event_histories:
+      create:
+        success: 'EventHistory was successfully created..'
+      update:
+        success: 'EventHistory was successfully updated.'
+      destroy:
+        success: 'EventHistory was successfully destroyed.'
+      attend:
+        success: 'Attended.'
+      unattend:
+        success: 'Unattended.'
+      add_user:
+        success: 'Requested User.'
+        outsider: 'Cannot touch outsider.'
+      change_user:
+        success: 'Changed User.'
+        outsider: 'Cannot touch outsider.'
+      remove_user:
+        success: 'Removed User.'
+        outsider: 'Cannot touch outsider.'
+    users/event_memories:
+      create:
+        success: 'EventMemory was successfully created.'
+      update:
+        success: 'EventMemory was successfully updated.'
+      destroy:
+        success: 'EventMemory was successfully destroyed.'
+    event_schedules:
+      create:
+        success: 'EventSchedule was successfully created.'
+      update:
+        success: 'EventSchedule was successfully updated.'
+      destroy:
+        success: 'EventSchedule was successfully destroyed.'
+    events:
+      create:
+        success: 'Event was successfully created.'
+      update:
+        success: 'Event was successfully updated.'
+      destroy:
+        success: 'Event was successfully destroyed.'
+      follow:
+        success: 'Followed.'
+      unfollow:
+        success: 'Unfollowed.'
+      add_user:
+        success: 'Requested User.'
+      change_user:
+        success: 'Changed User.'
+      remove_user:
+        success: 'Removed User.'
+    oauths:
+      callback:
+        success: 'Logged in from %{provider}!'
+        failure: 'Failed to login from %{provider}!'
+    events/owners:
+      update:
+        success: 'Event owner was successfully updated.'
+    users/passwords:
+      update:
+        success: 'User password was successfully updated.'
+    events/event_histories/resolutions:
+      update:
+        success: 'Event resolution was successfully updated.'
+    sessions:
+      create:
+        success: 'Login successful'
+        failure: 'Login failed'
+      destroy:
+        success: 'Logged out!'
+      purge:
+        success: 'Logged out all sessions!'
+    users:
+      create:
+        success: 'User was successfully created'
+      update:
+        success: 'User was successfully updated.'
+      destroy:
+        success: 'User was successfully destroyed.'
+    events/visibilities:
+      update:
+        success: 'Event visibility was successfully updated.'
