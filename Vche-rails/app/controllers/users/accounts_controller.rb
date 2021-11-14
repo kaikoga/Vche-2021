@@ -51,7 +51,7 @@ class Users::AccountsController < ApplicationController::Bootstrap
     @account = find_account
     authorize! @account
     @account.destroy
-    redirect_to users_url, notice: I18n.t('notice.users/accounts.destroy.success')
+    redirect_to user_accounts_url(@user), notice: I18n.t('notice.users/accounts.destroy.success')
   end
 
   private
