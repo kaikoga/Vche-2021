@@ -1,6 +1,6 @@
 class Events::EventFollowRequestsLoyalty < ApplicationLoyalty
   def index?
-    true || LoyaltyTools.user_is_backstage_member?(record, user)
+    LoyaltyTools.user_is_backstage_member?(record, user)
   end
 
   def withdraw?
