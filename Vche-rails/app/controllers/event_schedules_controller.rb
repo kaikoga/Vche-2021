@@ -17,7 +17,6 @@ class EventSchedulesController < ApplicationController::Bootstrap
   def new
     authorize! @event
     @event_schedule = @event.event_schedules.build
-    @event_schedule.resolution = @event.backstage_members.exists? ? :scheduled : :information
   end
 
   def edit
@@ -67,6 +66,6 @@ class EventSchedulesController < ApplicationController::Bootstrap
   end
 
   def event_schedule_params
-    p = params.require(:event_schedule).permit(:visibility, :assemble_at, :open_at, :start_at, :end_at, :close_at, :repeat, :resolution, :repeat_until)
+    p = params.require(:event_schedule).permit(:visibility, :assemble_at, :open_at, :start_at, :end_at, :close_at, :repeat, :repeat_until)
   end
 end

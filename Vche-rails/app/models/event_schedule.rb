@@ -36,11 +36,10 @@ class EventSchedule < ApplicationRecord
   include Vche::UidQuery
 
   include Enums::Repeat
-  include Enums::Resolution
 
   validates :start_at, presence: true
   validates :end_at, presence: true
-  validates :resolution, inclusion: { in: %w(scheduled information), message: "これは不定期開催機能の実装予定地です" }
+  validates :resolution, inclusion: { in: %w(scheduled), message: "これは不定期開催機能の実装予定地でした" } # to be deleted
 
   belongs_to :event
 
@@ -98,7 +97,7 @@ class EventSchedule < ApplicationRecord
     history_resolution =
       if Time.current > end_at.change(date_options)
         :ended
-      elsif resolution.to_sym == :information
+      elsif event.backstage_members.empty?
         :information
       else
         :scheduled

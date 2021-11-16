@@ -22,9 +22,6 @@
 
   = render_field form, :repeat do
     = form.select :repeat, EventSchedule.repeat.options
-  = render_field form, :resolution do
-    = form.select :resolution, EventSchedule.resolution.options
-
   = render_field form, :repeat_until do
     = form.datetime_field :repeat_until
 
