@@ -47,6 +47,11 @@
           content: '▶️';
         }
       }
+      &.-resolution_information {
+        &::before {
+          content: '✏️';
+        }
+      }
       &.-resolution_moved {
         background: $negative_fill-lighter;
         color: $negative_text;

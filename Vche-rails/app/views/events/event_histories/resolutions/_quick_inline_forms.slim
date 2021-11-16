@@ -12,4 +12,4 @@
   - if event_history.resolution.to_sym.in?([:scheduled])
     = render 'events/event_histories/resolutions/inline_form', event: event, event_history: event_history, resolution: :announced, submit_label: 'イベント開催を確定する'
   - if event_history.resolution.to_sym.in?([:announced, :ended]) && event_history.ended_at < Time.current
-    = render 'events/event_histories/resolutions/inline_form', event: event, event_history: event_history, resolution: :completed, submit_label: 'イベントの完了を確定する'
+    = render 'events/event_histories/resolutions/inline_form', event: event, event_history: event_history, resolution: :completed, submit_label: 'イベントの完了を報告する'

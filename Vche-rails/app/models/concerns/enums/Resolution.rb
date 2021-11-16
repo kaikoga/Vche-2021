@@ -8,7 +8,8 @@ module Enums::Resolution
       :moved,
       :canceled,
       :ended,
-      :completed
+      :completed,
+      :information
     ], default: :scheduled
 
     def resolution_emoji
@@ -34,6 +35,8 @@ module Enums::Resolution
       '🗒'
     when :announced
       '▶️'
+    when :information
+      '✏️'
     when :moved
       '⚠️'
     when :canceled

@@ -15,8 +15,9 @@ class EventSchedulesController < ApplicationController::Bootstrap
   end
 
   def new
-    @event_schedule = @event.event_schedules.build
     authorize! @event
+    @event_schedule = @event.event_schedules.build
+    @event_schedule.resolution = @event.backstage_members.exists? ? :scheduled : :information
   end
 
   def edit

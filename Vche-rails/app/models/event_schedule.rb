@@ -40,7 +40,7 @@ class EventSchedule < ApplicationRecord
 
   validates :start_at, presence: true
   validates :end_at, presence: true
-  validates :resolution, inclusion: { in: %w(scheduled), message: "これは不定期開催機能の実装予定地です" }
+  validates :resolution, inclusion: { in: %w(scheduled information), message: "これは不定期開催機能の実装予定地です" }
 
   belongs_to :event
 
@@ -95,9 +95,17 @@ class EventSchedule < ApplicationRecord
 
   def at_date(date)
     date_options = { year: date.year, month: date.month, day: date.day }
+    history_resolution =
+      if Time.current > end_at.change(date_options)
+        :ended
+      elsif resolution.to_sym == :information
+        :information
+      else
+        :scheduled
+      end
     EventHistory.new(
       event: event,
-      resolution: Time.current < end_at.change(date_options) ? :scheduled : :ended,
+      resolution: history_resolution,
       capacity: event.capacity,
       default_audience_role: event.default_audience_role,
       assembled_at: assemble_at&.change(date_options),

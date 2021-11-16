@@ -111,6 +111,7 @@ ja:
       resolution:
         scheduled: 開催予定
         announced: 開催決定
+        information: 情報
         moved: 日時変更
         canceled: 中止
         ended: 終了
