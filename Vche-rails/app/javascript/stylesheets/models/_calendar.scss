@@ -36,6 +36,12 @@
         background: $positive_bg-light;
         color: $positive_text-light;
       }
+      &.-resolution_information {
+        color: $text-light;
+        &::before {
+          content: '✏️';
+        }
+      }
       &.-resolution_scheduled {
         color: $text-lighter;
         &::before {
@@ -45,12 +51,6 @@
       &.-resolution_announced {
         &::before {
           content: '▶️';
-        }
-      }
-      &.-resolution_information {
-        color: $text-light;
-        &::before {
-          content: '✏️';
         }
       }
       &.-resolution_moved {

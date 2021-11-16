@@ -39,7 +39,6 @@ class EventSchedule < ApplicationRecord
 
   validates :start_at, presence: true
   validates :end_at, presence: true
-  validates :resolution, inclusion: { in: %w(scheduled), message: "これは不定期開催機能の実装予定地でした" } # to be deleted
 
   belongs_to :event
 

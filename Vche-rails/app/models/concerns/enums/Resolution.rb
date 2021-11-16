@@ -3,14 +3,14 @@ module Enums::Resolution
 
   included do
     enumerize :resolution, in: [
+      :information,
       :scheduled,
       :announced,
       :moved,
       :canceled,
       :ended,
       :completed,
-      :information
-    ], default: :scheduled
+    ], default: :information
 
     def resolution_emoji
       Enums::Resolution.resolution_emoji(resolution)
@@ -24,19 +24,21 @@ module Enums::Resolution
       Enums::Resolution.resolution_emoji(resolution) + self.resolution.find_value(resolution).text
     end
 
-    def resolution.emoji_options(**kwargs)
-      options(kwargs).map { |name, value| ["#{Enums::Resolution.resolution_emoji(value)}#{name}", value] }
+    def resolution.emoji_options(official:)
+      kwargs = official ? {} : { except: [:scheduled, :announced] }
+      options(**kwargs).map { |name, value| ["#{Enums::Resolution.resolution_emoji(value)}#{name}", value] }
     end
+
   end
 
   def resolution_emoji(resolution)
     case resolution.to_sym
+    when :information
+      '✏️'
     when :scheduled
       '🗒'
     when :announced
       '▶️'
-    when :information
-      '✏️'
     when :moved
       '⚠️'
     when :canceled

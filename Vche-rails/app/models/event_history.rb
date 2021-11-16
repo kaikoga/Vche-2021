@@ -39,6 +39,7 @@ class EventHistory < ApplicationRecord
   include Enums::DefaultAudienceRole
 
   validates :event_id, presence: true
+  validates :resolution, unless: :official?, exclusion: { in: %w(scheduled announced), message: "主催のいるイベント用の状態です" }
   validates :started_at, presence: true
   validates :ended_at, presence: true
 
@@ -54,6 +55,8 @@ class EventHistory < ApplicationRecord
   before_validation :recalculate_capacity
 
   after_save :cleanup_stale_schedule
+
+  delegate :official?, to: :event
 
   def event_attendances
     event.event_attendances.where(started_at: started_at)

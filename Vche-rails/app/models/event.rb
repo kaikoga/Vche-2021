@@ -153,6 +153,10 @@ class Event < ApplicationRecord
     event_follows.create_or_find_by!(user: user).update!(role: :owner)
   end
 
+  def official?
+    owners.exists?
+  end
+
   private
 
   def recalculate_capacity
