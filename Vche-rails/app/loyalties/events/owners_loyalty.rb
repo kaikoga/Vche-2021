@@ -1,6 +1,6 @@
 class Events::OwnersLoyalty < ApplicationLoyalty
   def introduction?
-    LoyaltyTools.user_is_source?(record, user) && !LoyaltyTools.event_has_owner?(record)
+    LoyaltyTools.user_is_source?(record, user) && !record.official?
   end
 
   def edit?

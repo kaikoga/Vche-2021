@@ -1,17 +1,30 @@
+- _backstage = loyalty(@event_history, 'events/event_histories').backstage?
+
 .panel.-roundbox
   p
+    | 現在の状態：
     = inline_resolution_tag @event_history.resolution
   - case @event_history.resolution.to_sym
   - when :scheduled
     p
       | 登録されたイベント予定に応じて、イベント日程の枠が確保されています。
     p
-      = inline_resolution_tag 'scheduled'
-      | をイベントカレンダーに正式に登録するには、「イベント開催を告知する」を行ってください。
+      = inline_resolution_tag 'announced'
+      | としてイベントカレンダー上で予定を確定させるには、「イベント開催を告知する」を行ってください。
   - when :announced
     p
-      | イベントの開催が告知され、イベントカレンダーに正式に登録されています。
-      | イベントが完了した際には、「イベントを完了する」を行ってください。
+      | イベントの開催が告知され、イベントカレンダー上で予定が確定されています。
+    p
+      | イベントが完了した際には、
+      = _backstage ? '「イベントを完了する」' : '「イベントの完了を報告する」'
+      | を行ってください。
+  - when :information
+    p
+      | イベントの参加者が開催情報をイベントカレンダーに共有しています。
+    p
+      | イベントが完了した際には、
+      = _backstage ? '「イベントを完了する」' : '「イベントの完了を報告する」'
+      | を行ってください。
   - when :moved
     p このイベント日程は時間が変更されています。
   - when :canceled
@@ -19,7 +32,10 @@
   - when :ended
     p
       | このイベント日程は、開催告知を行わずにイベント終了時刻を経過しています。
-      | もしこのイベントが開催されていた場合は、「イベントを完了する」を行ってください。
+    p
+      | もしこのイベントが開催されていた場合は、
+      = _backstage ? '「イベントを完了する」' : '「イベントの完了を報告する」'
+      | を行ってください。
   - when :completed
     p このイベントは無事に完了しています。おつかれさまでした。
 
