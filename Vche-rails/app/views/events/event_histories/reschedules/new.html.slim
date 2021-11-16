@@ -1,0 +1,14 @@
+h1 = "#{Event.model_name.human}の日程を変更する"
+
+= render 'events/strip', event: @event, user: @user
+
+= render 'event_histories/strip', event: @event, event_history: @event_history, user: @user
+
+= render 'help'
+
+.panel.-roundbox
+  = render 'form', event: @event, event_history: @event_history
+
+.panel
+  = link_to '戻る', [@event, @event_history], class: 'button'
+

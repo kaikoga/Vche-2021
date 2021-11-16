@@ -14,8 +14,12 @@
 
   = render_field form, :opened_at do
     = form.datetime_field :opened_at
-  = render_field form, :started_at, required: true do
-    = form.datetime_field :started_at
+  - if event_history.persisted?
+    = render_field form, :started_at do
+      .value = l(event_history.started_at)
+  - else
+    = render_field form, :started_at, required: true do
+      = form.datetime_field :started_at
   = render_field form, :ended_at, required: true do
     = form.datetime_field :ended_at
 

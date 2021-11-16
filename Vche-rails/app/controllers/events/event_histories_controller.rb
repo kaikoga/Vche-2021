@@ -38,7 +38,7 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
   end
 
   def create
-    @event_history = @event.event_histories.build(event_history_params)
+    @event_history = @event.event_histories.build(create_params)
     authorize! @event_history
     @event_history.created_user = current_user
     @event_history.updated_user = current_user
@@ -54,7 +54,7 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
     @event_history = find_event_history
     authorize! @event_history
     @event_history.updated_user = current_user
-    if @event_history.update(event_history_params)
+    if @event_history.update(update_params)
       redirect_to event_event_history_path(@event, @event_history), notice: I18n.t('notice.events/event_histories.update.success')
     else
       render :edit
@@ -146,9 +146,15 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
     @event.find_or_build_history(Time.zone.parse(params[:id]))
   end
 
-  def event_history_params
-    p = params.require(:event_history).permit(
+  def create_params
+    params.require(:event_history).permit(
       :resolution, :capacity, :default_audience_role,
       :assembled_at, :opened_at, :started_at, :ended_at, :closed_at)
+  end
+
+  def update_params
+    params.require(:event_history).permit(
+      :resolution, :capacity, :default_audience_role,
+      :assembled_at, :opened_at, :ended_at, :closed_at)
   end
 end
