@@ -96,10 +96,10 @@ class EventSchedule < ApplicationRecord
     history_resolution =
       if Time.current > end_at.change(date_options)
         :ended
-      elsif event.backstage_members.empty?
-        :information
+      elsif event.official?
+        :scheduled # TODO: May or maynot be scheduled
       else
-        :scheduled
+        :information
       end
     EventHistory.new(
       event: event,
