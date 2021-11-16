@@ -18,7 +18,7 @@
     .field
       label = EventHistory.human_attribute_name(:opened_at)
       .value = l(event_history.opened_at) if event_history.opened_at
-  - if event_history.assembled_at
+  - if event_history.started_at
     .field
       label = EventHistory.human_attribute_name(:started_at)
       .value = l(event_history.started_at)

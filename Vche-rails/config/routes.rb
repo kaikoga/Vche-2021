@@ -50,6 +50,7 @@ Rails.application.routes.draw do
         post :remove_user
       end
       resource :resolution, controller: 'events/event_histories/resolutions', only: [:edit, :update]
+      resource :reschedule, controller: 'events/event_histories/reschedules', only: [:new, :create]
     end
     resources :event_follows, controller: 'events/event_follows', only: :index
     resources :event_follow_requests, controller: 'events/event_follow_requests', only: :index do

@@ -74,6 +74,10 @@ ja:
     users/passwords:
       update:
         success: 'パスワードを更新しました'
+    events/event_histories/reschedules:
+      create:
+        success: 'イベントの開催日時を変更しました'
+        unchanged: 'イベントの開催日時は変更されませんでした'
     events/event_histories/resolutions:
       update:
         success: 'イベントの状態を更新しました'
