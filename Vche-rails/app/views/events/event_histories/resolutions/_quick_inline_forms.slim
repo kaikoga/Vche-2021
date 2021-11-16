@@ -6,10 +6,10 @@
 - if _backstage
   - if event_history.resolution.to_sym.in?([:scheduled])
     = render 'events/event_histories/resolutions/inline_form', event: event, event_history: event_history, resolution: :announced, submit_label: 'イベント開催を告知する'
-  - if event_history.resolution.to_sym.in?([:announced, :ended]) && event_history.ended_at < Time.current
+  - if event_history.resolution.to_sym.in?([:information, :announced, :ended]) && event_history.ended_at < Time.current
     = render 'events/event_histories/resolutions/inline_form', event: event, event_history: event_history, resolution: :completed, submit_label: 'イベントを完了する'
 - else
   - if event_history.resolution.to_sym.in?([:scheduled])
     = render 'events/event_histories/resolutions/inline_form', event: event, event_history: event_history, resolution: :announced, submit_label: 'イベント開催を確定する'
-  - if event_history.resolution.to_sym.in?([:announced, :ended]) && event_history.ended_at < Time.current
+  - if event_history.resolution.to_sym.in?([:information, :announced, :ended]) && event_history.ended_at < Time.current
     = render 'events/event_histories/resolutions/inline_form', event: event, event_history: event_history, resolution: :completed, submit_label: 'イベントの完了を報告する'
