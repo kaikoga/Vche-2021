@@ -49,6 +49,8 @@ class EventHistory < ApplicationRecord
 
   delegate :trust, :hashtag, to: :event
 
+  after_initialize :recalculate_resolution
+
   before_validation :recalculate_capacity
 
   after_save :cleanup_stale_schedule
@@ -94,6 +96,18 @@ class EventHistory < ApplicationRecord
   end
 
   private
+
+  def recalculate_resolution
+    if Time.zone.now >= ended_at
+      self.resolution =
+        case resolution.to_sym
+        when :scheduled, :announced, :information
+          :ended
+        else
+          resolution
+        end
+    end
+  end
 
   def recalculate_capacity
     self.capacity ||= 0
