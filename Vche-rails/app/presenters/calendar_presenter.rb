@@ -57,7 +57,7 @@ class CalendarPresenter
     attr_reader :event_attendances
 
     def initialize(event_histories, event_attendances)
-      @event_histories = event_histories
+      @event_histories = event_histories.sort_by(&:started_at)
       @event_attendances = event_attendances
     end
 
