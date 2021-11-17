@@ -201,9 +201,9 @@ ja:
   time:
     am: 午前
     formats:
-      default: "%Y/%m/%d(%a) %H:%M"
-      long: "%Y/%m/%d %H:%M"
-      short: "%m/%d %H:%M"
+      default: "%Y/%m/%d(%a) %-H:%M"
+      long: "%Y/%m/%d %-H:%M"
+      short: "%m/%d %-H:%M"
       ymda: "%Y/%m/%d(%a)"
       mda: "%-m/%-d(%a)"
       hm: "%-H:%M"
