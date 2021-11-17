@@ -30,10 +30,10 @@ ja:
         success: 'イベントの開催回への参加依頼を送信しました'
         outsider: '関係者以外の状態は変更できません'
       change_user:
-        success: 'イベントの開催回への参加状態を更新しました'
+        success: 'イベントに参加表明しました'
         outsider: '関係者以外の状態は変更できません'
       remove_user:
-        success: 'イベントの開催回への参加を解除しました'
+        success: 'イベントへの参加表明を解除しました'
         outsider: '関係者以外の状態は変更できません'
     users/event_memories:
       create:
@@ -61,9 +61,9 @@ ja:
       add_user:
         success: 'イベントの参加依頼を送信しました'
       change_user:
-        success: 'イベントの参加状態を更新しました'
+        success: 'イベントのフォロー状態を更新しました'
       remove_user:
-        success: 'イベントの参加を解除しました'
+        success: 'イベントのフォローを解除しました'
     oauths:
       callback:
         success: '%{provider}でログインに成功しました'
