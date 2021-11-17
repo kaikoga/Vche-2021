@@ -3,11 +3,10 @@ class CalendarController < ApplicationController::Bootstrap
 
   def index
     authorize!
-    year = index_params[:year]&.to_i
-    month = index_params[:month]&.to_i
 
-    events = Event.public_or_over.with_category_param(index_params[:category]).with_taste_param(index_params[:taste]).where('trust > ?', Event::OWNER_TRUST)
-    @calendar = CalendarPresenter.new(events, user: current_user, year: year, month: month, months: 1, days: 0)
+    scoped_events = Event.public_or_over.where('trust > ?', Event::OWNER_TRUST)
+    form = CalendarPresenterForm.new(scoped_events, index_params, filter: true)
+    @calendar = form.presenter(user: current_user)
   end
 
   private
