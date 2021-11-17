@@ -6,15 +6,17 @@
     .user__primary_sns_name = user.primary_sns_name
     .user__display_name = link_to(user.display_name, user, class: :strip__title)
     '
-    = link_to 'プロフィール', user, class: 'button'
-    = link_to 'カレンダー', home_path, class: 'button'
-    = link_to "全ての#{EventFollow.model_name.human}(#{user.event_follows.count})", events_home_path, class: 'button'
-    - _follow_request_count = user.event_follow_requests.active.count # FIXME: This should go to request local cache
-    - if _follow_request_count > 0
-      = link_to "#{EventFollowRequest.model_name.human}(#{_follow_request_count})", my_event_follow_requests_path, class: 'button'
-    = link_to EventMemory.model_name.human, user_event_memories_path(user), class: 'button'
+    span.actions
+      = link_to 'プロフィール', user, class: 'button'
+      = link_to 'カレンダー', home_path, class: 'button'
+      = link_to "全ての#{EventFollow.model_name.human}(#{user.event_follows.count})", events_home_path, class: 'button'
+      - _follow_request_count = user.event_follow_requests.active.count # FIXME: This should go to request local cache
+      - if _follow_request_count > 0
+        = link_to "#{EventFollowRequest.model_name.human}(#{_follow_request_count})", my_event_follow_requests_path, class: 'button'
+      = link_to EventMemory.model_name.human, user_event_memories_path(user), class: 'button'
 
   div
     = render 'accounts/cards', accounts: user.accounts, card_cloud: true
-    = link_to "#{Account.model_name.human}一覧", user_accounts_path(user), class: :button
-    = link_to "新規#{Account.model_name.human}", new_user_account_path(user), class: 'button'
+    span.actions
+      = link_to "#{Account.model_name.human}一覧", user_accounts_path(user), class: :button
+      = link_to "新規#{Account.model_name.human}", new_user_account_path(user), class: 'button'

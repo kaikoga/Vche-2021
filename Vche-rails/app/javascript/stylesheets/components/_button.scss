@@ -2,7 +2,6 @@
   @include reset--font;
   display: inline-block;
   background: $primary_bg;
-  margin-right: 1em;
   border: none;
   padding: 0.5em 1.5em;
   border-radius: 2em;
@@ -17,6 +16,15 @@
   &.-negative {
     @include --button-negative;
   }
+  &.-external {
+    @include --button-external;
+  }
+  &.-selected {
+    @include --button-external;
+  }
+  &.-disabled {
+    @include --button-external;
+  }
 }
 
 @mixin button--positive {
@@ -27,6 +35,11 @@
 @mixin button--negative {
   @include button;
   @include --button-negative;
+}
+
+@mixin button--external {
+  @include button;
+  @include --button-external;
 }
 
 @mixin button--selected {
@@ -62,6 +75,15 @@
   }
 }
 
+@mixin --button-external {
+  background: $external_bg;
+  color: $external_text;
+  &:hover {
+    background: $external_bg-light;
+    color: $external_text-lighter;
+  }
+}
+
 @mixin --button-selected {
   background: $primary_bg-light;
   color: $primary_text-lighter;
@@ -84,7 +106,6 @@
   box-sizing: border-box;
   background: $fill-light;
   border: $primary_bg-dark solid 1px;
-  margin-right: 1rem;
   &:hover {
     background: $fill-lighter;
     color: inherit;

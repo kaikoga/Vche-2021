@@ -12,7 +12,7 @@
     .value = user.primary_sns_url
   .field
     label = User.human_attribute_name(:profile)
-    .value = user.profile
+    .value.pre = user.profile
   .field
     label = User.human_attribute_name(:visibility)
     .value = user.visibility_text
@@ -20,9 +20,10 @@
     label = User.human_attribute_name(:last_login_at)
     .value = l(user.last_login_at) if user.last_login_at
 
-  - if loyalty(user).edit?
-    = link_to '編集する', edit_user_path(user), class: 'button'
-  - if loyalty(user, 'users/passwords').edit?
-    = link_to 'パスワードを変更する', edit_user_password_path(user), class: 'button'
-  - if loyalty(nil, :sessions).purge?
-    = link_to '全てのセッションをログアウト', purge_sessions_path, method: :post, class: 'button', data: { confirm: '全てのセッションをログアウトしますか？' }
+  .actions
+    - if loyalty(user).edit?
+      = link_to '編集する', edit_user_path(user), class: 'button'
+    - if loyalty(user, 'users/passwords').edit?
+      = link_to 'パスワードを変更する', edit_user_password_path(user), class: 'button'
+    - if loyalty(nil, :sessions).purge?
+      = link_to '全てのセッションをログアウト', purge_sessions_path, method: :post, class: 'button', data: { confirm: '全てのセッションをログアウトしますか？' }

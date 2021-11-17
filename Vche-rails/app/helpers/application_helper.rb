@@ -1,4 +1,9 @@
 module ApplicationHelper
+  def external_link_to(name = nil, options = nil, html_options = nil, &block)
+    options = options.dup
+    link_to name, options, {target: :_blank, rel: 'noopener noreferrer'}.reverse_merge(html_options || {}), &block
+  end
+
   def inline_visibility_tag(value, hide_public: false)
     tag.span class: 'inline -visibility' do
       Event.visibility.find_value(value).text
@@ -53,5 +58,19 @@ module ApplicationHelper
   PARAM_KEY_EXCEPT_LIST = [:authenticity_token, :commit, :utf8, :_method, :script_name, :original_script_name].freeze
   def filtered_params
     params.to_unsafe_h.with_indifferent_access.except(*PARAM_KEY_EXCEPT_LIST)
+  end
+
+  def render_errors_header(form)
+    render 'errors_header', form: form
+  end
+
+  def render_field(form, field_name, label: nil, required: false, &block)
+    render 'field', form: form, label: label, field_name: field_name, required: required, &block
+  end
+
+  def render_text_field(form, field_name, required: false, label: nil)
+    render 'field', form: form, label: label, field_name: field_name, required: required do
+      form.text_field field_name
+    end
   end
 end

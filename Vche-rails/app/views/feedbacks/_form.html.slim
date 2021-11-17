@@ -2,19 +2,12 @@
 - user ||= nil
 
 = form_with(model: feedback, class: '-table') do |form|
-  - if feedback.errors.any?
-    #error_explanation
-      h2
-        = pluralize(feedback.errors.count, "error")
-        |  prohibited this feedback from being saved:
-      ul
-        - feedback.errors.each do |error|
-          li = error.full_message
-  .field
-    = form.label :title
+  = render_errors_header form
+
+
+  = render_field form, :title do
     = form.select :title, ['不具合報告', '表示崩れの報告', '機能追加要望', '利用規約違反の通報', 'コンテンツの削除依頼', 'アカウントの復旧依頼', '退会したい', '利用規約に関する質問', 'その他のお問い合わせ']
-  .field
-    = form.label :body
+  = render_field form, :body, required: true do
     = form.text_area :body, rows: 15
 
   = hidden_field_tag :user_id, user if user
@@ -35,6 +28,6 @@
     br
     | ※以下の連絡先を利用した場合、全てのやり取りは公開されます！
   .actions
-    = link_to 'GitHubのIssue', support_github_url, class: :button
-    = link_to 'サポートTwitter', support_twitter_url, class: :button
-    = link_to 'サポートDiscord', support_discord_url, class: :button
+    = external_link_to 'GitHubのIssue', support_github_url, class: 'button -external'
+    = external_link_to 'サポートTwitter', support_twitter_url, class: 'button -external'
+    = external_link_to 'サポートDiscord', support_discord_url, class: 'button -external'

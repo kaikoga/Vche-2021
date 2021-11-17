@@ -5,5 +5,5 @@ h1 = Account.model_name.human
 .panel
   = render 'accounts/cards', accounts: @accounts
 
-.panel
+.panel.actions
   = link_to "新規#{Account.model_name.human}", new_user_account_path, class: 'button'

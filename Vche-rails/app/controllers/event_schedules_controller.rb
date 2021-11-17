@@ -15,8 +15,8 @@ class EventSchedulesController < ApplicationController::Bootstrap
   end
 
   def new
-    @event_schedule = @event.event_schedules.build
     authorize! @event
+    @event_schedule = @event.event_schedules.build
   end
 
   def edit
@@ -31,7 +31,7 @@ class EventSchedulesController < ApplicationController::Bootstrap
     @event_schedule.updated_user = current_user
 
     if @event_schedule.save
-      redirect_to @event, notice: 'EventSchedule was successfully created'
+      redirect_to @event, notice: I18n.t('notice.event_schedules.create.success')
     else
       render :new
     end
@@ -42,7 +42,7 @@ class EventSchedulesController < ApplicationController::Bootstrap
     authorize! @event_schedule
     @event_schedule.updated_user = current_user
     if @event_schedule.update(event_schedule_params)
-      redirect_to @event, notice: 'EventSchedule was successfully updated.'
+      redirect_to @event, notice: I18n.t('notice.event_schedules.update.success')
     else
       render :edit
     end
@@ -52,7 +52,7 @@ class EventSchedulesController < ApplicationController::Bootstrap
     @event_schedule = find_event_schedule
     authorize! @event_schedule
     @event_schedule.destroy
-    redirect_to events_url, notice: 'EventSchedule was successfully destroyed.'
+    redirect_to events_url, notice: I18n.t('notice.event_schedules.destroy.success')
   end
 
   private
@@ -66,6 +66,6 @@ class EventSchedulesController < ApplicationController::Bootstrap
   end
 
   def event_schedule_params
-    p = params.require(:event_schedule).permit(:visibility, :assemble_at, :open_at, :start_at, :end_at, :close_at, :repeat, :resolution, :repeat_until)
+    p = params.require(:event_schedule).permit(:visibility, :assemble_at, :open_at, :start_at, :end_at, :close_at, :repeat, :repeat_until)
   end
 end

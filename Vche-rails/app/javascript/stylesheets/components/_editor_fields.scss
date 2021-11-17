@@ -1,15 +1,14 @@
 .editor_fields {
   display: flex;
+  gap: 0.8rem;
   justify-content: flex-end;
-  margin-top: 0.8em;
+  padding-top: 0.8em;
   .editor_field {
-    display: inline-block;
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
     font-size: $font-size-small;
     color: $text-lighter;
-    label, span.editor {
-      margin: 0em 0.4em;
-      min-height: 2em;
-    }
     span.date {
       min-height: 2.5em;
       padding: 0.5em 1.5em;

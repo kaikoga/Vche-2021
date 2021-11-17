@@ -20,7 +20,7 @@ class Events::EventHistoriesLoyalty < ApplicationLoyalty
   end
 
   def destroy?
-    LoyaltyTools.user_is_source?(record.event, user)
+    false
   end
 
   def attend?

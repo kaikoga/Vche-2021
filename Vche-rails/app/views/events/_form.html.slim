@@ -2,57 +2,35 @@
 - role ||= nil
 
 = form_with(model: event, class: '-table') do |form|
-  - if event.errors.any?
-    #error_explanation
-      h2
-        = pluralize(event.errors.count, "error")
-        |  prohibited this event from being saved:
-      ul
-        - event.errors.each do |error|
-          li = error.full_message
-  .field
-    = form.label :name
-    = form.text_field :name
-  .field
-    = form.label :fullname
-    = form.text_field :fullname
-  .field
-    = form.label :description
-    = form.text_field :description
-  .field
-    = form.label :organizer_name
-    = form.text_field :organizer_name
-  .field
-    = form.label :primary_sns_url
-    = form.text_field :primary_sns_url
-  .field
-    = form.label :info_url
-    = form.text_field :info_url
-  .field
-    = form.label :hashtag
-    = form.text_field :hashtag
-  .field
-    = form.label :platform
+  = render_errors_header form
+
+  = render_text_field form, :name, required: true
+  = render_text_field form, :fullname
+  = render_field form, :description do
+    = form.text_area :description, rows: 15
+  = render_text_field form, :organizer_name
+  = render_text_field form, :primary_sns_url
+  = render_text_field form, :info_url
+  = render_text_field form, :hashtag
+
+  = render_field form, :platform do
     = form.collection_select :platform_id, Platform.available, :id, :name
+
   - if !event.persisted?
-    .field
-      = form.label :visibility
+    = render_field form, :visibility do
       = form.select :visibility, Event.visibility.options
-  .field
-    = form.label :category
+
+  = render_field form, :category do
     = form.collection_select :category_id, Category.available, :id, :emoji_name
 
-  .field
-    = form.label :flavors
+  = render_field form, :flavors do
     .relation
       - Flavor.available.find_each do |flavor|
         = flavor_check_box_tag flavor, "event_flavors[]", "event_flavors_#{flavor.slug}", event.flavors.include?(flavor)
 
-  .field
-    = form.label :capacity
+  = render_field form, :capacity do
     = form.text_field :capacity
-  .field
-    = form.label :default_audience_role
+  = render_field form, :default_audience_role do
     = form.select :default_audience_role, EventFollow.role.audience_options
 
   = hidden_field_tag :role, role if role

@@ -3,12 +3,13 @@ class Events::VisibilitiesController < ApplicationController::Bootstrap
 
   def edit
     authorize! @event
+    @user = current_user
   end
 
   def update
     authorize! @event
     if @event.update(update_params)
-      redirect_to @event, notice: 'Event visibility was successfully updated.'
+      redirect_to @event, notice: I18n.t('notice.events/visibilities.update.success')
     else
       render :edit
     end

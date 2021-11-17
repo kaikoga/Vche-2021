@@ -1,0 +1,29 @@
+- event ||= nil
+- event_history ||= nil
+
+= form_with(model: event_history, url: event_event_history_reschedule_path(event, event_history), method: :post, class: '-table') do |form|
+  = render_errors_header form
+
+  = render_field form, :resolution do
+    .value = event_history.resolution_emoji_text
+
+  - if loyalty(event_history, 'events/event_histories').backstage?
+    = render_field form, :assembled_at do
+      = form.datetime_field :assembled_at
+
+  = render_field form, :opened_at do
+    = form.datetime_field :opened_at
+  = render_field form, :started_at, required: true do
+    = form.datetime_field :started_at
+  = render_field form, :ended_at, required: true do
+    = form.datetime_field :ended_at
+
+  - if loyalty(event_history, 'events/event_histories').backstage?
+    = render_field form, :closed_at do
+      = form.datetime_field :closed_at
+
+  = render_text_field form, :capacity
+
+  .actions
+    - if loyalty(event_history, 'events/event_histories/reschedules').create?
+      = form.submit '日程を変更する'

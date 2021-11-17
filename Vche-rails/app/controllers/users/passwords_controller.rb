@@ -8,7 +8,7 @@ class Users::PasswordsController < ApplicationController::Bootstrap
     @user = find_user
     authorize! @user
     if @user.update(user_params)
-      redirect_to @user, notice: 'User password was successfully updated.'
+      redirect_to @user, notice: I18n.t('notice.users/passwords.update.success')
     else
       render :edit
     end

@@ -36,9 +36,9 @@ class EventSchedule < ApplicationRecord
   include Vche::UidQuery
 
   include Enums::Repeat
-  include Enums::Resolution
 
-  validates :resolution, inclusion: { in: %w(scheduled), message: "これは不定期開催機能の実装予定地です" }
+  validates :start_at, presence: true
+  validates :end_at, presence: true
 
   belongs_to :event
 
@@ -93,9 +93,17 @@ class EventSchedule < ApplicationRecord
 
   def at_date(date)
     date_options = { year: date.year, month: date.month, day: date.day }
+    history_resolution =
+      if Time.current > end_at.change(date_options)
+        :ended
+      elsif event.official?
+        :scheduled # TODO: May or maynot be scheduled
+      else
+        :information
+      end
     EventHistory.new(
       event: event,
-      resolution: Time.current < end_at.change(date_options) ? :scheduled : :ended,
+      resolution: history_resolution,
       capacity: event.capacity,
       default_audience_role: event.default_audience_role,
       assembled_at: assemble_at&.change(date_options),

@@ -38,6 +38,11 @@ class EventHistory < ApplicationRecord
   include Enums::Resolution
   include Enums::DefaultAudienceRole
 
+  validates :event_id, presence: true
+  validates :resolution, unless: :official?, exclusion: { in: %w(scheduled announced), message: "主催のいるイベント用の状態です" }
+  validates :started_at, presence: true
+  validates :ended_at, presence: true
+
   belongs_to :event
 
   belongs_to :created_user, class_name: 'User'
@@ -45,7 +50,13 @@ class EventHistory < ApplicationRecord
 
   delegate :trust, :hashtag, to: :event
 
+  after_initialize :recalculate_resolution
+
+  before_validation :recalculate_capacity
+
   after_save :cleanup_stale_schedule
+
+  delegate :official?, to: :event
 
   def event_attendances
     event.event_attendances.where(started_at: started_at)
@@ -84,10 +95,26 @@ class EventHistory < ApplicationRecord
   end
 
   def to_param
-    started_at.strftime('%Y%m%d%H%M%S')
+    started_at&.strftime('%Y%m%d%H%M%S')
   end
 
   private
+
+  def recalculate_resolution
+    if Time.zone.now >= ended_at
+      self.resolution =
+        case resolution.to_sym
+        when :scheduled, :announced, :information
+          :ended
+        else
+          resolution
+        end
+    end
+  end
+
+  def recalculate_capacity
+    self.capacity ||= 0
+  end
 
   def cleanup_stale_schedule
     return unless resolution.in? ['moved', 'canceled', 'completed']

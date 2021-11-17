@@ -2,7 +2,7 @@ h1 利用規約への同意
 
 .panel.-roundbox
   p 最近更新された利用規約が以下に表示されています。
-  p
+  .actions
     - @agreements.each do |agreement|
       = link_to agreement.title, "\##{agreement.slug}", class: :button
 
@@ -12,6 +12,6 @@ h1 利用規約への同意
         = render 'pretty', agreement: agreement
 
   p 利用規約に同意することで、本サービスの利用を続けることができます。
-  p
+  .actions
     = link_to '引き返す', logout_path, method: :post, class: 'button -negative'
     = link_to '同意する', agree_agreements_path, method: :post, class: 'button -positive'

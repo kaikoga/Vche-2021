@@ -2,37 +2,46 @@
 
 h2 = event.fullname
 .event.-pretty
-  = inline_visibility_tag(event.visibility)
-  = inline_category_tag(event.category)
-  - event.flavors.each do |flavor|
-    = inline_flavor_tag(flavor)
-  p = event.description
+  div
+    = inline_visibility_tag(event.visibility)
+    = inline_category_tag(event.category)
+    - event.flavors.each do |flavor|
+      = inline_flavor_tag(flavor)
+  p.pre = event.description
   .field
     label = Event.human_attribute_name(:backstage_members)
     .relation
       = render 'event_follows/cards', event_follows: event.event_backstage_members, card_cloud: true
-      - if loyalty(event, :events).add_user?
-        = link_to 'スタッフを割り当てる', event_event_follows_path(event), class: :button
-      = render 'events/event_follow_requests/link', event: @event
+      span.actions
+        - if loyalty(event, :events).add_user?
+          = link_to 'スタッフを割り当てる', event_event_follows_path(event), class: :button
+        = render 'events/event_follow_requests/link', event: @event
   .field
     label
     .relation
-      = link_to event.primary_sns_url, event.primary_sns_url, class: :button
-      = link_to event.info_url, event.info_url, class: :button
+      .actions
+        - if event.primary_sns_url.present?
+          = external_link_to event.primary_sns_url, event.primary_sns_url, class: 'button -external'
+        - if event.info_url.present?
+          = external_link_to event.info_url, event.info_url, class: 'button -external'
   .field
     label = Event.human_attribute_name(:event_schedules)
     .relation
       = render 'event_schedules/cards', event: event, event_schedules: event.event_schedules, edit: true
-      - if loyalty(event, :events).edit?
-        = link_to "新規#{EventSchedule.model_name.human}", new_event_event_schedule_path(event), class: 'button'
+      .actions
+        - if loyalty(event, :events).edit?
+          = link_to "新規#{EventSchedule.model_name.human}", new_event_event_schedule_path(event), class: 'button'
 
   .field
     label = Event.human_attribute_name(:capacity)
     .value = event.capacity
 
-  - if loyalty(event, :events).info?
-    = link_to '情報を見る', info_event_path(event), class: :button
-  - if loyalty(event, :events).edit?
-    = link_to '編集する', edit_event_path(event), class: 'button'
+  .actions
+    - if loyalty(event, :events).info?
+      = link_to '情報を見る', info_event_path(event), class: :button
+    - if loyalty(event, :events).edit?
+      = link_to '編集する', edit_event_path(event), class: 'button'
+    - if loyalty(event, 'events/visibilities').edit?
+      = link_to '公開範囲を変更する', edit_event_visibility_path(event), class: 'button'
 
   = render 'editor_info', resource: event

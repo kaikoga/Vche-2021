@@ -24,13 +24,11 @@ h1 = "#{EventSchedule.model_name.human}詳細"
     label = EventSchedule.human_attribute_name(:repeat)
     .value = @event_schedule.repeat_text
   .field
-    label = EventSchedule.human_attribute_name(:resolution)
-    .value = @event_schedule.resolution_text
-  .field
     label = EventSchedule.human_attribute_name(:repeat_until)
     .value = l(@event_schedule.repeat_until) if @event_schedule.repeat_until
 
-  - if loyalty(@event_schedule).edit?
-    = link_to '編集する', edit_event_event_schedule_path(@event, @event_schedule), class: 'button'
+  .actions
+    - if loyalty(@event_schedule).edit?
+      = link_to '編集する', edit_event_event_schedule_path(@event, @event_schedule), class: 'button'
 
   = render 'editor_info', resource: @event_schedule

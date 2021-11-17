@@ -31,7 +31,7 @@ class Users::AccountsController < ApplicationController::Bootstrap
     authorize! @account
 
     if @account.save
-      redirect_to user_accounts_path(@user), notice: 'Account was successfully created'
+      redirect_to user_accounts_path(@user), notice: I18n.t('notice.users/accounts.create.success')
     else
       render :new
     end
@@ -41,7 +41,7 @@ class Users::AccountsController < ApplicationController::Bootstrap
     @account = find_account
     authorize! @account
     if @account.update(account_params)
-      redirect_to [@user, @account], notice: 'Account was successfully updated.'
+      redirect_to [@user, @account], notice: I18n.t('notice.users/accounts.update.success')
     else
       render :edit
     end
@@ -51,7 +51,7 @@ class Users::AccountsController < ApplicationController::Bootstrap
     @account = find_account
     authorize! @account
     @account.destroy
-    redirect_to users_url, notice: 'Account was successfully destroyed.'
+    redirect_to user_accounts_url(@user), notice: I18n.t('notice.users/accounts.destroy.success')
   end
 
   private

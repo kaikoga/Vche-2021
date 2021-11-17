@@ -11,9 +11,9 @@ class My::EventFollowRequestsController < ApplicationController::Bootstrap
     authorize! @event_follow_request
     @event_follow_request.accept
     if @event_follow_request.started_at
-      redirect_to [@event_follow_request.event, @event_follow_request.find_or_build_history], notice: 'Accepted.'
+      redirect_to [@event_follow_request.event, @event_follow_request.find_or_build_history], notice: I18n.t('notice.my/event_follow_requests.accept.success')
     else
-      redirect_to @event_follow_request.event, notice: 'Accepted.'
+      redirect_to @event_follow_request.event, notice: I18n.t('notice.my/event_follow_requests.accept.success')
     end
   end
 
@@ -22,7 +22,7 @@ class My::EventFollowRequestsController < ApplicationController::Bootstrap
     @event_follow_request = find_event_follow_request
     authorize! @event_follow_request
     @event_follow_request.decline
-    redirect_to my_event_follow_requests_url, notice: 'Declined.'
+    redirect_to my_event_follow_requests_url, notice: I18n.t('notice.my/event_follow_requests.decline.success')
   end
 
   private

@@ -3,41 +3,33 @@
 - event_history.event ||= event
 
 = form_with(model: [event, event_history], class: '-table') do |form|
-  - if event_history.errors.any?
-    #error_explanation
-      h2
-        = pluralize(event_history.errors.count, "error")
-        |  prohibited this event_history from being saved:
-      ul
-        - event_history.errors.each do |error|
-          li = error.full_message
-  .field
-    = form.label :resolution
-    = form.select :resolution, EventHistory.resolution.emoji_options
+  = render_errors_header form
+
+  = render_field form, :resolution do
+    = form.select :resolution, EventHistory.resolution.emoji_options(official: event.official?)
 
   - if loyalty(event_history).backstage?
-    .field
-      = form.label :assembled_at
+    = render_field form, :assembled_at do
       = form.datetime_field :assembled_at
-  .field
-    = form.label :opened_at
+
+  = render_field form, :opened_at do
     = form.datetime_field :opened_at
-  .field
-    = form.label :started_at
-    = form.datetime_field :started_at
-  .field
-    = form.label :ended_at
+  - if event_history.persisted?
+    = render_field form, :started_at do
+      .value = l(event_history.started_at)
+  - else
+    = render_field form, :started_at, required: true do
+      = form.datetime_field :started_at
+  = render_field form, :ended_at, required: true do
     = form.datetime_field :ended_at
+
   - if loyalty(event_history).backstage?
-    .field
-      = form.label :closed_at
+    = render_field form, :closed_at do
       = form.datetime_field :closed_at
 
-  .field
-    = form.label :capacity
-    = form.text_field :capacity
-  .field
-    = form.label :default_audience_role
+  = render_text_field form, :capacity
+
+  = render_field form, :default_audience_role do
     = form.select :default_audience_role, EventAttendance.role.audience_options
 
   .actions

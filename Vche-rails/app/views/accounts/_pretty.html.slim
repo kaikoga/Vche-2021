@@ -4,12 +4,16 @@
   .field
     label = Account.human_attribute_name(:platform)
     .value = account.platform.name
-  .field
-    label
-    .relation
-      = link_to account.url, account.url, class: :button
+  - if account.url.present?
+    .field
+      label
+      .relation
+        = external_link_to account.url, account.url, class: 'button -external'
 
-  - if loyalty(account, 'users/accounts').info?
-    = link_to '情報を見る', info_user_account_path(user, account), class: :button
-  - if loyalty(account, 'users/accounts').edit?
-    = link_to '編集する', edit_user_account_path(user, account), class: :button
+  .actions
+    - if loyalty(account, 'users/accounts').info?
+      = link_to '情報を見る', info_user_account_path(user, account), class: :button
+    - if loyalty(account, 'users/accounts').edit?
+      = link_to '編集する', edit_user_account_path(user, account), class: :button
+    - if loyalty(account, 'users/accounts').destroy?
+      = link_to '削除する', user_account_path(user, account), method: :delete, class: 'button -negative'

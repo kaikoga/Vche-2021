@@ -38,13 +38,13 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
   end
 
   def create
-    @event_history = @event.event_histories.build(event_history_params)
+    @event_history = @event.event_histories.build(create_params)
     authorize! @event_history
     @event_history.created_user = current_user
     @event_history.updated_user = current_user
 
     if @event_history.save
-      redirect_to event_event_history_path(@event, @event_history), notice: 'EventHistory was successfully created'
+      redirect_to event_event_history_path(@event, @event_history), notice: I18n.t('notice.events/event_histories.create.success')
     else
       render :new
     end
@@ -54,8 +54,8 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
     @event_history = find_event_history
     authorize! @event_history
     @event_history.updated_user = current_user
-    if @event_history.update(event_history_params)
-      redirect_to event_event_history_path(@event, @event_history), notice: 'EventHistory was successfully updated.'
+    if @event_history.update(update_params)
+      redirect_to event_event_history_path(@event, @event_history), notice: I18n.t('notice.events/event_histories.update.success')
     else
       render :edit
     end
@@ -65,7 +65,7 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
     @event_history = find_event_history
     authorize! @event_history
     @event_history.destroy
-    redirect_to events_url, notice: 'EventHistory was successfully destroyed.'
+    redirect_to events_url, notice: I18n.t('notice.events/event_histories.destroy.success')
   end
 
   def attend
@@ -74,7 +74,7 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
 
     role = current_user.following_event?(@event) || @event_history.default_audience_role
     Operations::EventHistory::UpdateUserAttendance.new(event_history: @event_history, user: current_user, role: role).perform!
-    redirect_to event_event_history_path(@event, @event_history), notice: 'Attended.'
+    redirect_to event_event_history_path(@event, @event_history), notice: I18n.t('notice.events/event_histories.attend.success')
   rescue ActiveRecord::RecordInvalid
     redirect_to event_event_history_path(@event, @event_history)
   rescue Operations::EventHistory::UpdateUserAttendance::UserIsAudience
@@ -86,7 +86,7 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
     authorize! @event_history
 
     Operations::EventHistory::UpdateUserAttendance.new(event_history: @event_history, user: current_user, role: nil).perform!
-    redirect_to event_event_history_path(@event, @event_history), notice: 'Unattended.'
+    redirect_to event_event_history_path(@event, @event_history), notice: I18n.t('notice.events/event_histories.unattend.success')
   rescue ActiveRecord::RecordInvalid
     redirect_to event_event_history_path(@event, @event_history)
   rescue Operations::EventHistory::UpdateUserAttendance::UserIsAudience
@@ -99,11 +99,11 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
     @user = find_user
 
     Operations::EventHistory::RequestUpdateUserRole.new(event_history: @event_history, user: @user, approver: @user, role: params[:role]).perform!
-    redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: 'Added User.'
+    redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: I18n.t('notice.events/event_histories.add_user.success')
   rescue ActiveRecord::RecordInvalid
     redirect_to event_event_history_event_attendances_path(@event, @event_history)
   rescue Operations::EventHistory::RequestUpdateUserRole::Outsider
-    redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: 'Cannot touch outsider.'
+    redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: I18n.t('notice.events/event_histories.add_user.outsider')
   end
 
   def change_user
@@ -112,11 +112,11 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
     @user = find_user
 
     Operations::EventHistory::UpdateUserRole.new(event_history: @event_history, user: @user, role: params[:role]).perform!
-    redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: 'Changed User.'
+    redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: I18n.t('notice.events/event_histories.change_user.success')
   rescue ActiveRecord::RecordInvalid
     redirect_to event_event_history_event_attendances_path(@event, @event_history)
   rescue Operations::EventHistory::UpdateUserRole::Outsider
-    redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: 'Cannot touch outsider.'
+    redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: I18n.t('notice.events/event_histories.change_user.outsider')
   end
 
   def remove_user
@@ -125,11 +125,11 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
     @user = find_user
 
     Operations::EventHistory::UpdateUserRole.new(event_history: @event_history, user: @user, role: nil).perform!
-    redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: 'Removed User.'
+    redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: I18n.t('notice.events/event_histories.remove_user.success')
   rescue ActiveRecord::RecordInvalid
     redirect_to event_event_history_event_attendances_path(@event, @event_history)
   rescue Operations::EventHistory::UpdateUserRole::Outsider
-    redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: 'Cannot touch outsider.'
+    redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: I18n.t('notice.events/event_histories.remove_user.outsider')
   end
 
   private
@@ -146,9 +146,15 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
     @event.find_or_build_history(Time.zone.parse(params[:id]))
   end
 
-  def event_history_params
-    p = params.require(:event_history).permit(
+  def create_params
+    params.require(:event_history).permit(
       :resolution, :capacity, :default_audience_role,
       :assembled_at, :opened_at, :started_at, :ended_at, :closed_at)
+  end
+
+  def update_params
+    params.require(:event_history).permit(
+      :resolution, :capacity, :default_audience_role,
+      :assembled_at, :opened_at, :ended_at, :closed_at)
   end
 end

@@ -16,7 +16,10 @@
 #  index_feedbacks_on_user_id  (user_id)
 #
 class Feedback < ApplicationRecord
-  belongs_to :user, optional: :true
+  belongs_to :user, optional: true
+
+  validates :title, length: { in: 1..255 }
+  validates :body, length: { in: 1..4095 }
 
   scope :unresolved, ->{ where(resolved_at: nil) }
 end
