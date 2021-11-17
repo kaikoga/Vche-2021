@@ -16,6 +16,6 @@ class HomeController < ApplicationController::Bootstrap
   private
 
   def show_params
-    @show_params ||= params.permit(:year, :month)
+    @show_params ||= params.permit(:calendar, :year, :month)
   end
 end

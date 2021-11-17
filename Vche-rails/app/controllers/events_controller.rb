@@ -149,7 +149,7 @@ class EventsController < ApplicationController::Bootstrap
   end
 
   def show_params
-    params.permit(:year, :month)
+    params.permit(:calendar, :year, :month)
   end
 
   def create_params

@@ -1,5 +1,5 @@
 class CalendarPresenterForm
-  attr_reader :scoped_events, :params, :filter, :paginate
+  attr_reader :scoped_events, :params, :filter, :paginate, :range_mode
 
   def initialize(scoped_events, params, filter: false, paginate: false)
     @scoped_events = scoped_events
@@ -11,7 +11,12 @@ class CalendarPresenterForm
   def presenter(user: nil, months: 1)
     year = params[:year]&.to_i
     month = params[:month]&.to_i
-    CalendarPresenter.new(events, user: user, year: year, month: month, months: months, days: 0)
+    days = 0
+    if params[:calendar] == 'week'
+      months = 0
+      days = 7
+    end
+    CalendarPresenter.new(events, user: user, year: year, month: month, months: months, days: days)
   end
 
   def events
