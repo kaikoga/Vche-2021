@@ -2,7 +2,7 @@
 - event_audiences = @event_history.event_audiences.includes(:user)
 - event_new_backstage_members = @event_history.event.event_backstage_members.where.not(user_id: event_backstage_members.map(&:user_id))
 
-h1 = EventHistory.human_attribute_name(:attendees)
+h1 = EventAttendance.model_name.human
 
 = render 'events/strip', event: @event, user: @user
 

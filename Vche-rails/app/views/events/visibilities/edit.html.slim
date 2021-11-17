@@ -10,7 +10,7 @@ h1 = "#{Event.model_name.human}を#{Event.human_attribute_name(:visibility)}を�
     li イベント情報はイベントの作成者またはフォロワーしか見ることができません。
     li
       b ユーザーのカレンダーに表示されません。
-    li 参加報告は誰でも見ることができますが、参加したイベント名は伏せられます。
+    li 思い出は誰でも見ることができますが、参加したイベント名は伏せられます。
   p
     = inline_visibility_tag :invite
     | イベントの存在をイベントのフォロワーまたは作成者のみに公開します。
@@ -18,14 +18,14 @@ h1 = "#{Event.model_name.human}を#{Event.human_attribute_name(:visibility)}を�
     li イベント情報はイベントの作成者またはフォロワーしか見ることができません。
     li
       b ユーザーのカレンダーに「予定あり」と表示されます。
-    li 参加報告は誰でも見ることができますが、参加したイベント名は伏せられます。
+    li 思い出は誰でも見ることができますが、参加したイベント名は伏せられます。
   p
     = inline_visibility_tag :shared
     | イベントの存在をユーザーページにアクセスした人に公開します。
   ul
     li イベント情報は誰でも見ることができます。
     li ユーザーのカレンダーに参加予定が表示されます。
-    li 参加報告は誰でも見ることができます。
+    li 思い出は誰でも見ることができます。
   p
     = inline_visibility_tag :public
     | イベントの存在を全体に公開して、見つけやすくします。
@@ -34,7 +34,7 @@ h1 = "#{Event.model_name.human}を#{Event.human_attribute_name(:visibility)}を�
     li ユーザーのカレンダーに参加予定が表示されます。
     li
       b 全体カレンダーにイベント予定が表示されます。
-    li 参加報告は誰でも見ることができます。
+    li 思い出は誰でも見ることができます。
 
 = render 'form', event: @event
 

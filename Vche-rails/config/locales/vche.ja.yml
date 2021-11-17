@@ -7,13 +7,13 @@ ja:
       category: 開催形態
       comment: コメント
       event: イベント
-      event_attendance: 参加状態
+      event_attendance: 参加表明
       event_categories: イベントの開催形態
       event_flavor: イベントのフレイバー
       event_follow: フォロー中のイベント
       event_follow_request: 参加依頼
-      event_history: イベント履歴
-      event_memory: 参加報告
+      event_history: 開催回
+      event_memory: 思い出
       event_schedule: イベント予定
       feedback: お問い合わせ
       flavor: フレイバー
@@ -68,13 +68,12 @@ ja:
         last_login_at: 最終ログイン
   attributes:
     approver: 承認者
-    attendees: 参加者
     backstage_members: スタッフ
     category: 開催形態
     capacity: 定員
     default_audience_role: デフォルトの参加方法
     event: イベント
-    event_histories: イベント履歴
+    event_histories: 開催回
     event_schedules: イベント予定
     followers: フォロワー
     hashtag: ハッシュタグ
@@ -112,7 +111,7 @@ ja:
         scheduled: 開催予定
         announced: 開催決定
         information: 情報
-        moved: 日時変更
+        moved: 日程変更
         canceled: 中止
         ended: 終了
         completed: 完了
