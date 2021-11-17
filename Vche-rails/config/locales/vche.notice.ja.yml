@@ -37,11 +37,11 @@ ja:
         outsider: '関係者以外の状態は変更できません'
     users/event_memories:
       create:
-        success: 'イベントの参加記録をしたためました'
+        success: 'イベントの思い出をしたためました'
       update:
-        success: 'イベントの参加記録をしたためました'
+        success: 'イベントの思い出をしたためました'
       destroy:
-        success: 'イベントの参加記録を心の中にしまいました'
+        success: 'イベントの思い出を心の中にしまいました'
     event_schedules:
       create:
         success: 'イベント予定を追加しました'
