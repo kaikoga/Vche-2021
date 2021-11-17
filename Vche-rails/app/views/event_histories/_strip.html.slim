@@ -5,7 +5,7 @@
 .event_history.-strip
   div
     span.started_at
-      | 開催:
+      = "#{EventHistory.model_name.human}:"
       = link_to(l(event_history.started_at), event_event_history_path(event, event_history), class: :strip__title)
     '
     = link_to event_event_history_event_attendances_path(event, event_history), class: 'link attendances' do

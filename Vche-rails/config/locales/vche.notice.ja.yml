@@ -19,21 +19,21 @@ ja:
       create:
         success: 'EventHistory was successfully created.'
       update:
-        success: 'イベント履歴を更新しました'
+        success: '開催回を更新しました'
       destroy:
         success: 'EventHistory was successfully destroyed.'
       attend:
-        success: 'イベントに参加しました'
+        success: 'イベントの開催回に参加しました'
       unattend:
-        success: 'イベントの参加を解除しました'
+        success: 'イベントの開催回への参加を解除しました'
       add_user:
         success: 'イベントの開催回への参加依頼を送信しました'
         outsider: '関係者以外の状態は変更できません'
       change_user:
-        success: 'イベントに参加表明しました'
+        success: 'イベントの開催回に参加表明しました'
         outsider: '関係者以外の状態は変更できません'
       remove_user:
-        success: 'イベントへの参加表明を解除しました'
+        success: 'イベントの開催回への参加表明を解除しました'
         outsider: '関係者以外の状態は変更できません'
     users/event_memories:
       create:
