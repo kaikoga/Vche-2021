@@ -8,12 +8,43 @@
   }
 }
 
+.calendar.-cells.-month {
+}
+
+.calendar.-cells.-week {
+  .calendar.-cell {
+    .events {
+      position: relative;
+      height: 100rem;
+      .date {
+        height: 1rem;
+      }
+      hr.-calendar {
+        position: absolute;
+        height: 1px;
+        width: 12vw;
+        margin: 0 1vw;
+        background: $primary_text-light;
+      }
+      .event.-calendar {
+        position: absolute;
+        margin: 2px;
+        border: 1px solid $primary_text-lighter;
+        border-radius: 4px;
+        overflow: hidden;
+        min-height: 1.5rem;
+        line-height: 1;
+      }
+    }
+  }
+}
+
 .calendar.-cells {
   display: flex;
   flex-flow: row wrap;
   .calendar.-cell {
     display: block;
-    width: 14%;
+    width: 14vw;
     border-top: 1px solid $primary_text-lighter;
     border-left: 1px solid $primary_text-lighter;
     border-right: 1px solid $primary_text-light;
