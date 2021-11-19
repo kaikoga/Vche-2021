@@ -12,53 +12,75 @@
 }
 
 .calendar.-cells.-week {
-  .calendar.-cell {
-    .events {
-      position: relative;
-      height: 100rem;
-      .date {
-        height: 1rem;
-      }
-      hr.-calendar {
-        position: absolute;
-        height: 1px;
-        width: 12vw;
-        margin: 0 1vw;
-        background: $primary_text-light;
-      }
-      .event.-calendar {
-        position: absolute;
-        margin: 2px;
-        border: 1px solid $primary_text-lighter;
-        border-radius: 4px;
-        overflow: hidden;
-        min-height: 1.5rem;
-        line-height: 1;
-      }
+  height: 30rem;
+  overflow: scroll;
+  .calendar__headers {
+    position: absolute;
+    z-index: 1;
+  }
+  .calendar__cell {
+    position: relative;
+    height: 100rem;
+    top: 1.5rem;
+    .bar.-calendar {
+      position: absolute;
+      height: 1px;
+      width: 12vw;
+      margin: 0 1vw;
+      background: $primary_text-light;
+      font-size: $font_size-smaller;
+      color: $disabled_text;
+    }
+    .event.-calendar {
+      position: absolute;
+      margin: 2px;
+      border: 1px solid $primary_text-lighter;
+      border-radius: 4px;
+      overflow: hidden;
+      min-height: 1.5rem;
+      line-height: 1;
     }
   }
 }
 
-.calendar.-cells {
-  display: flex;
-  flex-flow: row wrap;
-  .calendar.-cell {
-    display: block;
+.calendar__headers {
+  height: 1.5rem;
+  .calendar__header {
+    display: inline-block;
+    height: 1.5rem;
     width: 14vw;
     border-top: 1px solid $primary_text-lighter;
     border-left: 1px solid $primary_text-lighter;
     border-right: 1px solid $primary_text-light;
     border-bottom: 1px solid $primary_text-light;
-    .date {
-      background: $primary_bg-light;
-      color: $primary_text-dark;
+    background: $primary_bg-light;
+    color: $primary_text-dark;
+    &.-ended {
+      background: $primary_bg;
+      color: $disabled_text-dark;
     }
+    &.-today {
+      background: $positive_bg-lighter;
+      color: $positive-text-light;
+    }
+  }
+}
+
+.calendar__cells {
+  display: flex;
+  flex-flow: row wrap;
+  .calendar__cell {
+    display: block;
+    width: 14vw;
+    //border-top: 1px solid $primary_text-lighter;
+    border-left: 1px solid $primary_text-lighter;
+    border-right: 1px solid $primary_text-light;
+    border-bottom: 1px solid $primary_text-light;
     &.-ended {
       background: $disabled_bg-light;
-      .date {
-        background: $primary_bg;
-        color: $disabled_text-dark;
-      }
+    }
+    &.-today {
+      background: $fill-dark;
     }
     .event.-calendar {
       @include reset--font;
