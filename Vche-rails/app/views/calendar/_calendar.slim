@@ -5,8 +5,8 @@
 nav.calendar__nav
   = link_to("=", calendar_params.except(:date), class: :button)
   = link_to("< #{calendar.prev_date_text}", calendar_params.merge(date: calendar.prev_date_str), class: :button)
-  - if calendar.year_and_month.present?
-    span.current = calendar.year_and_month
+  - unless calendar.current
+    span.current = calendar.current_date_text
   = link_to("#{calendar.next_date_text} >", calendar_params.merge(date: calendar.next_date_str), class: :button)
   - if enable_filters
     = render 'category_select'

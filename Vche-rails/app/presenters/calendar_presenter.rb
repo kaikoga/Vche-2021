@@ -1,12 +1,12 @@
 class CalendarPresenter
-  attr_reader :cells_by_date, :prev_year, :next_year, :prev_month, :next_month, :year_and_month
+  attr_reader :cells_by_date, :current_date, :current_date_text, :current
 
   def prev_date
-    Time.zone.local(prev_year, prev_month)
+    Time.zone.local(@prev_year, @prev_month)
   end
 
   def next_date
-    Time.zone.local(next_year, next_month)
+    Time.zone.local(@next_year, @next_month)
   end
 
   def prev_date_text
@@ -31,8 +31,10 @@ class CalendarPresenter
     end
 
     if date
+      @current = false
+      @current_date = date
       year, month = date.year, date.month
-      @year_and_month = "#{year}/#{month}"
+      @current_date_text = "#{year}/#{month}"
       @prev_year = (month == 1) ? year - 1 : year
       @next_year = (month == 12) ? year + 1 : year
       @prev_month = (month == 1) ? 12 : month - 1
@@ -41,12 +43,14 @@ class CalendarPresenter
       end_of_months = (Time.zone.local(year, month, 1, 0, 0, 0).beginning_of_month + months.months)
       days += ((end_of_months - beginning_of_calendar) / 1.week.to_f).ceil * 7
     else
-      @year_and_month = ''
-      @prev_year = Time.current.year
-      @next_year = Time.current.next_month.year
-      @prev_month = Time.current.month
-      @next_month = Time.current.next_month.month
-      beginning_of_calendar = Time.current.beginning_of_week(:sunday)
+      @current = true
+      @current_date = Time.current.beginning_of_day
+      @current_date_text = ''
+      @prev_year = current_date.year
+      @next_year = current_date.next_month.year
+      @prev_month = current_date.month
+      @next_month = current_date.next_month.month
+      beginning_of_calendar = current_date.beginning_of_week(:sunday)
       end_of_months = beginning_of_calendar + months.months
       days += ((end_of_months - beginning_of_calendar) / 1.week.to_f).ceil * 7
     end
