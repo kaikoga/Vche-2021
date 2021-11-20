@@ -1,6 +1,14 @@
 class CalendarPresenter
   attr_reader :cells_by_date, :prev_year, :next_year, :prev_month, :next_month, :year_and_month
 
+  def prev_date
+    Time.zone.local(prev_year, prev_month)
+  end
+
+  def next_date
+    Time.zone.local(next_year, next_month)
+  end
+
   def initialize(events, user: nil, year: nil, month: nil, months: 0, days: 28)
     if events.respond_to?(:includes)
       events = events.includes(:event_schedules, :event_histories, :flavors)

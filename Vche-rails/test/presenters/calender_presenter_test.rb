@@ -17,6 +17,8 @@ class CalendarPresenterTest < ActiveSupport::TestCase
       assert { @subject.next_year == 2021 }
       assert { @subject.prev_month == 11 }
       assert { @subject.next_month == 12 }
+      assert { @subject.prev_date == Time.zone.parse('2021-11-01') }
+      assert { @subject.next_date == Time.zone.parse('2021-12-01') }
     end
   end
 
@@ -28,6 +30,8 @@ class CalendarPresenterTest < ActiveSupport::TestCase
       assert { @subject.next_year == 2021 }
       assert { @subject.prev_month == 1 }
       assert { @subject.next_month == 2 }
+      assert { @subject.prev_date == Time.zone.parse('2021-01-01') }
+      assert { @subject.next_date == Time.zone.parse('2021-02-01') }
     end
   end
 
@@ -39,6 +43,8 @@ class CalendarPresenterTest < ActiveSupport::TestCase
       assert { @subject.next_year == 2022 }
       assert { @subject.prev_month == 12 }
       assert { @subject.next_month == 1 }
+      assert { @subject.prev_date == Time.zone.parse('2021-12-01') }
+      assert { @subject.next_date == Time.zone.parse('2022-01-01') }
     end
   end
 
@@ -50,6 +56,8 @@ class CalendarPresenterTest < ActiveSupport::TestCase
       assert { @subject.next_year == 2001 }
       assert { @subject.prev_month == 10 }
       assert { @subject.next_month == 12 }
+      assert { @subject.prev_date == Time.zone.parse('2001-10-01') }
+      assert { @subject.next_date == Time.zone.parse('2001-12-01') }
     end
   end
 
@@ -61,6 +69,8 @@ class CalendarPresenterTest < ActiveSupport::TestCase
       assert { @subject.next_year == 2001 }
       assert { @subject.prev_month == 12 }
       assert { @subject.next_month == 2 }
+      assert { @subject.prev_date == Time.zone.parse('2000-12-01') }
+      assert { @subject.next_date == Time.zone.parse('2001-02-01') }
     end
   end
 
@@ -72,6 +82,8 @@ class CalendarPresenterTest < ActiveSupport::TestCase
       assert { @subject.next_year == 2002 }
       assert { @subject.prev_month == 11 }
       assert { @subject.next_month == 1 }
+      assert { @subject.prev_date == Time.zone.parse('2001-11-01') }
+      assert { @subject.next_date == Time.zone.parse('2002-01-01') }
     end
   end
 
