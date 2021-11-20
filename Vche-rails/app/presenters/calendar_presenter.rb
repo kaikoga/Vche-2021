@@ -1,6 +1,10 @@
 class CalendarPresenter
   attr_reader :cells_by_date, :current_date, :current_date_text, :current
 
+  def per_months?
+    @per_months
+  end
+
   def prev_date
     Time.zone.local(@prev_year, @prev_month)
   end
@@ -29,6 +33,8 @@ class CalendarPresenter
     if events.respond_to?(:includes)
       events = events.includes(:event_schedules, :event_histories, :flavors)
     end
+
+    @per_months = months > 0 || days > 35
 
     if date
       @current = false

@@ -8,6 +8,10 @@ nav.calendar__nav
   - unless calendar.current
     span.current = calendar.current_date_text
   = link_to("#{calendar.next_date_text} >", calendar_params.merge(date: calendar.next_date_str), class: :button)
+  - if calendar.per_months?
+    = link_to("週/月", calendar_params.merge(calendar: :week), class: :button)
+  - else
+    = link_to("週/月", calendar_params.except(:calendar), class: :button)
   - if enable_filters
     = render 'category_select'
     = render 'taste_select'
