@@ -39,13 +39,21 @@
 #  fk_rails_...  (platform_id => platforms.id)
 #  fk_rails_...  (updated_user_id => users.id)
 #
-
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+default:
+  name: 'イケボ喫茶 Guarigione'
+  fullname: 'イケボ喫茶 Guarigione'
+  description: 'イケボの喫茶'
+  organizer_name: 'cineria10'
+  primary_sns: 'twitter'
+  primary_sns_name: 'vrc_guarigione'
+  info_url: 'https://guarigione00.wixsite.com/guarigione'
+  hashtag: '#イケボ喫茶'
+  platform: vrchat_pc
+  visibility: 'public'
+  category: 'service'
+  taste: 'welcome'
+  capacity: 100
+  default_audience_role: 'participant'
+  trust: 0
+  created_user: cineria10
+  updated_user: cineria10

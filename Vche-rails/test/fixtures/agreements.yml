@@ -1,0 +1,25 @@
+# == Schema Information
+#
+# Table name: agreements
+#
+#  id           :bigint           not null, primary key
+#  slug         :string(255)      not null
+#  title        :text(65535)      not null
+#  body         :text(65535)      not null
+#  published_at :datetime         not null
+#  effective_at :datetime         not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+tos:
+  slug: 'tos'
+  title: 'tos_title'
+  body: 'tos_body'
+  published_at: <%= Time.current %>
+  effective_at: <%= Time.current %>
+privacy_policy:
+  slug: 'privacy_policy'
+  title: 'privacy_policy_title'
+  body: 'privacy_policy_body'
+  published_at: <%= Time.current %>
+  effective_at: <%= Time.current %>

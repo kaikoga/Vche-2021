@@ -1,8 +1,11 @@
 require "application_system_test_case"
 
 class UsersTest < ApplicationSystemTestCase
+  include VcheTestHelper
+
   setup do
-    @user = users(:one)
+    @user = users(:default)
+    login_user(@user)
   end
 
   test "visiting the index" do
