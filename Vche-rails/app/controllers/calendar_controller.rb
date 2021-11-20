@@ -12,6 +12,6 @@ class CalendarController < ApplicationController::Bootstrap
   private
 
   def index_params
-    @index_params ||= params.permit(:calendar, :year, :month, :category, :taste)
+    @index_params ||= params.permit(:calendar, :date, :category, :taste)
   end
 end

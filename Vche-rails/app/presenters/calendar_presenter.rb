@@ -9,12 +9,29 @@ class CalendarPresenter
     Time.zone.local(next_year, next_month)
   end
 
-  def initialize(events, user: nil, year: nil, month: nil, months: 0, days: 28)
+  def prev_date_text
+    prev_date.strftime('%Y/%m')
+  end
+
+  def next_date_text
+    next_date.strftime('%Y/%m')
+  end
+
+  def prev_date_str
+    prev_date.strftime('%Y%m%d')
+  end
+
+  def next_date_str
+    next_date.strftime('%Y%m%d')
+  end
+
+  def initialize(events, user: nil, date: nil, months: 0, days: 28)
     if events.respond_to?(:includes)
       events = events.includes(:event_schedules, :event_histories, :flavors)
     end
 
-    if year && month
+    if date
+      year, month = date.year, date.month
       @year_and_month = "#{year}/#{month}"
       @prev_year = (month == 1) ? year - 1 : year
       @next_year = (month == 12) ? year + 1 : year
@@ -50,13 +67,13 @@ class CalendarPresenter
       event_attendances_by_date = {}
     end
 
-    @cells_by_date = recent_dates.each_with_object({}) do |date, h|
-      event_histories_of_date = event_histories_by_date[date] || []
-      event_attendances_of_date = event_attendances_by_date[date] || []
+    @cells_by_date = recent_dates.each_with_object({}) do |d, h|
+      event_histories_of_date = event_histories_by_date[d] || []
+      event_attendances_of_date = event_attendances_by_date[d] || []
       trusted_histories = Vche::Trust.filter_trusted(event_histories_of_date)
       alien_histories = event_attendances_of_date.map { |a| event_histories_of_date.detect { |h| h.event_id == a.event_id } || a.find_or_build_history }.compact
       visible_histories = trusted_histories | alien_histories
-      h[date] = Cell.new(visible_histories, event_attendances_of_date)
+      h[d] = Cell.new(visible_histories, event_attendances_of_date)
     end
   end
 

@@ -9,14 +9,13 @@ class CalendarPresenterForm
   end
 
   def presenter(user: nil, months: 1)
-    year = params[:year]&.to_i
-    month = params[:month]&.to_i
+    date = params[:date] ? Time.zone.parse(params[:date]) : nil
     days = 0
     if params[:calendar] == 'week'
       months = 0
       days = 7
     end
-    CalendarPresenter.new(events, user: user, year: year, month: month, months: months, days: days)
+    CalendarPresenter.new(events, user: user, date: date, months: months, days: days)
   end
 
   def events

@@ -65,7 +65,7 @@ class UsersController < ApplicationController::Bootstrap
   end
 
   def show_params
-    @show_params ||= params.permit(:calendar, :year, :month)
+    @show_params ||= params.permit(:calendar, :date)
   end
 
   def create_params

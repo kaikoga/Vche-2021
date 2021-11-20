@@ -16,6 +16,6 @@ class HashtagsController < ApplicationController::Bootstrap
   end
 
   def show_params
-    params.permit(:id, :calendar, :year, :month, :category, :taste)
+    params.permit(:id, :calendar, :date, :category, :taste)
   end
 end

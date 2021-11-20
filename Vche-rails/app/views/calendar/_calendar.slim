@@ -3,11 +3,11 @@
 - enable_filters ||= false
 
 nav.calendar__nav
-  = link_to("=", calendar_params.except(:year, :month), class: :button)
-  = link_to("< #{calendar.prev_year}/#{calendar.prev_month}", calendar_params.merge(year: calendar.prev_year, month: calendar.prev_month), class: :button)
+  = link_to("=", calendar_params.except(:date), class: :button)
+  = link_to("< #{calendar.prev_date_text}", calendar_params.merge(date: calendar.prev_date_str), class: :button)
   - if calendar.year_and_month.present?
     span.current = calendar.year_and_month
-  = link_to("#{calendar.next_year}/#{calendar.next_month} >", calendar_params.merge(year: calendar.next_year, month: calendar.next_month), class: :button)
+  = link_to("#{calendar.next_date_text} >", calendar_params.merge(date: calendar.next_date_str), class: :button)
   - if enable_filters
     = render 'category_select'
     = render 'taste_select'
