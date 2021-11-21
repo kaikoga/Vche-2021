@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_03_225811) do
+ActiveRecord::Schema.define(version: 2021_11_21_161358) do
 
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.string "uid"
@@ -202,7 +202,8 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.string "taste"
     t.integer "capacity", null: false
     t.string "default_audience_role", null: false
-    t.integer "trust"
+    t.integer "trust", null: false
+    t.integer "base_trust", null: false
     t.bigint "created_user_id"
     t.bigint "updated_user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -268,6 +269,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.text "profile"
     t.string "visibility", null: false
     t.integer "trust", null: false
+    t.integer "base_trust", null: false
     t.string "user_role", null: false
     t.string "admin_role", null: false
     t.datetime "agreed_at"

@@ -12,6 +12,7 @@
 #  profile                      :text(65535)
 #  visibility                   :string(255)      not null
 #  trust                        :integer          not null
+#  base_trust                   :integer          not null
 #  user_role                    :string(255)      not null
 #  admin_role                   :string(255)      not null
 #  agreed_at                    :datetime

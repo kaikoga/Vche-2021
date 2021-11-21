@@ -18,7 +18,8 @@
 #  taste                 :string(255)
 #  capacity              :integer          not null
 #  default_audience_role :string(255)      not null
-#  trust                 :integer
+#  trust                 :integer          not null
+#  base_trust            :integer          not null
 #  created_user_id       :bigint
 #  updated_user_id       :bigint
 #  created_at            :datetime         not null
@@ -114,7 +115,7 @@ class Event < ApplicationRecord
       root_trust = [t, root_trust].max
       trust += 1
     end
-    self.trust = root_trust + trust
+    self.trust = base_trust + root_trust + trust
   end
 
   def next_schedule
