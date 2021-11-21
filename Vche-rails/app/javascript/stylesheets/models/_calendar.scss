@@ -97,6 +97,7 @@
     .event.-calendar {
       @include reset--font;
       word-break: break-all;
+      background: $fill;
       &.-attending {
         background: $positive_bg-light;
         color: $positive_text-light;
