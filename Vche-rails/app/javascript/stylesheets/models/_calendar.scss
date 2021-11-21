@@ -104,50 +104,53 @@
       }
       &.-resolution_information {
         color: $text-light;
-        &::before {
+        .entry::before {
           content: '✏️';
         }
       }
       &.-resolution_scheduled {
         color: $text-lighter;
-        &::before {
+        .entry::before {
           content: '🗒';
         }
       }
       &.-resolution_announced {
-        &::before {
+        .entry::before {
           content: '▶️';
         }
       }
       &.-resolution_moved {
         background: $negative_fill-lighter;
         color: $negative_text;
-        &::before {
+        .entry::before {
           content: '⚠️';
         }
       }
       &.-resolution_canceled {
         background: $negative_fill;
         color: $negative_text;
-        &::before {
+        .entry::before {
           content: '🛑️';
         }
       }
       &.-resolution_ended {
         background: $disabled_bg-light;
         color: $disabled_text;
-        &::before {
+        .entry::before {
           content: '✅';
         }
       }
       &.-resolution_completed {
         background: $disabled_bg-light;
         color: $disabled_text;
-        &::before {
+        .entry::before {
           content: '📗';
         }
       }
       .entry {
+        display: block;
+        width: 100%;
+        height: 100%;
         font-size: $font-size-small;
         &:hover {
           background: $primary_bg-light;
