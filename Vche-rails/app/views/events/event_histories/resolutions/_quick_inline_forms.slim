@@ -4,12 +4,12 @@
 - _backstage = loyalty(event_history, 'events/event_histories').backstage?
 
 - if _backstage
-  - if event_history.resolution.to_sym.in?([:scheduled])
+  - if event_history.resolution.to_sym.in?([:candidate, :scheduled])
     = render 'events/event_histories/resolutions/inline_form', event: event, event_history: event_history, resolution: :announced, submit_label: 'イベントの開催を告知する'
   - if event_history.resolution.to_sym.in?([:information, :announced, :ended]) && event_history.ended_at < Time.current
     = render 'events/event_histories/resolutions/inline_form', event: event, event_history: event_history, resolution: :completed, submit_label: 'イベントを完了する'
 - else
-  - if event_history.resolution.to_sym.in?([:scheduled])
-    = render 'events/event_histories/resolutions/inline_form', event: event, event_history: event_history, resolution: :announced, submit_label: 'イベントの開催を確定する'
+  - if event_history.resolution.to_sym.in?([:candidate, :scheduled])
+    = render 'events/event_histories/resolutions/inline_form', event: event, event_history: event_history, resolution: :information, submit_label: 'イベントの開催を報告する'
   - if event_history.resolution.to_sym.in?([:information, :announced, :ended]) && event_history.ended_at < Time.current
     = render 'events/event_histories/resolutions/inline_form', event: event, event_history: event_history, resolution: :completed, submit_label: 'イベントの完了を報告する'

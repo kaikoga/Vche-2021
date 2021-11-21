@@ -5,6 +5,14 @@
     | 現在の状態：
     = inline_resolution_tag @event_history.resolution
   - case @event_history.resolution.to_sym
+  - when :candidate
+    p
+      | 登録されたイベント予定に応じて、開催回の枠が確保されています。
+    p
+      = inline_resolution_tag 'announced'
+      | としてイベントカレンダーに予定を追加するには、
+      = _backstage ? '「イベントの開催を告知する」' : '「イベントの開催を報告する」'
+      | を行ってください。
   - when :scheduled
     p
       | 登録されたイベント予定に応じて、開催回の枠が確保されています。
