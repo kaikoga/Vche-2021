@@ -115,7 +115,7 @@ class Event < ApplicationRecord
       root_trust = [t, root_trust].max
       trust += 1
     end
-    self.trust = root_trust + trust
+    self.trust = base_trust + root_trust + trust
   end
 
   def next_schedule
