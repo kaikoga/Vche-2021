@@ -157,7 +157,7 @@ class EventsController < ApplicationController::Bootstrap
       :name, :fullname,
       :description, :organizer_name, :primary_sns_url, :info_url,
       :hashtag, :platform_id, :category_id, :visibility,
-      :capacity, :default_audience_role
+      :capacity, :multiplicity, :default_audience_role
     )
   end
 
@@ -166,7 +166,7 @@ class EventsController < ApplicationController::Bootstrap
       :name, :fullname,
       :description, :organizer_name, :primary_sns_url, :info_url,
       :hashtag, :platform_id, :category_id,
-      :capacity, :default_audience_role
+      :capacity, :multiplicity, :default_audience_role
     )
   end
 

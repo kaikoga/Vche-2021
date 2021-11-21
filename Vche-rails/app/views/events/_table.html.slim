@@ -51,6 +51,9 @@
   .field
     label = Event.human_attribute_name(:default_audience_role)
     .value = EventFollow.role.find_value(event.default_audience_role).text
+  .field
+    label = Event.human_attribute_name(:multiplicity)
+    .value = event.multiplicity_text
 
   .field
     label = Event.human_attribute_name(:event_schedules)

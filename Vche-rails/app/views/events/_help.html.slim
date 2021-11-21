@@ -1,6 +1,7 @@
 - categories = Category.all.index_by(&:slug).symbolize_keys
 
 .panel.-roundbox
+  h3#help_event_category 開催形態について
   p 開催形態を選ぶ場合、以下を参考にしてください。
   p
     = inline_category_tag(categories[:meetup])

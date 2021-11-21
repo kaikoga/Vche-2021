@@ -83,6 +83,7 @@ ja:
     event_schedules: イベント予定
     followers: フォロワー
     hashtag: ハッシュタグ
+    multiplicity: スケジュール方式
     name: 名前
     platform: プラットフォーム
     primary_sns: SNS
@@ -100,8 +101,12 @@ ja:
     updated_at: 更新した日時
   enumerize:
     defaults:
+      multiplicity:
+        single: 単発イベント
+        multiple: 定期開催
+        quantum: 不定期開催
       repeat:
-        oneshot: 単発イベント
+        oneshot: 繰り返しなし
         every_day: 毎日
         every_week: 毎週
         every_other_week: 隔週

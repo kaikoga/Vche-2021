@@ -53,6 +53,7 @@ class Event < ApplicationRecord
   include Enums::DefaultAudienceRole
   include Enums::Visibility
   include Enums::Taste
+  include Enums::Multiplicity
   include Enums::PrimarySns
 
   validates :name, length: { in: 1..31 }
