@@ -4,6 +4,7 @@ module Vche::Trust
   included do
     before_validation do
       self.trust ||= 0
+      self.base_trust ||= 0
     end
   end
 
