@@ -3,15 +3,13 @@
 - enable_filters ||= false
 
 nav.calendar__nav
+  = form_with(url: filtered_params, method: :get, class: '-inline') do |form|
+    = form.select :calendar, calendar.options, { selected: params[:calendar] }, onchange: "javascript: this.form.submit();"
   = link_to("=", calendar_params.except(:date), class: :button)
   = link_to("< #{calendar.prev_date_text}", calendar_params.merge(date: calendar.prev_date_str), class: :button)
   - unless calendar.current
     span.current = calendar.current_date_text
   = link_to("#{calendar.next_date_text} >", calendar_params.merge(date: calendar.next_date_str), class: :button)
-  - if calendar.per_months?
-    = link_to("週/月", calendar_params.merge(calendar: :week), class: :button)
-  - else
-    = link_to("週/月", calendar_params.except(:calendar), class: :button)
   - if enable_filters
     = render 'category_select'
     = render 'taste_select'

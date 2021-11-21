@@ -1,6 +1,10 @@
 class CalendarPresenter
   attr_reader :cells_by_date, :prev_date, :next_date, :current_date, :current
 
+  def options
+    [:month, :week].map { |v| [I18n.t(v, scope: 'vche.calendar.calendar'), v] }
+  end
+
   def per_months?
     @per_months
   end
