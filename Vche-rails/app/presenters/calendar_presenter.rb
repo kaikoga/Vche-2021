@@ -9,10 +9,6 @@ class CalendarPresenter
     @per_months
   end
 
-  def date_text_format
-    per_months? ? '%Y/%m' : '%Y/%m/%d'
-  end
-
   def prev_date_text
     prev_date.strftime(date_text_format)
   end
@@ -105,5 +101,11 @@ class CalendarPresenter
     def attending?(event_history)
       event_attendances.detect { |ea| ea.event_id = event_history.event_id && ea.started_at == event_history.started_at }
     end
+  end
+
+  private
+
+  def date_text_format
+    per_months? ? '%Y/%m' : '%Y/%m/%d'
   end
 end
