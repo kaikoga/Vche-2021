@@ -119,6 +119,7 @@ ja:
         even_week: 偶数週
         last_week: 最終週
       resolution:
+        candidate: 開催未定
         scheduled: 開催予定
         announced: 開催決定
         information: 情報

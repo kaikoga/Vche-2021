@@ -5,7 +5,7 @@
   = render_errors_header form
 
   = render_field form, :resolution do
-    = form.select :resolution, EventHistory.resolution.emoji_options(official: event.official?)
+    = form.select :resolution, EventHistory.resolution.emoji_options(event.official? ? :official : :unofficial)
 
   .actions
     - if loyalty(event_history, 'events/event_histories/resolutions').update?
