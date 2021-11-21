@@ -89,7 +89,7 @@ class CalendarPresenter
       trusted_histories = Vche::Trust.filter_trusted(event_histories_of_date)
       alien_histories = event_attendances_of_date.map { |a| event_histories_of_date.detect { |h| h.event_id == a.event_id } || a.find_or_build_history }.compact
       visible_histories = trusted_histories | alien_histories
-      h[d] = Cell.new(visible_histories, event_attendances_of_date)
+      h[d] = Cell.new(d, visible_histories, event_attendances_of_date)
     end
 
     def bar_positions
@@ -115,9 +115,19 @@ class CalendarPresenter
   class Cell
     attr_reader :events
 
-    def initialize(event_histories, event_attendances)
+    def initialize(date, event_histories, event_attendances)
+      @date = date
       @events = event_histories.sort_by(&:started_at).map { |event_history| CellEvent.new(event_history) }
       @event_attendances = event_attendances
+
+      offset = 0
+      overlap_end_at = date
+      events.each do |event|
+        offset = 0 if event.event_history.started_at >= overlap_end_at
+        event.offset = offset
+        offset += 1
+        overlap_end_at = [overlap_end_at, event.event_history.ended_at].max
+      end
     end
 
     def attending?(event_history)
@@ -126,14 +136,16 @@ class CalendarPresenter
 
     private
 
-    attr_reader :event_attendances
+    attr_reader :date, :event_attendances
   end
 
   class CellEvent
     attr_reader :event_history
+    attr_accessor :offset
 
     def initialize(event_history)
       @event_history = event_history
+      @offset = 0
     end
   end
 

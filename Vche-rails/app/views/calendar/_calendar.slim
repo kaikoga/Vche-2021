@@ -38,11 +38,11 @@ nav.calendar__nav
             - else
               - start_y = calendar.time_to_y(history.started_at)
               - end_y = calendar.time_to_y([history.started_at.end_of_day, history.ended_at].min) - start_y
-              - calendar_event_style = "top:#{start_y}rem;height:#{end_y}rem;"
+              - calendar_event_style = "top:#{start_y}rem;left:#{cell_event.offset * 2}rem;height:#{end_y}rem;"
             div class=calendar_event_class style=calendar_event_style
               - if loyalty(history, 'events/event_histories').show?
                 - event_name = "#{l(history.started_at, format: :hm)} #{history_event.name}"
-                = link_to event_name, event_event_history_path(history_event, history), class: "entry"
+                = link_to event_name, event_event_history_path(history_event, history), class: "entry", title: event_name
               - else
                 - event_name = "#{l(history.started_at, format: :hm)} 予定あり"
-                span.entry.-masked = event_name
+                span.entry.-masked title=event_name = event_name

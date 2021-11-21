@@ -152,6 +152,7 @@
         &:hover {
           background: $primary_bg-light;
           color: $text;
+          z-index: 1;
         }
         &.-masked {
           font-style: oblique;
