@@ -11,11 +11,20 @@ class CalendarPresenterForm
   def presenter(user: nil, months: 1)
     date = params[:date] ? Time.zone.parse(params[:date]) : nil
     days = 0
-    if params[:calendar] == 'week'
+    format = nil
+    case params[:calendar]
+    when 'week'
       months = 0
       days = 7
+      format = :week
+    when 'compact'
+      months = 0
+      days = 7
+      format = :compact
+    else
+      format = :month
     end
-    CalendarPresenter.new(events, user: user, date: date, months: months, days: days)
+    CalendarPresenter.new(events, user: user, date: date, months: months, days: days, format: format)
   end
 
   def events

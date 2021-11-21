@@ -1,6 +1,7 @@
 - calendar ||= nil
 - calendar_params = filtered_params
 - enable_filters ||= false
+- calendar_class = "calendar -cells -#{calendar.format}"
 
 nav.calendar__nav
   = form_with(url: filtered_params, method: :get, class: '-inline') do |form|
@@ -14,49 +15,32 @@ nav.calendar__nav
     = render 'category_select'
     = render 'taste_select'
 
-- case calendar_params[:calendar]
-- when 'week'
-  - calendar.cells_by_date.each_slice(7) do |slice|
-    .calendar.-cells.-week
-      .calendar__headers
-        - slice.each do |date, cell|
-          div class=css_class_of_time(date, :calendar__header)
-            = l(date, format: :mda)
-      .calendar__cells
-        - slice.each do |date, cell|
-          div class=css_class_of_time(date, :calendar__cell)
-            - 9.times do |i|
-              .bar.-calendar style="top:#{i * 12}rem" = "#{i * 3}:00"
-            - cell.event_histories.each do |history|
-              - calendar_class = 'event -calendar'
-              - calendar_class << ' -attending' if cell.attending?(history)
-              - calendar_class << " -resolution_#{history.resolution}"
-              - calendar_style = "top:#{history.started_at.hour * 4 + history.started_at.min / 15.0 }rem;height:#{([history.started_at.end_of_day, history.ended_at].min - history.started_at) / 60.0 / 15.0}rem;"
-              div class=calendar_class style=calendar_style
-                - if loyalty(history, 'events/event_histories').show?
-                  - event_name = "#{l(history.started_at, format: :hm)} #{history.event.name}"
-                  = link_to event_name, event_event_history_path(history.event, history), class: "entry"
-                - else
-                  - event_name = "#{l(history.started_at, format: :hm)} 予定あり"
-                  span.entry.-masked = event_name
-- else
-  - calendar.cells_by_date.each_slice(7) do |slice|
-    .calendar.-cells.-month
-      .calendar__headers
-        - slice.each do |date, cell|
-          div class=css_class_of_time(date, :calendar__header)
-            = l(date, format: :mda)
-      .calendar__cells
-        - slice.each do |date, cell|
-          div class=css_class_of_time(date, :calendar__cell)
-            - cell.event_histories.each do |history|
-              - calendar_class = 'event -calendar'
-              - calendar_class << ' -attending' if cell.attending?(history)
-              - calendar_class << " -resolution_#{history.resolution}"
-              div class=calendar_class
-                - if loyalty(history, 'events/event_histories').show?
-                  - event_name = "#{l(history.started_at, format: :hm)} #{history.event.name}"
-                  = link_to event_name, event_event_history_path(history.event, history), class: "entry"
-                - else
-                  - event_name = "#{l(history.started_at, format: :hm)} 予定あり"
-                  span.entry.-masked = event_name
+- calendar.cells_by_date.each_slice(7) do |slice|
+  div class=calendar_class
+    .calendar__headers
+      - slice.each do |date, cell|
+        div class=css_class_of_time(date, :calendar__header)
+          = l(date, format: :mda)
+    .calendar__cells
+      - slice.each do |date, cell|
+        div class=css_class_of_time(date, :calendar__cell)
+          - unless calendar.per_months?
+            - calendar.bar_positions.each do |h|
+              .bar.-calendar style="top:#{calendar.hour_to_y(h)}rem" = "#{h}:00"
+          - cell.event_histories.each do |history|
+            - calendar_event_class = 'event -calendar'
+            - calendar_event_class << ' -attending' if cell.attending?(history)
+            - calendar_event_class << " -resolution_#{history.resolution}"
+            - if calendar.per_months?
+              - calendar_event_style = nil
+            - else
+              - start_y = calendar.time_to_y(history.started_at)
+              - end_y = calendar.time_to_y([history.started_at.end_of_day, history.ended_at].min) - start_y
+              - calendar_event_style = "top:#{start_y}rem;height:#{end_y}rem;"
+            div class=calendar_event_class style=calendar_event_style
+              - if loyalty(history, 'events/event_histories').show?
+                - event_name = "#{l(history.started_at, format: :hm)} #{history.event.name}"
+                = link_to event_name, event_event_history_path(history.event, history), class: "entry"
+              - else
+                - event_name = "#{l(history.started_at, format: :hm)} 予定あり"
+                span.entry.-masked = event_name

@@ -1,8 +1,10 @@
 class CalendarPresenter
-  attr_reader :cells_by_date, :prev_date, :next_date, :current_date, :current
+  attr_reader :cells_by_date, :prev_date, :next_date, :current_date, :current, :format
+
+  BAR_POSITIONS = [0, 3, 6, 9, 12, 15, 18, 21, 24].freeze
 
   def options
-    [:month, :week].map { |v| [I18n.t(v, scope: 'vche.calendar.calendar'), v] }
+    [:month, :week, :compact].map { |v| [I18n.t(v, scope: 'vche.calendar.calendar'), v] }
   end
 
   def per_months?
@@ -29,7 +31,7 @@ class CalendarPresenter
     next_date.strftime('%Y%m%d')
   end
 
-  def initialize(events, user: nil, date: nil, months: 0, days: 28)
+  def initialize(events, user: nil, date: nil, months: 0, days: 28, format: nil)
     if events.respond_to?(:includes)
       events = events.includes(:event_schedules, :event_histories, :flavors)
     end
@@ -64,6 +66,8 @@ class CalendarPresenter
     end
     recent_dates = (0...days).map { |i| beginning_of_calendar + i.days }
 
+    @format = format
+
     # FIXME N+1
     event_histories = events.flat_map{ |event| event.recent_schedule(recent_dates) }
 
@@ -86,6 +90,25 @@ class CalendarPresenter
       alien_histories = event_attendances_of_date.map { |a| event_histories_of_date.detect { |h| h.event_id == a.event_id } || a.find_or_build_history }.compact
       visible_histories = trusted_histories | alien_histories
       h[d] = Cell.new(visible_histories, event_attendances_of_date)
+    end
+
+    def bar_positions
+      BAR_POSITIONS
+    end
+
+    def time_to_y(time)
+      hour_to_y(time.hour, time.min)
+    end
+
+    def hour_to_y(hour, min = 0)
+      hf = hour + min / 60.0
+      return hf * 4 unless format == :compact
+      case hour
+      when (0...18)
+        hf * 1.5
+      else
+        hf * 3 - 27
+      end
     end
   end
 

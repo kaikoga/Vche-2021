@@ -2,8 +2,9 @@ ja:
   vche:
    calendar:
       calendar:
-        week: 週
         month: 月
+        week: 週
+        compact: 狭
   activerecord:
     models:
       agreement: 利用規約

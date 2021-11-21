@@ -11,16 +11,13 @@
 .calendar.-cells.-month {
 }
 
-.calendar.-cells.-week {
-  height: 30rem;
-  overflow: scroll;
+.calendar.-cells.-week, .calendar.-cells.-compact {
   .calendar__headers {
     position: absolute;
     z-index: 1;
   }
   .calendar__cell {
     position: relative;
-    height: 100rem;
     top: 1.5rem;
     .bar.-calendar {
       position: absolute;
@@ -40,6 +37,21 @@
       min-height: 1.5rem;
       line-height: 1;
     }
+  }
+}
+
+.calendar.-cells.-week {
+  height: 30rem;
+  overflow: scroll;
+  .calendar__cell {
+    height: 100rem;
+  }
+}
+
+.calendar.-cells.-compact {
+  height: 48rem;
+  .calendar__cell {
+    height: 46rem;
   }
 }
 
