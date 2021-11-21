@@ -8,12 +8,11 @@ class EventsController < ApplicationController::Bootstrap
 
   def show
     @event = find_event
-    @user = current_user
     authorize! @event
 
-    year = show_params[:year]&.to_i
-    month = show_params[:month]&.to_i
-    @calendar = CalendarPresenter.new([@event], year: year, month: month, months: 2, days: 0)
+    @user = current_user
+    form = CalendarPresenterForm.new([@event], params)
+    @calendar = form.presenter(user: @user, months: 2)
   end
 
   def info
@@ -150,7 +149,7 @@ class EventsController < ApplicationController::Bootstrap
   end
 
   def show_params
-    params.permit(:year, :month)
+    params.permit(:calendar, :date)
   end
 
   def create_params

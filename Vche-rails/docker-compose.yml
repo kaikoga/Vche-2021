@@ -9,7 +9,7 @@ services:
       context: .
       dockerfile: Dockerfile-dev
     environment:
-      RAILS_ENV: development
+      # RAILS_ENV: development
       VCHE_ENV: local
       WEBPACKER_DEV_SERVER_HOST: webpack
       VCHE_SOCKET: "tcp://0.0.0.0:3000"

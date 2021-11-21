@@ -2,7 +2,7 @@
 - event_history ||= nil
 - event_history.event ||= event
 
-= form_with(model: [event, event_history], class: '-table') do |form|
+= form_with(model: [event, event_history], method: event_history.persisted? ? :patch : :post, class: '-table') do |form|
   = render_errors_header form
 
   = render_field form, :resolution do

@@ -33,8 +33,36 @@
 #  index_users_on_last_logout_at_and_last_activity_at  (last_logout_at,last_activity_at)
 #  index_users_on_remember_me_token                    (remember_me_token)
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+default:
+  email: 'kaikoga'
+  uid: 'kaikoga'
+  display_name: 'kaikoga'
+  primary_sns: 'twitter'
+  primary_sns_name: 'kaikoga'
+  profile: 'kaikogakaikogakaikoga'
+  visibility: 'public'
+  trust: 1000000
+  user_role: 'user'
+  admin_role: 'admin'
+  agreed_at: <%= 1.months.from_now %>
+  # password: 'kaikoga'
+  # password_confirmation: 'kaikoga'
+  salt: <%= salt = "kaikoga" %>
+  crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("kaikoga", salt) %>
+
+cineria10:
+  email: 'cineria10'
+  uid: 'cineria10'
+  display_name: 'cineria10'
+  primary_sns: 'twitter'
+  primary_sns_name: 'cineria10'
+  profile: 'cineria10cineria10cineria10'
+  visibility: 'public'
+  trust: 1000000
+  user_role: 'user'
+  admin_role: 'none'
+  agreed_at: <%= 1.months.from_now %>
+  # password: 'cineria10'
+  # password_confirmation: 'cineria10'
+  salt: <%= salt = "cineria10" %>
+  crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("cineria10", salt) %>

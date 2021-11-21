@@ -1,31 +1,72 @@
 class CalendarPresenter
-  attr_reader :cells_by_date, :prev_year, :next_year, :prev_month, :next_month, :year_and_month
+  attr_reader :cells_by_date, :prev_date, :next_date, :current_date, :current, :format
 
-  def initialize(events, user: nil, year: nil, month: nil, months: 0, days: 28)
+  BAR_POSITIONS = [0, 3, 6, 9, 12, 15, 18, 21, 24].freeze
+
+  def options
+    [:month, :week, :compact].map { |v| [I18n.t(v, scope: 'vche.calendar.calendar'), v] }
+  end
+
+  def per_months?
+    @per_months
+  end
+
+  def prev_date_text
+    prev_date.strftime(date_text_format)
+  end
+
+  def next_date_text
+    next_date.strftime(date_text_format)
+  end
+
+  def current_date_text
+    current ? '' : current_date.strftime(date_text_format)
+  end
+
+  def prev_date_str
+    prev_date.strftime('%Y%m%d')
+  end
+
+  def next_date_str
+    next_date.strftime('%Y%m%d')
+  end
+
+  def initialize(events, user: nil, date: nil, months: 0, days: 28, format: nil)
     if events.respond_to?(:includes)
       events = events.includes(:event_schedules, :event_histories, :flavors)
     end
 
-    if year && month
-      @year_and_month = "#{year}/#{month}"
-      @prev_year = (month == 1) ? year - 1 : year
-      @next_year = (month == 12) ? year + 1 : year
-      @prev_month = (month == 1) ? 12 : month - 1
-      @next_month = (month == 12) ? 1 : month + 1
-      beginning_of_calendar = Time.zone.local(year, month, 1, 0, 0, 0).beginning_of_month.beginning_of_week(:sunday)
-      end_of_months = (Time.zone.local(year, month, 1, 0, 0, 0).beginning_of_month + months.months)
-      days += ((end_of_months - beginning_of_calendar) / 1.week.to_f).ceil * 7
+    @per_months = months > 0 || days >= 28
+
+    if date
+      @current_date = date.beginning_of_day
+      if per_months?
+        @prev_date = date - 1.months
+        @next_date = date + 1.months
+      else
+        @prev_date = date - 1.weeks
+        @next_date = date + 1.weeks
+      end
     else
-      @year_and_month = ''
-      @prev_year = Time.current.year
-      @next_year = Time.current.next_month.year
-      @prev_month = Time.current.month
-      @next_month = Time.current.next_month.month
-      beginning_of_calendar = Time.current.beginning_of_week(:sunday)
-      end_of_months = beginning_of_calendar + months.months
+      @current = true
+      @current_date = Time.current.beginning_of_day
+      if per_months?
+        @prev_date = current_date.beginning_of_month
+        @next_date = current_date.next_month.beginning_of_month
+      else
+        @prev_date = current_date.beginning_of_week(:sunday)
+        @next_date = current_date.next_week(:sunday).beginning_of_week(:sunday)
+      end
+    end
+
+    beginning_of_calendar = current_date.beginning_of_week(:sunday)
+    if months > 0
+      end_of_months = current_date + months.months
       days += ((end_of_months - beginning_of_calendar) / 1.week.to_f).ceil * 7
     end
     recent_dates = (0...days).map { |i| beginning_of_calendar + i.days }
+
+    @format = format
 
     # FIXME N+1
     event_histories = events.flat_map{ |event| event.recent_schedule(recent_dates) }
@@ -42,27 +83,75 @@ class CalendarPresenter
       event_attendances_by_date = {}
     end
 
-    @cells_by_date = recent_dates.each_with_object({}) do |date, h|
-      event_histories_of_date = event_histories_by_date[date] || []
-      event_attendances_of_date = event_attendances_by_date[date] || []
+    @cells_by_date = recent_dates.each_with_object({}) do |d, h|
+      event_histories_of_date = event_histories_by_date[d] || []
+      event_attendances_of_date = event_attendances_by_date[d] || []
       trusted_histories = Vche::Trust.filter_trusted(event_histories_of_date)
       alien_histories = event_attendances_of_date.map { |a| event_histories_of_date.detect { |h| h.event_id == a.event_id } || a.find_or_build_history }.compact
       visible_histories = trusted_histories | alien_histories
-      h[date] = Cell.new(visible_histories, event_attendances_of_date)
+      h[d] = Cell.new(d, visible_histories, event_attendances_of_date)
+    end
+
+    def bar_positions
+      BAR_POSITIONS
+    end
+
+    def time_to_y(time)
+      hour_to_y(time.hour, time.min)
+    end
+
+    def hour_to_y(hour, min = 0)
+      hf = hour + min / 60.0
+      return hf * 4 unless format == :compact
+      case hour
+      when (0...18)
+        hf * 1.5
+      else
+        hf * 3 - 27
+      end
     end
   end
 
   class Cell
-    attr_reader :event_histories
-    attr_reader :event_attendances
+    attr_reader :events
 
-    def initialize(event_histories, event_attendances)
-      @event_histories = event_histories.sort_by(&:started_at)
+    def initialize(date, event_histories, event_attendances)
+      @date = date
+      @events = event_histories.sort_by(&:started_at).map { |event_history| CellEvent.new(event_history) }
       @event_attendances = event_attendances
+
+      offset = 0
+      overlap_end_at = date
+      events.each do |event|
+        offset = 0 if event.event_history.started_at >= overlap_end_at
+        event.offset = offset
+        offset += 1
+        overlap_end_at = [overlap_end_at, event.event_history.ended_at].max
+      end
     end
 
     def attending?(event_history)
       event_attendances.detect { |ea| ea.event_id = event_history.event_id && ea.started_at == event_history.started_at }
     end
+
+    private
+
+    attr_reader :date, :event_attendances
+  end
+
+  class CellEvent
+    attr_reader :event_history
+    attr_accessor :offset
+
+    def initialize(event_history)
+      @event_history = event_history
+      @offset = 0
+    end
+  end
+
+  private
+
+  def date_text_format
+    per_months? ? '%Y/%m' : '%Y/%m/%d'
   end
 end
