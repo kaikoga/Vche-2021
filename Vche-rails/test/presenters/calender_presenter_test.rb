@@ -41,7 +41,7 @@ class CalendarPresenterTest < ActiveSupport::TestCase
 
   test '#year_and_month specified' do
     travel_to(Time.zone.parse('2021-11-11 09:00:00')) do
-      @subject = CalendarPresenter.new([events(:default)], user: users(:default), year: 2001, month: 11)
+      @subject = CalendarPresenter.new([events(:default)], user: users(:default), date: Time.zone.parse('20011101'))
       assert { !@subject.current }
       assert { @subject.current_date_text == '2001/11' }
       assert { @subject.prev_date == Time.zone.parse('2001-10-01') }
@@ -51,9 +51,9 @@ class CalendarPresenterTest < ActiveSupport::TestCase
 
   test '#year_and_month specified January' do
     travel_to(Time.zone.parse('2021-11-11 09:00:00')) do
-      @subject = CalendarPresenter.new([events(:default)], user: users(:default), year: 2001, month: 1)
+      @subject = CalendarPresenter.new([events(:default)], user: users(:default), date: Time.zone.parse('20010101'))
       assert { !@subject.current }
-      assert { @subject.current_date_text == '2001/1' }
+      assert { @subject.current_date_text == '2001/01' }
       assert { @subject.prev_date == Time.zone.parse('2000-12-01') }
       assert { @subject.next_date == Time.zone.parse('2001-02-01') }
     end
@@ -61,7 +61,7 @@ class CalendarPresenterTest < ActiveSupport::TestCase
 
   test '#year_and_month specified December' do
     travel_to(Time.zone.parse('2021-11-11 09:00:00')) do
-      @subject = CalendarPresenter.new([events(:default)], user: users(:default), year: 2001, month: 12)
+      @subject = CalendarPresenter.new([events(:default)], user: users(:default), date: Time.zone.parse('20011201'))
       assert { !@subject.current }
       assert { @subject.current_date_text == '2001/12' }
       assert { @subject.prev_date == Time.zone.parse('2001-11-01') }

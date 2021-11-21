@@ -1,24 +1,24 @@
 class CalendarPresenter
-  attr_reader :cells_by_date, :current_date, :current_date_text, :current
+  attr_reader :cells_by_date, :prev_date, :next_date, :current_date, :current
 
   def per_months?
     @per_months
   end
 
-  def prev_date
-    Time.zone.local(@prev_year, @prev_month)
-  end
-
-  def next_date
-    Time.zone.local(@next_year, @next_month)
+  def date_text_format
+    per_months? ? '%Y/%m' : '%Y/%m/%d'
   end
 
   def prev_date_text
-    prev_date.strftime('%Y/%m')
+    prev_date.strftime(date_text_format)
   end
 
   def next_date_text
-    next_date.strftime('%Y/%m')
+    next_date.strftime(date_text_format)
+  end
+
+  def current_date_text
+    current ? '' : current_date.strftime(date_text_format)
   end
 
   def prev_date_str
@@ -34,30 +34,32 @@ class CalendarPresenter
       events = events.includes(:event_schedules, :event_histories, :flavors)
     end
 
-    @per_months = months > 0 || days > 35
+    @per_months = months > 0 || days >= 28
 
     if date
-      @current = false
-      @current_date = date
-      year, month = date.year, date.month
-      @current_date_text = "#{year}/#{month}"
-      @prev_year = (month == 1) ? year - 1 : year
-      @next_year = (month == 12) ? year + 1 : year
-      @prev_month = (month == 1) ? 12 : month - 1
-      @next_month = (month == 12) ? 1 : month + 1
-      beginning_of_calendar = Time.zone.local(year, month, 1, 0, 0, 0).beginning_of_month.beginning_of_week(:sunday)
-      end_of_months = (Time.zone.local(year, month, 1, 0, 0, 0).beginning_of_month + months.months)
-      days += ((end_of_months - beginning_of_calendar) / 1.week.to_f).ceil * 7
+      @current_date = date.beginning_of_day
+      if per_months?
+        @prev_date = date - 1.months
+        @next_date = date + 1.months
+      else
+        @prev_date = date - 1.weeks
+        @next_date = date + 1.weeks
+      end
     else
       @current = true
       @current_date = Time.current.beginning_of_day
-      @current_date_text = ''
-      @prev_year = current_date.year
-      @next_year = current_date.next_month.year
-      @prev_month = current_date.month
-      @next_month = current_date.next_month.month
-      beginning_of_calendar = current_date.beginning_of_week(:sunday)
-      end_of_months = beginning_of_calendar + months.months
+      if per_months?
+        @prev_date = current_date.beginning_of_month
+        @next_date = current_date.next_month.beginning_of_month
+      else
+        @prev_date = current_date.beginning_of_week(:sunday)
+        @next_date = current_date.next_week(:sunday).beginning_of_week(:sunday)
+      end
+    end
+
+    beginning_of_calendar = current_date.beginning_of_week(:sunday)
+    if months > 0
+      end_of_months = current_date + months.months
       days += ((end_of_months - beginning_of_calendar) / 1.week.to_f).ceil * 7
     end
     recent_dates = (0...days).map { |i| beginning_of_calendar + i.days }
