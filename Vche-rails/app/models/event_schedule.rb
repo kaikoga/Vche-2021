@@ -95,8 +95,10 @@ class EventSchedule < ApplicationRecord
     history_resolution =
       if Time.current > end_at.change(date_options)
         :ended
+      elsif event.multiplicity.quantum?
+        :candidate
       elsif event.official?
-        :scheduled # TODO: May or maynot be scheduled
+        :scheduled
       else
         :information
       end
