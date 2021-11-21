@@ -27,7 +27,9 @@ nav.calendar__nav
           - unless calendar.per_months?
             - calendar.bar_positions.each do |h|
               .bar.-calendar style="top:#{calendar.hour_to_y(h)}rem" = "#{h}:00"
-          - cell.event_histories.each do |history|
+          - cell.events.each do |cell_event|
+            - history = cell_event.event_history
+            - history_event = history.event
             - calendar_event_class = 'event -calendar'
             - calendar_event_class << ' -attending' if cell.attending?(history)
             - calendar_event_class << " -resolution_#{history.resolution}"
@@ -39,8 +41,8 @@ nav.calendar__nav
               - calendar_event_style = "top:#{start_y}rem;height:#{end_y}rem;"
             div class=calendar_event_class style=calendar_event_style
               - if loyalty(history, 'events/event_histories').show?
-                - event_name = "#{l(history.started_at, format: :hm)} #{history.event.name}"
-                = link_to event_name, event_event_history_path(history.event, history), class: "entry"
+                - event_name = "#{l(history.started_at, format: :hm)} #{history_event.name}"
+                = link_to event_name, event_event_history_path(history_event, history), class: "entry"
               - else
                 - event_name = "#{l(history.started_at, format: :hm)} 予定あり"
                 span.entry.-masked = event_name

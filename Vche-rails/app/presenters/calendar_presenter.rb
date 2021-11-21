@@ -113,16 +113,27 @@ class CalendarPresenter
   end
 
   class Cell
-    attr_reader :event_histories
-    attr_reader :event_attendances
+    attr_reader :events
 
     def initialize(event_histories, event_attendances)
-      @event_histories = event_histories.sort_by(&:started_at)
+      @events = event_histories.sort_by(&:started_at).map { |event_history| CellEvent.new(event_history) }
       @event_attendances = event_attendances
     end
 
     def attending?(event_history)
       event_attendances.detect { |ea| ea.event_id = event_history.event_id && ea.started_at == event_history.started_at }
+    end
+
+    private
+
+    attr_reader :event_attendances
+  end
+
+  class CellEvent
+    attr_reader :event_history
+
+    def initialize(event_history)
+      @event_history = event_history
     end
   end
 
