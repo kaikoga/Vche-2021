@@ -58,17 +58,19 @@
   .field
     label = Event.human_attribute_name(:event_schedules)
     .relation
-      = render 'event_schedules/cards', event: event, event_schedules: event.event_schedules, edit: true
+      = render 'event_schedules/cards', event: event, event_schedules: event.event_schedules, edit: true, limit: 5
       .actions
         - if loyalty(event, :events).edit?
           = link_to "新規#{EventSchedule.model_name.human}", new_event_event_schedule_path(event), class: 'button'
+        = link_to "全ての#{EventSchedule.model_name.human}", event_event_schedules_path(event), class: 'button'
   .field
     label = Event.human_attribute_name(:event_histories)
     .relation
-      = render 'event_histories/cards', event: event, event_histories: event.event_histories, edit: true
+      = render 'event_histories/cards', event: event, event_histories: event.event_histories, edit: true, limit: 5
       .actions
         - if loyalty(event, :events).edit?
           = link_to "新規#{EventHistory.model_name.human}", new_event_event_history_path(event), class: 'button'
+        = link_to "全ての#{EventHistory.model_name.human}", event_event_histories_path(event), class: 'button'
 
   .actions
     - if loyalty(event, :events).edit?

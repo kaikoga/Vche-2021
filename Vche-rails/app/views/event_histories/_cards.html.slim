@@ -1,8 +1,11 @@
 - event ||= nil
 - event_histories ||= nil
 - edit ||= false
+- limit ||= nil
 - card_cloud ||= false
 - _layout = card_cloud ? 'card_cloud' : 'card_list'
+- _count = limit && event_histories.count
+- event_histories = event_histories.limit(limit) if limit
 
 div class="event_histories -#{_layout}"
   - event_histories.each do |event_history|
@@ -15,3 +18,5 @@ div class="event_histories -#{_layout}"
       span.resolution = event_history.resolution_emoji_text
       - if edit && loyalty(event_history, 'events/event_histories').edit?
         = link_to '編集する', edit_event_event_history_path(event, event_history), class: 'button'
+  - if _count && _count > limit
+    = "ほか #{_count - limit} 件"
