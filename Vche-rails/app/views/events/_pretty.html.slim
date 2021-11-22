@@ -24,13 +24,22 @@ h2 = event.fullname
           = external_link_to event.primary_sns_url, event.primary_sns_url, class: 'button -external'
         - if event.info_url.present?
           = external_link_to event.info_url, event.info_url, class: 'button -external'
-  .field
-    label = Event.human_attribute_name(:event_schedules)
-    .relation
-      = render 'event_schedules/cards', event: event, event_schedules: event.event_schedules, edit: true
-      .actions
-        - if loyalty(event, :events).edit?
-          = link_to "新規#{EventSchedule.model_name.human}", new_event_event_schedule_path(event), class: 'button'
+  - if event.multiplicity.single?
+    .field
+      label = Event.human_attribute_name(:event_histories)
+      .relation
+        = render 'event_histories/cards', event: event, event_histories: event.event_histories, edit: true
+        .actions
+          - if loyalty(event, :events).edit?
+            = link_to "新規#{EventHistory.model_name.human}", new_event_event_history_path(event), class: 'button'
+  - else
+    .field
+      label = Event.human_attribute_name(:event_schedules)
+      .relation
+        = render 'event_schedules/cards', event: event, event_schedules: event.event_schedules, edit: true
+        .actions
+          - if loyalty(event, :events).edit?
+            = link_to "新規#{EventSchedule.model_name.human}", new_event_event_schedule_path(event), class: 'button'
 
   .field
     label = Event.human_attribute_name(:capacity)

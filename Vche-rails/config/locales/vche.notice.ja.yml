@@ -17,9 +17,9 @@ ja:
         success: '参加依頼を辞退しました'
     events/event_histories:
       create:
-        success: 'EventHistory was successfully created.'
+        success: 'イベントに開催回を追加しました'
       update:
-        success: '開催回を更新しました'
+        success: 'イベントの開催回を更新しました'
       destroy:
         success: 'EventHistory was successfully destroyed.'
       attend:

@@ -11,8 +11,12 @@ class Events::EventHistoriesLoyalty < ApplicationLoyalty
     LoyaltyTools.event_accessible?(record.event, user)
   end
 
-  def create?
+  def new?
     LoyaltyTools.user_is_source?(record, user)
+  end
+
+  def create?
+    LoyaltyTools.user_is_source?(record.event, user)
   end
 
   def update?
