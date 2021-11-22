@@ -13,7 +13,9 @@ class Events::OwnersController < ApplicationController::Bootstrap
 
   def update
     authorize! @event
-    @event.owner = (User.friendly.find(update_params[:owner_id]))
+    @user = User.friendly.find(update_params[:owner_id])
+    @user.become_organizer!
+    @event.owner = @user
     redirect_to @event, notice: I18n.t('notice.events/owners.update.success')
   end
 
