@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_21_163438) do
+ActiveRecord::Schema.define(version: 2021_11_23_222034) do
 
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.string "uid"
@@ -247,6 +247,20 @@ ActiveRecord::Schema.define(version: 2021_11_21_163438) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id", "hashtag", "role"], name: "index_hashtag_follows_on_user_id_and_hashtag_and_role", unique: true
     t.index ["user_id"], name: "index_hashtag_follows_on_user_id"
+  end
+
+  create_table "offline_schedules", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "user_id"
+    t.string "name"
+    t.datetime "start_at", null: false
+    t.datetime "end_at", null: false
+    t.string "repeat"
+    t.datetime "repeat_until"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["uid"], name: "index_offline_schedules_on_uid", unique: true
+    t.index ["user_id"], name: "index_offline_schedules_on_user_id"
   end
 
   create_table "platforms", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
