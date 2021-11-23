@@ -94,6 +94,8 @@ class Event < ApplicationRecord
 
   has_many :event_attendances, dependent: :destroy
 
+  has_many :event_memories, dependent: :destroy
+
   before_validation :recalculate_capacity
 
   before_validation :recalculate_trust

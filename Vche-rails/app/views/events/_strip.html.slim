@@ -32,3 +32,17 @@
     span.organizer = event.organizer_name
     '
     span.hashtag = event.hashtag
+
+  - if event.event_schedules.empty? && event.event_histories.empty? && event.event_memories.empty?
+    - if event.multiplicity.single?
+      .panel.-roundbox
+        | 単発イベントの開催日時はここから入力できます。
+        span.actions
+          - if loyalty(event, 'events/event_histories').new?
+            = link_to "新規#{EventHistory.model_name.human}", new_event_event_history_path(event), class: 'button'
+    - else
+      .panel.-roundbox
+        | イベントの開催予定はこちらから入力できます。
+        span.actions
+          - if loyalty(event, 'event_schedules').new?
+            = link_to "新規#{EventSchedule.model_name.human}", new_event_event_schedule_path(event), class: 'button'
