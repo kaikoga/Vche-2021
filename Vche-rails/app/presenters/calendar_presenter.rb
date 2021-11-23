@@ -31,7 +31,9 @@ class CalendarPresenter
     next_date.strftime('%Y%m%d')
   end
 
-  def initialize(events, user: nil, date: nil, months: 0, days: 28, format: nil, candidate: false)
+  def initialize(events, current_user: nil, display_user: nil, date: nil, months: 0, days: 28, format: nil, candidate: false)
+    display_user ||= current_user
+
     if events.respond_to?(:includes)
       events = events.includes(:event_schedules, :event_histories, :flavors)
     end
@@ -78,8 +80,9 @@ class CalendarPresenter
     event_histories.sort_by(&:started_at)
     event_histories_by_date = event_histories.group_by { |history| history.started_at.beginning_of_day }
 
-    if user
-      event_attendances_by_date = user.event_attendances
+    if display_user
+      # FIXME: Ideally we should also collect current_user.event_attendances
+      event_attendances_by_date = display_user.event_attendances
         .where(started_at: beginning_of_calendar...(beginning_of_calendar + days.days))
         .group_by { |ea| ea.started_at.beginning_of_day }
     else
@@ -92,7 +95,7 @@ class CalendarPresenter
       trusted_histories = Vche::Trust.filter_trusted(event_histories_of_date)
       alien_histories = event_attendances_of_date.map { |a| event_histories_of_date.detect { |h| h.event_id == a.event_id } || a.find_or_build_history }.compact
       visible_histories = trusted_histories | alien_histories
-      h[d] = Cell.new(user, d, visible_histories, event_attendances_of_date)
+      h[d] = Cell.new(current_user, d, visible_histories, event_attendances_of_date)
     end
   end
 
@@ -118,9 +121,9 @@ class CalendarPresenter
   class Cell
     attr_reader :events
 
-    def initialize(user, date, event_histories, event_attendances)
+    def initialize(current_user, date, event_histories, event_attendances)
       @date = date
-      @events = event_histories.sort_by(&:started_at).map { |event_history| CellEvent.new(user, event_history) }
+      @events = event_histories.sort_by(&:started_at).map { |event_history| CellEvent.new(current_user, event_history) }
       @event_attendances = event_attendances
 
       offset = 0
@@ -153,10 +156,10 @@ class CalendarPresenter
       @masked
     end
 
-    def initialize(user, event_history)
+    def initialize(current_user, event_history)
       @started_at = event_history.started_at
       @ended_at = event_history.ended_at
-      @masked = !Events::EventHistoriesLoyalty.new(user, event_history).show?
+      @masked = !Events::EventHistoriesLoyalty.new(current_user, event_history).show?
       if masked?
         @name = '予定あり'
         puts "#{ended_at} < #{Time.current}"
