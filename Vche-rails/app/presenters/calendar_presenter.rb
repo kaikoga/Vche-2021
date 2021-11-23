@@ -92,48 +92,51 @@ class CalendarPresenter
       trusted_histories = Vche::Trust.filter_trusted(event_histories_of_date)
       alien_histories = event_attendances_of_date.map { |a| event_histories_of_date.detect { |h| h.event_id == a.event_id } || a.find_or_build_history }.compact
       visible_histories = trusted_histories | alien_histories
-      h[d] = Cell.new(d, visible_histories, event_attendances_of_date)
+      h[d] = Cell.new(user, d, visible_histories, event_attendances_of_date)
     end
+  end
 
-    def bar_positions
-      BAR_POSITIONS
-    end
+  def bar_positions
+    BAR_POSITIONS
+  end
 
-    def time_to_y(time)
-      hour_to_y(time.hour, time.min)
-    end
+  def time_to_y(time)
+    hour_to_y(time.hour, time.min)
+  end
 
-    def hour_to_y(hour, min = 0)
-      hf = hour + min / 60.0
-      return hf * 4 unless format == :compact
-      case hour
-      when (0...18)
-        hf * 1.5
-      else
-        hf * 3 - 27
-      end
+  def hour_to_y(hour, min = 0)
+    hf = hour + min / 60.0
+    return hf * 4 unless format == :compact
+    case hour
+    when (0...18)
+      hf * 1.5
+    else
+      hf * 3 - 27
     end
   end
 
   class Cell
     attr_reader :events
 
-    def initialize(date, event_histories, event_attendances)
+    def initialize(user, date, event_histories, event_attendances)
       @date = date
-      @events = event_histories.sort_by(&:started_at).map { |event_history| CellEvent.new(event_history) }
+      @events = event_histories.sort_by(&:started_at).map { |event_history| CellEvent.new(user, event_history) }
       @event_attendances = event_attendances
 
       offset = 0
       overlap_end_at = date
       events.each do |event|
-        offset = 0 if event.event_history.started_at >= overlap_end_at
+        offset = 0 if event.started_at >= overlap_end_at
         event.offset = offset
         offset += 1
-        overlap_end_at = [overlap_end_at, event.event_history.ended_at].max
+        overlap_end_at = [overlap_end_at, event.ended_at].max
       end
     end
 
-    def attending?(event_history)
+    def attending?(cell_event)
+      event_history = cell_event.event_history
+      return false unless event_history.nil?
+
       event_attendances.detect { |ea| ea.event_id = event_history.event_id && ea.started_at == event_history.started_at }
     end
 
@@ -143,12 +146,31 @@ class CalendarPresenter
   end
 
   class CellEvent
-    attr_reader :event_history
+    attr_reader :event_history, :resolution, :name, :started_at, :ended_at
     attr_accessor :offset
 
-    def initialize(event_history)
-      @event_history = event_history
+    def masked?
+      @masked
+    end
+
+    def initialize(user, event_history)
+      @started_at = event_history.started_at
+      @ended_at = event_history.ended_at
+      @masked = !Events::EventHistoriesLoyalty.new(user, event_history).show?
+      if masked?
+        @name = '予定あり'
+        puts "#{ended_at} < #{Time.current}"
+        @resolution = ended_at > Time.current ? :information : :ended
+      else
+        @event_history = event_history
+        @name = event_history.event.name
+        @resolution = event_history.resolution
+      end
       @offset = 0
+    end
+
+    def time_and_name
+      "#{I18n::localize(started_at, format: :hm)} #{name}"
     end
   end
 
