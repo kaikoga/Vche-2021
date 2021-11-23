@@ -52,7 +52,7 @@ class EventSchedulesController < ApplicationController::Bootstrap
     @event_schedule = find_event_schedule
     authorize! @event_schedule
     @event_schedule.destroy
-    redirect_to events_url, notice: I18n.t('notice.event_schedules.destroy.success')
+    redirect_to @event, notice: I18n.t('notice.event_schedules.destroy.success')
   end
 
   private
