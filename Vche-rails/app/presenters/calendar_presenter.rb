@@ -31,7 +31,7 @@ class CalendarPresenter
     next_date.strftime('%Y%m%d')
   end
 
-  def initialize(events, user: nil, date: nil, months: 0, days: 28, format: nil)
+  def initialize(events, user: nil, date: nil, months: 0, days: 28, format: nil, candidate: false)
     if events.respond_to?(:includes)
       events = events.includes(:event_schedules, :event_histories, :flavors)
     end
@@ -71,8 +71,11 @@ class CalendarPresenter
     # FIXME N+1
     event_histories = events.flat_map{ |event| event.recent_schedule(recent_dates) }
 
-    event_histories.sort_by(&:started_at)
+    unless candidate
+      event_histories.reject! { |h| h.resolution.candidate? }
+    end
 
+    event_histories.sort_by(&:started_at)
     event_histories_by_date = event_histories.group_by { |history| history.started_at.beginning_of_day }
 
     if user

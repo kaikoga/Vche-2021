@@ -17,6 +17,7 @@ class Operations::Event::UpdateUserRole < Operations::Operation
     if role
       event_follow = user.event_follows.create_or_find_by!(event: event)
       event_follow.update!(role: role)
+      @user.become_staff! if EventFollow.backstage_role?(role)
     else
       user.event_follows.find_by!(event: event).destroy!
     end

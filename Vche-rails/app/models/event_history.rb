@@ -101,6 +101,7 @@ class EventHistory < ApplicationRecord
   private
 
   def recalculate_resolution
+    return unless ended_at
     if Time.zone.now >= ended_at
       self.resolution =
         case resolution.to_sym

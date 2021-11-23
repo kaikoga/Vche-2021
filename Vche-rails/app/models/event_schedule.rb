@@ -11,7 +11,6 @@
 #  end_at          :datetime         not null
 #  close_at        :datetime
 #  repeat          :string(255)
-#  resolution      :string(255)
 #  repeat_until    :datetime
 #  created_user_id :bigint
 #  updated_user_id :bigint
@@ -96,8 +95,10 @@ class EventSchedule < ApplicationRecord
     history_resolution =
       if Time.current > end_at.change(date_options)
         :ended
+      elsif event.multiplicity.quantum?
+        :candidate
       elsif event.official?
-        :scheduled # TODO: May or maynot be scheduled
+        :scheduled
       else
         :information
       end

@@ -54,3 +54,10 @@
   padding-left: 200px;
   flex: 0 0 100%;
 }
+
+@mixin keyvaluetable__message {
+  font-size: $font-size-small;
+  color: $disabled_text;
+  padding-left: 200px;
+  flex: 0 0 100%;
+}

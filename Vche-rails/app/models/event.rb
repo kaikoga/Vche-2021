@@ -17,6 +17,7 @@
 #  visibility            :string(255)      not null
 #  taste                 :string(255)
 #  capacity              :integer          not null
+#  multiplicity          :string(255)
 #  default_audience_role :string(255)      not null
 #  trust                 :integer          not null
 #  base_trust            :integer          not null
@@ -52,6 +53,7 @@ class Event < ApplicationRecord
   include Enums::DefaultAudienceRole
   include Enums::Visibility
   include Enums::Taste
+  include Enums::Multiplicity
   include Enums::PrimarySns
 
   validates :name, length: { in: 1..31 }
@@ -91,6 +93,8 @@ class Event < ApplicationRecord
   has_many :audiences, through: :event_audiences, source: :user
 
   has_many :event_attendances, dependent: :destroy
+
+  has_many :event_memories, dependent: :destroy
 
   before_validation :recalculate_capacity
 

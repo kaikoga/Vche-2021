@@ -6,7 +6,7 @@ class CalendarController < ApplicationController::Bootstrap
 
     scoped_events = Event.public_or_over.where('trust > ?', Event::OWNER_TRUST)
     form = CalendarPresenterForm.new(scoped_events, index_params, filter: true)
-    @calendar = form.presenter(user: current_user)
+    @calendar = form.presenter(user: current_user, candidate: params[:taste] == 'all')
   end
 
   private

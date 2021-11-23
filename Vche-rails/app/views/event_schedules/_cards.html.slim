@@ -1,8 +1,12 @@
 - event ||= nil
 - event_schedules ||= nil
 - edit ||= false
+- limit ||= nil
 - card_cloud ||= false
 - _layout = card_cloud ? 'card_cloud' : 'card_list'
+- _count = limit && event_schedules.count
+- event_schedules = event_schedules.limit(limit) if limit
+
 
 div class="event_schedules -#{_layout}"
   - event_schedules.each do |event_schedule|
@@ -15,3 +19,5 @@ div class="event_schedules -#{_layout}"
         span.end_at = end_at
       - if edit && loyalty(event_schedule, :event_schedules).edit?
         = link_to '編集する', edit_event_event_schedule_path(event, event_schedule), class: 'button'
+  - if _count && _count > limit
+    = "ほか #{_count - limit} 件"
