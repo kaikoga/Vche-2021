@@ -1,0 +1,19 @@
+- offline_schedule ||= nil
+
+= form_with(model: [:my, offline_schedule], class: '-table') do |form|
+  = render_errors_header form
+
+  = render_text_field form, :name, required: true
+
+  = render_field form, :start_at, required: true do
+    = form.datetime_field :start_at
+  = render_field form, :end_at, required: true do
+    = form.datetime_field :end_at
+
+  = render_field form, :repeat do
+    = form.select :repeat, OfflineSchedule.repeat.options
+  = render_field form, :repeat_until do
+    = form.datetime_field :repeat_until
+
+  .actions
+    = form.submit

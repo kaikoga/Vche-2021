@@ -1,0 +1,39 @@
+.offline_schedule.-table {
+  @include keyvaluetable;
+  .field {
+    @include keyvaluetable__keyvalue;
+    label {
+      @include keyvaluetable__key;
+    }
+    .value {
+      @include keyvaluetable__value;
+    }
+    .relation {
+      @include keyvaluetable__relation;
+    }
+  }
+}
+
+.offline_schedule.-card {
+  @include card;
+  .offline_schedule__name  {
+    @include card__title;
+    font-size: $font_size-large;
+  }
+  .offline_schedule__time_span  {
+    @include card__title;
+    .repeat, .start_at, .sep, .end_at {
+      &::after {
+        content: ' ';
+      }
+    }
+  }
+}
+
+.offline_schedules.-card_list {
+  @include cards--card_list;
+}
+
+.offline_schedules.-card_cloud {
+  @include cards--card_cloud;
+}

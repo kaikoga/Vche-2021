@@ -1,0 +1,12 @@
+h1 = "#{OfflineSchedule.model_name.human}一覧"
+
+= render 'my/user_strip', user: @user
+
+.panel
+  = render 'offline_schedules/cards', offline_schedules: @offline_schedules, edit: true
+.panel
+  = paginate @offline_schedules
+
+- if loyalty(nil, 'my/offline_schedules').new?
+  .panel.actions
+    = link_to "新規#{OfflineSchedule.model_name.human}", new_my_offline_schedule_path, class: 'button'

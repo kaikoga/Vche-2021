@@ -19,4 +19,14 @@
 #  index_offline_schedules_on_user_id  (user_id)
 #
 class OfflineSchedule < ApplicationRecord
+  include Vche::Uid
+  include Vche::UidQuery
+
+  include Enums::Repeat
+
+  validates :name, presence: true
+  validates :start_at, presence: true
+  validates :end_at, presence: true
+
+  belongs_to :user
 end

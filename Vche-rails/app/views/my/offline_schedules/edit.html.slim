@@ -1,0 +1,8 @@
+h1 = "#{OfflineSchedule.model_name.human}を編集する"
+
+= render 'my/user_strip', user: @user
+
+= render 'form', offline_schedule: @offline_schedule
+
+.panel
+  = link_to '戻る', my_offline_schedule_path(@offline_schedule), class: 'button'

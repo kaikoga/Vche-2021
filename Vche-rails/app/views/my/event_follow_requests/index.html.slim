@@ -1,6 +1,6 @@
 h1 = EventFollowRequest.model_name.human
 
-= render 'home/user_strip', user: @user
+= render 'my/user_strip', user: @user
 
 -if @event_follow_requests.any?
   - @event_follow_requests.each do |event_follow_request|

@@ -15,6 +15,13 @@ ja:
         success: '参加依頼を受け入れました'
       decline:
         success: '参加依頼を辞退しました'
+    my/offline_schedules:
+      create:
+        success: '個人予定を追加しました'
+      update:
+        success: '個人予定を更新しました'
+      destroy:
+        success: '個人予定を削除しました'
     events/event_histories:
       create:
         success: 'イベントに開催回を追加しました'
