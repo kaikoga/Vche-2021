@@ -17,7 +17,8 @@ div class="event_schedules -#{_layout}"
         span.start_at = start_at
         span.sep -
         span.end_at = end_at
-      - if edit && loyalty(event_schedule, :event_schedules).edit?
-        = link_to '編集する', edit_event_event_schedule_path(event, event_schedule), class: 'button'
+      - if edit
+        - if loyalty(event_schedule, :event_schedules).edit?
+          = link_to '編集する', edit_event_event_schedule_path(event, event_schedule), class: 'button'
   - if _count && _count > limit
     = "ほか #{_count - limit} 件"
