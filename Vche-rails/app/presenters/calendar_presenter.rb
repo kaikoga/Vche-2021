@@ -135,7 +135,7 @@ class CalendarPresenter
 
     def attending?(cell_event)
       event_history = cell_event.event_history
-      return false unless event_history.nil?
+      return false unless event_history
 
       event_attendances.detect { |ea| ea.event_id = event_history.event_id && ea.started_at == event_history.started_at }
     end
