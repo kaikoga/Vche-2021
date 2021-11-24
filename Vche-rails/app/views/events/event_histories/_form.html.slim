@@ -2,11 +2,11 @@
 - event_history ||= nil
 - event_history.event ||= event
 
-= form_with(model: [event, event_history], class: '-table') do |form|
+= form_with(model: [event, event_history], method: event_history.persisted? ? :patch : :post, class: '-table') do |form|
   = render_errors_header form
 
   = render_field form, :resolution do
-    = form.select :resolution, EventHistory.resolution.emoji_options(official: event.official?)
+    = form.select :resolution, EventHistory.resolution.emoji_options(event.official? ? :official : :unofficial)
 
   - if loyalty(event_history).backstage?
     = render_field form, :assembled_at do

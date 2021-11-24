@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_03_225811) do
+ActiveRecord::Schema.define(version: 2021_11_23_222034) do
 
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.string "uid"
@@ -174,7 +174,6 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.datetime "end_at", null: false
     t.datetime "close_at"
     t.string "repeat"
-    t.string "resolution"
     t.datetime "repeat_until"
     t.bigint "created_user_id"
     t.bigint "updated_user_id"
@@ -201,8 +200,10 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.string "visibility", null: false
     t.string "taste"
     t.integer "capacity", null: false
+    t.string "multiplicity"
     t.string "default_audience_role", null: false
-    t.integer "trust"
+    t.integer "trust", null: false
+    t.integer "base_trust", null: false
     t.bigint "created_user_id"
     t.bigint "updated_user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -248,6 +249,20 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.index ["user_id"], name: "index_hashtag_follows_on_user_id"
   end
 
+  create_table "offline_schedules", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "user_id"
+    t.string "name"
+    t.datetime "start_at", null: false
+    t.datetime "end_at", null: false
+    t.string "repeat"
+    t.datetime "repeat_until"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["uid"], name: "index_offline_schedules_on_uid", unique: true
+    t.index ["user_id"], name: "index_offline_schedules_on_user_id"
+  end
+
   create_table "platforms", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.string "slug"
     t.string "name"
@@ -268,6 +283,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_225811) do
     t.text "profile"
     t.string "visibility", null: false
     t.integer "trust", null: false
+    t.integer "base_trust", null: false
     t.string "user_role", null: false
     t.string "admin_role", null: false
     t.datetime "agreed_at"

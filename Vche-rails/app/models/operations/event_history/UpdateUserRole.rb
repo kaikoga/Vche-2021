@@ -16,6 +16,7 @@ class Operations::EventHistory::UpdateUserRole < Operations::Operation
     if role
       event_attendance = user.event_attendances.for_event_history(event_history).create_or_find_by!({})
       event_attendance.update!(role: role)
+      @user.become_staff! if EventAttendance.backstage_role?(role)
     else
       user.event_attendances.for_event_history(event_history).destroy_all
     end

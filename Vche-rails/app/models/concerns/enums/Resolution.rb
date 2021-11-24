@@ -4,6 +4,7 @@ module Enums::Resolution
   included do
     enumerize :resolution, in: [
       :information,
+      :candidate,
       :scheduled,
       :announced,
       :moved,
@@ -24,8 +25,13 @@ module Enums::Resolution
       Enums::Resolution.resolution_emoji(resolution) + self.resolution.find_value(resolution).text
     end
 
-    def resolution.emoji_options(official:)
-      kwargs = official ? {} : { except: [:scheduled, :announced] }
+    def resolution.emoji_options(type)
+      kwargs =
+        case type
+        when :official then {}
+        when :unofficial then  { except: [:scheduled, :announced] }
+        else {}
+        end
       options(**kwargs).map { |name, value| ["#{Enums::Resolution.resolution_emoji(value)}#{name}", value] }
     end
 
@@ -35,6 +41,8 @@ module Enums::Resolution
     case resolution.to_sym
     when :information
       '✏️'
+    when :candidate
+      '❔'
     when :scheduled
       '🗒'
     when :announced
@@ -48,7 +56,7 @@ module Enums::Resolution
     when :completed
       '📗'
     else
-      '❔'
+      '🤔'
     end
   end
 

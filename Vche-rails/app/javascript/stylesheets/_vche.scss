@@ -23,6 +23,7 @@
 @import 'models/_event_history';
 @import 'models/_event_memory';
 @import 'models/_event_schedule';
+@import 'models/_offline_schedule';
 @import 'models/_user';
 
 @import '_inline';
@@ -197,6 +198,9 @@ form.-table {
     }
     > .error_message {
       @include keyvaluetable__error_message;
+    }
+    > .message {
+      @include keyvaluetable__message;
     }
     .relation {
       @include keyvaluetable__relation;

@@ -15,33 +15,40 @@ ja:
         success: '参加依頼を受け入れました'
       decline:
         success: '参加依頼を辞退しました'
+    my/offline_schedules:
+      create:
+        success: '個人予定を追加しました'
+      update:
+        success: '個人予定を更新しました'
+      destroy:
+        success: '個人予定を削除しました'
     events/event_histories:
       create:
-        success: 'EventHistory was successfully created.'
+        success: 'イベントに開催回を追加しました'
       update:
-        success: 'イベント履歴を更新しました'
+        success: 'イベントの開催回を更新しました'
       destroy:
         success: 'EventHistory was successfully destroyed.'
       attend:
-        success: 'イベントに参加しました'
+        success: 'イベントの開催回に参加しました'
       unattend:
-        success: 'イベントの参加を解除しました'
+        success: 'イベントの開催回への参加を解除しました'
       add_user:
         success: 'イベントの開催回への参加依頼を送信しました'
         outsider: '関係者以外の状態は変更できません'
       change_user:
-        success: 'イベントの開催回への参加状態を更新しました'
+        success: 'イベントの開催回に参加表明しました'
         outsider: '関係者以外の状態は変更できません'
       remove_user:
-        success: 'イベントの開催回への参加を解除しました'
+        success: 'イベントの開催回への参加表明を解除しました'
         outsider: '関係者以外の状態は変更できません'
     users/event_memories:
       create:
-        success: 'イベントの参加記録をしたためました'
+        success: 'イベントの思い出をしたためました'
       update:
-        success: 'イベントの参加記録をしたためました'
+        success: 'イベントの思い出をしたためました'
       destroy:
-        success: 'イベントの参加記録を心の中にしまいました'
+        success: 'イベントの思い出を心の中にしまいました'
     event_schedules:
       create:
         success: 'イベント予定を追加しました'
@@ -61,9 +68,9 @@ ja:
       add_user:
         success: 'イベントの参加依頼を送信しました'
       change_user:
-        success: 'イベントの参加状態を更新しました'
+        success: 'イベントのフォロー状態を更新しました'
       remove_user:
-        success: 'イベントの参加を解除しました'
+        success: 'イベントのフォローを解除しました'
     oauths:
       callback:
         success: '%{provider}でログインに成功しました'

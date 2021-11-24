@@ -21,7 +21,7 @@
       - if loyalty(event, :events).unfollow?
         = link_to 'フォロー解除', unfollow_event_path(event), method: :post, class: 'button'
 
-      = link_to '最近の開催', event_event_histories_path(event), class: 'button'
+      = link_to "最近の#{EventHistory.model_name.human}", event_event_histories_path(event), class: 'button'
 
   div
     span.fullname = event.fullname
@@ -32,3 +32,17 @@
     span.organizer = event.organizer_name
     '
     span.hashtag = event.hashtag
+
+  - if event.event_schedules.empty? && event.event_histories.empty? && event.event_memories.empty?
+    - if event.multiplicity.single?
+      .panel.-roundbox
+        | 単発イベントの開催日時はここから入力できます。
+        span.actions
+          - if loyalty(event, 'events/event_histories').new?
+            = link_to "新規#{EventHistory.model_name.human}", new_event_event_history_path(event), class: 'button'
+    - else
+      .panel.-roundbox
+        | イベントの開催予定はこちらから入力できます。
+        span.actions
+          - if loyalty(event, 'event_schedules').new?
+            = link_to "新規#{EventSchedule.model_name.human}", new_event_event_schedule_path(event), class: 'button'

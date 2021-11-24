@@ -2,5 +2,5 @@ h1 = "#{EventMemory.model_name.human}を編集する"
 
 = render 'form', user: @user, event_memory: @event_memory
 
-.panel
+.panel.actions
   = link_to '戻る', @user, class: 'button'

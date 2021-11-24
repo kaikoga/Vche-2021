@@ -12,6 +12,7 @@
 #  profile                      :text(65535)
 #  visibility                   :string(255)      not null
 #  trust                        :integer          not null
+#  base_trust                   :integer          not null
 #  user_role                    :string(255)      not null
 #  admin_role                   :string(255)      not null
 #  agreed_at                    :datetime
@@ -86,6 +87,8 @@ class User < ApplicationRecord
   has_many :audience_events, through: :audience_follows, source: :event
 
   has_many :event_attendances, dependent: :destroy
+
+  has_many :offline_schedules, dependent: :destroy
 
   has_many :feedbacks, dependent: :destroy
 

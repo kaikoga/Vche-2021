@@ -17,8 +17,10 @@
 #  visibility            :string(255)      not null
 #  taste                 :string(255)
 #  capacity              :integer          not null
+#  multiplicity          :string(255)
 #  default_audience_role :string(255)      not null
-#  trust                 :integer
+#  trust                 :integer          not null
+#  base_trust            :integer          not null
 #  created_user_id       :bigint
 #  updated_user_id       :bigint
 #  created_at            :datetime         not null
@@ -51,6 +53,7 @@ class Event < ApplicationRecord
   include Enums::DefaultAudienceRole
   include Enums::Visibility
   include Enums::Taste
+  include Enums::Multiplicity
   include Enums::PrimarySns
 
   validates :name, length: { in: 1..31 }
@@ -91,6 +94,8 @@ class Event < ApplicationRecord
 
   has_many :event_attendances, dependent: :destroy
 
+  has_many :event_memories, dependent: :destroy
+
   before_validation :recalculate_capacity
 
   before_validation :recalculate_trust
@@ -114,7 +119,7 @@ class Event < ApplicationRecord
       root_trust = [t, root_trust].max
       trust += 1
     end
-    self.trust = root_trust + trust
+    self.trust = base_trust + root_trust + trust
   end
 
   def next_schedule

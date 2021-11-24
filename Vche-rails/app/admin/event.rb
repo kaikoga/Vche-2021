@@ -17,8 +17,10 @@
 #  visibility            :string(255)      not null
 #  taste                 :string(255)
 #  capacity              :integer          not null
+#  multiplicity          :string(255)
 #  default_audience_role :string(255)      not null
-#  trust                 :integer
+#  trust                 :integer          not null
+#  base_trust            :integer          not null
 #  created_user_id       :bigint
 #  updated_user_id       :bigint
 #  created_at            :datetime         not null

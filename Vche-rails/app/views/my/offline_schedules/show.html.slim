@@ -1,0 +1,26 @@
+h1 = "#{OfflineSchedule.model_name.human}詳細"
+
+= render 'my/user_strip', user: @user
+
+.offline_schedule.-table
+  .field
+    label = OfflineSchedule.human_attribute_name(:name)
+    .value = @offline_schedule.name
+  .field
+    label = OfflineSchedule.human_attribute_name(:start_at)
+    .value = l(@offline_schedule.start_at)
+  .field
+    label = OfflineSchedule.human_attribute_name(:end_at)
+    .value = l(@offline_schedule.end_at)
+  .field
+    label = OfflineSchedule.human_attribute_name(:repeat)
+    .value = @offline_schedule.repeat_text
+  .field
+    label = OfflineSchedule.human_attribute_name(:repeat_until)
+    .value = l(@offline_schedule.repeat_until) if @offline_schedule.repeat_until
+
+  .actions
+    - if loyalty(@offline_schedule, 'my/offline_schedules').edit?
+      = link_to '編集する', edit_my_offline_schedule_path(@offline_schedule), class: 'button'
+    - if loyalty(@offline_schedule, 'my/offline_schedules').destroy?
+      = link_to '削除する', my_offline_schedule_path(@offline_schedule), method: :delete, class: 'button -negative'

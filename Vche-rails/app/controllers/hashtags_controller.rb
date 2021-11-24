@@ -7,15 +7,15 @@ class HashtagsController < ApplicationController::Bootstrap
   end
 
   def show
-    @events = Event.public_or_over.with_category_param(params[:category]).with_taste_param(params[:taste]).where(hashtag: params[:id]).order(trust: :desc).page(params[:page])
     authorize!
+    scoped_events = Event.public_or_over.where(hashtag: params[:id]).order(trust: :desc)
+    form = CalendarPresenterForm.new(scoped_events, show_params, filter: true, paginate: true)
 
-    year = show_params[:year]&.to_i
-    month = show_params[:month]&.to_i
-    @calendar = CalendarPresenter.new(@events, year: year, month: month, months: 1, days: 0)
+    @calendar = form.presenter(current_user: current_user, candidate: true)
+    @events = form.events
   end
 
   def show_params
-    params.permit(:year, :month)
+    params.permit(:id, :calendar, :date, :category, :taste)
   end
 end

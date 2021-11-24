@@ -4,11 +4,17 @@
 = form_with(model: event, class: '-table') do |form|
   = render_errors_header form
 
-  = render_text_field form, :name, required: true
-  = render_text_field form, :fullname
+  = render_text_field form, :name, required: true do
+    .message
+      | ここの名前がカレンダーに表示されます。短めにお願いします。
+  = render_text_field form, :fullname do
+    .message
+      | ここの名前はイベントページに表示されます。
   = render_field form, :description do
     = form.text_area :description, rows: 15
-  = render_text_field form, :organizer_name
+  = render_text_field form, :organizer_name do
+    .message
+      | 主催団体の名義などがあれば、ここに入力してください。
   = render_text_field form, :primary_sns_url
   = render_text_field form, :info_url
   = render_text_field form, :hashtag
@@ -30,8 +36,16 @@
 
   = render_field form, :capacity do
     = form.text_field :capacity
+    .message
+      | 「0」を入力すると定員に関する機能が無効になります。
   = render_field form, :default_audience_role do
     = form.select :default_audience_role, EventFollow.role.audience_options
+    .message
+      | ここを「参加希望」にしても何もよいことはありません。「参加者」を選んでください。
+  = render_field form, :multiplicity do
+    = form.select :multiplicity, Event.multiplicity.options
+    .message
+      | ここを「不定期開催」にすると、デフォルトの予定が「開催未定」になります。
 
   = hidden_field_tag :role, role if role
   .actions

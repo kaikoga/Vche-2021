@@ -1,6 +1,12 @@
-h1 = "#{Event.model_name.human}を新しく登録する"
-div
-  = render 'form', event: @event, role: @role
-  = link_to 'Back', events_path, class: 'button'
+- if @role == :owner
+  h1 = "#{Event.model_name.human}を新しく主催する"
+- else
+  h1 = "#{Event.model_name.human}を新しく登録する"
 
+= render 'form', event: @event, role: @role
+
+.panel.actions
+  = link_to '戻る', events_path, class: 'button'
+
+= render 'events/visibilities/help', new: true unless @event.persisted?
 = render 'help' unless @event.persisted?

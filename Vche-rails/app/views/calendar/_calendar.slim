@@ -1,30 +1,51 @@
 - calendar ||= nil
 - calendar_params = filtered_params
 - enable_filters ||= false
+- calendar_class = "calendar -cells -#{calendar.format}"
 
 nav.calendar__nav
-  = link_to("=", calendar_params.except(:year, :month), class: :button)
-  = link_to("< #{calendar.prev_year}/#{calendar.prev_month}", calendar_params.merge(year: calendar.prev_year, month: calendar.prev_month), class: :button)
-  - if calendar.year_and_month.present?
-    span.current = calendar.year_and_month
-  = link_to("#{calendar.next_year}/#{calendar.next_month} >", calendar_params.merge(year: calendar.next_year, month: calendar.next_month), class: :button)
+  = form_with(url: filtered_params, method: :get, class: '-inline') do |form|
+    = form.select :calendar, calendar.options, { selected: params[:calendar] }, onchange: "javascript: this.form.submit();"
+  = link_to("=", calendar_params.except(:date), class: :button)
+  = link_to("< #{calendar.prev_date_text}", calendar_params.merge(date: calendar.prev_date_str), class: :button)
+  - unless calendar.current
+    span.current = calendar.current_date_text
+  = link_to("#{calendar.next_date_text} >", calendar_params.merge(date: calendar.next_date_str), class: :button)
   - if enable_filters
     = render 'category_select'
     = render 'taste_select'
 
-.calendar.-cells
-  - calendar.cells_by_date.each do |date, cell|
-    - cell_class = date < Time.current.beginning_of_day ? 'calendar -cell -ended' : 'calendar -cell'
-    div class=cell_class
-      .date = l(date, format: :mda)
-      - cell.event_histories.each do |history|
-        - calendar_class = 'event -calendar'
-        - calendar_class << ' -attending' if cell.attending?(history)
-        - calendar_class << " -resolution_#{history.resolution}"
-        div class=calendar_class
-          - if loyalty(history, 'events/event_histories').show?
-            - event_name = "#{l(history.started_at, format: :hm)} #{history.event.name}"
-            = link_to event_name, event_event_history_path(history.event, history), class: "entry"
-          - else
-            - event_name = "#{l(history.started_at, format: :hm)} 予定あり"
-            span.entry.-masked = event_name
+- calendar.cells_by_date.each_slice(7) do |slice|
+  div class=calendar_class
+    .calendar__headers
+      - slice.each do |date, cell|
+        div class=css_class_of_time(date, :calendar__header)
+          = l(date, format: :mda)
+    .calendar__cells
+      - slice.each do |date, cell|
+        div class=css_class_of_time(date, :calendar__cell)
+          - unless calendar.per_months?
+            - calendar.bar_positions.each do |h|
+              .bar.-calendar style="top:#{calendar.hour_to_y(h)}rem" = "#{h}:00"
+          - cell.events.each do |cell_event|
+            - calendar_event_class = 'event -calendar'
+            - calendar_event_class << ' -masked' if cell_event.masked?
+            - if cell_event.offline?
+              - calendar_event_class << ' -offline'
+            - else
+              - calendar_event_class << ' -event'
+              - calendar_event_class << ' -attending' if cell.attending?(cell_event)
+              - calendar_event_class << " -resolution_#{cell_event.resolution}"
+            - if calendar.per_months?
+              - calendar_event_style = nil
+            - else
+              - start_y = calendar.time_to_y(cell_event.started_at)
+              - end_y = calendar.time_to_y([cell_event.started_at.end_of_day, cell_event.ended_at].min) - start_y
+              - calendar_event_style = "top:#{start_y}rem;left:#{cell_event.offset * 2}rem;height:#{end_y}rem;"
+            div class=calendar_event_class style=calendar_event_style
+              - event_name = cell_event.time_and_name
+              - history = cell_event.event_history
+              - if history
+                = link_to cell_event.time_and_name, event_event_history_path(history.event, history), class: :entry, title: event_name
+              - else
+                span.entry title=event_name = event_name
