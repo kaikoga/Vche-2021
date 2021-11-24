@@ -32,8 +32,6 @@ class CalendarPresenter
   end
 
   def initialize(events, current_user: nil, display_user: nil, date: nil, months: 0, days: 28, format: nil, candidate: false)
-    display_user ||= current_user
-
     if events.respond_to?(:includes)
       events = events.includes(:event_schedules, :event_histories, :flavors)
     end
