@@ -49,7 +49,7 @@ class EventSchedule < ApplicationRecord
   end
 
   def next_schedule
-    next_instance&.tap { |date| at_date(date) }
+    next_instance&.yield_self { |date| at_date(date) }
   end
 
   def at_date(date)
