@@ -90,7 +90,7 @@ class CalendarPresenter
     if display_user
       offline_histories_by_date = display_user.offline_schedules
         .where(start_at: beginning_of_calendar...(beginning_of_calendar + days.days), repeat: :oneshot)
-        .or(display_user.offline_schedules.where.not(repeat: :oneshot))
+        .or(display_user.offline_schedules.where.not(repeat: :oneshot)) # FIXME: Awful SQL
         .flat_map{ |os| os.recent_schedule(recent_dates) }
         .group_by { |oh| oh.started_at.beginning_of_day }
     else
