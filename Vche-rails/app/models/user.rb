@@ -88,6 +88,8 @@ class User < ApplicationRecord
 
   has_many :event_attendances, dependent: :destroy
 
+  has_many :offline_schedules, dependent: :destroy
+
   has_many :feedbacks, dependent: :destroy
 
   def following_event?(event)

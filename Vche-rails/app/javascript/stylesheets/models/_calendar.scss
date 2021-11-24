@@ -153,19 +153,23 @@
           content: '📗';
         }
       }
+      &.-masked {
+        font-style: oblique;
+      }
+      &.-offline {
+        background: $external_bg-light;
+        color: $external_text-light;
+      }
       .entry {
         display: block;
         width: 100%;
         height: 100%;
         font-size: $font-size-small;
-        &:hover {
-          background: $primary_bg-light;
-          color: $text;
-          z-index: 1;
-        }
-        &.-masked {
-          font-style: oblique;
-        }
+      }
+      &.-event .entry:hover {
+        background: $primary_bg-light;
+        color: $text;
+        z-index: 1;
       }
     }
   }

@@ -8,7 +8,7 @@ class CalendarPresenterForm
     @paginate = paginate
   end
 
-  def presenter(user: nil, months: 1, candidate: false)
+  def presenter(current_user: nil, display_user: nil, months: 1, candidate: false)
     date = params[:date] ? Time.zone.parse(params[:date]) : nil
     days = 0
     format = nil
@@ -24,7 +24,7 @@ class CalendarPresenterForm
     else
       format = :month
     end
-    CalendarPresenter.new(events, user: user, date: date, months: months, days: days, format: format, candidate: candidate)
+    CalendarPresenter.new(events, current_user: current_user, display_user: display_user, date: date, months: months, days: days, format: format, candidate: candidate)
   end
 
   def events

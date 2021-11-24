@@ -28,21 +28,24 @@ nav.calendar__nav
             - calendar.bar_positions.each do |h|
               .bar.-calendar style="top:#{calendar.hour_to_y(h)}rem" = "#{h}:00"
           - cell.events.each do |cell_event|
-            - history = cell_event.event_history
-            - history_event = history.event
             - calendar_event_class = 'event -calendar'
-            - calendar_event_class << ' -attending' if cell.attending?(history)
-            - calendar_event_class << " -resolution_#{history.resolution}"
+            - calendar_event_class << ' -masked' if cell_event.masked?
+            - if cell_event.offline?
+              - calendar_event_class << ' -offline'
+            - else
+              - calendar_event_class << ' -event'
+              - calendar_event_class << ' -attending' if cell.attending?(cell_event)
+              - calendar_event_class << " -resolution_#{cell_event.resolution}"
             - if calendar.per_months?
               - calendar_event_style = nil
             - else
-              - start_y = calendar.time_to_y(history.started_at)
-              - end_y = calendar.time_to_y([history.started_at.end_of_day, history.ended_at].min) - start_y
+              - start_y = calendar.time_to_y(cell_event.started_at)
+              - end_y = calendar.time_to_y([cell_event.started_at.end_of_day, cell_event.ended_at].min) - start_y
               - calendar_event_style = "top:#{start_y}rem;left:#{cell_event.offset * 2}rem;height:#{end_y}rem;"
             div class=calendar_event_class style=calendar_event_style
-              - if loyalty(history, 'events/event_histories').show?
-                - event_name = "#{l(history.started_at, format: :hm)} #{history_event.name}"
-                = link_to event_name, event_event_history_path(history_event, history), class: "entry", title: event_name
+              - event_name = cell_event.time_and_name
+              - history = cell_event.event_history
+              - if history
+                = link_to cell_event.time_and_name, event_event_history_path(history.event, history), class: :entry, title: event_name
               - else
-                - event_name = "#{l(history.started_at, format: :hm)} 予定あり"
-                span.entry.-masked title=event_name = event_name
+                span.entry title=event_name = event_name

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   end
 
   namespace :my do
+    resources :offline_schedules
+
     resources :event_follow_requests, only: :index do
       member do
         post :accept

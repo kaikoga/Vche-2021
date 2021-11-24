@@ -1,0 +1,24 @@
+- offline_schedules ||= nil
+- edit ||= false
+- limit ||= nil
+- card_cloud ||= false
+- _layout = card_cloud ? 'card_cloud' : 'card_list'
+- _count = limit && offline_schedules.count
+- offline_schedules = offline_schedules.limit(limit) if limit
+
+
+div class="offline_schedules -#{_layout}"
+  - offline_schedules.each do |offline_schedule|
+    .offline_schedule.-card
+      = link_to offline_schedule.name, my_offline_schedule_path(offline_schedule), class: :offline_schedule__name
+      = link_to my_offline_schedule_path(offline_schedule), class: :offline_schedule__time_span do
+        - repeat, start_at, end_at = repeat_time_span_text(offline_schedule.repeat, offline_schedule.start_at, offline_schedule.end_at)
+        span.repeat = repeat
+        span.start_at = start_at
+        span.sep -
+        span.end_at = end_at
+      - if edit
+        - if loyalty(offline_schedule, 'my/offline_schedules').edit?
+          = link_to '編集する', edit_my_offline_schedule_path(offline_schedule), class: 'button'
+  - if _count && _count > limit
+    = "ほか #{_count - limit} 件"

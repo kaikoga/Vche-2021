@@ -12,7 +12,7 @@ class EventsController < ApplicationController::Bootstrap
 
     @user = current_user
     form = CalendarPresenterForm.new([@event], params)
-    @calendar = form.presenter(user: @user, months: 2, candidate: true)
+    @calendar = form.presenter(current_user: @user, months: 2, candidate: true)
   end
 
   def info
