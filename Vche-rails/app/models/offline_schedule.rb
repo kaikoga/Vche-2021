@@ -29,4 +29,23 @@ class OfflineSchedule < ApplicationRecord
   validates :end_at, presence: true
 
   belongs_to :user
+
+  def recent_schedule(dates)
+    recent_instances(dates).map { |date| at_date(date) }
+  end
+
+  def at_date(date)
+    date_options = { year: date.year, month: date.month, day: date.day }
+    history_resolution = Time.current > end_at.change(date_options) ? :ended : :information
+    OfflineHistory.new(
+      parent: self,
+      name: name,
+      resolution: history_resolution,
+      started_at: start_at&.change(date_options),
+      ended_at: end_at&.change(date_options),
+    )
+  end
+
+  class OfflineHistory < Struct.new(:parent, :name, :resolution, :started_at, :ended_at, keyword_init: true)
+  end
 end

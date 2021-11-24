@@ -89,13 +89,24 @@ class CalendarPresenter
       event_attendances_by_date = {}
     end
 
+    if display_user
+      offline_histories_by_date = display_user.offline_schedules
+        .where(start_at: beginning_of_calendar...(beginning_of_calendar + days.days), repeat: :oneshot)
+        .or(display_user.offline_schedules.where.not(repeat: :oneshot))
+        .flat_map{ |os| os.recent_schedule(recent_dates) }
+        .group_by { |oh| oh.started_at.beginning_of_day }
+    else
+      offline_histories_by_date = {}
+    end
+
     @cells_by_date = recent_dates.each_with_object({}) do |d, h|
       event_histories_of_date = event_histories_by_date[d] || []
       event_attendances_of_date = event_attendances_by_date[d] || []
+      offline_histories_of_date = offline_histories_by_date[d] || []
       trusted_histories = Vche::Trust.filter_trusted(event_histories_of_date)
       alien_histories = event_attendances_of_date.map { |a| event_histories_of_date.detect { |h| h.event_id == a.event_id } || a.find_or_build_history }.compact
       visible_histories = trusted_histories | alien_histories
-      h[d] = Cell.new(current_user, d, visible_histories, event_attendances_of_date)
+      h[d] = Cell.new(current_user, d, visible_histories, event_attendances_of_date, offline_histories_of_date)
     end
   end
 
@@ -121,10 +132,14 @@ class CalendarPresenter
   class Cell
     attr_reader :events
 
-    def initialize(current_user, date, event_histories, event_attendances)
+    def initialize(current_user, date, event_histories, event_attendances, offline_histories)
       @date = date
-      @events = event_histories.sort_by(&:started_at).map { |event_history| CellEvent.new(current_user, event_history) }
+      @events = []
       @event_attendances = event_attendances
+
+      @events += event_histories.map { |event_history| CellEvent.new(current_user, event_history: event_history) }
+      @events += offline_histories.map { |offline_history| CellEvent.new(current_user, offline_history: offline_history) }
+      @events.sort_by!(&:started_at)
 
       offset = 0
       overlap_end_at = date
@@ -145,31 +160,41 @@ class CalendarPresenter
 
     private
 
-    attr_reader :date, :event_attendances
+    attr_reader :date, :event_attendances, :offline_histories
   end
 
   class CellEvent
-    attr_reader :event_history, :resolution, :name, :started_at, :ended_at
+    attr_reader :event_history, :offline_history, :resolution, :name, :started_at, :ended_at
     attr_accessor :offset
+
+    def offline?
+      @offline_history
+    end
 
     def masked?
       @masked
     end
 
-    def initialize(current_user, event_history)
-      @started_at = event_history.started_at
-      @ended_at = event_history.ended_at
-      @masked = !Events::EventHistoriesLoyalty.new(current_user, event_history).show?
-      if masked?
-        @name = '予定あり'
-        puts "#{ended_at} < #{Time.current}"
-        @resolution = ended_at > Time.current ? :information : :ended
-      else
-        @event_history = event_history
-        @name = event_history.event.name
-        @resolution = event_history.resolution
-      end
+    def initialize(current_user, event_history: nil, offline_history: nil)
+      history = event_history || offline_history
+      @started_at = history.started_at
+      @ended_at = history.ended_at
+      @resolution = ended_at > Time.current ? :information : :ended
       @offset = 0
+
+      if event_history
+        @masked = !Events::EventHistoriesLoyalty.new(current_user, event_history).show?
+        if masked?
+          @name = '予定あり'
+        else
+          @event_history = event_history
+          @name = event_history.event.name
+          @resolution = event_history.resolution
+        end
+      else
+        @offline_history = offline_history
+        @name = offline_history.name
+      end
     end
 
     def time_and_name

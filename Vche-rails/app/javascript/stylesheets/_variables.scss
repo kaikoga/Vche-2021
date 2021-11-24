@@ -45,6 +45,7 @@ $negative_fill-light: #fcf9f9;
 $negative_fill-lighter: #fffcfc;
 
 $external_text: hsl($_tertiary_hue, 15%, 30%);
+$external_text-light: hsl($_tertiary_hue, 20%, 50%);
 $external_text-lighter: hsl($_tertiary_hue, 25%, 70%);
 $external_bg: hsl($_tertiary_hue, 50%, 83%);
 $external_bg-light: hsl($_tertiary_hue, 50%, 90%);
