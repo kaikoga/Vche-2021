@@ -9,3 +9,7 @@ Copyright (c) 2021 kaikoga All rights reserved, unless explicitly specified othe
 ## 日本語の Readme
 
 Git は英語で、 GitHub は日本語または英語でお願いします。
+
+### 便利リンク
+
+[リリースチェックリスト](https://github.com/kaikoga/Vche/compare/release...develop?template=release) 
