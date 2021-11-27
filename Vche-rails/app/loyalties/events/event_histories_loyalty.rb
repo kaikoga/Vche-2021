@@ -32,7 +32,7 @@ class Events::EventHistoriesLoyalty < ApplicationLoyalty
   end
 
   def unattend?
-    LoyaltyTools.event_accessible?(record.event, user) && !record.resolution.phantom? && user && user.attending_event_as_audience?(record)
+    LoyaltyTools.event_accessible?(record.event, user) && user && user.attending_event_as_audience?(record)
   end
 
   def add_user?
@@ -44,7 +44,7 @@ class Events::EventHistoriesLoyalty < ApplicationLoyalty
   end
 
   def remove_user?
-    LoyaltyTools.user_is_backstage_member?(record.event, user) && !record.resolution.phantom?
+    LoyaltyTools.user_is_backstage_member?(record.event, user)
   end
 
   def memory?

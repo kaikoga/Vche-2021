@@ -102,7 +102,7 @@ class CalendarPresenter
       event_attendances_of_date = event_attendances_by_date[d] || []
       offline_histories_of_date = offline_histories_by_date[d] || []
       trusted_histories = Vche::Trust.filter_trusted(event_histories_of_date)
-      alien_histories = event_attendances_of_date.map { |a| event_histories_of_date.detect { |h| h.event_id == a.event_id } || a.find_or_build_history }.compact
+      alien_histories = event_attendances_of_date.map { |a| event_histories_of_date.detect { |h| h.event_id == a.event_id && h.started_at == a.started_at } || a.find_or_build_history }.compact
       visible_histories = trusted_histories | alien_histories
       h[d] = Cell.new(current_user, d, visible_histories, event_attendances_of_date, offline_histories_of_date)
     end
@@ -176,7 +176,7 @@ class CalendarPresenter
     def initialize(current_user, event_history: nil, offline_history: nil)
       history = event_history || offline_history
       @started_at = history.started_at
-      @ended_at = history.ended_at
+      @ended_at = history.ended_at || history.started_at
       @resolution = ended_at > Time.current ? :information : :ended
       @offset = 0
 
