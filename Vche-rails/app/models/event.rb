@@ -140,7 +140,7 @@ class Event < ApplicationRecord
       .detect { |history| history.started_at == start_at} ||
     EventHistory.new(
       event: self,
-      resolution: :canceled,
+      resolution: :phantom,
       capacity: 0,
       started_at: start_at
     )

@@ -131,6 +131,7 @@ ja:
         canceled: 中止
         ended: 終了
         completed: 完了
+        phantom: 非実在
       role:
         irrelevant: 不参加
         owner: 主催

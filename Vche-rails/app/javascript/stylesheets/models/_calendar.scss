@@ -153,6 +153,13 @@
           content: '📗';
         }
       }
+      &.-resolution_phantom {
+        background: $disabled_bg-light;
+        color: $negative_text;
+        .entry::before {
+          content: '🗑';
+        }
+      }
       &.-masked {
         font-style: oblique;
       }
