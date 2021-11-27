@@ -98,6 +98,10 @@ class EventHistory < ApplicationRecord
     started_at&.strftime('%Y%m%d%H%M%S')
   end
 
+  def scheduled?
+    event.scheduled_at?(started_at)
+  end
+
   private
 
   def recalculate_resolution

@@ -65,7 +65,7 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
     @event_history = find_event_history
     authorize! @event_history
     @event_history.destroy
-    redirect_to events_url, notice: I18n.t('notice.events/event_histories.destroy.success')
+    redirect_to event_event_history_path(@event, @event_history), notice: I18n.t('notice.events/event_histories.destroy.success')
   end
 
   def attend

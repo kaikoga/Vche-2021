@@ -131,6 +131,10 @@ class Event < ApplicationRecord
       .index_by(&:started_at).values
   end
 
+  def scheduled_at?(time)
+    event_schedules.flat_map { |schedule| schedule.recent_schedule([time]) }.any? { |history| history.started_at == time }
+  end
+
   def find_or_build_history(start_at)
     recent_schedule([start_at.beginning_of_day])
       .detect { |history| history.started_at == start_at} ||

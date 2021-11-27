@@ -41,5 +41,10 @@
   .actions
     - if loyalty(event_history, 'events/event_histories').edit?
       = link_to '編集する', edit_event_event_history_path(event, event_history), class: 'button'
+    - if loyalty(event_history, 'events/event_histories').destroy?
+      - if event_history.scheduled?
+        = link_to 'リセットする', event_event_history_path(event, event_history), method: :delete, class: 'button -negative'
+      - else
+        = link_to '削除する', event_event_history_path(event, event_history), method: :delete, class: 'button -negative'
 
   = render 'editor_info', resource: event_history
