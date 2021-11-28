@@ -11,6 +11,7 @@ services:
     environment:
       RAILS_ENV: production
       VCHE_ENV: production
+      VCHE_PUBLIC_CALENDAR_TRUST: all
       VCHE_SUPPORT_EMAIL: support@example.com
       VCHE_SUPPORT_GITHUB: https://example.com/github
       VCHE_SUPPORT_TWITTER: https://example.com/twitter

@@ -4,7 +4,7 @@ class CalendarController < ApplicationController::Bootstrap
   def index
     authorize!
 
-    @form = CalendarPresenterForm.new(Event.public_or_over, index_params, filter: { trust: 'owner' })
+    @form = CalendarPresenterForm.new(Event.public_or_over, index_params, filter: { trust: Rails.application.config.x.vche.public_calendar_trust })
     @calendar = @form.presenter(current_user: current_user, candidate: params[:taste] == 'all')
   end
 
