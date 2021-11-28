@@ -2,7 +2,7 @@ h1 = "#{Event.model_name.human}詳細"
 
 = render 'strip', event: @event, user: @user
 
-= render 'calendar/calendar', calendar: @calendar
+= render 'calendar/calendar', calendar: @calendar, form: @form
 
 = render 'pretty', event: @event
 

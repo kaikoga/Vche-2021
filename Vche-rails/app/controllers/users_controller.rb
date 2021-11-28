@@ -10,8 +10,8 @@ class UsersController < ApplicationController::Bootstrap
     @user = find_user
     authorize! @user
 
-    form = CalendarPresenterForm.new(@user.following_events.invite_or_over, show_params)
-    @calendar = form.presenter(current_user: current_user, display_user: @user, candidate: true)
+    @form = CalendarPresenterForm.new(@user.following_events.invite_or_over, show_params)
+    @calendar = @form.presenter(current_user: current_user, display_user: @user, candidate: true)
   end
 
   def info

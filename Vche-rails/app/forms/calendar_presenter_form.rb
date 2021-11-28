@@ -1,11 +1,13 @@
 class CalendarPresenterForm
   attr_reader :scoped_events, :params, :filter, :paginate, :range_mode
 
-  def initialize(scoped_events, params, filter: false, paginate: false)
+  def initialize(scoped_events, filtered_params, filter: false, paginate: false)
     @scoped_events = scoped_events
-    @params = params
+    @params = filtered_params
     @filter = filter
     @paginate = paginate
+
+    @params = @params.reverse_merge(filter.to_h) if filter.respond_to?(:to_h)
   end
 
   def presenter(current_user: nil, display_user: nil, months: 1, candidate: false)

@@ -104,7 +104,6 @@ class Event < ApplicationRecord
   scope :with_category_param, ->(category_param) { category_param.present? ? joins(:category).where('categories.slug': category_param) : all }
 
   scope :with_trust_param, ->(trust_param) do
-    puts "trust_param: #{trust_param}"
     case trust_param.to_s
     when 'owner'
       where('trust >= ?', OWNER_TRUST)

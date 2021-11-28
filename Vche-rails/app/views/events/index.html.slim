@@ -1,9 +1,9 @@
 h1 = Event.model_name.human
 
 nav.event__nav
-  = render 'category_select'
-  = render 'trust_select'
-  = render 'taste_select'
+  = render 'category_select', form: @form
+  = render 'trust_select', form: @form
+  = render 'taste_select', form: @form
 
 .panel
   = render 'cards', events: @events, card_cloud: true

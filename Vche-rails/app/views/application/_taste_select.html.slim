@@ -1,2 +1,7 @@
-= form_with(url: filtered_params, method: :get, class: '-inline') do |form|
-  = form.select :taste, Enums::Taste.select_options, { selected: params[:taste] }, onchange: "javascript: this.form.submit();"
+- form ||= nil
+
+- _params = filtered_params
+- _params.merge!(form.params) if form
+
+= form_with(url: _params, method: :get, class: '-inline') do |form|
+  = form.select :taste, Enums::Taste.select_options, { selected: _params[:taste] }, onchange: "javascript: this.form.submit();"

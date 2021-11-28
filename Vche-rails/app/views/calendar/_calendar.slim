@@ -1,23 +1,26 @@
 - calendar ||= nil
-- calendar_params = filtered_params
+- form ||= nil
 - enable_filters ||= false
-- calendar_class = "calendar -cells -#{calendar.format}"
+
+- _calendar_params = filtered_params
+- _calendar_params.merge!(form.params) if form
+- _calendar_class = "calendar -cells -#{calendar.format}"
 
 nav.calendar__nav
   = form_with(url: filtered_params, method: :get, class: '-inline') do |form|
     = form.select :calendar, calendar.options, { selected: params[:calendar] }, onchange: "javascript: this.form.submit();"
-  = link_to("=", calendar_params.except(:date), class: :button)
-  = link_to("< #{calendar.prev_date_text}", calendar_params.merge(date: calendar.prev_date_str), class: :button)
+  = link_to("=", _calendar_params.except(:date), class: :button)
+  = link_to("< #{calendar.prev_date_text}", _calendar_params.merge(date: calendar.prev_date_str), class: :button)
   - unless calendar.current
     span.current = calendar.current_date_text
-  = link_to("#{calendar.next_date_text} >", calendar_params.merge(date: calendar.next_date_str), class: :button)
+  = link_to("#{calendar.next_date_text} >", _calendar_params.merge(date: calendar.next_date_str), class: :button)
   - if enable_filters
-    = render 'category_select'
-    = render 'trust_select'
-    = render 'taste_select'
+    = render 'category_select', form: form
+    = render 'trust_select', form: form
+    = render 'taste_select', form: form
 
 - calendar.cells_by_date.each_slice(7) do |slice|
-  div class=calendar_class
+  div class=_calendar_class
     .calendar__headers
       - slice.each do |date, cell|
         div class=css_class_of_time(date, :calendar__header)

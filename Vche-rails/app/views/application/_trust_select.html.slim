@@ -1,4 +1,8 @@
-- trust_options = [['情報源を選ぶ', nil], ['公式告知', :owner], ['全ての情報', :all]]
+- form ||= nil
 
-= form_with(url: filtered_params, method: :get, class: '-inline') do |form|
-  = form.select :trust, trust_options, { selected: params[:trust] }, onchange: "javascript: this.form.submit();"
+- _params = filtered_params
+- _params.merge!(form.params) if form
+- _trust_options = [['公式告知', :owner], ['全ての情報', :all]]
+
+= form_with(url: _params, method: :get, class: '-inline') do |form|
+  = form.select :trust, _trust_options, { selected: _params[:trust] }, onchange: "javascript: this.form.submit();"
