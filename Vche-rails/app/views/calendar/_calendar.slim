@@ -13,6 +13,7 @@ nav.calendar__nav
   = link_to("#{calendar.next_date_text} >", calendar_params.merge(date: calendar.next_date_str), class: :button)
   - if enable_filters
     = render 'category_select'
+    = render 'trust_select'
     = render 'taste_select'
 
 - calendar.cells_by_date.each_slice(7) do |slice|

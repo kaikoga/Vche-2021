@@ -31,7 +31,7 @@ class CalendarPresenterForm
     @events ||=
       begin
         events = scoped_events
-        events = events.with_category_param(params[:category]).with_taste_param(params[:taste]) if filter
+        events = events.with_category_param(params[:category]).with_trust_param(params[:trust]).with_taste_param(params[:taste]) if filter
         events = events.page(params[:page]) if paginate
         events
       end

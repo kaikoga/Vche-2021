@@ -2,7 +2,7 @@ class EventsController < ApplicationController::Bootstrap
   skip_before_action :require_login, only: [:index, :show]
 
   def index
-    @events = Event.public_or_over.with_category_param(params[:category]).with_taste_param(params[:taste]).page(params[:page])
+    @events = Event.public_or_over.with_category_param(params[:category]).with_trust_param(params[:trust]).with_taste_param(params[:taste]).page(params[:page])
     authorize!
   end
 
