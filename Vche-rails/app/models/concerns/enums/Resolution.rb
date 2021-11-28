@@ -11,6 +11,7 @@ module Enums::Resolution
       :canceled,
       :ended,
       :completed,
+      :phantom
     ], default: :information
 
     def resolution_emoji
@@ -28,9 +29,9 @@ module Enums::Resolution
     def resolution.emoji_options(type)
       kwargs =
         case type
-        when :official then {}
-        when :unofficial then  { except: [:scheduled, :announced] }
-        else {}
+        when :official then { except: [:phantom] }
+        when :unofficial then  { except: [:scheduled, :announced, :phantom] }
+        else { except: [:phantom] }
         end
       options(**kwargs).map { |name, value| ["#{Enums::Resolution.resolution_emoji(value)}#{name}", value] }
     end
@@ -55,6 +56,8 @@ module Enums::Resolution
       '✅'
     when :completed
       '📗'
+    when :phantom
+      '🗑'
     else
       '🤔'
     end
