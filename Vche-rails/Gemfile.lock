@@ -375,6 +375,7 @@ DEPENDENCIES
   listen (~> 3.3)
   minitest-power_assert
   mysql2
+  oauth
   public_uid
   puma (~> 5.0)
   qiita-markdown
