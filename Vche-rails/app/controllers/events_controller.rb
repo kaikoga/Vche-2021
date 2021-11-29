@@ -2,7 +2,8 @@ class EventsController < ApplicationController::Bootstrap
   skip_before_action :require_login, only: [:index, :show]
 
   def index
-    @events = Event.public_or_over.with_category_param(params[:category]).with_taste_param(params[:taste]).page(params[:page])
+    @form = CalendarPresenterForm.new(Event.public_or_over, index_params, filter: { trust: :all }, paginate: true)
+    @events = @form.events
     authorize!
   end
 
@@ -11,8 +12,8 @@ class EventsController < ApplicationController::Bootstrap
     authorize! @event
 
     @user = current_user
-    form = CalendarPresenterForm.new([@event], params)
-    @calendar = form.presenter(current_user: @user, months: 2, candidate: true)
+    @form = CalendarPresenterForm.new([@event], show_params)
+    @calendar = @form.presenter(current_user: @user, months: 2, candidate: true)
   end
 
   def info
@@ -145,7 +146,7 @@ class EventsController < ApplicationController::Bootstrap
   end
 
   def index_params
-    params.permit(:taste)
+    params.permit(:category, :trust, :taste)
   end
 
   def show_params

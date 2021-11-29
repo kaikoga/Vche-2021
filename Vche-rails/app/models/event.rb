@@ -103,6 +103,17 @@ class Event < ApplicationRecord
   # scope :with_category_param, ->(category_param) { category_param.present? ? where(category: Category.find_by(slug: category_param)) : all }
   scope :with_category_param, ->(category_param) { category_param.present? ? joins(:category).where('categories.slug': category_param) : all }
 
+  scope :with_trust_param, ->(trust_param) do
+    case trust_param.to_s
+    when 'owner'
+      where('trust >= ?', OWNER_TRUST)
+    when 'trusted'
+      where('trust >= ?', 3)
+    else
+      all
+    end
+  end
+
   def recalculate_trust
     trust = 0
     root_trust = 0

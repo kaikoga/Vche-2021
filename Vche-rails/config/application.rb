@@ -41,6 +41,8 @@ module Vche
 
     config.x.vche.allow_private_backstage = false
 
+    config.x.vche.public_calendar_trust = ENV.fetch('VCHE_PUBLIC_CALENDAR_TRUST') { 'owner' }
+
     config.x.vche.support_email = ENV.fetch('VCHE_SUPPORT_EMAIL') { 'support@example.com' }
     config.x.vche.support_github = ENV.fetch('VCHE_SUPPORT_GITHUB') { 'https://example.com/github' }
     config.x.vche.support_twitter = ENV.fetch('VCHE_SUPPORT_TWITTER') { 'https://example.com/twitter' }
