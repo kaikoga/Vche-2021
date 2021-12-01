@@ -4,18 +4,17 @@
   = render_errors_header form
 
   = render_field form, :visibility do
-    = form.select :visibility, Event.visibility.options
+    = form.select :visibility, Event.visibility.emoji_options
 
-  .actions
-    - if Rails.application.config.x.vche.allow_private_backstage
-      p スタッフまたは情報登録者本人のみがこのイベントをフォローしている場合、公開状態を変更できます。
-      - if loyalty(event, 'events/visibilities').update?
-        = form.submit
-      - else
-        p.inline.-negative 一般参加者がこのイベントをフォローしているので、公開状態を変更できません。
+  - if Rails.application.config.x.vche.allow_private_backstage
+    p スタッフまたは情報登録者本人のみがこのイベントをフォローしている場合、公開状態を変更できます。
+    - if loyalty(event, 'events/visibilities').update?
+      .actions = form.submit
     - else
-      p 主催または情報登録者本人のみがこのイベントをフォローしている場合、公開状態を変更できます。
-      - if loyalty(event, 'events/visibilities').update?
-        = form.submit
-      - else
-        p.inline.-negative 一般参加者またはスタッフがこのイベントをフォローしているので、公開状態を変更できません。
+      p.inline.-negative 一般参加者がこのイベントをフォローしているので、公開状態を変更できません。
+  - else
+    p 主催または情報登録者本人のみがこのイベントをフォローしている場合、公開状態を変更できます。
+    - if loyalty(event, 'events/visibilities').update?
+      .actions = form.submit
+    - else
+      p.inline.-negative 一般参加者またはスタッフがこのイベントをフォローしているので、公開状態を変更できません。

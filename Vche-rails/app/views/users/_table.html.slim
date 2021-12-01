@@ -15,7 +15,7 @@
     .value.pre = user.profile
   .field
     label = User.human_attribute_name(:visibility)
-    .value = user.visibility_text
+    .value = user.visibility_emoji_text
   .field
     label = User.human_attribute_name(:last_login_at)
     .value = l(user.last_login_at) if user.last_login_at

@@ -68,7 +68,7 @@ Rails.application.routes.draw do
     resource :owner, controller: 'events/owners', only: [:edit, :update] do
       get :introduction
     end
-    resource :visibility, controller: 'events/visibilities', only: [:edit, :update]
+    resource :visibility, controller: 'events/visibilities', only: [:show, :edit, :update]
   end
 
   resources :hashtags, only: [:index, :show]

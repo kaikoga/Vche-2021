@@ -6,7 +6,7 @@ module ApplicationHelper
 
   def inline_visibility_tag(value, hide_public: false)
     tag.span class: 'inline -visibility' do
-      Event.visibility.find_value(value).text
+      Event::visibility_emoji_text(value)
     end unless hide_public && value.to_sym == :public
   end
 
