@@ -26,7 +26,7 @@ module LoyaltyTools
   end
 
   def event_accessible?(event, user)
-    case event.visibility.to_sym
+    case event&.visibility&.to_sym
     when :public, :shared
       true
     when :invite, :secret
@@ -37,7 +37,7 @@ module LoyaltyTools
   end
 
   def user_accessible?(record, user)
-    case record.visibility.to_sym
+    case record&.visibility&.to_sym
     when :public, :shared
       true
     when :invite, :secret

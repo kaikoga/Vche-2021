@@ -8,6 +8,12 @@ module EventMemoryHelper
 
   def visible_event_name(event_memory)
     event = event_memory.event
-    loyalty(event, 'events').show? ? event.name : '内緒のイベント'
+    if event.nil?
+      '忘れられたイベント'
+    elsif loyalty(event, 'events').show?
+      event.name
+    else
+      '内緒のイベント'
+    end
   end
 end
