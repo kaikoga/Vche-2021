@@ -31,7 +31,7 @@ module LoyaltyTools
       true
     when :invite, :secret
       event.followers.include?(user) || user_is_creator?(event, user)
-    else
+    else # :deleted
       false
     end
   end
@@ -42,7 +42,7 @@ module LoyaltyTools
       true
     when :invite, :secret
       record == user # TODO: user_follows
-    else
+    else # :deleted
       false
     end
   end

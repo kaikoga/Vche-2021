@@ -155,6 +155,7 @@ ja:
         shared: 共有
         invite: 非公開
         secret: 秘密
+        deleted: 削除済
     event_attendance:
       role:
         irrelevant: 不参加
