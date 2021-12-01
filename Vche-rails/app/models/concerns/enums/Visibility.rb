@@ -12,10 +12,12 @@ module Enums::Visibility
 
     validates :visibility, exclusion: { in: %w(deleted), message: "をこの方法で削除済にすることはできません" }
 
-    scope :public_or_over, ->{ where(visibility: :public) }
-    scope :shared_or_over, ->{ where(visibility: [:public, :shared]) }
-    scope :invite_or_over, ->{ where.not(visibility: [:secret, :deleted]) }
-    scope :secret_or_over, ->{ where.not(visibility: :deleted) }
+    scope :public_or_over, ->{ unscope(where: :visibility).where(visibility: :public) }
+    scope :shared_or_over, ->{ unscope(where: :visibility).where(visibility: [:public, :shared]) }
+    scope :invite_or_over, ->{ unscope(where: :visibility).where.not(visibility: [:secret, :deleted]) }
+    scope :secret_or_over, ->{ unscope(where: :visibility).where.not(visibility: :deleted) }
+
+    default_scope ->{ secret_or_over }
 
     def visible?
       self.class.visible_visibility?(visibility)
