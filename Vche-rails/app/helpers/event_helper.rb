@@ -10,9 +10,9 @@ module EventHelper
 
   def capacity_and_follow_text(event)
     if event.capacity > 0
-      "#{event.event_audiences.count} / #{event.capacity} (#{event.event_backstage_members.count})"
+      "#{event.audiences.count} / #{event.capacity} (#{event.backstage_members.count})"
     else
-      "#{event.event_audiences.count} (#{event.event_backstage_members.count})"
+      "#{event.audiences.count} (#{event.backstage_members.count})"
     end
   end
 end

@@ -7,19 +7,20 @@ div class="event_follows -#{_layout}"
     - _user = event_follow_request.user
     - _event = event_follow_request.event
     - _event_history = event_follow_request.find_or_build_history
-    .event_follow_request.-card
-      div
-        .user.-card
-          = link_to user_icon_tag(_user), _user
-          .primary_sns_name = _user.primary_sns_name
-          .display_name= link_to _user.display_name, _user, class: 'display_name card__title'
-        - if _event_history
-          span.started_at = link_to l(_event_history.started_at), event_event_history_path(_event, _event_history)
-          | 開催分
-        - else
-          | 今後の
-        span.role = event_follow_request.role_text
-        | として
-      .actions
-        - if loyalty(event_follow_request, 'events/event_follow_requests').withdraw?
-          = link_to '取り下げる', withdraw_event_event_follow_request_path(_event, event_follow_request), method: :post, class: 'button -negative'
+    - if _user && _event
+      .event_follow_request.-card
+        div
+          .user.-card
+            = link_to user_icon_tag(_user), _user
+            .primary_sns_name = _user.primary_sns_name
+            .display_name= link_to _user.display_name, _user, class: 'display_name card__title'
+          - if _event_history
+            span.started_at = link_to l(_event_history.started_at), event_event_history_path(_event, _event_history)
+            | 開催分
+          - else
+            | 今後の
+          span.role = event_follow_request.role_text
+          | として
+        .actions
+          - if loyalty(event_follow_request, 'events/event_follow_requests').withdraw?
+            = link_to '取り下げる', withdraw_event_event_follow_request_path(_event, event_follow_request), method: :post, class: 'button -negative'
