@@ -24,7 +24,7 @@
 
   - if !event.persisted?
     = render_field form, :visibility do
-      = form.select :visibility, Event.visibility.options
+      = form.select :visibility, Event.visibility.emoji_options
 
   = render_field form, :category do
     = form.collection_select :category_id, Category.available, :id, :emoji_name

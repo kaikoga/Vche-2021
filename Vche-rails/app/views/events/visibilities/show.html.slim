@@ -5,7 +5,7 @@ h1 = "#{Event.model_name.human}の#{Event.human_attribute_name(:visibility)}に�
 .event.-table
   .field
     label = Event.human_attribute_name(:visibility)
-    .value = @event.visibility_text
+    .value = @event.visibility_emoji_text
 
 = render 'help', new: false
 

@@ -4,7 +4,7 @@
   = render_errors_header form
 
   = render_field form, :visibility do
-    = form.select :visibility, Event.visibility.options
+    = form.select :visibility, Event.visibility.emoji_options
 
   - if Rails.application.config.x.vche.allow_private_backstage
     p スタッフまたは情報登録者本人のみがこのイベントをフォローしている場合、公開状態を変更できます。
