@@ -1,6 +1,11 @@
 class Events::VisibilitiesController < ApplicationController::Bootstrap
   before_action :find_parent_event
 
+  def show
+    authorize! @event
+    @user = current_user
+  end
+
   def edit
     authorize! @event
     @user = current_user

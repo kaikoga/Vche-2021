@@ -98,7 +98,7 @@ ja:
     trust: Trust
     uid: UID
     user: ユーザー
-    visibility: 公開する範囲
+    visibility: 公開範囲
     created_user: 作成したユーザー
     updated_user: 更新したユーザー
     created_at: 作成した日時

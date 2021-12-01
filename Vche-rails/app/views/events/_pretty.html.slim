@@ -54,5 +54,7 @@ h2 = event.fullname
       = link_to '編集する', edit_event_path(event), class: 'button'
     - if loyalty(event, 'events/visibilities').edit?
       = link_to '公開範囲を変更する', edit_event_visibility_path(event), class: 'button'
+    - else
+      = link_to '公開範囲について', event_visibility_path(event), class: 'button'
 
   = render 'editor_info', resource: event
