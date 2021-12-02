@@ -44,6 +44,12 @@
 ActiveAdmin.register Event do
   menu parent: :event
 
+  controller do
+    def scoped_collection
+      Event.friendly.unscope(where: :visibility)
+    end
+  end
+
   index do
     selectable_column
     id_column

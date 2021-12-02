@@ -72,13 +72,11 @@ class Event < ApplicationRecord
   has_many :flavors, through: :event_flavors
   accepts_nested_attributes_for :event_flavors, allow_destroy: true
 
-  has_many :event_schedules
-  has_many :event_histories
+  has_many :event_schedules, dependent: :destroy
+  has_many :event_histories, dependent: :destroy
 
   has_many :event_follow_requests, dependent: :destroy
   has_many :follow_requesters, through: :event_follow_requests, source: :user
-
-  has_many :event_follow_request_archives
 
   has_many :event_follows, dependent: :destroy
   has_many :followers, through: :event_follows, source: :user

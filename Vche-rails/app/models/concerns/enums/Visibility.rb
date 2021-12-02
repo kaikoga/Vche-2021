@@ -1,18 +1,41 @@
 module Enums::Visibility
   extend ActiveSupport::Concern
 
+  class WarnDefaultScopeHook < String
+    def initialize(value)
+      super(value.to_s)
+    end
+    def to_s
+      unless @logged
+        Rails.logger.info 'Using default scope of Enums::Visibility.'
+        # Rails.logger.debug { Thread.current.backtrace.join("\n") }
+        @logged = true
+      end
+      super
+    end
+  end
+
   included do
     enumerize :visibility, in: [
         :public,
         :shared,
         :invite,
-        :secret
+        :secret,
+        :deleted
     ], default: :invite
 
-    scope :public_or_over, ->{ where(visibility: :public) }
-    scope :shared_or_over, ->{ where(visibility: [:public, :shared]) }
-    scope :invite_or_over, ->{ where.not(visibility: :secret) }
-    scope :secret_or_over, ->{ all }
+    validates :visibility, exclusion: { in: %w(deleted), message: "をこの方法で削除済にすることはできません" }
+
+    scope :public_or_over, ->{ unscope(where: :visibility).where(visibility: :public) }
+    scope :shared_or_over, ->{ unscope(where: :visibility).where(visibility: [:public, :shared]) }
+    scope :invite_or_over, ->{ unscope(where: :visibility).where.not(visibility: [:secret, :deleted]) }
+    scope :secret_or_over, ->{ unscope(where: :visibility).where.not(visibility: :deleted) }
+
+    if Vche.env.local?
+      default_scope ->{ where.not(visibility: WarnDefaultScopeHook.new(:deleted)) }
+    else
+      default_scope ->{ secret_or_over }
+    end
 
     def visible?
       self.class.visible_visibility?(visibility)
@@ -35,7 +58,7 @@ module Enums::Visibility
     end
 
     def visibility.emoji_options
-      options.map { |name, value| ["#{Enums::Visibility.visibility_emoji(value)}#{name}", value] }
+      options(except: [:deleted]).map { |name, value| ["#{Enums::Visibility.visibility_emoji(value)}#{name}", value] }
     end
   end
 
@@ -44,7 +67,14 @@ module Enums::Visibility
   end
 
   def visibility_emoji(visibility)
-    visible_visibility?(visibility) ? '' : '🔒'
+    case visibility.to_sym
+    when :public, :shared
+      ''
+    when :invite, :secret
+      '🔒'
+    else # :deleted
+      '👻'
+    end
   end
 
   module_function :visible_visibility?, :visibility_emoji

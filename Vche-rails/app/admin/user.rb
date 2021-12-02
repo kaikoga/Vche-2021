@@ -37,6 +37,12 @@
 ActiveAdmin.register User do
   menu parent: :user
 
+  controller do
+    def scoped_collection
+      User.friendly.unscope(where: :visibility)
+    end
+  end
+
   index do
     selectable_column
     id_column
