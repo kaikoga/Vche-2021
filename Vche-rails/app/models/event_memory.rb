@@ -32,8 +32,8 @@ class EventMemory < ApplicationRecord
   include Vche::UidQuery
   include Vche::Hashtag
 
-  belongs_to :user
-  belongs_to :event
+  belongs_to :user, optional: true
+  belongs_to :event, optional: true
 
   validates :started_at, presence: true
   validates :published_at, presence: true
