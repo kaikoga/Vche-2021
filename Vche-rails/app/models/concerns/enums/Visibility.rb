@@ -32,7 +32,7 @@ module Enums::Visibility
     scope :secret_or_over, ->{ unscope(where: :visibility).where.not(visibility: :deleted) }
 
     if Vche.env.local?
-      default_scope ->{ where.not(visibility: WarnDefaultScopeHook.new(:delete)) }
+      default_scope ->{ where.not(visibility: WarnDefaultScopeHook.new(:deleted)) }
     else
       default_scope ->{ secret_or_over }
     end
