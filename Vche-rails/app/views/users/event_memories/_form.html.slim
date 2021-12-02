@@ -12,6 +12,8 @@
     = form.text_area :body, rows: 15
   = render_field form, :urls do
     = form.text_area :urls, rows: 5, value: event_memory.urls.join("\n")
+    .message
+      | TwitterのURLをここに入力すると展開されます。改行区切りで複数入力できます。
 
   - unless event_memory.persisted?
     = form.hidden_field :event_id, value: event_memory.event.uid
