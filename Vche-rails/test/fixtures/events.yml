@@ -57,5 +57,6 @@ default:
   capacity: 100
   default_audience_role: 'participant'
   trust: 0
+  base_trust: 0
   created_user: cineria10
   updated_user: cineria10

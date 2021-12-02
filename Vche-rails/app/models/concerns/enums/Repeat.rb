@@ -4,6 +4,7 @@ module Enums::Repeat
   included do
     enumerize :repeat, in: [
       :oneshot,
+      :some_day,
       :every_day,
       :every_week,
       :every_other_week,
@@ -36,7 +37,7 @@ module Enums::Repeat
       case repeat.to_sym
       when :oneshot
         date.beginning_of_day == start_at.beginning_of_day
-      when :every_day
+      when :some_day, :every_day
         true
       when :every_week
         date.wday == start_at.wday

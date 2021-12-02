@@ -31,7 +31,7 @@ class CalendarPresenter
     next_date.strftime('%Y%m%d')
   end
 
-  def initialize(events, current_user: nil, display_user: nil, date: nil, months: 0, days: 28, format: nil, candidate: false)
+  def initialize(events, current_user: nil, display_user: nil, date: nil, months: 0, days: 28, format: nil, candidate: false, offline: false)
     if events.respond_to?(:includes)
       events = events.includes(:event_schedules, :event_histories, :flavors)
     end
@@ -87,7 +87,7 @@ class CalendarPresenter
       event_attendances_by_date = {}
     end
 
-    if display_user
+    if display_user && offline
       offline_histories_by_date = display_user.offline_schedules
         .where(start_at: beginning_of_calendar...(beginning_of_calendar + days.days), repeat: :oneshot)
         .or(display_user.offline_schedules.where.not(repeat: :oneshot)) # FIXME: Awful SQL
@@ -153,7 +153,7 @@ class CalendarPresenter
       event_history = cell_event.event_history
       return false unless event_history
 
-      event_attendances.detect { |ea| ea.event_id = event_history.event_id && ea.started_at == event_history.started_at }
+      event_attendances.detect { |ea| ea.event_id == event_history.event_id && ea.started_at == event_history.started_at }
     end
 
     private

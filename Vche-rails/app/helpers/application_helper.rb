@@ -31,7 +31,7 @@ module ApplicationHelper
 
   def repeat_time_span_text(repeat, start_at, end_at)
     case repeat.to_sym
-    when :every_day
+    when :some_day, :every_day
       repeat_text = EventSchedule.repeat.find_value(repeat).text
       start_at_text = l(start_at, format: :hm)
     when :every_other_week
