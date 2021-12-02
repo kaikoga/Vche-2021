@@ -39,7 +39,7 @@ ActiveAdmin.register User do
 
   controller do
     def scoped_collection
-      User.unscope(where: :visibility)
+      User.friendly.unscope(where: :visibility)
     end
   end
 

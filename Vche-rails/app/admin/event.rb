@@ -46,7 +46,7 @@ ActiveAdmin.register Event do
 
   controller do
     def scoped_collection
-      Event.unscope(where: :visibility)
+      Event.friendly.unscope(where: :visibility)
     end
   end
 
