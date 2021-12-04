@@ -1,0 +1,21 @@
+AllCops:
+  TargetRubyVersion: 3.0
+  Include:
+    - '**/*.rb'
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+  NewCops: enable
+
+require:
+  - rubocop-minitest
+  - rubocop-performance
+  - rubocop-rails
+
+inherit_from: .rubocop_todo.yml
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
