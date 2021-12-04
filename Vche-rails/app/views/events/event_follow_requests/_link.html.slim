@@ -1,5 +1,5 @@
 - event ||= nil
-- count ||= event.event_follow_requests.active.count
+- count ||= event.event_follow_requests.undetermined.count
 
 - if loyalty(event, 'events/event_follow_requests').index?
   - if count > 0

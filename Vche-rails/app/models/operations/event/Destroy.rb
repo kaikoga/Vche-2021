@@ -13,7 +13,7 @@ class Operations::Event::Destroy < Operations::Operation
     @event.updated_user = user
     @event.visibility = :deleted
     @event.save!(context: :destroy)
-    @event.event_follow_requests.active.update_all(state: 'event_destroyed')
+    @event.event_follow_requests.undetermined.update_all(state: 'event_destroyed')
   end
 
   private
