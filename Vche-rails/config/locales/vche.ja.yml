@@ -98,7 +98,7 @@ ja:
     trust: Trust
     uid: UID
     user: ユーザー
-    visibility: 公開する範囲
+    visibility: 公開範囲
     created_user: 作成したユーザー
     updated_user: 更新したユーザー
     created_at: 作成した日時
@@ -111,6 +111,7 @@ ja:
         quantum: 不定期開催
       repeat:
         oneshot: 繰り返しなし
+        some_day: 不定
         every_day: 毎日
         every_week: 毎週
         every_other_week: 隔週
@@ -131,6 +132,7 @@ ja:
         canceled: 中止
         ended: 終了
         completed: 完了
+        phantom: 非実在
       role:
         irrelevant: 不参加
         owner: 主催
@@ -154,6 +156,7 @@ ja:
         shared: 共有
         invite: 非公開
         secret: 秘密
+        deleted: 削除済
     event_attendance:
       role:
         irrelevant: 不参加

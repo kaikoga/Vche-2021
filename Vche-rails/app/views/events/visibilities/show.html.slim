@@ -1,0 +1,13 @@
+h1 = "#{Event.model_name.human}の#{Event.human_attribute_name(:visibility)}について"
+
+= render 'events/strip', event: @event, user: @user
+
+.event.-table
+  .field
+    label = Event.human_attribute_name(:visibility)
+    .value = @event.visibility_emoji_text
+
+= render 'help', new: false
+
+.panel
+  = link_to '戻る', @event, class: 'button'

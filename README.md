@@ -12,4 +12,4 @@ Git は英語で、 GitHub は日本語または英語でお願いします。
 
 ### 便利リンク
 
-[リリースチェックリスト](https://github.com/kaikoga/Vche/compare/release...develop?template=release.md) 
+[リリースチェックリスト](https://github.com/kaikoga/Vche/compare/release...develop?title=Version+0.0.0&template=release.md) 

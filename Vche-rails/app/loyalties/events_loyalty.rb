@@ -23,6 +23,10 @@ class EventsLoyalty < ApplicationLoyalty
     LoyaltyTools.user_is_source?(record, user)
   end
 
+  def destroy?
+    LoyaltyTools.user_is_primary_source?(record, user)
+  end
+
   def follow?
     LoyaltyTools.event_accessible?(record, user) && user && !user.following_event?(record)
   end

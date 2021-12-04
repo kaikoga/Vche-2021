@@ -28,7 +28,7 @@ ja:
       update:
         success: 'イベントの開催回を更新しました'
       destroy:
-        success: 'EventHistory was successfully destroyed.'
+        success: 'イベントの開催回をクリアしました'
       attend:
         success: 'イベントの開催回に参加しました'
       unattend:
@@ -61,6 +61,8 @@ ja:
         success: 'イベントを追加しました'
       update:
         success: 'イベントを変更しました'
+      destroy:
+        success: 'イベントを削除しました'
       follow:
         success: 'イベントをフォローしました'
       unfollow:

@@ -26,23 +26,23 @@ module LoyaltyTools
   end
 
   def event_accessible?(event, user)
-    case event.visibility.to_sym
+    case event&.visibility&.to_sym
     when :public, :shared
       true
     when :invite, :secret
       event.followers.include?(user) || user_is_creator?(event, user)
-    else
+    else # :deleted
       false
     end
   end
 
   def user_accessible?(record, user)
-    case record.visibility.to_sym
+    case record&.visibility&.to_sym
     when :public, :shared
       true
     when :invite, :secret
       record == user # TODO: user_follows
-    else
+    else # :deleted
       false
     end
   end

@@ -31,7 +31,7 @@ class CalendarPresenter
     next_date.strftime('%Y%m%d')
   end
 
-  def initialize(events, current_user: nil, display_user: nil, date: nil, months: 0, days: 28, format: nil, candidate: false)
+  def initialize(events, current_user: nil, display_user: nil, date: nil, months: 0, days: 28, format: nil, candidate: false, offline: false)
     if events.respond_to?(:includes)
       events = events.includes(:event_schedules, :event_histories, :flavors)
     end
@@ -81,13 +81,14 @@ class CalendarPresenter
     if display_user
       # FIXME: Ideally we should also collect current_user.event_attendances
       event_attendances_by_date = display_user.event_attendances
+        .joins(:event) # this enables default scope somehow
         .where(started_at: beginning_of_calendar...(beginning_of_calendar + days.days))
         .group_by { |ea| ea.started_at.beginning_of_day }
     else
       event_attendances_by_date = {}
     end
 
-    if display_user
+    if display_user && offline
       offline_histories_by_date = display_user.offline_schedules
         .where(start_at: beginning_of_calendar...(beginning_of_calendar + days.days), repeat: :oneshot)
         .or(display_user.offline_schedules.where.not(repeat: :oneshot)) # FIXME: Awful SQL
@@ -102,7 +103,7 @@ class CalendarPresenter
       event_attendances_of_date = event_attendances_by_date[d] || []
       offline_histories_of_date = offline_histories_by_date[d] || []
       trusted_histories = Vche::Trust.filter_trusted(event_histories_of_date)
-      alien_histories = event_attendances_of_date.map { |a| event_histories_of_date.detect { |h| h.event_id == a.event_id } || a.find_or_build_history }.compact
+      alien_histories = event_attendances_of_date.map { |a| event_histories_of_date.detect { |h| h.event_id == a.event_id && h.started_at == a.started_at } || a.find_or_build_history }.compact
       visible_histories = trusted_histories | alien_histories
       h[d] = Cell.new(current_user, d, visible_histories, event_attendances_of_date, offline_histories_of_date)
     end
@@ -153,7 +154,7 @@ class CalendarPresenter
       event_history = cell_event.event_history
       return false unless event_history
 
-      event_attendances.detect { |ea| ea.event_id = event_history.event_id && ea.started_at == event_history.started_at }
+      event_attendances.detect { |ea| ea.event_id == event_history.event_id && ea.started_at == event_history.started_at }
     end
 
     private
@@ -176,7 +177,7 @@ class CalendarPresenter
     def initialize(current_user, event_history: nil, offline_history: nil)
       history = event_history || offline_history
       @started_at = history.started_at
-      @ended_at = history.ended_at
+      @ended_at = history.ended_at || history.started_at
       @resolution = ended_at > Time.current ? :information : :ended
       @offset = 0
 

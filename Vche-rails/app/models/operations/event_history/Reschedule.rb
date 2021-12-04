@@ -8,6 +8,7 @@ class Operations::EventHistory::Reschedule < Operations::Operation
   end
 
   def validate
+    raise ArgumentError if event_history.resolution.phantom?
     raise Unchanged if event_history.started_at == started_at
   end
 

@@ -8,9 +8,10 @@
   div
     - if loyalty(event_memory.event, 'events').show?
       span.name = link_to visible_event_name(event_memory), event_memory.event, class: :link
+      span.started_at = link_to l(event_memory.started_at), event_event_history_path(event_memory.event, event_memory.started_at_to_s), class: :link
     - else
       span.name = visible_event_name(event_memory)
-    span.started_at = link_to l(event_memory.started_at), event_event_history_path(event_memory.event, event_memory.started_at_to_s), class: :link
+      span.started_at = l(event_memory.started_at)
   p.pre = event_memory.body
 
   - event_memory.urls.each do |url|

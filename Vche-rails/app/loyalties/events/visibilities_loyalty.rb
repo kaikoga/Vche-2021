@@ -1,4 +1,8 @@
 class Events::VisibilitiesLoyalty < ApplicationLoyalty
+  def show?
+    LoyaltyTools.event_accessible?(record, user)
+  end
+
   def edit?
     LoyaltyTools.user_is_primary_source?(record, user)
   end

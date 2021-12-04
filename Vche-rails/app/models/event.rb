@@ -49,6 +49,7 @@ class Event < ApplicationRecord
   include Vche::UidQuery
   include Vche::Hashtag
   include Vche::Trust
+  include Vche::EditorFields
 
   include Enums::DefaultAudienceRole
   include Enums::Visibility
@@ -63,22 +64,17 @@ class Event < ApplicationRecord
   validates :info_url, length: { in: 1..255 }, allow_blank: true
   validates :capacity, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
-  belongs_to :created_user, class_name: 'User'
-  belongs_to :updated_user, class_name: 'User'
-
   belongs_to :platform
   belongs_to :category
   has_many :event_flavors, dependent: :destroy
   has_many :flavors, through: :event_flavors
   accepts_nested_attributes_for :event_flavors, allow_destroy: true
 
-  has_many :event_schedules
-  has_many :event_histories
+  has_many :event_schedules, dependent: :destroy
+  has_many :event_histories, dependent: :destroy
 
   has_many :event_follow_requests, dependent: :destroy
   has_many :follow_requesters, through: :event_follow_requests, source: :user
-
-  has_many :event_follow_request_archives
 
   has_many :event_follows, dependent: :destroy
   has_many :followers, through: :event_follows, source: :user
@@ -103,11 +99,23 @@ class Event < ApplicationRecord
   # scope :with_category_param, ->(category_param) { category_param.present? ? where(category: Category.find_by(slug: category_param)) : all }
   scope :with_category_param, ->(category_param) { category_param.present? ? joins(:category).where('categories.slug': category_param) : all }
 
+  scope :with_trust_param, ->(trust_param) do
+    case trust_param.to_s
+    when 'owner'
+      where('trust >= ?', OWNER_TRUST)
+    when 'trusted'
+      where('trust >= ?', 3)
+    else
+      all
+    end
+  end
+
   def recalculate_trust
     trust = 0
     root_trust = 0
-    event_follows.reload.each do |event_follow|
-      t = event_follow.user.trust
+    event_follows.eager_load(:user).reload.each do |event_follow|
+      next unless user = event_follow.user
+      t = user.trust
       case
       when event_follow.role.to_sym == :owner
         t += OWNER_TRUST
@@ -131,14 +139,19 @@ class Event < ApplicationRecord
       .index_by(&:started_at).values
   end
 
+  def scheduled_at?(time)
+    event_schedules.flat_map { |schedule| schedule.recent_schedule([time]) }.any? { |history| history.started_at == time }
+  end
+
   def find_or_build_history(start_at)
     recent_schedule([start_at.beginning_of_day])
       .detect { |history| history.started_at == start_at} ||
     EventHistory.new(
       event: self,
-      resolution: :canceled,
+      resolution: :phantom,
       capacity: 0,
-      started_at: start_at
+      started_at: start_at,
+      ended_at: start_at,
     )
   end
 

@@ -3,6 +3,7 @@ version: '3.9'
 services:
   app:
     environment:
+      VCHE_PUBLIC_CALENDAR_TRUST: all
       VCHE_SUPPORT_EMAIL: support@example.com
       VCHE_SUPPORT_GITHUB: https://example.com/github
       VCHE_SUPPORT_TWITTER: https://example.com/twitter
@@ -10,3 +11,4 @@ services:
       VCHE_TWITTER_KEY: ''
       VCHE_TWITTER_SECRET: ''
       VCHE_TWITTER_CALLBACK_URL: ''
+      VCHE_SLACK_DAILY_REPORT_WEBHOOK: ''

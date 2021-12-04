@@ -1,8 +1,8 @@
-h1 = "#{Event.model_name.human}を#{Event.human_attribute_name(:visibility)}を編集する"
+h1 = "#{Event.model_name.human}の#{Event.human_attribute_name(:visibility)}を編集する"
 
 = render 'events/strip', event: @event, user: @user
 
-= render 'help'
+= render 'help', new: false
 
 = render 'form', event: @event
 

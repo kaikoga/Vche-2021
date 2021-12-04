@@ -1,7 +1,7 @@
 class My::EventFollowRequestsController < ApplicationController::Bootstrap
   def index
     @user = current_user
-    @event_follow_requests = @user.event_follow_requests.active.page(params[:page])
+    @event_follow_requests = @user.event_follow_requests.undetermined.page(params[:page])
     authorize!
   end
 
@@ -28,6 +28,6 @@ class My::EventFollowRequestsController < ApplicationController::Bootstrap
   private
 
   def find_event_follow_request
-    @user.event_follow_requests.active.find_by!(uid: params[:id])
+    @user.event_follow_requests.undetermined.find_by!(uid: params[:id])
   end
 end

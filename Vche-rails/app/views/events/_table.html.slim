@@ -41,10 +41,13 @@
     .relation
       - event.flavors.each do |flavor|
         = inline_flavor_tag(flavor)
+
+  .field
+    label = Event.human_attribute_name(:visibility)
+    .value = event.visibility_emoji_text
   .field
     label = Event.human_attribute_name(:taste)
     .value = event.taste_text
-
   .field
     label = Event.human_attribute_name(:capacity)
     .value = event.capacity
@@ -77,5 +80,9 @@
       = link_to '編集する', edit_event_path(event), class: 'button'
     - if loyalty(event, 'events/visibilities').edit?
       = link_to '公開範囲を変更する', edit_event_visibility_path(event), class: 'button'
+    - else
+      = link_to '公開範囲について', event_visibility_path(event), class: 'button'
+    - if loyalty(event, 'events/settings').show?
+      = link_to 'その他の操作', event_settings_path(event), class: 'button'
 
   = render 'editor_info', resource: event

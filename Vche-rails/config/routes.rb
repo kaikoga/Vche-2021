@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     resource :password, controller: 'users/passwords', only: [:edit, :update]
   end
 
-  resources :events, except: [:destroy] do
+  resources :events do
     get :select, on: :new
     member do
       get :info
@@ -68,7 +68,8 @@ Rails.application.routes.draw do
     resource :owner, controller: 'events/owners', only: [:edit, :update] do
       get :introduction
     end
-    resource :visibility, controller: 'events/visibilities', only: [:edit, :update]
+    resource :visibility, controller: 'events/visibilities', only: [:show, :edit, :update]
+    resource :settings, controller: 'events/settings', only: [:show]
   end
 
   resources :hashtags, only: [:index, :show]

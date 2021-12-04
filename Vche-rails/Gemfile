@@ -20,7 +20,6 @@ gem 'turbolinks', '~> 5'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'slim'
 gem 'activeadmin'
 gem 'banken'
 gem 'draper'
@@ -28,9 +27,12 @@ gem 'enumerize'
 gem 'friendly_id'
 gem 'kaminari'
 gem 'kaminari-i18n'
+gem 'oauth' # for twitter external of Sorcery
 gem 'qiita-markdown'
 gem 'public_uid'
 gem 'rails-i18n'
+gem 'slack-notifier'
+gem 'slim'
 gem 'sorcery'
 gem 'view_component', require: 'view_component/engine'
 

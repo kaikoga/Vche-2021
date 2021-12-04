@@ -42,7 +42,7 @@ class EventFollowRequest < ApplicationRecord
   belongs_to :event
   belongs_to :approver, class_name: 'User'
 
-  scope :active, -> { where(state: nil) }
+  scope :undetermined, -> { where(state: nil) }
 
   def find_or_build_history
     event.find_or_build_history(started_at) if started_at
