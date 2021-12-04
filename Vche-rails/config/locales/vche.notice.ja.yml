@@ -61,6 +61,8 @@ ja:
         success: 'イベントを追加しました'
       update:
         success: 'イベントを変更しました'
+      destroy:
+        success: 'イベントを削除しました'
       follow:
         success: 'イベントをフォローしました'
       unfollow:

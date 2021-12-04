@@ -72,6 +72,14 @@ class EventsController < ApplicationController::Bootstrap
     end
   end
 
+  def destroy
+    @event = find_event
+    authorize! @event
+
+    Operations::Event::Destroy.new(event: @event, user: current_user).perform!
+    render :destroyed
+  end
+
   def follow
     @event = find_event
     authorize! @event

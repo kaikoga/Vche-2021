@@ -1,0 +1,17 @@
+h1 = "#{Event.model_name.human}の設定"
+
+= render 'events/strip', event: @event, user: @user
+
+h2 イベントの削除
+.panel.-roundbox
+  p
+    | イベントを削除すると
+    br
+    | 削除する
+  p
+    | 削除したイベントの思い出は残ります。
+
+.panel.-roundbox
+  p = "イベント #{@event.name} を削除しますか？"
+  = form_with(model: @event, url: event_path(@event), method: :delete, class: '-inline') do |form|
+    = form.submit 'イベントを削除する', class: '-negative'

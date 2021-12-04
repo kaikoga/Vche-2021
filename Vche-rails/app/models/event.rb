@@ -115,8 +115,9 @@ class Event < ApplicationRecord
   def recalculate_trust
     trust = 0
     root_trust = 0
-    event_follows.reload.each do |event_follow|
-      t = event_follow.user.trust
+    event_follows.eager_load(:user).reload.each do |event_follow|
+      next unless user = event_follow.user
+      t = user.trust
       case
       when event_follow.role.to_sym == :owner
         t += OWNER_TRUST
