@@ -34,6 +34,7 @@
 #
 class EventHistory < ApplicationRecord
   include Vche::Uid
+  include Vche::EditorFields
 
   include Enums::Resolution
   include Enums::DefaultAudienceRole
@@ -45,9 +46,6 @@ class EventHistory < ApplicationRecord
   validates :ended_at, presence: true
 
   belongs_to :event
-
-  belongs_to :created_user, class_name: 'User'
-  belongs_to :updated_user, class_name: 'User'
 
   delegate :trust, :hashtag, to: :event
 
