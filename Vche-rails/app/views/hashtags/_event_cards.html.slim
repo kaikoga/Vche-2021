@@ -1,10 +1,10 @@
 - hashtag ||= nil
 
-- _events = Event.where(hashtag: hashtag).order(trust: :desc).limit(5).to_a
-
-- if _events.count > 1
-  h2 = "関連イベント #{hashtag}"
-  .panel
-    = render 'events/cards', events: _events, card_cloud: true
-  .panel
-    = link_to hashtag, hashtag_path(hashtag), class: :button
+- if hashtag.present? && hashtag != '#'
+  - _events = Event.where(hashtag: hashtag).order(trust: :desc).limit(5).to_a
+  - if _events.count > 1
+    h2 = "関連イベント #{hashtag}"
+    .panel
+      = render 'events/cards', events: _events, card_cloud: true
+    .panel
+      = link_to hashtag, hashtag_path(hashtag), class: :button

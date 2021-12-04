@@ -1,0 +1,27 @@
+h1 = "#{Event.model_name.human}の設定"
+
+= render 'events/strip', event: @event, user: @user
+
+h2 イベントの削除
+.panel.-roundbox
+  p
+    | イベントを削除します。
+  p
+    | イベントを削除すると、以下の情報にアクセスできなくなり、カレンダーから取り除かれます。
+    | これらは復元できません。
+  ul
+    li イベント情報
+    li イベントのフォロー・スタッフとしてのフォロー
+    li イベントのスケジュール
+    li 開催回
+    li 開催回への参加表明・スタッフとしての参加表明
+    li イベントおよび開催回への参加依頼
+  p
+    | 以下の情報は、イベントが削除されてもイベントから切り離された形で残ります。
+  ul
+    li イベントの思い出
+
+.panel.-roundbox
+  p = "イベント #{@event.name} を削除しますか？削除されたイベントは復元できません。"
+  = form_with(model: @event, url: event_path(@event), method: :delete, class: '-inline') do |form|
+    = form.submit 'イベントを削除する', class: '-negative'

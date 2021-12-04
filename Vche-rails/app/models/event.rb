@@ -49,6 +49,7 @@ class Event < ApplicationRecord
   include Vche::UidQuery
   include Vche::Hashtag
   include Vche::Trust
+  include Vche::EditorFields
 
   include Enums::DefaultAudienceRole
   include Enums::Visibility
@@ -62,9 +63,6 @@ class Event < ApplicationRecord
   validates :organizer_name, length: { in: 1..63 }, allow_blank: true
   validates :info_url, length: { in: 1..255 }, allow_blank: true
   validates :capacity, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-
-  belongs_to :created_user, class_name: 'User'
-  belongs_to :updated_user, class_name: 'User'
 
   belongs_to :platform
   belongs_to :category
@@ -115,8 +113,9 @@ class Event < ApplicationRecord
   def recalculate_trust
     trust = 0
     root_trust = 0
-    event_follows.reload.each do |event_follow|
-      t = event_follow.user.trust
+    event_follows.eager_load(:user).reload.each do |event_follow|
+      next unless user = event_follow.user
+      t = user.trust
       case
       when event_follow.role.to_sym == :owner
         t += OWNER_TRUST

@@ -33,6 +33,7 @@
 class EventSchedule < ApplicationRecord
   include Vche::Uid
   include Vche::UidQuery
+  include Vche::EditorFields
 
   include Enums::Repeat
 
@@ -40,9 +41,6 @@ class EventSchedule < ApplicationRecord
   validates :end_at, presence: true
 
   belongs_to :event
-
-  belongs_to :created_user, class_name: 'User'
-  belongs_to :updated_user, class_name: 'User'
 
   def recent_schedule(dates)
     recent_instances(dates).map { |date| at_date(date) }
