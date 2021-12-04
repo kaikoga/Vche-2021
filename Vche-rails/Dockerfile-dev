@@ -1,4 +1,4 @@
-FROM ruby:3.0.2
+FROM ruby:3.0.3
 
 # Dockerfile for development
 
@@ -27,7 +27,7 @@ RUN wget https://github.com/progrium/entrykit/releases/download/v${ENTRYKIT_VERS
 RUN mkdir /vche
 WORKDIR /vche
 
-RUN gem install bundler:2.2.24
+RUN gem install bundler:2.2.32
 
 EXPOSE 3000
 

@@ -1,4 +1,4 @@
-FROM ruby:3.0.2-slim AS base
+FROM ruby:3.0.3-slim AS base
 
 # Dockerfile for deployment
 
@@ -28,7 +28,7 @@ WORKDIR /vche
 # setup bundler
 COPY Gemfile Gemfile.lock /vche/
 
-RUN gem install bundler:2.2.24 \
+RUN gem install bundler:2.2.32 \
   && bundle config set --local deployment true \
   && bundle config set --local without 'development test'
 
