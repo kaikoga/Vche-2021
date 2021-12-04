@@ -1,8 +1,5 @@
 name: Vche-rails
 on: [push]
-defaults:
-  run:
-    working-directory: ./Vche-rails
 jobs:
   rubocop:
     name: RuboCop
@@ -13,4 +10,7 @@ jobs:
         with:
           ruby-version: 3.0.3
           bundler-cache: true
+        working-directory: ./Vche-rails
       - run: bundle exec rubocop --parallel
+        working-directory: ./Vche-rails
+
