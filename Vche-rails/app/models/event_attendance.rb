@@ -34,6 +34,10 @@ class EventAttendance < ApplicationRecord
 
   scope :for_event_history, ->(event_history) { where(event_id: event_history.event_id, started_at: event_history.started_at) }
 
+  def for_event_history?(event_history)
+    event_history.event_id == event_id && event_history.started_at == started_at
+  end
+
   def find_or_build_history
     event.find_or_build_history(started_at)
   end

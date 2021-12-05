@@ -104,7 +104,7 @@ Metrics/CyclomaticComplexity:
 # Offense count: 13
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods, IgnoredMethods.
 Metrics/MethodLength:
-  Max: 63
+  Max: 66
 
 # Offense count: 1
 # Configuration parameters: CountKeywordArgs, MaxOptionalParameters.
@@ -473,10 +473,3 @@ Style/WordArray:
   Exclude:
     - 'app/models/concerns/enums/Taste.rb'
     - 'app/models/event_history.rb'
-
-# Offense count: 54
-# Cop supports --auto-correct.
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
-Layout/LineLength:
-  Max: 192
