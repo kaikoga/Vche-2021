@@ -55,16 +55,6 @@ Style/NumericLiterals:
 Style/NumericPredicate:
   Enabled: false
 
-# Offense count: 6
-# Cop supports --auto-correct.
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - 'app/models/concerns/enums/Visibility.rb'
-    - 'app/models/event_follow_request.rb'
-    - 'app/models/event_history.rb'
-    - 'app/models/user.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/RedundantInterpolation:
