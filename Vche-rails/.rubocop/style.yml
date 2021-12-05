@@ -30,13 +30,9 @@ Style/GuardClause:
 Style/IfInsideElse:
   Enabled: false
 
-# Offense count: 4
-# Cop supports --auto-correct.
+# This is debatable; lines tend to get longer
 Style/IfUnlessModifier:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/oauths_controller.rb'
-    - 'app/presenters/calendar_presenter.rb'
+  Enabled: false
 
 # Offense count: 2
 # Cop supports --auto-correct.
