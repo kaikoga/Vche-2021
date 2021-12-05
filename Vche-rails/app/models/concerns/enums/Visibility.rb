@@ -25,7 +25,7 @@ module Enums::Visibility
       :deleted
     ], default: :invite
 
-    validates :visibility, unless: -> { validation_context == :destroy }, exclusion: { in: %w[deleted], message: "をこの方法で削除済にすることはできません" }
+    validates :visibility, unless: -> { validation_context == :destroy }, exclusion: { in: %w[deleted], message: 'をこの方法で削除済にすることはできません' }
 
     scope :public_or_over, -> { unscope(where: :visibility).where(visibility: :public) }
     scope :shared_or_over, -> { unscope(where: :visibility).where(visibility: [:public, :shared]) }

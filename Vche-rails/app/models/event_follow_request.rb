@@ -35,8 +35,8 @@ class EventFollowRequest < ApplicationRecord
   include Vche::Uid
   include Vche::UidQuery
 
-  validates :role, if: -> { started_at == nil }, exclusion: { in: %w[owner irrelevant], message: "ではフォロー申請できません" }
-  validates :role, if: -> { started_at != nil }, exclusion: { in: %w[irrelevant], message: "ではフォロー申請できません" }
+  validates :role, if: -> { started_at == nil }, exclusion: { in: %w[owner irrelevant], message: 'ではフォロー申請できません' }
+  validates :role, if: -> { started_at != nil }, exclusion: { in: %w[irrelevant], message: 'ではフォロー申請できません' }
 
   belongs_to :user
   belongs_to :event

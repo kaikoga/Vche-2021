@@ -22,7 +22,7 @@
 #  fk_rails_...  (platform_id => platforms.id)
 #  fk_rails_...  (user_id => users.id)
 #
-require "test_helper"
+require 'test_helper'
 
 class AccountTest < ActiveSupport::TestCase
   # test "the truth" do

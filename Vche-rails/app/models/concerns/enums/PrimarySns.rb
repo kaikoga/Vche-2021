@@ -19,11 +19,11 @@ module Enums::PrimarySns
       self.primary_sns_name =
         case uri.domain
         when nil
-          uri.path.split("/")[0]
+          uri.path.split('/')[0]
         when 'twitter.com'
-          uri.path.split("/")[1]
+          uri.path.split('/')[1]
         else
-          uri.path.split("/")[1]
+          uri.path.split('/')[1]
         end
     end
 

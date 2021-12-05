@@ -32,7 +32,7 @@
 #  fk_rails_...  (event_id => events.id)
 #  fk_rails_...  (updated_user_id => users.id)
 #
-require "test_helper"
+require 'test_helper'
 
 class EventHistoryTest < ActiveSupport::TestCase
   # test "the truth" do
