@@ -2,12 +2,6 @@
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/CommentedKeyword:
-  Exclude:
-    - 'app/admin/dashboard.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SingleLineConditionsOnly, IncludeTernaryExpressions.
