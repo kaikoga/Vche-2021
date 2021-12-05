@@ -3,8 +3,8 @@ module Enums::AdminRole
 
   included do
     enumerize :admin_role, in: [
-        :admin,
-        :none
+      :admin,
+      :none
     ], default: :none
   end
 end

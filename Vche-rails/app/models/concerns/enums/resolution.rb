@@ -30,12 +30,11 @@ module Enums::Resolution
       kwargs =
         case type
         when :official then { except: [:phantom] }
-        when :unofficial then  { except: [:scheduled, :announced, :phantom] }
+        when :unofficial then { except: [:scheduled, :announced, :phantom] }
         else { except: [:phantom] }
         end
       options(**kwargs).map { |name, value| ["#{Enums::Resolution.resolution_emoji(value)}#{name}", value] }
     end
-
   end
 
   def resolution_emoji(resolution)

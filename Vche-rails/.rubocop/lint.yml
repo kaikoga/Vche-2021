@@ -1,0 +1,20 @@
+# This cop doesn't know `*` is over `+`
+Lint/AmbiguousOperatorPrecedence:
+  Enabled: false
+
+# Duplicate branches occur on fallback defaults and API mappings
+Lint/DuplicateBranch:
+  Enabled: false
+
+# Allow in tests
+Lint/EmptyBlock:
+  Exclude:
+    - 'test/**/*.rb'
+
+# see Style/EmptyElse
+Lint/EmptyWhen:
+  AllowComments: true
+
+# Allow stub implementations
+Lint/UnusedMethodArgument:
+  Enabled: false

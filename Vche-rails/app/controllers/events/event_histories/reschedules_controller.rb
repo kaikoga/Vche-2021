@@ -28,6 +28,7 @@ class Events::EventHistories::ReschedulesController < ApplicationController::Boo
   def reschedule_params
     params.require(:event_history).permit(
       :capacity,
-      :assembled_at, :opened_at, :started_at, :ended_at, :closed_at)
+      :assembled_at, :opened_at, :started_at, :ended_at, :closed_at
+    )
   end
 end

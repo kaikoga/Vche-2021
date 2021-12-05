@@ -1,0 +1,30 @@
+AllCops:
+  TargetRubyVersion: 3.0
+  Include:
+    - '**/*.rb'
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'vendor/**/*'
+  NewCops: enable
+
+require:
+  - rubocop-minitest
+  - rubocop-performance
+  - rubocop-rails
+
+inherit_from:
+  - .rubocop/layout.yml
+  - .rubocop/lint.yml
+  - .rubocop/metrics.yml
+  - .rubocop/minitest.yml
+  - .rubocop/naming.yml
+  - .rubocop/performance.yml
+  - .rubocop/rails.yml
+  - .rubocop/style.yml
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

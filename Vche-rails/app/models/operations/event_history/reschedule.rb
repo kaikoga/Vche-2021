@@ -1,4 +1,6 @@
-class Operations::EventHistory::Reschedule < Operations::Operation
+class Operations::EventHistory::Reschedule
+  include Operations::Operation
+
   class Unchanged < StandardError; end
 
   def initialize(event_history:, params:, user:)

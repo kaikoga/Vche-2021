@@ -114,7 +114,9 @@ class Event < ApplicationRecord
     trust = 0
     root_trust = 0
     event_follows.eager_load(:user).reload.each do |event_follow|
-      next unless user = event_follow.user
+      user = event_follow.user
+      next unless user
+
       t = user.trust
       case
       when event_follow.role.to_sym == :owner
@@ -131,7 +133,7 @@ class Event < ApplicationRecord
   end
 
   def next_schedule
-    @next_schedule ||= event_schedules.map(&:next_schedule).compact.sort_by(&:started_at).first
+    @next_schedule ||= event_schedules.filter_map(&:next_schedule).min_by(&:started_at)
   end
 
   def recent_schedule(recent_dates)
@@ -145,14 +147,14 @@ class Event < ApplicationRecord
 
   def find_or_build_history(start_at)
     recent_schedule([start_at.beginning_of_day])
-      .detect { |history| history.started_at == start_at} ||
-    EventHistory.new(
-      event: self,
-      resolution: :phantom,
-      capacity: 0,
-      started_at: start_at,
-      ended_at: start_at,
-    )
+      .detect { |history| history.started_at == start_at } ||
+      EventHistory.new(
+        event: self,
+        resolution: :phantom,
+        capacity: 0,
+        started_at: start_at,
+        ended_at: start_at
+      )
   end
 
   def flavors=(slugs)

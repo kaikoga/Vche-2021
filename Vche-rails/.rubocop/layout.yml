@@ -1,0 +1,6 @@
+# I don't like indents affected by identifier length
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/LineLength:
+  Max: 160

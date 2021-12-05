@@ -1,6 +1,7 @@
 module UserHelper
   def user_icon_tag(user, size: :medium)
     return nil unless user
+
     class_name = size ? "user__icon -#{size}" : 'user__icon'
     size_num = icon_size_num(size)
 

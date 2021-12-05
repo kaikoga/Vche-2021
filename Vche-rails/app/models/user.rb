@@ -47,7 +47,7 @@ class User < ApplicationRecord
 
   authenticates_with_sorcery!
 
-  has_many :authentications, :dependent => :destroy
+  has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
@@ -55,7 +55,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 
   validates :email, uniqueness: true, presence: true
-  validates :visibility, inclusion: { in: %w(public), message: "を絞ったユーザーは未実装です" }
+  validates :visibility, inclusion: { in: %w[public], message: 'を絞ったユーザーは未実装です' }
 
   validates :display_name, length: { in: 1..31 }
   validates :profile, length: { in: 0..4095 }, allow_blank: true

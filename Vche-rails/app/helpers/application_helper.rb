@@ -1,18 +1,20 @@
 module ApplicationHelper
   def external_link_to(name = nil, options = nil, html_options = nil, &block)
     options = options.dup
-    link_to name, options, {target: :_blank, rel: 'noopener noreferrer'}.reverse_merge(html_options || {}), &block
+    link_to name, options, { target: :_blank, rel: 'noopener noreferrer' }.reverse_merge(html_options || {}), &block
   end
 
   def inline_visibility_tag(value, hide_public: false)
+    return if hide_public && value.to_sym == :public
+
     tag.span class: 'inline -visibility' do
-      Event::visibility_emoji_text(value)
-    end unless hide_public && value.to_sym == :public
+      Event.visibility_emoji_text(value)
+    end
   end
 
   def inline_resolution_tag(value)
     tag.span class: 'inline -resolution' do
-      EventHistory::resolution_emoji_text(value)
+      EventHistory.resolution_emoji_text(value)
     end
   end
 
@@ -48,7 +50,7 @@ module ApplicationHelper
     when 0
       [repeat_text, start_at_text, l(end_at, format: :hm)]
     when 1
-      [repeat_text, start_at_text, l(end_at.change(hour:0), format: :hm).sub("0", "#{end_at.hour + 24}")]
+      [repeat_text, start_at_text, l(end_at.change(hour: 0), format: :hm).sub('0', (end_at.hour + 24).to_s)]
     else
       [repeat_text, start_at_text, l(end_at)]
     end
@@ -71,7 +73,7 @@ module ApplicationHelper
   def render_text_field(form, field_name, required: false, label: nil, &block)
     render 'field', form: form, label: label, field_name: field_name, required: required do
       s = form.text_field(field_name)
-      s << capture(&block) if block_given?
+      s << capture(&block) if block
       s
     end
   end

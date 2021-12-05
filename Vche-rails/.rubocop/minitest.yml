@@ -1,0 +1,3 @@
+# Offense count: 8
+Minitest/MultipleAssertions:
+  Max: 5

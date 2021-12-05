@@ -42,10 +42,9 @@ class OfflineSchedule < ApplicationRecord
       name: name,
       resolution: history_resolution,
       started_at: start_at&.change(date_options),
-      ended_at: end_at&.change(date_options),
+      ended_at: end_at&.change(date_options)
     )
   end
 
-  class OfflineHistory < Struct.new(:parent, :name, :resolution, :started_at, :ended_at, keyword_init: true)
-  end
+  OfflineHistory = Struct.new(:parent, :name, :resolution, :started_at, :ended_at, keyword_init: true)
 end

@@ -1,4 +1,6 @@
-class Operations::Daily::Report < Operations::Operation
+class Operations::Daily::Report
+  include Operations::Operation
+
   def initialize
   end
 
@@ -7,7 +9,7 @@ class Operations::Daily::Report < Operations::Operation
   end
 
   def perform
-    yesterday = 1.days.ago.beginning_of_day..1.days.ago.end_of_day
+    yesterday = 1.day.ago.all_day
     message = []
     message << "Environment: #{Vche.env}"
     message << "User: #{User.count} (+#{User.where(created_at: yesterday).count})"
@@ -17,7 +19,7 @@ class Operations::Daily::Report < Operations::Operation
     message << "Feedback: #{Feedback.count} (+#{Feedback.where(created_at: yesterday).count})"
 
     body = message.join("\n")
-    puts body
+    puts body # rubocop:disable Rails/Output
     webhook = Rails.application.config.x.vche.slack_daily_report_webhook.presence
     Slack::Notifier.new(webhook).ping(body) if webhook
   end

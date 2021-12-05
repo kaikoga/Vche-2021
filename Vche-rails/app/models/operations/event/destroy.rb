@@ -1,4 +1,6 @@
-class Operations::Event::Destroy < Operations::Operation
+class Operations::Event::Destroy
+  include Operations::Operation
+
   class UserIsOwner < StandardError; end
 
   def initialize(event:, user:)

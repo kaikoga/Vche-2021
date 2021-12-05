@@ -28,6 +28,7 @@ class ApplicationController < ActionController::Base
 
     def require_agreement
       return unless current_user
+
       unless current_user.agreed?(Agreement.modified_at)
         redirect_to confirm_agreements_path
       end
