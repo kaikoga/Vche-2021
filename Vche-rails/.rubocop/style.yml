@@ -6,8 +6,7 @@ Style/ClassAndModuleChildren:
 Style/ConditionalAssignment:
   AutoCorrect: false
 
-# Offense count: 91
-# Configuration parameters: AllowedConstants.
+# They are pretty self-explanatory
 Style/Documentation:
   Enabled: false
 
