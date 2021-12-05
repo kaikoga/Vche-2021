@@ -2,13 +2,6 @@
 Lint/AmbiguousOperatorPrecedence:
   Enabled: false
 
-# Offense count: 2
-# Configuration parameters: AllowSafeAssignment.
-Lint/AssignmentInCondition:
-  Exclude:
-    - 'app/controllers/oauths_controller.rb'
-    - 'app/models/event.rb'
-
 # Offense count: 8
 # Configuration parameters: IgnoreLiteralBranches, IgnoreConstantBranches.
 Lint/DuplicateBranch:

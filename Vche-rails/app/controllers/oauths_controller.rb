@@ -12,7 +12,8 @@ class OauthsController < ApplicationController
     provider = callback_params[:provider]
     redirect_to login_url and return if callback_params[:denied].present?
 
-    if @user = login_from(provider)
+    @user = login_from(provider)
+    if @user
       # Keep user data to date
       @user.update!(user_attrs(user_info_mapping_login(provider), @user_hash))
 
