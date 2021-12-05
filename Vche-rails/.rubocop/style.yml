@@ -14,13 +14,9 @@ Style/Documentation:
 Style/EmptyCaseCondition:
   Enabled: false
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: empty, nil, both
+# Wait until "# do nothing" is allowed
 Style/EmptyElse:
-  Exclude:
-    - 'app/models/event.rb'
+  Enabled: false
 
 # Offense count: 2
 # Cop supports --auto-correct.
