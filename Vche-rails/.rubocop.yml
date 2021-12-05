@@ -16,7 +16,9 @@ require:
   - rubocop-performance
   - rubocop-rails
 
-inherit_from: .rubocop_todo.yml
+inherit_from:
+  - .rubocop/layout.yml
+  - .rubocop_todo.yml
 
 Style/FrozenStringLiteralComment:
   Enabled: false

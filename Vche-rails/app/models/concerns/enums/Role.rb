@@ -4,15 +4,15 @@ module Enums::Role
   included do
     # NOTE: sync with Enums::DefaultAudienceRole
     enumerize :role, in: [
-        :irrelevant,
-        :owner,
-        :instance_owner,
-        :performer,
-        :staff,
-        :participant,
-        :applicant,
-        # :visitor,
-        # :viewer,
+      :irrelevant,
+      :owner,
+      :instance_owner,
+      :performer,
+      :staff,
+      :participant,
+      :applicant
+      # :visitor,
+      # :viewer,
     ], default: :participant
 
     scope :owned, ->{ where(role: :owner) }

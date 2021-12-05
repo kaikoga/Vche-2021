@@ -1,0 +1,122 @@
+# Offense count: 9
+# Cop supports --auto-correct.
+Layout/EmptyLineAfterGuardClause:
+  Exclude:
+    - 'app/controllers/application_controller.rb'
+    - 'app/helpers/user_helper.rb'
+    - 'app/loyalties/users/passwords_loyalty.rb'
+    - 'app/models/concerns/enums/Repeat.rb'
+    - 'app/models/event.rb'
+    - 'app/models/event_history.rb'
+    - 'app/presenters/calendar_presenter.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+# Configuration parameters: EmptyLineBetweenMethodDefs, EmptyLineBetweenClassDefs, EmptyLineBetweenModuleDefs, AllowAdjacentOneLineDefs, NumberOfEmptyLines.
+Layout/EmptyLineBetweenDefs:
+  Exclude:
+    - 'app/models/concerns/enums/Visibility.rb'
+    - 'lib/warn_default_scope.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: empty_lines, no_empty_lines
+Layout/EmptyLinesAroundBlockBody:
+  Exclude:
+    - 'app/models/concerns/enums/Resolution.rb'
+
+# Offense count: 3
+# Cop supports --auto-correct.
+# Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.
+Layout/ExtraSpacing:
+  Exclude:
+    - 'app/helpers/event_helper.rb'
+    - 'app/models/concerns/enums/Resolution.rb'
+
+# Offense count: 5
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, IndentationWidth.
+# SupportedStyles: special_inside_parentheses, consistent, align_brackets
+Layout/FirstArrayElementIndentation:
+  Exclude:
+    - 'app/models/concerns/enums/AdminRole.rb'
+    - 'app/models/concerns/enums/DefaultAudienceRole.rb'
+    - 'app/models/concerns/enums/Role.rb'
+    - 'app/models/concerns/enums/UserRole.rb'
+    - 'app/models/concerns/enums/Visibility.rb'
+
+# Offense count: 3
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: symmetrical, new_line, same_line
+Layout/MultilineMethodCallBraceLayout:
+  Exclude:
+    - 'app/controllers/events/event_histories/reschedules_controller.rb'
+    - 'app/controllers/events/event_histories_controller.rb'
+
+# Offense count: 8
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, IndentationWidth.
+# SupportedStyles: aligned, indented, indented_relative_to_receiver
+Layout/MultilineMethodCallIndentation:
+  Exclude:
+    - 'app/models/event.rb'
+    - 'app/presenters/calendar_presenter.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, IndentationWidth.
+# SupportedStyles: aligned, indented
+Layout/MultilineOperationIndentation:
+  Exclude:
+    - 'app/models/event.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Layout/SpaceAfterColon:
+  Exclude:
+    - 'app/helpers/application_helper.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: AllowForAlignment, EnforcedStyleForExponentOperator.
+# SupportedStylesForExponentOperator: space, no_space
+Layout/SpaceAroundOperators:
+  Exclude:
+    - 'app/helpers/event_helper.rb'
+
+# Offense count: 19
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.
+# SupportedStyles: space, no_space
+# SupportedStylesForEmptyBraces: space, no_space
+Layout/SpaceBeforeBlockBraces:
+  Exclude:
+    - 'app/models/concerns/enums/Role.rb'
+    - 'app/models/concerns/enums/Taste.rb'
+    - 'app/models/concerns/enums/Visibility.rb'
+    - 'app/models/event_attendance.rb'
+    - 'app/models/event_memory.rb'
+    - 'app/models/feedback.rb'
+    - 'app/presenters/calendar_presenter.rb'
+
+# Offense count: 3
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.
+# SupportedStyles: space, no_space
+# SupportedStylesForEmptyBraces: space, no_space
+Layout/SpaceInsideBlockBraces:
+  Exclude:
+    - 'app/models/event.rb'
+    - 'test/test_helper.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.
+# SupportedStyles: space, no_space, compact
+# SupportedStylesForEmptyBraces: space, no_space
+Layout/SpaceInsideHashLiteralBraces:
+  Exclude:
+    - 'app/helpers/application_helper.rb'
+
