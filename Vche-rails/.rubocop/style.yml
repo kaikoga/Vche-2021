@@ -10,11 +10,9 @@ Style/ConditionalAssignment:
 Style/Documentation:
   Enabled: false
 
-# Offense count: 1
-# Cop supports --auto-correct.
+# I don't like `elsif` because it looks procedural
 Style/EmptyCaseCondition:
-  Exclude:
-    - 'app/models/event.rb'
+  Enabled: false
 
 # Offense count: 1
 # Cop supports --auto-correct.
