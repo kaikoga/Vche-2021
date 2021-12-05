@@ -18,9 +18,3 @@ Lint/EmptyWhen:
 # Allow stub implementations
 Lint/UnusedMethodArgument:
   Enabled: false
-
-# Offense count: 2
-Lint/UselessAssignment:
-  Exclude:
-    - 'app/controllers/event_schedules_controller.rb'
-    - 'app/controllers/events_controller.rb'
