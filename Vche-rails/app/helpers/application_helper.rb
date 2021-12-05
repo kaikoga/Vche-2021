@@ -6,13 +6,13 @@ module ApplicationHelper
 
   def inline_visibility_tag(value, hide_public: false)
     tag.span class: 'inline -visibility' do
-      Event::visibility_emoji_text(value)
+      Event.visibility_emoji_text(value)
     end unless hide_public && value.to_sym == :public
   end
 
   def inline_resolution_tag(value)
     tag.span class: 'inline -resolution' do
-      EventHistory::resolution_emoji_text(value)
+      EventHistory.resolution_emoji_text(value)
     end
   end
 

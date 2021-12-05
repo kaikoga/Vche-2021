@@ -2,13 +2,6 @@
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 
-# Offense count: 3
-# Cop supports --auto-correct.
-Style/ColonMethodCall:
-  Exclude:
-    - 'app/helpers/application_helper.rb'
-    - 'app/presenters/calendar_presenter.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: Keywords, RequireColon.
