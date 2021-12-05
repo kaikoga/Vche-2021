@@ -35,7 +35,6 @@ module Enums::Resolution
         end
       options(**kwargs).map { |name, value| ["#{Enums::Resolution.resolution_emoji(value)}#{name}", value] }
     end
-
   end
 
   def resolution_emoji(resolution)
