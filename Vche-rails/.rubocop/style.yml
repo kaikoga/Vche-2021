@@ -34,14 +34,9 @@ Style/IfInsideElse:
 Style/IfUnlessModifier:
   Enabled: false
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: line_count_dependent, lambda, literal
+# I don't know how to use lambda keyword
 Style/Lambda:
-  Exclude:
-    - 'app/models/concerns/enums/Taste.rb'
-    - 'app/models/event.rb'
+  EnforcedStyle: literal
 
 # Offense count: 1
 # Cop supports --auto-correct.
