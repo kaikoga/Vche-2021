@@ -50,7 +50,7 @@ module ApplicationHelper
     when 0
       [repeat_text, start_at_text, l(end_at, format: :hm)]
     when 1
-      [repeat_text, start_at_text, l(end_at.change(hour: 0), format: :hm).sub("0", "#{end_at.hour + 24}")]
+      [repeat_text, start_at_text, l(end_at.change(hour: 0), format: :hm).sub("0", (end_at.hour + 24).to_s)]
     else
       [repeat_text, start_at_text, l(end_at)]
     end
