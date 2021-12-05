@@ -78,25 +78,27 @@ class CalendarPresenter
     event_histories.sort_by(&:started_at)
     event_histories_by_date = event_histories.group_by { |history| history.started_at.beginning_of_day }
 
-    if display_user
-      # FIXME: Ideally we should also collect current_user.event_attendances
-      event_attendances_by_date = display_user.event_attendances
-        .joins(:event) # this enables default scope somehow
-        .where(started_at: beginning_of_calendar...(beginning_of_calendar + days.days))
-        .group_by { |ea| ea.started_at.beginning_of_day }
-    else
-      event_attendances_by_date = {}
-    end
+    event_attendances_by_date =
+      if display_user
+        # FIXME: Ideally we should also collect current_user.event_attendances
+        display_user.event_attendances
+          .joins(:event) # this enables default scope somehow
+          .where(started_at: beginning_of_calendar...(beginning_of_calendar + days.days))
+          .group_by { |ea| ea.started_at.beginning_of_day }
+      else
+        {}
+      end
 
-    if display_user && offline
-      offline_histories_by_date = display_user.offline_schedules
-        .where(start_at: beginning_of_calendar...(beginning_of_calendar + days.days), repeat: :oneshot)
-        .or(display_user.offline_schedules.where.not(repeat: :oneshot)) # FIXME: Awful SQL
-        .flat_map { |os| os.recent_schedule(recent_dates) }
-        .group_by { |oh| oh.started_at.beginning_of_day }
-    else
-      offline_histories_by_date = {}
-    end
+    offline_histories_by_date =
+      if display_user && offline
+        display_user.offline_schedules
+          .where(start_at: beginning_of_calendar...(beginning_of_calendar + days.days), repeat: :oneshot)
+          .or(display_user.offline_schedules.where.not(repeat: :oneshot)) # FIXME: Awful SQL
+          .flat_map { |os| os.recent_schedule(recent_dates) }
+          .group_by { |oh| oh.started_at.beginning_of_day }
+      else
+        {}
+      end
 
     @cells_by_date = recent_dates.each_with_object({}) do |d, h|
       event_histories_of_date = event_histories_by_date[d] || []

@@ -16,14 +16,15 @@ module Enums::PrimarySns
     def primary_sns_url=(value)
       self.primary_sns = :twitter
       uri = Addressable::URI.parse(value)
-      case uri.domain
-      when nil
-        self.primary_sns_name = uri.path.split("/")[0]
-      when 'twitter.com'
-        self.primary_sns_name = uri.path.split("/")[1]
-      else
-        self.primary_sns_name = uri.path.split("/")[1]
-      end
+      self.primary_sns_name =
+        case uri.domain
+        when nil
+          uri.path.split("/")[0]
+        when 'twitter.com'
+          uri.path.split("/")[1]
+        else
+          uri.path.split("/")[1]
+        end
     end
 
     def primary_twitter_name=(value)
