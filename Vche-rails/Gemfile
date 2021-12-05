@@ -22,6 +22,7 @@ gem 'turbolinks', '~> 5'
 
 gem 'activeadmin'
 gem 'banken'
+gem 'bullet'
 gem 'draper'
 gem 'enumerize'
 gem 'friendly_id'
