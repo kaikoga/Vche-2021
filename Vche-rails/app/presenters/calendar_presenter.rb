@@ -203,7 +203,7 @@ class CalendarPresenter
     end
 
     def time_and_name
-      "#{I18n.localize(started_at, format: :hm)} #{name}"
+      "#{I18n.l(started_at, format: :hm)} #{name}"
     end
   end
 
