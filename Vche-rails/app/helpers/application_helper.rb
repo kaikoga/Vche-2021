@@ -73,7 +73,7 @@ module ApplicationHelper
   def render_text_field(form, field_name, required: false, label: nil, &block)
     render 'field', form: form, label: label, field_name: field_name, required: required do
       s = form.text_field(field_name)
-      s << capture(&block) if block_given?
+      s << capture(&block) if block
       s
     end
   end

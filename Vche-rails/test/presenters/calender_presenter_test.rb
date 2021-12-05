@@ -72,8 +72,8 @@ class CalendarPresenterTest < ActiveSupport::TestCase
   test '#cells_by_date specified days' do
     travel_to(Time.zone.parse('2021-11-11 09:00:00')) do
       @subject = CalendarPresenter.new([events(:default)], current_user: users(:default), months: 0, days: 14)
-      assert { @subject.cells_by_date.keys.include? Time.zone.parse('2021-11-11 00:00:00') }
-      assert { @subject.cells_by_date.keys.include? Time.zone.parse('2021-11-18 00:00:00') }
+      assert { @subject.cells_by_date.key?(Time.zone.parse('2021-11-11 00:00:00')) }
+      assert { @subject.cells_by_date.key?(Time.zone.parse('2021-11-18 00:00:00')) }
       assert { @subject.cells_by_date.keys.exclude? Time.zone.parse('2021-11-25 00:00:00') }
       assert { @subject.cells_by_date.keys.count == 14 }
     end
@@ -82,9 +82,9 @@ class CalendarPresenterTest < ActiveSupport::TestCase
   test '#cells_by_date specified months' do
     travel_to(Time.zone.parse('2021-11-11 09:00:00')) do
       @subject = CalendarPresenter.new([events(:default)], current_user: users(:default), months: 1, days: 0)
-      assert { @subject.cells_by_date.keys.include? Time.zone.parse('2021-11-11 00:00:00') }
-      assert { @subject.cells_by_date.keys.include? Time.zone.parse('2021-11-30 00:00:00') }
-      assert { @subject.cells_by_date.keys.include? Time.zone.parse('2021-12-10 00:00:00') }
+      assert { @subject.cells_by_date.key?(Time.zone.parse('2021-11-11 00:00:00')) }
+      assert { @subject.cells_by_date.key?(Time.zone.parse('2021-11-30 00:00:00')) }
+      assert { @subject.cells_by_date.key?(Time.zone.parse('2021-12-10 00:00:00')) }
       assert { @subject.cells_by_date.keys.exclude? Time.zone.parse('2021-12-20 00:00:00') }
       assert { @subject.cells_by_date.keys.count.in?(30..37) }
     end

@@ -1,22 +1,4 @@
 # Offense count: 1
-# Cop supports --auto-correct.
-Performance/BlockGivenWithExplicitBlock:
-  Exclude:
-    - 'app/helpers/application_helper.rb'
-
-# Offense count: 5
-# Cop supports --auto-correct.
-Performance/InefficientHashSearch:
-  Exclude:
-    - 'test/presenters/calender_presenter_test.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Performance/MapCompact:
-  Exclude:
-    - 'app/models/event.rb'
-
-# Offense count: 1
 Performance/MethodObjectAsBlock:
   Exclude:
     - 'app/models/concerns/enums/repeat.rb'

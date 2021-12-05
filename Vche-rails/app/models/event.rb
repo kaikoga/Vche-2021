@@ -133,7 +133,7 @@ class Event < ApplicationRecord
   end
 
   def next_schedule
-    @next_schedule ||= event_schedules.map(&:next_schedule).compact.min_by(&:started_at)
+    @next_schedule ||= event_schedules.filter_map(&:next_schedule).min_by(&:started_at)
   end
 
   def recent_schedule(recent_dates)
