@@ -51,16 +51,9 @@ Style/NumericLiterals:
   MinDigits: 10
   Strict: true
 
-# Offense count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IgnoredMethods.
-# SupportedStyles: predicate, comparison
+# Numeric predicates are not so multilingual
 Style/NumericPredicate:
-  Exclude:
-    - 'app/helpers/event_helper.rb'
-    - 'app/helpers/event_history_helper.rb'
-    - 'app/models/concerns/enums/Repeat.rb'
-    - 'app/presenters/calendar_presenter.rb'
+  Enabled: false
 
 # Offense count: 6
 # Cop supports --auto-correct.
