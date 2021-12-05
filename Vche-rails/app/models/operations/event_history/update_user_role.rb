@@ -1,4 +1,6 @@
-class Operations::EventHistory::UpdateUserRole < Operations::Operation
+class Operations::EventHistory::UpdateUserRole
+  include Operations::Operation
+
   class Outsider < StandardError; end
 
   def initialize(event_history:, user:, role:)

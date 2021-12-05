@@ -1,4 +1,6 @@
-class Operations::Event::UpdateUserFollow < Operations::Operation
+class Operations::Event::UpdateUserFollow
+  include Operations::Operation
+
   class UserIsBackstage < StandardError; end
 
   def initialize(event:, user:, role:)

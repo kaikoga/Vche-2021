@@ -1,4 +1,6 @@
-class Operations::Daily::Report < Operations::Operation
+class Operations::Daily::Report
+  include Operations::Operation
+
   def initialize
   end
 

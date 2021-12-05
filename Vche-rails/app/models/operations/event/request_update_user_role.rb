@@ -1,4 +1,6 @@
-class Operations::Event::RequestUpdateUserRole < Operations::Operation
+class Operations::Event::RequestUpdateUserRole
+  include Operations::Operation
+
   class UserIsOwner < StandardError; end
 
   def initialize(event:, user:, approver:, role:)

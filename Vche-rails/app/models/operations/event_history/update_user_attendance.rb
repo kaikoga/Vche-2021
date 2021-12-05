@@ -1,4 +1,6 @@
-class Operations::EventHistory::UpdateUserAttendance < Operations::Operation
+class Operations::EventHistory::UpdateUserAttendance
+  include Operations::Operation
+
   class UserIsAudience < StandardError; end
 
   def initialize(event_history:, user:, role:)

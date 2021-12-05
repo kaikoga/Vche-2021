@@ -15,19 +15,6 @@ Lint/EmptyBlock:
 Lint/EmptyWhen:
   AllowComments: true
 
-# Offense count: 9
-Lint/MissingSuper:
-  Exclude:
-    - 'app/models/operations/daily/report.rb'
-    - 'app/models/operations/event/destroy.rb'
-    - 'app/models/operations/event/request_update_user_role.rb'
-    - 'app/models/operations/event/update_user_follow.rb'
-    - 'app/models/operations/event/update_user_role.rb'
-    - 'app/models/operations/event_history/request_update_user_role.rb'
-    - 'app/models/operations/event_history/reschedule.rb'
-    - 'app/models/operations/event_history/update_user_attendance.rb'
-    - 'app/models/operations/event_history/update_user_role.rb'
-
 # Offense count: 1
 Lint/ShadowingOuterLocalVariable:
   Exclude:

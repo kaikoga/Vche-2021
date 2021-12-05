@@ -1,4 +1,4 @@
-class Operations::Operation
+module Operations::Operation
   def valid?
     validate
     true
