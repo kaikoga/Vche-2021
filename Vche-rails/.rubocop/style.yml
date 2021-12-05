@@ -22,13 +22,9 @@ Style/EmptyElse:
 Style/EmptyMethod:
   EnforcedStyle: expanded
 
-# Offense count: 3
-# Configuration parameters: MinBodyLength.
+# Human brain don't understand negative statements, so resort to very reluctant settings
 Style/GuardClause:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/events_controller.rb'
-    - 'app/models/event_history.rb'
+  MinBodyLength: 10
 
 # Offense count: 4
 # Cop supports --auto-correct.
