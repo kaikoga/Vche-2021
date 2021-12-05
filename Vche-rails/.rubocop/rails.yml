@@ -4,12 +4,6 @@ Rails/ApplicationController:
   Exclude:
     - 'app/controllers/api/heartbeats_controller.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Rails/ExpandedDateRange:
-  Exclude:
-    - 'app/models/operations/daily/report.rb'
-
 # Offense count: 16
 # Configuration parameters: Include.
 # Include: app/models/**/*.rb
