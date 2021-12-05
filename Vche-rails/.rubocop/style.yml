@@ -4,14 +4,6 @@ Style/ClassAndModuleChildren:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-# Configuration parameters: Keywords, RequireColon.
-# Keywords: TODO, FIXME, OPTIMIZE, HACK, REVIEW, NOTE
-Style/CommentAnnotation:
-  Exclude:
-    - 'app/presenters/calendar_presenter.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
 Style/CommentedKeyword:
   Exclude:
     - 'app/admin/dashboard.rb'

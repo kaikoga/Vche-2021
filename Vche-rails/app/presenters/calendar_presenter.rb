@@ -68,7 +68,7 @@ class CalendarPresenter
 
     @format = format
 
-    # FIXME N+1
+    # FIXME: N+1
     event_histories = events.flat_map { |event| event.recent_schedule(recent_dates) }
 
     unless candidate
