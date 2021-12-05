@@ -2,16 +2,9 @@
 Lint/AmbiguousOperatorPrecedence:
   Enabled: false
 
-# Offense count: 8
-# Configuration parameters: IgnoreLiteralBranches, IgnoreConstantBranches.
+# Duplicate branches occur on fallback defaults and API mappings
 Lint/DuplicateBranch:
-  Exclude:
-    - 'app/controllers/events/event_histories_controller.rb'
-    - 'app/controllers/events_controller.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'app/models/concerns/enums/primary_sns.rb'
-    - 'app/models/concerns/enums/resolution.rb'
-    - 'app/models/concerns/enums/taste.rb'
+  Enabled: false
 
 # Offense count: 1
 # Configuration parameters: AllowComments, AllowEmptyLambdas.
