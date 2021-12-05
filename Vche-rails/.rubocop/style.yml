@@ -59,13 +59,9 @@ Style/NumericPredicate:
 Style/RedundantSelf:
   Enabled: false
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: implicit, explicit
+# I don't know what StandardError is
 Style/RescueStandardError:
-  Exclude:
-    - 'app/models/operations/operation.rb'
+  EnforcedStyle: implicit
 
 # Offense count: 1
 # Cop supports --auto-correct.
