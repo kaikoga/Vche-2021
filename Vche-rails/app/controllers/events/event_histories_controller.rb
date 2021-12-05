@@ -149,12 +149,14 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
   def create_params
     params.require(:event_history).permit(
       :resolution, :capacity, :default_audience_role,
-      :assembled_at, :opened_at, :started_at, :ended_at, :closed_at)
+      :assembled_at, :opened_at, :started_at, :ended_at, :closed_at
+    )
   end
 
   def update_params
     params.require(:event_history).permit(
       :resolution, :capacity, :default_audience_role,
-      :assembled_at, :opened_at, :ended_at, :closed_at)
+      :assembled_at, :opened_at, :ended_at, :closed_at
+    )
   end
 end
