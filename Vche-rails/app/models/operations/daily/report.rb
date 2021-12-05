@@ -19,7 +19,7 @@ class Operations::Daily::Report
     message << "Feedback: #{Feedback.count} (+#{Feedback.where(created_at: yesterday).count})"
 
     body = message.join("\n")
-    puts body
+    puts body # rubocop:disable Rails/Output
     webhook = Rails.application.config.x.vche.slack_daily_report_webhook.presence
     Slack::Notifier.new(webhook).ping(body) if webhook
   end

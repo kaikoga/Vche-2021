@@ -22,14 +22,6 @@ Rails/InverseOf:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-# Configuration parameters: Include.
-# Include: app/**/*.rb, config/**/*.rb, db/**/*.rb, lib/**/*.rb
-Rails/Output:
-  Exclude:
-    - 'app/models/operations/daily/report.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
 Rails/Pick:
   Exclude:
     - 'app/models/agreement.rb'
