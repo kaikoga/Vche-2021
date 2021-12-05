@@ -42,7 +42,7 @@ class OfflineSchedule < ApplicationRecord
       name: name,
       resolution: history_resolution,
       started_at: start_at&.change(date_options),
-      ended_at: end_at&.change(date_options),
+      ended_at: end_at&.change(date_options)
     )
   end
 

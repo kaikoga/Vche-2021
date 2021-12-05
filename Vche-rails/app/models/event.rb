@@ -152,7 +152,7 @@ class Event < ApplicationRecord
         resolution: :phantom,
         capacity: 0,
         started_at: start_at,
-        ended_at: start_at,
+        ended_at: start_at
       )
   end
 
