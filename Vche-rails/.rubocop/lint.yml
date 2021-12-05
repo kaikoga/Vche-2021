@@ -1,0 +1,71 @@
+# This cop doesn't know `*` is over `+`
+Lint/AmbiguousOperatorPrecedence:
+  Enabled: false
+
+# Offense count: 2
+# Configuration parameters: AllowSafeAssignment.
+Lint/AssignmentInCondition:
+  Exclude:
+    - 'app/controllers/oauths_controller.rb'
+    - 'app/models/event.rb'
+
+# Offense count: 8
+# Configuration parameters: IgnoreLiteralBranches, IgnoreConstantBranches.
+Lint/DuplicateBranch:
+  Exclude:
+    - 'app/controllers/events/event_histories_controller.rb'
+    - 'app/controllers/events_controller.rb'
+    - 'app/helpers/application_helper.rb'
+    - 'app/models/concerns/enums/primary_sns.rb'
+    - 'app/models/concerns/enums/resolution.rb'
+    - 'app/models/concerns/enums/taste.rb'
+
+# Offense count: 1
+# Configuration parameters: AllowComments, AllowEmptyLambdas.
+Lint/EmptyBlock:
+  Exclude:
+    - 'test/presenters/calender_presenter_test.rb'
+
+# Offense count: 1
+# Configuration parameters: AllowComments.
+Lint/EmptyWhen:
+  Exclude:
+    - 'app/models/concerns/vche/hashtag.rb'
+
+# Offense count: 9
+Lint/MissingSuper:
+  Exclude:
+    - 'app/models/operations/daily/report.rb'
+    - 'app/models/operations/event/destroy.rb'
+    - 'app/models/operations/event/request_update_user_role.rb'
+    - 'app/models/operations/event/update_user_follow.rb'
+    - 'app/models/operations/event/update_user_role.rb'
+    - 'app/models/operations/event_history/request_update_user_role.rb'
+    - 'app/models/operations/event_history/reschedule.rb'
+    - 'app/models/operations/event_history/update_user_attendance.rb'
+    - 'app/models/operations/event_history/update_user_role.rb'
+
+# Offense count: 1
+Lint/ShadowingOuterLocalVariable:
+  Exclude:
+    - 'app/presenters/calendar_presenter.rb'
+
+# Offense count: 2
+Lint/UnreachableCode:
+  Exclude:
+    - 'app/helpers/account_helper.rb'
+    - 'app/helpers/event_helper.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+# Configuration parameters: AllowUnusedKeywordArguments, IgnoreEmptyMethods, IgnoreNotImplementedMethods.
+Lint/UnusedMethodArgument:
+  Exclude:
+    - 'app/helpers/event_memory_helper.rb'
+    - 'test/support/helpers/vche_test_helper.rb'
+
+# Offense count: 2
+Lint/UselessAssignment:
+  Exclude:
+    - 'app/controllers/event_schedules_controller.rb'
+    - 'app/controllers/events_controller.rb'
