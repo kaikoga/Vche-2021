@@ -1,15 +1,3 @@
-# Offense count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: special_inside_parentheses, consistent, align_brackets
-Layout/FirstArrayElementIndentation:
-  Exclude:
-    - 'app/models/concerns/enums/AdminRole.rb'
-    - 'app/models/concerns/enums/DefaultAudienceRole.rb'
-    - 'app/models/concerns/enums/Role.rb'
-    - 'app/models/concerns/enums/UserRole.rb'
-    - 'app/models/concerns/enums/Visibility.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.

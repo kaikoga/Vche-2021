@@ -3,9 +3,9 @@ module Enums::UserRole
 
   included do
     enumerize :user_role, in: [
-        :organizer,
-        :staff,
-        :user
+      :organizer,
+      :staff,
+      :user
     ], default: :user
 
     def become_organizer!

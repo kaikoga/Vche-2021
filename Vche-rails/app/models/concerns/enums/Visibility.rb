@@ -18,11 +18,11 @@ module Enums::Visibility
 
   included do
     enumerize :visibility, in: [
-        :public,
-        :shared,
-        :invite,
-        :secret,
-        :deleted
+      :public,
+      :shared,
+      :invite,
+      :secret,
+      :deleted
     ], default: :invite
 
     validates :visibility, unless: ->{ validation_context == :destroy }, exclusion: { in: %w(deleted), message: "をこの方法で削除済にすることはできません" }
