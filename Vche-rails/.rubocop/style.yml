@@ -55,12 +55,9 @@ Style/NumericLiterals:
 Style/NumericPredicate:
   Enabled: false
 
-# Offense count: 5
-# Cop supports --auto-correct.
+# @see self.hashtag = '#' + self.hashtag
 Style/RedundantSelf:
-  Exclude:
-    - 'app/models/agreement.rb'
-    - 'app/models/concerns/vche/Hashtag.rb'
+  Enabled: false
 
 # Offense count: 2
 # Cop supports --auto-correct.
