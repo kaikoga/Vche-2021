@@ -147,13 +147,13 @@ class Event < ApplicationRecord
   def find_or_build_history(start_at)
     recent_schedule([start_at.beginning_of_day])
       .detect { |history| history.started_at == start_at} ||
-    EventHistory.new(
-      event: self,
-      resolution: :phantom,
-      capacity: 0,
-      started_at: start_at,
-      ended_at: start_at,
-    )
+      EventHistory.new(
+        event: self,
+        resolution: :phantom,
+        capacity: 0,
+        started_at: start_at,
+        ended_at: start_at,
+      )
   end
 
   def flavors=(slugs)
