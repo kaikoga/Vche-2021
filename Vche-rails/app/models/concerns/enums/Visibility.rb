@@ -25,17 +25,17 @@ module Enums::Visibility
       :deleted
     ], default: :invite
 
-    validates :visibility, unless: ->{ validation_context == :destroy }, exclusion: { in: %w(deleted), message: "をこの方法で削除済にすることはできません" }
+    validates :visibility, unless: -> { validation_context == :destroy }, exclusion: { in: %w(deleted), message: "をこの方法で削除済にすることはできません" }
 
-    scope :public_or_over, ->{ unscope(where: :visibility).where(visibility: :public) }
-    scope :shared_or_over, ->{ unscope(where: :visibility).where(visibility: [:public, :shared]) }
-    scope :invite_or_over, ->{ unscope(where: :visibility).where.not(visibility: [:secret, :deleted]) }
-    scope :secret_or_over, ->{ unscope(where: :visibility).where.not(visibility: :deleted) }
+    scope :public_or_over, -> { unscope(where: :visibility).where(visibility: :public) }
+    scope :shared_or_over, -> { unscope(where: :visibility).where(visibility: [:public, :shared]) }
+    scope :invite_or_over, -> { unscope(where: :visibility).where.not(visibility: [:secret, :deleted]) }
+    scope :secret_or_over, -> { unscope(where: :visibility).where.not(visibility: :deleted) }
 
     if Vche.env.local?
-      default_scope ->{ where.not(visibility: WarnDefaultScopeHook.new(:deleted)) }
+      default_scope -> { where.not(visibility: WarnDefaultScopeHook.new(:deleted)) }
     else
-      default_scope ->{ secret_or_over }
+      default_scope -> { secret_or_over }
     end
 
     def visible?

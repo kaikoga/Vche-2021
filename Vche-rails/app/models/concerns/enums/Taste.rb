@@ -10,9 +10,9 @@ module Enums::Taste
       :hidden
     ], default: :hidden
 
-    scope :welcome, ->{ where(taste: :welcome) }
-    scope :accessible_or_over, ->{ where(taste: [:welcome, :accessible]) }
-    scope :restricted_or_over, ->{ where(taste: [:welcome, :accessible, :restricted]) }
+    scope :welcome, -> { where(taste: :welcome) }
+    scope :accessible_or_over, -> { where(taste: [:welcome, :accessible]) }
+    scope :restricted_or_over, -> { where(taste: [:welcome, :accessible, :restricted]) }
     scope :with_taste_param, ->(taste_param) {
       case taste_param
       when 'welcome'

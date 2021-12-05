@@ -21,5 +21,5 @@ class Feedback < ApplicationRecord
   validates :title, length: { in: 1..255 }
   validates :body, length: { in: 1..4095 }
 
-  scope :unresolved, ->{ where(resolved_at: nil) }
+  scope :unresolved, -> { where(resolved_at: nil) }
 end

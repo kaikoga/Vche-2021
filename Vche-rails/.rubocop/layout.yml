@@ -2,21 +2,6 @@
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
-# Offense count: 19
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.
-# SupportedStyles: space, no_space
-# SupportedStylesForEmptyBraces: space, no_space
-Layout/SpaceBeforeBlockBraces:
-  Exclude:
-    - 'app/models/concerns/enums/Role.rb'
-    - 'app/models/concerns/enums/Taste.rb'
-    - 'app/models/concerns/enums/Visibility.rb'
-    - 'app/models/event_attendance.rb'
-    - 'app/models/event_memory.rb'
-    - 'app/models/feedback.rb'
-    - 'app/presenters/calendar_presenter.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.

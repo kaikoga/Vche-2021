@@ -69,7 +69,7 @@ class CalendarPresenter
     @format = format
 
     # FIXME N+1
-    event_histories = events.flat_map{ |event| event.recent_schedule(recent_dates) }
+    event_histories = events.flat_map { |event| event.recent_schedule(recent_dates) }
 
     unless candidate
       event_histories.reject! { |h| h.resolution.candidate? }
@@ -92,7 +92,7 @@ class CalendarPresenter
       offline_histories_by_date = display_user.offline_schedules
         .where(start_at: beginning_of_calendar...(beginning_of_calendar + days.days), repeat: :oneshot)
         .or(display_user.offline_schedules.where.not(repeat: :oneshot)) # FIXME: Awful SQL
-        .flat_map{ |os| os.recent_schedule(recent_dates) }
+        .flat_map { |os| os.recent_schedule(recent_dates) }
         .group_by { |oh| oh.started_at.beginning_of_day }
     else
       offline_histories_by_date = {}

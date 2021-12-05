@@ -40,7 +40,7 @@ class EventMemory < ApplicationRecord
   validates :body, length: { in: 0..4095 }, allow_blank: true
   validates :urls, length: { in: 0..4095 }, allow_blank: true
 
-  scope :for_event_history, ->(event_history){ where(event_id: event_history.event_id, started_at: event_history.started_at) }
+  scope :for_event_history, ->(event_history) { where(event_id: event_history.event_id, started_at: event_history.started_at) }
   scope :recent, -> { order(published_at: :desc).limit(5) }
 
   before_validation :update_published_at
