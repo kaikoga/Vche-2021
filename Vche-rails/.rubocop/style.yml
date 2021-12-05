@@ -63,12 +63,9 @@ Style/RedundantSelf:
 Style/RescueStandardError:
   EnforcedStyle: implicit
 
-# Offense count: 30
-# Cop supports --auto-correct.
-# Configuration parameters: MinSize.
-# SupportedStyles: percent, brackets
+# Symbols don't look like symbols if multiline symbol arrays (sometimes they occur)
 Style/SymbolArray:
-  EnforcedStyle: brackets
+  Enabled: false
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -97,11 +94,6 @@ Style/TrailingCommaInArrayLiteral:
     - 'app/models/concerns/enums/PrimarySns.rb'
     - 'app/models/concerns/enums/Role.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, MinSize, WordRegex.
-# SupportedStyles: percent, brackets
+# What if ...we want to add non-word to word array? (see Style/SymbolArray)
 Style/WordArray:
-  Exclude:
-    - 'app/models/concerns/enums/Taste.rb'
-    - 'app/models/event_history.rb'
+  Enabled: false
