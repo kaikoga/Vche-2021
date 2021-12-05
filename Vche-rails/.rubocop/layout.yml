@@ -1,13 +1,3 @@
 # I don't like indents affected by identifier length
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
-
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.
-# SupportedStyles: space, no_space, compact
-# SupportedStylesForEmptyBraces: space, no_space
-Layout/SpaceInsideHashLiteralBraces:
-  Exclude:
-    - 'app/helpers/application_helper.rb'
-

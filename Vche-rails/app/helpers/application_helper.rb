@@ -1,7 +1,7 @@
 module ApplicationHelper
   def external_link_to(name = nil, options = nil, html_options = nil, &block)
     options = options.dup
-    link_to name, options, {target: :_blank, rel: 'noopener noreferrer'}.reverse_merge(html_options || {}), &block
+    link_to name, options, { target: :_blank, rel: 'noopener noreferrer' }.reverse_merge(html_options || {}), &block
   end
 
   def inline_visibility_tag(value, hide_public: false)
