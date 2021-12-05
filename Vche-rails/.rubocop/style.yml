@@ -63,13 +63,6 @@ Style/RedundantSelf:
 Style/RescueStandardError:
   EnforcedStyle: implicit
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: Mode.
-Style/StringConcatenation:
-  Exclude:
-    - 'app/models/concerns/vche/Hashtag.rb'
-
 # Offense count: 68
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
