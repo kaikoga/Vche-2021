@@ -1,4 +1,0 @@
-# Offense count: 1
-Performance/MethodObjectAsBlock:
-  Exclude:
-    - 'app/models/concerns/enums/repeat.rb'

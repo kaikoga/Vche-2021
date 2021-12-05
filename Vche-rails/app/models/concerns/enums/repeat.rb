@@ -21,7 +21,7 @@ module Enums::Repeat
     def recent_instances(dates)
       return [start_at] if repeat == :oneshot
 
-      dates.filter(&method(:instance_at_date?))
+      dates.filter { |date| instance_at_date?(date) }
     end
 
     def next_instance
