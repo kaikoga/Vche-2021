@@ -11,11 +11,9 @@ Lint/EmptyBlock:
   Exclude:
     - 'test/**/*.rb'
 
-# Offense count: 1
-# Configuration parameters: AllowComments.
+# see Style/EmptyElse
 Lint/EmptyWhen:
-  Exclude:
-    - 'app/models/concerns/vche/hashtag.rb'
+  AllowComments: true
 
 # Offense count: 9
 Lint/MissingSuper:

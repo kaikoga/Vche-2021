@@ -8,6 +8,7 @@ module Vche::Hashtag
       if self.hashtag
         case self.hashtag[0]
         when '#'
+          # do nothing
         else
           self.hashtag = "##{self.hashtag}"
         end
