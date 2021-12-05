@@ -6,11 +6,10 @@ Lint/AmbiguousOperatorPrecedence:
 Lint/DuplicateBranch:
   Enabled: false
 
-# Offense count: 1
-# Configuration parameters: AllowComments, AllowEmptyLambdas.
+# Allow in tests
 Lint/EmptyBlock:
   Exclude:
-    - 'test/presenters/calender_presenter_test.rb'
+    - 'test/**/*.rb'
 
 # Offense count: 1
 # Configuration parameters: AllowComments.
