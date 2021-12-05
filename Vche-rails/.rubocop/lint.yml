@@ -15,11 +15,6 @@ Lint/EmptyBlock:
 Lint/EmptyWhen:
   AllowComments: true
 
-# Offense count: 1
-Lint/ShadowingOuterLocalVariable:
-  Exclude:
-    - 'app/presenters/calendar_presenter.rb'
-
 # Offense count: 2
 Lint/UnreachableCode:
   Exclude:

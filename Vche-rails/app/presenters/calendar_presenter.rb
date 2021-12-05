@@ -105,8 +105,8 @@ class CalendarPresenter
       event_attendances_of_date = event_attendances_by_date[d] || []
       offline_histories_of_date = offline_histories_by_date[d] || []
       trusted_histories = Vche::Trust.filter_trusted(event_histories_of_date)
-      alien_histories = event_attendances_of_date.map do |a|
-        event_histories_of_date.detect { |h| a.for_event_history?(h) } || a.find_or_build_history
+      alien_histories = event_attendances_of_date.map do |attendance|
+        event_histories_of_date.detect { |history| attendance.for_event_history?(history) } || attendance.find_or_build_history
       end
       alien_histories.compact!
       visible_histories = trusted_histories | alien_histories
