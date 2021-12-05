@@ -16,12 +16,6 @@ Lint/EmptyWhen:
   AllowComments: true
 
 # Offense count: 2
-Lint/UnreachableCode:
-  Exclude:
-    - 'app/helpers/account_helper.rb'
-    - 'app/helpers/event_helper.rb'
-
-# Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: AllowUnusedKeywordArguments, IgnoreEmptyMethods, IgnoreNotImplementedMethods.
 Lint/UnusedMethodArgument:
