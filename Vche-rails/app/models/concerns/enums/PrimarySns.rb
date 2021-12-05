@@ -4,7 +4,7 @@ module Enums::PrimarySns
   included do
     # NOTE: sync with Enums::DefaultAudienceRole
     enumerize :primary_sns, in: [
-      :twitter,
+      :twitter
     ], default: :twitter
 
     validates :primary_sns_name, length: { in: 1..31 }, allow_blank: true

@@ -67,16 +67,6 @@ Style/RescueStandardError:
 Style/SymbolArray:
   Enabled: false
 
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInArrayLiteral:
-  Exclude:
-    - 'app/models/concerns/enums/DefaultAudienceRole.rb'
-    - 'app/models/concerns/enums/PrimarySns.rb'
-    - 'app/models/concerns/enums/Role.rb'
-
 # What if ...we want to add non-word to word array? (see Style/SymbolArray)
 Style/WordArray:
   Enabled: false
