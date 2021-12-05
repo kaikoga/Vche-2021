@@ -51,11 +51,10 @@ class EventFollowRequest < ApplicationRecord
   def accept
     if started_at
       Operations::EventHistory::UpdateUserRole.new(event_history: find_or_build_history, user: user, role: role).perform
-      update!(state: 'accepted')
     else
       Operations::Event::UpdateUserRole.new(event: event, user: user, role: role).perform
-      update!(state: 'accepted')
     end
+    update!(state: 'accepted')
   rescue Operations::Event::UpdateUserRole::UserIsOwner
     update!(state: 'already_owner')
   end

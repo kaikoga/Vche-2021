@@ -26,12 +26,6 @@ Style/EmptyMethod:
 Style/GuardClause:
   MinBodyLength: 10
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/IdenticalConditionalBranches:
-  Exclude:
-    - 'app/models/event_follow_request.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: AllowIfModifier.
