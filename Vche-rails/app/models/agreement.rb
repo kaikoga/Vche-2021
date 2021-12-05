@@ -19,6 +19,6 @@ class Agreement < ApplicationRecord
   end
 
   def self.modified_at
-    self.recent.limit(1).pluck(:published_at).first
+    self.recent.pick(:published_at)
   end
 end

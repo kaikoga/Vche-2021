@@ -20,12 +20,6 @@ Rails/InverseOf:
     - 'app/models/event.rb'
     - 'app/models/user.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Rails/Pick:
-  Exclude:
-    - 'app/models/agreement.rb'
-
 # Offense count: 6
 # Cop supports --auto-correct.
 Rails/PluralizationGrammar:
