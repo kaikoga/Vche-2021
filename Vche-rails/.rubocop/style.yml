@@ -38,20 +38,13 @@ Style/IfUnlessModifier:
 Style/Lambda:
   EnforcedStyle: literal
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: predicate, comparison
+# This is disabled with Style/NonNilCheck
 Style/NilComparison:
-  Exclude:
-    - 'app/models/event_follow_request.rb'
+  Enabled: false
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: IncludeSemanticChanges.
+# !x.nil? next to x.nil? is too much eye hurting
 Style/NonNilCheck:
-  Exclude:
-    - 'app/models/event_follow_request.rb'
+  Enabled: false
 
 # Offense count: 2
 # Cop supports --auto-correct.
