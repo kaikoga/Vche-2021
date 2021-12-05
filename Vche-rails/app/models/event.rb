@@ -146,7 +146,7 @@ class Event < ApplicationRecord
 
   def find_or_build_history(start_at)
     recent_schedule([start_at.beginning_of_day])
-      .detect { |history| history.started_at == start_at} ||
+      .detect { |history| history.started_at == start_at } ||
       EventHistory.new(
         event: self,
         resolution: :phantom,
