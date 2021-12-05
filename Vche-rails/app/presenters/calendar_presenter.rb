@@ -41,11 +41,11 @@ class CalendarPresenter
     if date
       @current_date = date.beginning_of_day
       if per_months?
-        @prev_date = date - 1.months
-        @next_date = date + 1.months
+        @prev_date = date - 1.month
+        @next_date = date + 1.month
       else
-        @prev_date = date - 1.weeks
-        @next_date = date + 1.weeks
+        @prev_date = date - 1.week
+        @next_date = date + 1.week
       end
     else
       @current = true

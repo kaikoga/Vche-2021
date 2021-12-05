@@ -9,7 +9,7 @@ class Operations::Daily::Report
   end
 
   def perform
-    yesterday = 1.days.ago.all_day
+    yesterday = 1.day.ago.all_day
     message = []
     message << "Environment: #{Vche.env}"
     message << "User: #{User.count} (+#{User.where(created_at: yesterday).count})"

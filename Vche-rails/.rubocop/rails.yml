@@ -20,13 +20,6 @@ Rails/InverseOf:
     - 'app/models/event.rb'
     - 'app/models/user.rb'
 
-# Offense count: 6
-# Cop supports --auto-correct.
-Rails/PluralizationGrammar:
-  Exclude:
-    - 'app/models/operations/daily/report.rb'
-    - 'app/presenters/calendar_presenter.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
