@@ -63,12 +63,6 @@ Style/RedundantSelf:
 Style/RescueStandardError:
   EnforcedStyle: implicit
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/StructInheritance:
-  Exclude:
-    - 'app/models/offline_schedule.rb'
-
 # Offense count: 30
 # Cop supports --auto-correct.
 # Configuration parameters: MinSize.
