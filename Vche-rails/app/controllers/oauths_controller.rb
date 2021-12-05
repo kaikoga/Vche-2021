@@ -16,7 +16,7 @@ class OauthsController < ApplicationController
       # Keep user data to date
       @user.update!(user_attrs(user_info_mapping_login(provider), @user_hash))
 
-      redirect_to root_path, :notice => I18n.t('notice.oauths.callback.success', provider: provider.titleize)
+      redirect_to root_path, notice: I18n.t('notice.oauths.callback.success', provider: provider.titleize)
     else
       begin
         # @user = create_from(provider)
@@ -27,14 +27,14 @@ class OauthsController < ApplicationController
         end
 
         unless @user
-          redirect_to root_path, :alert => I18n.t('notice.oauths.callback.failure', provider: provider.titleize)
+          redirect_to root_path, alert: I18n.t('notice.oauths.callback.failure', provider: provider.titleize)
         end
 
         # NOTE: this is the place to add '@user.activate!' if you are using user_activation submodule
 
         reset_session # protect from session fixation attack
         auto_login(@user)
-        redirect_to root_path, :notice => I18n.t('notice.oauths.callback.success', provider: provider.titleize)
+        redirect_to root_path, notice: I18n.t('notice.oauths.callback.success', provider: provider.titleize)
         # rescue
         #  redirect_to root_path, :alert => I18n.t('notice.oauths.callback.failure', provider: provider.titleize)
       end
