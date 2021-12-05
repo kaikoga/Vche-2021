@@ -18,14 +18,9 @@ Style/EmptyCaseCondition:
 Style/EmptyElse:
   Enabled: false
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: compact, expanded
+# Less semicolons
 Style/EmptyMethod:
-  Exclude:
-    - 'app/models/operations/daily/Report.rb'
-    - 'app/models/operations/event/Destroy.rb'
+  EnforcedStyle: expanded
 
 # Offense count: 3
 # Configuration parameters: MinBodyLength.
