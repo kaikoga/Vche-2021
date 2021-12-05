@@ -26,12 +26,9 @@ Style/EmptyMethod:
 Style/GuardClause:
   MinBodyLength: 10
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: AllowIfModifier.
+# Nope
 Style/IfInsideElse:
-  Exclude:
-    - 'app/loyalties/events/visibilities_loyalty.rb'
+  Enabled: false
 
 # Offense count: 4
 # Cop supports --auto-correct.
