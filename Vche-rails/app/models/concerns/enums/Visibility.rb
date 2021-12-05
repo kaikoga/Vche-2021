@@ -5,6 +5,7 @@ module Enums::Visibility
     def initialize(value)
       super(value.to_s)
     end
+
     def to_s
       unless @logged
         Rails.logger.info 'Using default scope of Enums::Visibility.'
