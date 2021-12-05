@@ -1,15 +1,3 @@
-# Offense count: 9
-# Cop supports --auto-correct.
-Layout/EmptyLineAfterGuardClause:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/helpers/user_helper.rb'
-    - 'app/loyalties/users/passwords_loyalty.rb'
-    - 'app/models/concerns/enums/Repeat.rb'
-    - 'app/models/event.rb'
-    - 'app/models/event_history.rb'
-    - 'app/presenters/calendar_presenter.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: EmptyLineBetweenMethodDefs, EmptyLineBetweenClassDefs, EmptyLineBetweenModuleDefs, AllowAdjacentOneLineDefs, NumberOfEmptyLines.

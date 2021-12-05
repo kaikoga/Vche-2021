@@ -120,6 +120,7 @@ class CalendarPresenter
   def hour_to_y(hour, min = 0)
     hf = hour + min / 60.0
     return hf * 4 unless format == :compact
+
     case hour
     when (0...18)
       hf * 1.5

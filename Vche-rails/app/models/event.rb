@@ -115,6 +115,7 @@ class Event < ApplicationRecord
     root_trust = 0
     event_follows.eager_load(:user).reload.each do |event_follow|
       next unless user = event_follow.user
+
       t = user.trust
       case
       when event_follow.role.to_sym == :owner
