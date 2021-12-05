@@ -40,12 +40,6 @@ Style/Lambda:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Style/MultilineIfModifier:
-  Exclude:
-    - 'app/helpers/application_helper.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: predicate, comparison
 Style/NilComparison:
