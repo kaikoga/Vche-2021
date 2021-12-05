@@ -15,13 +15,9 @@ Lint/EmptyBlock:
 Lint/EmptyWhen:
   AllowComments: true
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: AllowUnusedKeywordArguments, IgnoreEmptyMethods, IgnoreNotImplementedMethods.
+# Allow stub implementations
 Lint/UnusedMethodArgument:
-  Exclude:
-    - 'app/helpers/event_memory_helper.rb'
-    - 'test/support/helpers/vche_test_helper.rb'
+  Enabled: false
 
 # Offense count: 2
 Lint/UselessAssignment:
