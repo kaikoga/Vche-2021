@@ -1,11 +1,3 @@
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.
-Layout/ExtraSpacing:
-  Exclude:
-    - 'app/helpers/event_helper.rb'
-    - 'app/models/concerns/enums/Resolution.rb'
-
 # Offense count: 5
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, IndentationWidth.
