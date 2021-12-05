@@ -18,6 +18,7 @@ require:
 
 inherit_from:
   - .rubocop/layout.yml
+  - .rubocop/style.yml
   - .rubocop_todo.yml
 
 Style/FrozenStringLiteralComment:

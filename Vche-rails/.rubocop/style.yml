@@ -1,0 +1,247 @@
+# We believe in Zeitwerk
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+
+# Offense count: 3
+# Cop supports --auto-correct.
+Style/ColonMethodCall:
+  Exclude:
+    - 'app/helpers/application_helper.rb'
+    - 'app/presenters/calendar_presenter.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: Keywords, RequireColon.
+# Keywords: TODO, FIXME, OPTIMIZE, HACK, REVIEW, NOTE
+Style/CommentAnnotation:
+  Exclude:
+    - 'app/presenters/calendar_presenter.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/CommentedKeyword:
+  Exclude:
+    - 'app/admin/dashboard.rb'
+
+# Offense count: 3
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SingleLineConditionsOnly, IncludeTernaryExpressions.
+# SupportedStyles: assign_to_condition, assign_inside_condition
+Style/ConditionalAssignment:
+  Exclude:
+    - 'app/models/concerns/enums/PrimarySns.rb'
+    - 'app/presenters/calendar_presenter.rb'
+
+# Offense count: 91
+# Configuration parameters: AllowedConstants.
+Style/Documentation:
+  Enabled: false
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/EmptyCaseCondition:
+  Exclude:
+    - 'app/models/event.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: empty, nil, both
+Style/EmptyElse:
+  Exclude:
+    - 'app/models/event.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: compact, expanded
+Style/EmptyMethod:
+  Exclude:
+    - 'app/models/operations/daily/Report.rb'
+    - 'app/models/operations/event/Destroy.rb'
+
+# Offense count: 3
+# Configuration parameters: MinBodyLength.
+Style/GuardClause:
+  Exclude:
+    - 'app/controllers/application_controller.rb'
+    - 'app/controllers/events_controller.rb'
+    - 'app/models/event_history.rb'
+
+# Offense count: 4
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
+# SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
+Style/HashSyntax:
+  Exclude:
+    - 'app/controllers/oauths_controller.rb'
+    - 'app/models/user.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+Style/IdenticalConditionalBranches:
+  Exclude:
+    - 'app/models/event_follow_request.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: AllowIfModifier.
+Style/IfInsideElse:
+  Exclude:
+    - 'app/loyalties/events/visibilities_loyalty.rb'
+
+# Offense count: 4
+# Cop supports --auto-correct.
+Style/IfUnlessModifier:
+  Exclude:
+    - 'app/controllers/application_controller.rb'
+    - 'app/controllers/oauths_controller.rb'
+    - 'app/presenters/calendar_presenter.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: line_count_dependent, lambda, literal
+Style/Lambda:
+  Exclude:
+    - 'app/models/concerns/enums/Taste.rb'
+    - 'app/models/event.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/MultilineIfModifier:
+  Exclude:
+    - 'app/helpers/application_helper.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: predicate, comparison
+Style/NilComparison:
+  Exclude:
+    - 'app/models/event_follow_request.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: IncludeSemanticChanges.
+Style/NonNilCheck:
+  Exclude:
+    - 'app/models/event_follow_request.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+# Configuration parameters: Strict.
+Style/NumericLiterals:
+  MinDigits: 10
+
+# Offense count: 5
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, IgnoredMethods.
+# SupportedStyles: predicate, comparison
+Style/NumericPredicate:
+  Exclude:
+    - 'app/helpers/event_helper.rb'
+    - 'app/helpers/event_history_helper.rb'
+    - 'app/models/concerns/enums/Repeat.rb'
+    - 'app/presenters/calendar_presenter.rb'
+
+# Offense count: 6
+# Cop supports --auto-correct.
+# Configuration parameters: PreferredDelimiters.
+Style/PercentLiteralDelimiters:
+  Exclude:
+    - 'app/models/concerns/enums/Visibility.rb'
+    - 'app/models/event_follow_request.rb'
+    - 'app/models/event_history.rb'
+    - 'app/models/user.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/RedundantInterpolation:
+  Exclude:
+    - 'app/helpers/application_helper.rb'
+
+# Offense count: 5
+# Cop supports --auto-correct.
+Style/RedundantSelf:
+  Exclude:
+    - 'app/models/agreement.rb'
+    - 'app/models/concerns/vche/Hashtag.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+Style/RedundantSort:
+  Exclude:
+    - 'app/models/concerns/vche/Trust.rb'
+    - 'app/models/event.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: implicit, explicit
+Style/RescueStandardError:
+  Exclude:
+    - 'app/models/operations/operation.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: Mode.
+Style/StringConcatenation:
+  Exclude:
+    - 'app/models/concerns/vche/Hashtag.rb'
+
+# Offense count: 68
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
+# SupportedStyles: single_quotes, double_quotes
+Style/StringLiterals:
+  Enabled: false
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/StructInheritance:
+  Exclude:
+    - 'app/models/offline_schedule.rb'
+
+# Offense count: 30
+# Cop supports --auto-correct.
+# Configuration parameters: MinSize.
+# SupportedStyles: percent, brackets
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: AllowMethodsWithArguments, IgnoredMethods.
+# IgnoredMethods: respond_to, define_method
+Style/SymbolProc:
+  Exclude:
+    - 'app/models/concerns/vche/Trust.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyleForMultiline.
+# SupportedStylesForMultiline: comma, consistent_comma, no_comma
+Style/TrailingCommaInArguments:
+  Exclude:
+    - 'app/models/event.rb'
+    - 'app/models/offline_schedule.rb'
+
+# Offense count: 3
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyleForMultiline.
+# SupportedStylesForMultiline: comma, consistent_comma, no_comma
+Style/TrailingCommaInArrayLiteral:
+  Exclude:
+    - 'app/models/concerns/enums/DefaultAudienceRole.rb'
+    - 'app/models/concerns/enums/PrimarySns.rb'
+    - 'app/models/concerns/enums/Role.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, MinSize, WordRegex.
+# SupportedStyles: percent, brackets
+Style/WordArray:
+  Exclude:
+    - 'app/models/concerns/enums/Taste.rb'
+    - 'app/models/event_history.rb'
