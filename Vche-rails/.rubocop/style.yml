@@ -59,13 +59,6 @@ Style/NumericPredicate:
 Style/RedundantSelf:
   Enabled: false
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/RedundantSort:
-  Exclude:
-    - 'app/models/concerns/vche/Trust.rb'
-    - 'app/models/event.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
