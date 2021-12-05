@@ -46,11 +46,10 @@ Style/NilComparison:
 Style/NonNilCheck:
   Enabled: false
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: Strict.
+# 10 seems reasonable
 Style/NumericLiterals:
   MinDigits: 10
+  Strict: true
 
 # Offense count: 5
 # Cop supports --auto-correct.
