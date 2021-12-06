@@ -14,3 +14,50 @@ jobs:
       - run: bundle exec rubocop --parallel
         working-directory: ./Vche-rails
 
+  brakeman:
+    name: Brakeman
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.3
+          bundler-cache: true
+          working-directory: ./Vche-rails
+      - run: bundle exec brakeman
+        working-directory: ./Vche-rails
+
+  minitest:
+    name: Rails Test
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: mysql:8.0
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5 -e MYSQL_ROOT_PASSWORD=password --entrypoint sh mysql:8 -c "exec docker-entrypoint.sh mysqld --default-authentication-plugin=mysql_native_password"
+        ports:
+          - 3306:3306
+    env:
+      RAILS_ENV: test
+      VCHE_ENV: local
+      DATABASE_URL: mysql2://root:password@127.0.0.1/vche_test
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.3
+          bundler-cache: true
+          working-directory: ./Vche-rails
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: yarn
+          cache-dependency-path: ./Vche-rails/yarn.lock
+      - run: bundle exec rails db:setup
+        working-directory: ./Vche-rails
+      - run: yarn install
+        working-directory: ./Vche-rails
+      - run: NODE_ENV=test bundle exec rails webpacker:compile
+        working-directory: ./Vche-rails
+      - run: bundle exec rails test
+        working-directory: ./Vche-rails
+
