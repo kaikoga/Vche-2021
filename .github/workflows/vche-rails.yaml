@@ -51,7 +51,7 @@ jobs:
         with:
           node-version: '16'
           cache: yarn
-          working-directory: ./Vche-rails
+          cache-dependency-path: ./Vche-rails/yarn.lock
       - run: bundle exec rails db:setup
         working-directory: ./Vche-rails
       - run: bundle exec rails test
