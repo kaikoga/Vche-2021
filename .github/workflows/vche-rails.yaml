@@ -47,6 +47,11 @@ jobs:
           ruby-version: 3.0.3
           bundler-cache: true
           working-directory: ./Vche-rails
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: yarn
+          working-directory: ./Vche-rails
       - run: bundle exec rails db:setup
         working-directory: ./Vche-rails
       - run: bundle exec rails test
