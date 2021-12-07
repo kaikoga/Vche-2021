@@ -30,12 +30,14 @@
   word-break: break-all;
   width: 400px;
   min-height: 2.5em;
-  padding: 0.5em 1.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1.5em;
   border-radius: 2em;
   border: $primary_bg-dark solid 1px;
-  background: $fill-light;
+  background-color: $fill-light;
   &:hover {
-    background: $fill-lighter;
+    background-color: $fill-lighter;
   }
   &.pre {
     white-space: break-spaces;
