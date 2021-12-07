@@ -174,6 +174,7 @@ form.-table {
     input[type="text"],
     input[type="password"],
     input[type="datetime"],
+    input[type="datetime-local"],
     select,
     .value {
       @include keyvaluetable__value;
@@ -195,6 +196,7 @@ form.-table {
       input[type="text"],
       input[type="password"],
       input[type="datetime"],
+      input[type="datetime-local"],
       select, textarea,
       .value {
         border: $negative_bg solid 2px;
@@ -228,6 +230,7 @@ form.-inline {
   input[type="text"],
   input[type="password"],
   input[type="datetime"],
+  input[type="datetime-local"],
   select, textarea {
     @include keyvaluetable__value;
     vertical-align: inherit;
