@@ -1,6 +1,6 @@
 .calendar__nav {
   padding-left: 1rem;
-  background: $fill-dark;
+  background-color: $fill-dark;
   display: flex;
   gap: 0.5rem;
   .current {
@@ -24,7 +24,7 @@
       height: 1px;
       width: 12vw;
       margin: 0 1vw;
-      background: $primary_text-light;
+      background-color: $primary_text-light;
       font-size: $font_size-smaller;
       color: $disabled_text;
     }
@@ -65,14 +65,14 @@
     border-left: 1px solid $primary_text-lighter;
     border-right: 1px solid $primary_text-light;
     border-bottom: 1px solid $primary_text-light;
-    background: $primary_bg-light;
+    background-color: $primary_bg-light;
     color: $primary_text-dark;
     &.-ended {
-      background: $primary_bg;
+      background-color: $primary_bg;
       color: $disabled_text-dark;
     }
     &.-today {
-      background: $positive_bg-lighter;
+      background-color: $positive_bg-lighter;
       color: $positive-text-light;
     }
   }
@@ -89,17 +89,17 @@
     border-right: 1px solid $primary_text-light;
     border-bottom: 1px solid $primary_text-light;
     &.-ended {
-      background: $disabled_bg-light;
+      background-color: $disabled_bg-light;
     }
     &.-today {
-      background: $fill-dark;
+      background-color: $fill-dark;
     }
     .event.-calendar {
       @include reset--font;
       word-break: break-all;
-      background: $fill;
+      background-color: $fill;
       &.-attending {
-        background: $positive_bg-light;
+        background-color: $positive_bg-light;
         color: $positive_text-light;
       }
       &.-resolution_information {
@@ -126,35 +126,35 @@
         }
       }
       &.-resolution_moved {
-        background: $negative_fill-lighter;
+        background-color: $negative_fill-lighter;
         color: $negative_text;
         .entry::before {
           content: '⚠️';
         }
       }
       &.-resolution_canceled {
-        background: $negative_fill;
+        background-color: $negative_fill;
         color: $negative_text;
         .entry::before {
           content: '🛑️';
         }
       }
       &.-resolution_ended {
-        background: $disabled_bg-light;
+        background-color: $disabled_bg-light;
         color: $disabled_text;
         .entry::before {
           content: '✅';
         }
       }
       &.-resolution_completed {
-        background: $disabled_bg-light;
+        background-color: $disabled_bg-light;
         color: $disabled_text;
         .entry::before {
           content: '📗';
         }
       }
       &.-resolution_phantom {
-        background: $disabled_bg-light;
+        background-color: $disabled_bg-light;
         color: $negative_text;
         .entry::before {
           content: '🗑';
@@ -164,7 +164,7 @@
         font-style: oblique;
       }
       &.-offline {
-        background: $external_bg-light;
+        background-color: $external_bg-light;
         color: $external_text-light;
       }
       .entry {
@@ -174,7 +174,7 @@
         font-size: $font-size-small;
       }
       &.-event .entry:hover {
-        background: $primary_bg-light;
+        background-color: $primary_bg-light;
         color: $text;
         z-index: 1;
       }
