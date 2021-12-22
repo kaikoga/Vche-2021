@@ -11,6 +11,10 @@ h2 = '自分の予定'
     = link_to "新規#{OfflineSchedule.model_name.human}", new_my_offline_schedule_path, class: 'button'
     = link_to "全ての#{OfflineSchedule.model_name.human}", my_offline_schedules_path, class: 'button'
 
+.panel.-roundbox
+  .actions
+    = link_to "自分の設定", my_settings_path, class: 'button'
+
 h2 = EventMemory.model_name.human
 
 - EventMemory.where(user: @user).recent.each do |event_memory|

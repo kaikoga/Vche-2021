@@ -18,6 +18,8 @@ Rails.application.routes.draw do
         post :decline
       end
     end
+
+    resource :settings, only: [:show]
   end
 
   resources :users, except: [:destroy] do
