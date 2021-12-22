@@ -1,6 +1,7 @@
 class My::SettingsController < ApplicationController::Bootstrap
+  include MyResources
+
   def show
     authorize!
-    @user = current_user
   end
 end

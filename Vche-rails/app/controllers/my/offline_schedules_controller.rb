@@ -1,5 +1,5 @@
 class My::OfflineSchedulesController < ApplicationController::Bootstrap
-  before_action :find_current_user
+  include MyResources
 
   def index
     authorize!
@@ -51,10 +51,6 @@ class My::OfflineSchedulesController < ApplicationController::Bootstrap
   end
 
   private
-
-  def find_current_user
-    @user = current_user
-  end
 
   def find_offline_schedule
     @user.offline_schedules.find_by(uid: params[:id])
