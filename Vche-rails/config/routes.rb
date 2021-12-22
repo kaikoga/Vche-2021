@@ -6,12 +6,12 @@ Rails.application.routes.draw do
   end
 
   resource :home, controller: :home, only: :show do
-    get :events
   end
 
   namespace :my do
     resources :offline_schedules
 
+    resources :events, only: [:index]
     resources :event_follow_requests, only: :index do
       member do
         post :accept
