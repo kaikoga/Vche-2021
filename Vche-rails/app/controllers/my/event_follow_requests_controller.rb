@@ -1,12 +1,12 @@
 class My::EventFollowRequestsController < ApplicationController::Bootstrap
+  include MyResources
+
   def index
-    @user = current_user
     @event_follow_requests = @user.event_follow_requests.undetermined.page(params[:page])
     authorize!
   end
 
   def accept
-    @user = current_user
     @event_follow_request = find_event_follow_request
     authorize! @event_follow_request
     @event_follow_request.accept
@@ -18,7 +18,6 @@ class My::EventFollowRequestsController < ApplicationController::Bootstrap
   end
 
   def decline
-    @user = current_user
     @event_follow_request = find_event_follow_request
     authorize! @event_follow_request
     @event_follow_request.decline

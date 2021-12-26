@@ -5,19 +5,21 @@ Rails.application.routes.draw do
     resource :heartbeat, only: :show
   end
 
-  resource :home, controller: :home, only: :show do
-    get :events
-  end
+  resource :home, controller: :home, only: :show
 
   namespace :my do
     resources :offline_schedules
 
+    resources :events, only: [:index]
     resources :event_follow_requests, only: :index do
       member do
         post :accept
         post :decline
       end
     end
+
+    resource :settings, only: [:show]
+    resource :password, only: [:edit, :update]
   end
 
   resources :users, except: [:destroy] do
@@ -31,7 +33,6 @@ Rails.application.routes.draw do
       end
     end
     resources :event_memories, controller: 'users/event_memories'
-    resource :password, controller: 'users/passwords', only: [:edit, :update]
   end
 
   resources :events do

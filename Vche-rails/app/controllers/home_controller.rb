@@ -6,13 +6,6 @@ class HomeController < ApplicationController::Bootstrap
     @calendar = @form.presenter(current_user: @user, display_user: @user, candidate: false, offline: true)
   end
 
-  def events
-    authorize!
-    @user = current_user
-    @backstage_events = @user.backstage_events
-    @audience_events = @user.audience_events.page(params[:page])
-  end
-
   private
 
   def show_params

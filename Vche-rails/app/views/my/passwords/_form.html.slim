@@ -1,6 +1,6 @@
 - user ||= nil
 
-= form_with(model: user, url: user_password_path(user), class: '-table') do |form|
+= form_with(model: user, url: my_password_path, class: '-table') do |form|
   = render_errors_header form
 
   = render_field form, :password, required: true do
