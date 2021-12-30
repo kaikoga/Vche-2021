@@ -10,3 +10,17 @@ h2 = 'セキュリティ'
       = link_to 'パスワードを変更する', edit_my_password_path, class: 'button'
     - if loyalty(nil, :sessions).purge?
       = link_to '全てのセッションをログアウト', purge_sessions_path, method: :post, class: 'button', data: {confirm: '全てのセッションをログアウトしますか？'}
+
+h2 = 'アカウント'
+
+.panel.-roundbox
+  h3 利用登録の解除
+  ul
+    li ユーザーと、ユーザーに紐づく情報を恒久的に削除します。これは復活できません。
+    li ユーザーが作成したイベントは削除されません。事前にイベントを非公開にするか、イベントの削除をしてください。
+    li 主催しているイベントを持っているユーザーは削除できません。先に他のユーザーにイベントの主催を移譲するか、イベントの削除をしてください。
+  - if loyalty(nil, 'my/users').destroy?
+    .actions = link_to '利用登録を解除する', my_user_path, method: :delete, class: 'button -negative', data: {confirm: "本当に利用登録を解除しますか？\nユーザー情報が削除されます。これは復旧できません。"}
+  - else
+    p.inline.-negative イベントを主催しているため、利用登録を解除できません。
+

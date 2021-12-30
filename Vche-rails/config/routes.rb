@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resource :user, only: :destroy
+
     resource :settings, only: [:show]
     resource :password, only: [:edit, :update]
   end
