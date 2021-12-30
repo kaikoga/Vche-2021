@@ -60,30 +60,28 @@ class User < ApplicationRecord
   validates :display_name, length: { in: 1..31 }
   validates :profile, length: { in: 0..4095 }, allow_blank: true
 
-  has_many :accounts
-  has_many :event_memories
-  has_many :shared_or_over_event_memories, -> { joins(:event).merge(Event.shared_or_over) }, class_name: 'EventMemory'
+  has_many :accounts, dependent: :destroy
+  has_many :event_memories, dependent: :destroy
+  has_many :shared_or_over_event_memories, -> { joins(:event).merge(Event.shared_or_over) }, class_name: 'EventMemory', dependent: nil
 
-  has_many :created_events, class_name: 'Event', foreign_key: :created_user_id
-  has_many :updated_events, class_name: 'Event', foreign_key: :updated_user_id
-  has_many :created_event_schedules, class_name: 'EventSchedule', foreign_key: :created_user_id
-  has_many :updated_event_schedules, class_name: 'EventSchedule', foreign_key: :updated_user_id
-  has_many :created_event_histories, class_name: 'EventHistory', foreign_key: :created_user_id
-  has_many :updated_event_histories, class_name: 'EventHistory', foreign_key: :updated_user_id
+  has_many :created_events, class_name: 'Event', foreign_key: :created_user_id, dependent: :nullify
+  has_many :updated_events, class_name: 'Event', foreign_key: :updated_user_id, dependent: :nullify
+  has_many :created_event_schedules, class_name: 'EventSchedule', foreign_key: :created_user_id, dependent: :nullify
+  has_many :updated_event_schedules, class_name: 'EventSchedule', foreign_key: :updated_user_id, dependent: :nullify
+  has_many :created_event_histories, class_name: 'EventHistory', foreign_key: :created_user_id, dependent: :nullify
+  has_many :updated_event_histories, class_name: 'EventHistory', foreign_key: :updated_user_id, dependent: :nullify
 
   has_many :event_follow_requests, dependent: :destroy
   has_many :follow_requesting_events, through: :event_follow_requests, source: :event
 
-  has_many :event_follow_request_archives
-
   has_many :event_follows, dependent: :destroy
   has_many :following_events, through: :event_follows, source: :event
 
-  has_many :owned_follows, -> { owned }, class_name: 'EventFollow'
+  has_many :owned_follows, -> { owned }, class_name: 'EventFollow', dependent: nil
   has_many :owned_events, through: :owned_follows, source: :event
-  has_many :backstage_follows, -> { backstage_member }, class_name: 'EventFollow'
+  has_many :backstage_follows, -> { backstage_member }, class_name: 'EventFollow', dependent: nil
   has_many :backstage_events, through: :backstage_follows, source: :event
-  has_many :audience_follows, -> { audience }, class_name: 'EventFollow'
+  has_many :audience_follows, -> { audience }, class_name: 'EventFollow', dependent: nil
   has_many :audience_events, through: :audience_follows, source: :event
 
   has_many :event_attendances, dependent: :destroy
