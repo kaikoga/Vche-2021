@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_23_222034) do
+ActiveRecord::Schema.define(version: 2021_12_31_032132) do
 
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.string "uid"
@@ -280,7 +280,7 @@ ActiveRecord::Schema.define(version: 2021_11_23_222034) do
     t.text "primary_sns"
     t.text "primary_sns_name"
     t.text "icon_url"
-    t.text "profile"
+    t.text "bio"
     t.string "visibility", null: false
     t.integer "trust", null: false
     t.integer "base_trust", null: false

@@ -9,7 +9,7 @@
 #  primary_sns                  :text(65535)
 #  primary_sns_name             :text(65535)
 #  icon_url                     :text(65535)
-#  profile                      :text(65535)
+#  bio                          :text(65535)
 #  visibility                   :string(255)      not null
 #  trust                        :integer          not null
 #  base_trust                   :integer          not null
