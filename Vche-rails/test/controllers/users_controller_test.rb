@@ -31,7 +31,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
           visibility: :public,
           user_role: :user,
           primary_sns_url: 'https://twitter.com/foo',
-          profile: 'foofoofoo',
+          bio: 'foofoofoo',
           password: 'foo',
           password_confirmation: 'foo'
         }

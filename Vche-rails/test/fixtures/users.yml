@@ -40,7 +40,7 @@ default:
   display_name: 'kaikoga'
   primary_sns: 'twitter'
   primary_sns_name: 'kaikoga'
-  profile: 'kaikogakaikogakaikoga'
+  bio: 'kaikogakaikogakaikoga'
   visibility: 'public'
   trust: 1000000
   base_trust: 1000000
@@ -58,7 +58,7 @@ cineria10:
   display_name: 'cineria10'
   primary_sns: 'twitter'
   primary_sns_name: 'cineria10'
-  profile: 'cineria10cineria10cineria10'
+  bio: 'cineria10cineria10cineria10'
   visibility: 'public'
   trust: 1000000
   base_trust: 1000000

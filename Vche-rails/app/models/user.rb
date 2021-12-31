@@ -58,7 +58,7 @@ class User < ApplicationRecord
   validates :visibility, inclusion: { in: %w[public], message: 'を絞ったユーザーは未実装です' }
 
   validates :display_name, length: { in: 1..31 }
-  validates :profile, length: { in: 0..4095 }, allow_blank: true
+  validates :bio, length: { in: 0..4095 }, allow_blank: true
 
   has_many :accounts, dependent: :destroy
   has_many :event_memories, dependent: :destroy

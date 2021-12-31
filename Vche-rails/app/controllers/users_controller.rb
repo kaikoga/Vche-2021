@@ -69,10 +69,16 @@ class UsersController < ApplicationController::Bootstrap
   end
 
   def create_params
-    params.require(:user).permit(:email, :visibility, :user_role, :display_name, :primary_sns_url, :profile, :password, :password_confirmation)
+    params.require(:user).permit(
+      :email,
+      :visibility, :user_role, :display_name, :primary_sns_url, :bio,
+      :password, :password_confirmation
+    )
   end
 
   def update_params
-    params.require(:user).permit(:visibility, :user_role, :display_name, :primary_sns_url, :profile)
+    params.require(:user).permit(
+      :visibility, :user_role, :display_name, :primary_sns_url, :bio
+    )
   end
 end

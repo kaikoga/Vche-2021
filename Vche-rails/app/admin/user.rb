@@ -68,7 +68,7 @@ ActiveAdmin.register User do
   filter :trust
   filter :user_role
   filter :admin_role
-  filter :profile
+  filter :bio
   filter :created_at
   filter :updated_at
   filter :last_login_at
