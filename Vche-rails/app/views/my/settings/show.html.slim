@@ -19,8 +19,18 @@ h2 = 'アカウント'
     li ユーザーと、ユーザーに紐づく情報を恒久的に削除します。これは復活できません。
     li ユーザーが作成したイベントは削除されません。事前にイベントを非公開にするか、イベントの削除をしてください。
     li 主催しているイベントを持っているユーザーは削除できません。先に他のユーザーにイベントの主催を移譲するか、イベントの削除をしてください。
-  - if loyalty(nil, 'my/users').destroy?
-    .actions = link_to '利用登録を解除する', my_user_path, method: :delete, class: 'button -negative', data: {confirm: "本当に利用登録を解除しますか？\nユーザー情報が削除されます。これは復旧できません。"}
+    li
+      | 本当に削除する場合は、確認欄に半角小文字で
+      '
+      code delete
+      '
+      | と入力してください。
+  - if loyalty(nil, 'my/users').delete?
+    .actions
+      = form_with(url: delete_my_user_path, method: :post, class: '-inline') do |form|
+        = render_field form, :confirm, label: '確認' do
+          = form.text_field :confirm
+        = form.submit '利用登録を解除する', class: '-negative', data: {confirm: "本当に利用登録を解除しますか？\nユーザー情報が削除されます。これは復旧できません。"}
   - else
     p.inline.-negative イベントを主催しているため、利用登録を解除できません。
 

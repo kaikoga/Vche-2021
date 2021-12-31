@@ -18,7 +18,9 @@ Rails.application.routes.draw do
       end
     end
 
-    resource :user, only: :destroy
+    resource :user do
+      post :delete
+    end
 
     resource :settings, only: [:show]
     resource :password, only: [:edit, :update]

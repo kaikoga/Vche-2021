@@ -1,5 +1,5 @@
 class My::UsersLoyalty < ApplicationLoyalty
-  def destroy?
+  def delete?
     user.owned_events.empty?
   end
 end
