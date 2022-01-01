@@ -1,21 +1,6 @@
 module Enums::Visibility
   extend ActiveSupport::Concern
 
-  class WarnDefaultScopeHook < String
-    def initialize(value)
-      super(value.to_s)
-    end
-
-    def to_s
-      unless @logged
-        Rails.logger.info 'Using default scope of Enums::Visibility.'
-        Rails.logger.debug { Thread.current.backtrace.grep(/vche/).join("\n") }
-        @logged = true
-      end
-      super
-    end
-  end
-
   included do
     enumerize :visibility, in: [
       :public,
@@ -31,12 +16,6 @@ module Enums::Visibility
     scope :shared_or_over, -> { unscope(where: :visibility).where(visibility: [:public, :shared]) }
     scope :invite_or_over, -> { unscope(where: :visibility).where.not(visibility: [:secret, :deleted]) }
     scope :secret_or_over, -> { unscope(where: :visibility).where.not(visibility: :deleted) }
-
-    if Vche.env.local?
-      default_scope -> { where.not(visibility: WarnDefaultScopeHook.new(:deleted)) }
-    else
-      default_scope -> { secret_or_over }
-    end
 
     def visible?
       self.class.visible_visibility?(visibility)
