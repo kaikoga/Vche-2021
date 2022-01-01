@@ -27,6 +27,9 @@
 class EventAttendance < ApplicationRecord
   include Vche::Uid
 
+  include Vche::Scopes::UserScopes
+  include Vche::Scopes::EventScopes
+
   include Enums::Role
 
   belongs_to :user

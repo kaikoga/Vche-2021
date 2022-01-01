@@ -32,6 +32,9 @@
 class EventFollowRequest < ApplicationRecord
   include Enums::Role
 
+  include Vche::Scopes::UserScopes
+  include Vche::Scopes::EventScopes
+
   include Vche::Uid
   include Vche::UidQuery
 

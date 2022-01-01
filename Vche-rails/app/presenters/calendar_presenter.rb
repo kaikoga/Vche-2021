@@ -82,7 +82,7 @@ class CalendarPresenter
       if display_user
         # FIXME: Ideally we should also collect current_user.event_attendances
         display_user.event_attendances
-          .joins(:event) # this enables default scope somehow
+          .joins(:event).merge(Event.secret_or_over)
           .where(started_at: beginning_of_calendar...(beginning_of_calendar + days.days))
           .group_by { |ea| ea.started_at.beginning_of_day }
       else

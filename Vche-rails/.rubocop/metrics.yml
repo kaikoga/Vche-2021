@@ -1,7 +1,7 @@
 # Offense count: 13
 # Configuration parameters: IgnoredMethods, CountRepeatedAttributes.
 Metrics/AbcSize:
-  Max: 98
+  Max: 100
 
 # Offense count: 7
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods, IgnoredMethods.

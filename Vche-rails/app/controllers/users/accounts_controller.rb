@@ -57,7 +57,7 @@ class Users::AccountsController < ApplicationController::Bootstrap
   private
 
   def find_parent_user
-    @user = User.friendly.find(params[:user_id])
+    @user = User.friendly.secret_or_over.find(params[:user_id])
   end
 
   def find_account

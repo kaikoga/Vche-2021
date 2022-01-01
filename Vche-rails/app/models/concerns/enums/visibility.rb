@@ -9,7 +9,7 @@ module Enums::Visibility
     def to_s
       unless @logged
         Rails.logger.info 'Using default scope of Enums::Visibility.'
-        # Rails.logger.debug { Thread.current.backtrace.join("\n") }
+        Rails.logger.debug { Thread.current.backtrace.grep(/vche/).join("\n") }
         @logged = true
       end
       super

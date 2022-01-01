@@ -53,7 +53,7 @@ class Users::EventMemoriesController < ApplicationController::Bootstrap
   private
 
   def find_parent_user
-    @user = User.friendly.find(params[:user_id])
+    @user = User.friendly.secret_or_over.find(params[:user_id])
   end
 
   def find_event_memory
@@ -62,13 +62,13 @@ class Users::EventMemoriesController < ApplicationController::Bootstrap
 
   def new_params
     new_params = params.permit(:user_id, :event_id, :started_at)
-    new_params[:event_id] = Event.friendly.find(new_params[:event_id]).id
+    new_params[:event_id] = Event.friendly.secret_or_over.find(new_params[:event_id]).id
     new_params
   end
 
   def create_params
     create_params = params.require(:event_memory).permit(:event_id, :started_at, :body, :urls)
-    create_params[:event_id] = Event.friendly.find(create_params[:event_id]).id
+    create_params[:event_id] = Event.friendly.secret_or_over.find(create_params[:event_id]).id
     create_params[:urls] = create_params[:urls].each_line.take(100).map(&:strip).to_a.compact
     create_params
   end
