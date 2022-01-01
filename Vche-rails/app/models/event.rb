@@ -79,13 +79,13 @@ class Event < ApplicationRecord
   has_many :event_follows, dependent: :destroy
   has_many :followers, through: :event_follows, source: :user
 
-  has_many :event_owners, -> { owned }, class_name: 'EventFollow'
+  has_many :event_owners, -> { owned }, class_name: 'EventFollow', dependent: nil, inverse_of: :event
   has_many :owners, through: :event_owners, source: :user
 
-  has_many :event_backstage_members, -> { backstage_member }, class_name: 'EventFollow'
+  has_many :event_backstage_members, -> { backstage_member }, class_name: 'EventFollow', dependent: nil, inverse_of: :event
   has_many :backstage_members, through: :event_backstage_members, source: :user
 
-  has_many :event_audiences, -> { audience }, class_name: 'EventFollow'
+  has_many :event_audiences, -> { audience }, class_name: 'EventFollow', dependent: nil, inverse_of: :event
   has_many :audiences, through: :event_audiences, source: :user
 
   has_many :event_attendances, dependent: :destroy

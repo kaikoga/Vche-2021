@@ -22,6 +22,10 @@ ja:
         success: '個人予定を更新しました'
       destroy:
         success: '個人予定を削除しました'
+    my/users:
+      delete:
+        success: '利用登録を解除しました'
+        confirm: '利用登録を解除しようとしましたが、確認に失敗しました。利用登録は解除されていません。'
     events/event_histories:
       create:
         success: 'イベントに開催回を追加しました'
