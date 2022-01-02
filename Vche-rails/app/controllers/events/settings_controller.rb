@@ -9,6 +9,6 @@ class Events::SettingsController < ApplicationController::Bootstrap
   private
 
   def find_parent_event
-    @event = Event.friendly.find(params[:event_id])
+    @event = Event.friendly.secret_or_over.find(params[:event_id])
   end
 end

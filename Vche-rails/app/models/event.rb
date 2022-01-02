@@ -73,22 +73,22 @@ class Event < ApplicationRecord
   has_many :event_schedules, dependent: :destroy
   has_many :event_histories, dependent: :destroy
 
-  has_many :event_follow_requests, dependent: :destroy
+  has_many :all_event_follow_requests, class_name: 'EventFollowRequest', dependent: :destroy
+  has_many :event_follow_requests, -> { secret_user_or_over }, dependent: nil, inverse_of: :event
   has_many :follow_requesters, through: :event_follow_requests, source: :user
 
-  has_many :event_follows, dependent: :destroy
+  has_many :all_event_follows, class_name: 'EventFollow', dependent: :destroy
+  has_many :event_follows, -> { secret_user_or_over }, dependent: nil, inverse_of: :event
   has_many :followers, through: :event_follows, source: :user
-
-  has_many :event_owners, -> { owned }, class_name: 'EventFollow', dependent: nil, inverse_of: :event
+  has_many :event_owners, -> { owned.secret_user_or_over }, class_name: 'EventFollow', dependent: nil, inverse_of: :event
   has_many :owners, through: :event_owners, source: :user
-
-  has_many :event_backstage_members, -> { backstage_member }, class_name: 'EventFollow', dependent: nil, inverse_of: :event
+  has_many :event_backstage_members, -> { backstage_member.secret_user_or_over }, class_name: 'EventFollow', dependent: nil, inverse_of: :event
   has_many :backstage_members, through: :event_backstage_members, source: :user
-
-  has_many :event_audiences, -> { audience }, class_name: 'EventFollow', dependent: nil, inverse_of: :event
+  has_many :event_audiences, -> { audience.secret_user_or_over }, class_name: 'EventFollow', dependent: nil, inverse_of: :event
   has_many :audiences, through: :event_audiences, source: :user
 
-  has_many :event_attendances, dependent: :destroy
+  has_many :all_event_attendances, class_name: 'EventAttendance', dependent: :destroy
+  has_many :event_attendances, -> { secret_user_or_over }, dependent: nil, inverse_of: :event
 
   has_many :event_memories, dependent: :destroy
 

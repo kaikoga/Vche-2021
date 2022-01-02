@@ -146,11 +146,11 @@ class EventsController < ApplicationController::Bootstrap
   private
 
   def find_user
-    User.friendly.find(params[:user_id])
+    User.friendly.secret_or_over.find(params[:user_id])
   end
 
   def find_event
-    Event.friendly.find(params[:id])
+    Event.friendly.secret_or_over.find(params[:id])
   end
 
   def index_params

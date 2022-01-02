@@ -135,11 +135,11 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
   private
 
   def find_user
-    User.friendly.find(params[:user_id])
+    User.friendly.secret_or_over.find(params[:user_id])
   end
 
   def find_parent_event
-    @event = Event.friendly.find(params[:event_id])
+    @event = Event.friendly.secret_or_over.find(params[:event_id])
   end
 
   def find_event_history

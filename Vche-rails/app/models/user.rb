@@ -71,20 +71,23 @@ class User < ApplicationRecord
   has_many :created_event_histories, class_name: 'EventHistory', foreign_key: :created_user_id, dependent: :nullify, inverse_of: :created_user
   has_many :updated_event_histories, class_name: 'EventHistory', foreign_key: :updated_user_id, dependent: :nullify, inverse_of: :updated_user
 
-  has_many :event_follow_requests, dependent: :destroy
+  has_many :all_event_follow_requests, class_name: 'EventFollowRequest', dependent: :destroy
+  has_many :event_follow_requests, -> { secret_event_or_over }, dependent: nil, inverse_of: :event
   has_many :follow_requesting_events, through: :event_follow_requests, source: :event
 
-  has_many :event_follows, dependent: :destroy
+  has_many :all_event_follows, dependent: :destroy
+  has_many :event_follows, -> { secret_event_or_over }, dependent: nil, inverse_of: :user
   has_many :following_events, through: :event_follows, source: :event
-
-  has_many :owned_follows, -> { owned }, class_name: 'EventFollow', dependent: nil, inverse_of: :user
+  has_many :owned_follows, -> { owned.secret_event_or_over }, class_name: 'EventFollow', dependent: nil, inverse_of: :user
   has_many :owned_events, through: :owned_follows, source: :event
-  has_many :backstage_follows, -> { backstage_member }, class_name: 'EventFollow', dependent: nil, inverse_of: :user
+  has_many :backstage_follows, -> { backstage_member.secret_event_or_over }, class_name: 'EventFollow', dependent: nil, inverse_of: :user
   has_many :backstage_events, through: :backstage_follows, source: :event
-  has_many :audience_follows, -> { audience }, class_name: 'EventFollow', dependent: nil, inverse_of: :user
+  has_many :audience_follows, -> { audience.secret_event_or_over }, class_name: 'EventFollow', dependent: nil, inverse_of: :user
   has_many :audience_events, through: :audience_follows, source: :event
 
-  has_many :event_attendances, dependent: :destroy
+  has_many :all_event_attendances, class_name: 'EventAttendance', dependent: :destroy
+  has_many :event_attendances, -> { secret_event_or_over }, dependent: nil, inverse_of: :event
+  has_many :attending_events, through: :event_attendances, source: :event
 
   has_many :offline_schedules, dependent: :destroy
 

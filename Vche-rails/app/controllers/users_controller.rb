@@ -61,7 +61,7 @@ class UsersController < ApplicationController::Bootstrap
   private
 
   def find_user
-    User.friendly.find(params[:id])
+    User.friendly.secret_or_over.find(params[:id])
   end
 
   def show_params
