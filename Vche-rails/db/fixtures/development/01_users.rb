@@ -4,7 +4,7 @@ User.create_or_find_by(
   display_name: 'kaikoga',
   primary_sns: 'twitter',
   primary_sns_name: 'kaikoga',
-  profile: 'kaikogakaikogakaikoga',
+  bio: 'kaikogakaikogakaikoga',
   visibility: :public,
   trust: 1000000,
   user_role: :user,

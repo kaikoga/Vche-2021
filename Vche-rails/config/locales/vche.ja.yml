@@ -69,7 +69,7 @@ ja:
         backstage_events: スタッフをしているイベント
         email: ログインID
         display_name: 表示名
-        profile: 自己紹介
+        bio: 自己紹介
         user_role: ユーザータイプ
         password: パスワード
         password_confirmation: パスワード（確認する）
