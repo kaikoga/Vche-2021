@@ -90,7 +90,7 @@ class Event < ApplicationRecord
   has_many :all_event_attendances, class_name: 'EventAttendance', dependent: :destroy
   has_many :event_attendances, -> { secret_user_or_over }, dependent: nil, inverse_of: :event
 
-  has_many :event_memories, dependent: :destroy
+  has_many :event_memories, dependent: :destroy, inverse_of: :event
 
   before_validation :recalculate_capacity
 

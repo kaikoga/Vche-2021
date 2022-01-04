@@ -33,7 +33,7 @@ class CalendarPresenter
 
   def initialize(events, current_user: nil, display_user: nil, date: nil, months: 0, days: 28, format: nil, candidate: false, offline: false)
     if events.respond_to?(:includes)
-      events = events.includes(:event_schedules, :event_histories, :flavors)
+      events = events.includes(:event_schedules, :event_histories)
     end
 
     @per_months = months > 0 || days >= 28
