@@ -1,6 +1,10 @@
 class My::UsersController < ApplicationController::Bootstrap
   include MyResources
 
+  def delete_form
+    authorize!
+  end
+
   def delete
     authorize!
     Operations::User::Delete.new(user: current_user, confirm: params[:confirm]).perform!

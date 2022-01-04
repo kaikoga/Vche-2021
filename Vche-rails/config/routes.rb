@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     end
 
     resource :user do
+      get :delete_form
       post :delete
     end
 
