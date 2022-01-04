@@ -18,7 +18,7 @@ class Events::EventHistories::ReschedulesController < ApplicationController::Boo
   private
 
   def find_parent_event
-    @event = Event.friendly.find(params[:event_id])
+    @event = Event.friendly.secret_or_over.find(params[:event_id])
   end
 
   def find_parent_event_history
@@ -28,6 +28,7 @@ class Events::EventHistories::ReschedulesController < ApplicationController::Boo
   def reschedule_params
     params.require(:event_history).permit(
       :capacity,
-      :assembled_at, :opened_at, :started_at, :ended_at, :closed_at)
+      :assembled_at, :opened_at, :started_at, :ended_at, :closed_at
+    )
   end
 end

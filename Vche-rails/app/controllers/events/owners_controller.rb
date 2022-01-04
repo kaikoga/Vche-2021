@@ -13,7 +13,7 @@ class Events::OwnersController < ApplicationController::Bootstrap
 
   def update
     authorize! @event
-    @user = User.friendly.find(update_params[:owner_id])
+    @user = User.friendly.secret_or_over.find(update_params[:owner_id])
     @user.become_organizer!
     @event.owner = @user
     redirect_to @event, notice: I18n.t('notice.events/owners.update.success')
@@ -22,7 +22,7 @@ class Events::OwnersController < ApplicationController::Bootstrap
   private
 
   def find_parent_event
-    @event = Event.friendly.find(params[:event_id])
+    @event = Event.friendly.secret_or_over.find(params[:event_id])
   end
 
   def update_params

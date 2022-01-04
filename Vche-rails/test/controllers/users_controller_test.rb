@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   include VcheTestHelper
@@ -8,19 +8,19 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     login_user(@user)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get users_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     logout_user(@user)
 
     get new_user_url
     assert_response :success
   end
 
-  test "should create user" do
+  test 'should create user' do
     logout_user(@user)
 
     assert_difference('User.count') do
@@ -31,7 +31,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
           visibility: :public,
           user_role: :user,
           primary_sns_url: 'https://twitter.com/foo',
-          profile: 'foofoofoo',
+          bio: 'foofoofoo',
           password: 'foo',
           password_confirmation: 'foo'
         }
@@ -41,12 +41,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to users_url
   end
 
-  test "should show user" do
+  test 'should show user' do
     get user_url(@user)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_user_url(@user)
     assert_response :success
   end

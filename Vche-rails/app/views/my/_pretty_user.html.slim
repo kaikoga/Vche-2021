@@ -1,0 +1,20 @@
+- user ||= nil
+
+.user.-pretty
+  p.pre = user.bio.truncate(64)
+
+  - if user.primary_sns_url.present?
+    .field
+      label
+      .relation
+        = external_link_to user.primary_sns_url, user.primary_sns_url, class: 'button -external'
+
+  .actions
+    - if loyalty(user, :users).show?
+      = link_to '公開プロフィールを確認する', user, class: 'button'
+    - if loyalty(user, :users).info?
+      = link_to '情報を見る', info_user_path(user), class: :button
+    - if loyalty(user, :users).edit?
+      = link_to '編集する', edit_user_path(user), class: 'button'
+    - if loyalty(nil, 'my/settings').show?
+      = link_to "自分の設定", my_settings_path, class: 'button'

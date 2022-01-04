@@ -1,4 +1,4 @@
-FROM ruby:3.0.2-slim AS base
+FROM ruby:3.0.3-slim AS base
 
 # Dockerfile for deployment
 
@@ -15,7 +15,7 @@ RUN apt-get update -qq \
 
 # install nodejs, yarn, and other libraries
 # cmake is for rugged gem
-RUN curl https://deb.nodesource.com/setup_12.x | bash \
+RUN curl https://deb.nodesource.com/setup_16.x | bash \
   && curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
   && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
   && apt-get update -qq \
@@ -28,7 +28,7 @@ WORKDIR /vche
 # setup bundler
 COPY Gemfile Gemfile.lock /vche/
 
-RUN gem install bundler:2.2.24 \
+RUN gem install bundler:2.2.32 \
   && bundle config set --local deployment true \
   && bundle config set --local without 'development test'
 

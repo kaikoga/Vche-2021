@@ -1,13 +1,13 @@
 @mixin button {
   @include reset--font;
   display: inline-block;
-  background: $primary_bg;
+  background-color: $primary_bg;
   border: none;
   padding: 0.5em 1.5em;
   border-radius: 2em;
   color: $primary_text;
   &:hover {
-    background: $primary_bg-light;
+    background-color: $primary_bg-light;
     color: $primary_text-lighter;
   }
   &.-positive {
@@ -58,56 +58,56 @@
 }
 
 @mixin --button-positive {
-  background: $positive_bg-light;
+  background-color: $positive_bg-light;
   color: $positive_text;
   &:hover {
-    background: $positive_bg-lighter;
+    background-color: $positive_bg-lighter;
     color: $positive_text-lighter;
   }
 }
 
 @mixin --button-negative {
-  background: $negative_bg-light;
+  background-color: $negative_bg-light;
   color: $negative_text;
   &:hover {
-    background: $negative_bg-lighter;
+    background-color: $negative_bg-lighter;
     color: $negative_text-lighter;
   }
 }
 
 @mixin --button-external {
-  background: $external_bg;
+  background-color: $external_bg;
   color: $external_text;
   &:hover {
-    background: $external_bg-light;
+    background-color: $external_bg-light;
     color: $external_text-lighter;
   }
 }
 
 @mixin --button-selected {
-  background: $primary_bg-light;
+  background-color: $primary_bg-light;
   color: $primary_text-lighter;
   &:hover {
-    background: $primary_bg-light;
+    background-color: $primary_bg-light;
     color: $primary_text-lighter;
   }
 }
 
 @mixin --button-disabled {
-  background: $disabled_bg;
+  background-color: $disabled_bg;
   color: $disabled_text;
   &:hover {
-    background: $disabled_bg;
+    background-color: $disabled_bg;
     color: $disabled_text;
   }
 }
 
 @mixin --button-roundbox {
   box-sizing: border-box;
-  background: $fill-light;
+  background-color: $fill-light;
   border: $primary_bg-dark solid 1px;
   &:hover {
-    background: $fill-lighter;
+    background-color: $fill-lighter;
     color: inherit;
   }
 }

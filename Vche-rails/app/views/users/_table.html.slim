@@ -11,8 +11,8 @@
     label = User.human_attribute_name(:primary_sns_url)
     .value = user.primary_sns_url
   .field
-    label = User.human_attribute_name(:profile)
-    .value.pre = user.profile
+    label = User.human_attribute_name(:bio)
+    .value.pre = user.bio
   .field
     label = User.human_attribute_name(:visibility)
     .value = user.visibility_emoji_text
@@ -23,7 +23,3 @@
   .actions
     - if loyalty(user).edit?
       = link_to '編集する', edit_user_path(user), class: 'button'
-    - if loyalty(user, 'users/passwords').edit?
-      = link_to 'パスワードを変更する', edit_user_password_path(user), class: 'button'
-    - if loyalty(nil, :sessions).purge?
-      = link_to '全てのセッションをログアウト', purge_sessions_path, method: :post, class: 'button', data: { confirm: '全てのセッションをログアウトしますか？' }

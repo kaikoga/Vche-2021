@@ -1,4 +1,4 @@
-FROM ruby:3.0.2
+FROM ruby:3.0.3
 
 # Dockerfile for development
 
@@ -7,7 +7,7 @@ ENV LANG=C.UTF-8
 # install nodejs, yarn, and other libraries
 # cmake is for rugged gem
 # vim is for developer
-RUN curl https://deb.nodesource.com/setup_12.x | bash \
+RUN curl https://deb.nodesource.com/setup_16.x | bash \
   && curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
   && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
   && apt-get update -qq \
@@ -27,7 +27,7 @@ RUN wget https://github.com/progrium/entrykit/releases/download/v${ENTRYKIT_VERS
 RUN mkdir /vche
 WORKDIR /vche
 
-RUN gem install bundler:2.2.24
+RUN gem install bundler:2.2.32
 
 EXPOSE 3000
 

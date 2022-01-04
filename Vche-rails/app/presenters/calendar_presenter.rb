@@ -33,7 +33,7 @@ class CalendarPresenter
 
   def initialize(events, current_user: nil, display_user: nil, date: nil, months: 0, days: 28, format: nil, candidate: false, offline: false)
     if events.respond_to?(:includes)
-      events = events.includes(:event_schedules, :event_histories, :flavors)
+      events = events.includes(:event_schedules, :event_histories)
     end
 
     @per_months = months > 0 || days >= 28
@@ -41,11 +41,11 @@ class CalendarPresenter
     if date
       @current_date = date.beginning_of_day
       if per_months?
-        @prev_date = date - 1.months
-        @next_date = date + 1.months
+        @prev_date = date - 1.month
+        @next_date = date + 1.month
       else
-        @prev_date = date - 1.weeks
-        @next_date = date + 1.weeks
+        @prev_date = date - 1.week
+        @next_date = date + 1.week
       end
     else
       @current = true
@@ -68,8 +68,8 @@ class CalendarPresenter
 
     @format = format
 
-    # FIXME N+1
-    event_histories = events.flat_map{ |event| event.recent_schedule(recent_dates) }
+    # FIXME: N+1
+    event_histories = events.flat_map { |event| event.recent_schedule(recent_dates) }
 
     unless candidate
       event_histories.reject! { |h| h.resolution.candidate? }
@@ -78,32 +78,37 @@ class CalendarPresenter
     event_histories.sort_by(&:started_at)
     event_histories_by_date = event_histories.group_by { |history| history.started_at.beginning_of_day }
 
-    if display_user
-      # FIXME: Ideally we should also collect current_user.event_attendances
-      event_attendances_by_date = display_user.event_attendances
-        .joins(:event) # this enables default scope somehow
-        .where(started_at: beginning_of_calendar...(beginning_of_calendar + days.days))
-        .group_by { |ea| ea.started_at.beginning_of_day }
-    else
-      event_attendances_by_date = {}
-    end
+    event_attendances_by_date =
+      if display_user
+        # FIXME: Ideally we should also collect current_user.event_attendances
+        display_user.event_attendances
+          .joins(:event).merge(Event.secret_or_over)
+          .where(started_at: beginning_of_calendar...(beginning_of_calendar + days.days))
+          .group_by { |ea| ea.started_at.beginning_of_day }
+      else
+        {}
+      end
 
-    if display_user && offline
-      offline_histories_by_date = display_user.offline_schedules
-        .where(start_at: beginning_of_calendar...(beginning_of_calendar + days.days), repeat: :oneshot)
-        .or(display_user.offline_schedules.where.not(repeat: :oneshot)) # FIXME: Awful SQL
-        .flat_map{ |os| os.recent_schedule(recent_dates) }
-        .group_by { |oh| oh.started_at.beginning_of_day }
-    else
-      offline_histories_by_date = {}
-    end
+    offline_histories_by_date =
+      if display_user && offline
+        display_user.offline_schedules
+          .where(start_at: beginning_of_calendar...(beginning_of_calendar + days.days), repeat: :oneshot)
+          .or(display_user.offline_schedules.where.not(repeat: :oneshot)) # FIXME: Awful SQL
+          .flat_map { |os| os.recent_schedule(recent_dates) }
+          .group_by { |oh| oh.started_at.beginning_of_day }
+      else
+        {}
+      end
 
     @cells_by_date = recent_dates.each_with_object({}) do |d, h|
       event_histories_of_date = event_histories_by_date[d] || []
       event_attendances_of_date = event_attendances_by_date[d] || []
       offline_histories_of_date = offline_histories_by_date[d] || []
       trusted_histories = Vche::Trust.filter_trusted(event_histories_of_date)
-      alien_histories = event_attendances_of_date.map { |a| event_histories_of_date.detect { |h| h.event_id == a.event_id && h.started_at == a.started_at } || a.find_or_build_history }.compact
+      alien_histories = event_attendances_of_date.map do |attendance|
+        event_histories_of_date.detect { |history| attendance.for_event_history?(history) } || attendance.find_or_build_history
+      end
+      alien_histories.compact!
       visible_histories = trusted_histories | alien_histories
       h[d] = Cell.new(current_user, d, visible_histories, event_attendances_of_date, offline_histories_of_date)
     end
@@ -120,6 +125,7 @@ class CalendarPresenter
   def hour_to_y(hour, min = 0)
     hf = hour + min / 60.0
     return hf * 4 unless format == :compact
+
     case hour
     when (0...18)
       hf * 1.5
@@ -197,7 +203,7 @@ class CalendarPresenter
     end
 
     def time_and_name
-      "#{I18n::localize(started_at, format: :hm)} #{name}"
+      "#{I18n.l(started_at, format: :hm)} #{name}"
     end
   end
 

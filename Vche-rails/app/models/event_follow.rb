@@ -23,6 +23,9 @@
 class EventFollow < ApplicationRecord
   include Enums::Role
 
+  include Vche::Scopes::UserScopes
+  include Vche::Scopes::EventScopes
+
   belongs_to :user
   belongs_to :event
 

@@ -1,8 +1,8 @@
-h1 = 'マイページ'
+h1 マイページ
 
 = render 'my/user_strip', user: @user
 
-h2 = '自分の予定'
+h2 自分の予定
 
 = render 'calendar/calendar', calendar: @calendar, form: @form
 
@@ -10,6 +10,10 @@ h2 = '自分の予定'
   .actions
     = link_to "新規#{OfflineSchedule.model_name.human}", new_my_offline_schedule_path, class: 'button'
     = link_to "全ての#{OfflineSchedule.model_name.human}", my_offline_schedules_path, class: 'button'
+
+h2 = "#{User.model_name.human}情報"
+
+= render 'my/pretty_user', user: @user
 
 h2 = EventMemory.model_name.human
 

@@ -1,0 +1,10 @@
+h1 = "削除された#{User.model_name.human}"
+
+= render 'my/user_strip', user: @user
+
+.panel.-roundbox
+  p このユーザーは現在無効化されています。
+
+  p ユーザーを復旧する場合は、以下のボタンをクリックしてください。
+  .actions
+    = link_to 'ユーザーを復旧する', recovery_path, method: :post, class: 'button -positive'

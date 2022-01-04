@@ -1,0 +1,72 @@
+# We believe in Zeitwerk
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+
+# While we stick on assign_to_condition, it would indent too much on auto-correct
+Style/ConditionalAssignment:
+  AutoCorrect: false
+
+# They are pretty self-explanatory
+Style/Documentation:
+  Enabled: false
+
+# I don't like `elsif` because it looks procedural
+Style/EmptyCaseCondition:
+  Enabled: false
+
+# Wait until "# do nothing" is allowed
+Style/EmptyElse:
+  Enabled: false
+
+# Less semicolons
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+# Human brain don't understand negative statements, so resort to very reluctant settings
+Style/GuardClause:
+  MinBodyLength: 10
+
+# Nope
+Style/IfInsideElse:
+  Enabled: false
+
+# This is debatable; lines tend to get longer
+Style/IfUnlessModifier:
+  Enabled: false
+
+# I don't know how to use lambda keyword
+Style/Lambda:
+  EnforcedStyle: literal
+
+# This is disabled with Style/NonNilCheck
+Style/NilComparison:
+  Enabled: false
+
+# !x.nil? next to x.nil? is too much eye hurting
+Style/NonNilCheck:
+  Enabled: false
+
+# 10 seems reasonable
+Style/NumericLiterals:
+  MinDigits: 10
+  Strict: true
+
+# Numeric predicates are not so multilingual
+Style/NumericPredicate:
+  Enabled: false
+
+# @see self.hashtag = '#' + self.hashtag
+Style/RedundantSelf:
+  Enabled: false
+
+# I don't know what StandardError is
+Style/RescueStandardError:
+  EnforcedStyle: implicit
+
+# Symbols don't look like symbols if multiline symbol arrays (sometimes they occur)
+Style/SymbolArray:
+  Enabled: false
+
+# What if ...we want to add non-word to word array? (see Style/SymbolArray)
+Style/WordArray:
+  Enabled: false

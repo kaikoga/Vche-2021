@@ -41,7 +41,7 @@
 #  fk_rails_...  (platform_id => platforms.id)
 #  fk_rails_...  (updated_user_id => users.id)
 #
-require "test_helper"
+require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase
   # test "the truth" do

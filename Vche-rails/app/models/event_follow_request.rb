@@ -32,11 +32,14 @@
 class EventFollowRequest < ApplicationRecord
   include Enums::Role
 
+  include Vche::Scopes::UserScopes
+  include Vche::Scopes::EventScopes
+
   include Vche::Uid
   include Vche::UidQuery
 
-  validates :role, if: -> { started_at == nil }, exclusion: { in: %w(owner irrelevant), message: "ではフォロー申請できません" }
-  validates :role, if: -> { started_at != nil }, exclusion: { in: %w(irrelevant), message: "ではフォロー申請できません" }
+  validates :role, if: -> { started_at == nil }, exclusion: { in: %w[owner irrelevant], message: 'ではフォロー申請できません' }
+  validates :role, if: -> { started_at != nil }, exclusion: { in: %w[irrelevant], message: 'ではフォロー申請できません' }
 
   belongs_to :user
   belongs_to :event
@@ -51,11 +54,10 @@ class EventFollowRequest < ApplicationRecord
   def accept
     if started_at
       Operations::EventHistory::UpdateUserRole.new(event_history: find_or_build_history, user: user, role: role).perform
-      update!(state: 'accepted')
     else
       Operations::Event::UpdateUserRole.new(event: event, user: user, role: role).perform
-      update!(state: 'accepted')
     end
+    update!(state: 'accepted')
   rescue Operations::Event::UpdateUserRole::UserIsOwner
     update!(state: 'already_owner')
   end

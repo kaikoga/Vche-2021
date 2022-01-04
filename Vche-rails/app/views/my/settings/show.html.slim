@@ -1,0 +1,19 @@
+h1 = '自分の設定'
+
+= render 'my/user_strip', user: @user
+
+h2 = 'セキュリティ'
+
+.panel.-roundbox
+  .actions
+    - if loyalty(nil, 'my/passwords').edit?
+      = link_to 'パスワードを変更する', edit_my_password_path, class: 'button'
+    - if loyalty(nil, :sessions).purge?
+      = link_to '全てのセッションをログアウト', purge_sessions_path, method: :post, class: 'button', data: {confirm: '全てのセッションをログアウトしますか？'}
+
+h2 = '利用登録の解除'
+
+.panel.-roundbox
+  .actions
+    - if loyalty(nil, 'my/users').delete_form?
+      = link_to '利用登録を解除する', delete_form_my_user_path, class: 'button'

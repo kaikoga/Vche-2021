@@ -10,7 +10,6 @@ import "channels"
 
 import 'bootstrap';
 import '../stylesheets/application_bootstrap';
-import '../src/datefield_shim'
 
 Rails.start()
 // Turbolinks.start()

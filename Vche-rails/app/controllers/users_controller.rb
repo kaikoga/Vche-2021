@@ -61,7 +61,7 @@ class UsersController < ApplicationController::Bootstrap
   private
 
   def find_user
-    User.friendly.find(params[:id])
+    User.friendly.secret_or_over.find(params[:id])
   end
 
   def show_params
@@ -69,10 +69,16 @@ class UsersController < ApplicationController::Bootstrap
   end
 
   def create_params
-    params.require(:user).permit(:email, :visibility, :user_role, :display_name, :primary_sns_url, :profile, :password, :password_confirmation)
+    params.require(:user).permit(
+      :email,
+      :visibility, :user_role, :display_name, :primary_sns_url, :bio,
+      :password, :password_confirmation
+    )
   end
 
   def update_params
-    params.require(:user).permit(:visibility, :user_role, :display_name, :primary_sns_url, :profile)
+    params.require(:user).permit(
+      :visibility, :user_role, :display_name, :primary_sns_url, :bio
+    )
   end
 end

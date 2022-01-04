@@ -32,15 +32,15 @@ class EventMemory < ApplicationRecord
   include Vche::UidQuery
   include Vche::Hashtag
 
-  belongs_to :user, optional: true
-  belongs_to :event, optional: true
+  belongs_to :user, -> { secret_or_over }, optional: true, inverse_of: :event_memories
+  belongs_to :event, -> { secret_or_over }, optional: true, inverse_of: :event_memories
 
   validates :started_at, presence: true
   validates :published_at, presence: true
   validates :body, length: { in: 0..4095 }, allow_blank: true
   validates :urls, length: { in: 0..4095 }, allow_blank: true
 
-  scope :for_event_history, ->(event_history){ where(event_id: event_history.event_id, started_at: event_history.started_at) }
+  scope :for_event_history, ->(event_history) { where(event_id: event_history.event_id, started_at: event_history.started_at) }
   scope :recent, -> { order(published_at: :desc).limit(5) }
 
   before_validation :update_published_at

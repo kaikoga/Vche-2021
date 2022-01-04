@@ -1,11 +1,11 @@
 module CalendarHelper
-  def css_class_of_time(date, c)
+  def css_class_of_time(date, class_name)
     if date < Time.current.beginning_of_day
-      "#{c} -ended"
+      "#{class_name} -ended"
     elsif date < Time.current.end_of_day
-      "#{c} -today"
+      "#{class_name} -today"
     else
-      c
+      class_name
     end
   end
 end

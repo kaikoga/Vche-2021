@@ -22,12 +22,22 @@ class ApplicationController < ActionController::Base
   class Bootstrap < ApplicationController
     layout 'application_bootstrap'
 
+    before_action :require_existing_user
     before_action :require_agreement
 
     private
 
+    def require_existing_user
+      return unless current_user
+
+      if current_user.visibility.deleted?
+        redirect_to new_recovery_path
+      end
+    end
+
     def require_agreement
       return unless current_user
+
       unless current_user.agreed?(Agreement.modified_at)
         redirect_to confirm_agreements_path
       end

@@ -135,11 +135,11 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
   private
 
   def find_user
-    User.friendly.find(params[:user_id])
+    User.friendly.secret_or_over.find(params[:user_id])
   end
 
   def find_parent_event
-    @event = Event.friendly.find(params[:event_id])
+    @event = Event.friendly.secret_or_over.find(params[:event_id])
   end
 
   def find_event_history
@@ -149,12 +149,14 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
   def create_params
     params.require(:event_history).permit(
       :resolution, :capacity, :default_audience_role,
-      :assembled_at, :opened_at, :started_at, :ended_at, :closed_at)
+      :assembled_at, :opened_at, :started_at, :ended_at, :closed_at
+    )
   end
 
   def update_params
     params.require(:event_history).permit(
       :resolution, :capacity, :default_audience_role,
-      :assembled_at, :opened_at, :ended_at, :closed_at)
+      :assembled_at, :opened_at, :ended_at, :closed_at
+    )
   end
 end

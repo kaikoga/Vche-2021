@@ -3,7 +3,7 @@ class EventsController < ApplicationController::Bootstrap
 
   def index
     @form = CalendarPresenterForm.new(Event.public_or_over, index_params, filter: { trust: :all }, paginate: true)
-    @events = @form.events
+    @events = @form.events.includes(:event_schedules)
     authorize!
   end
 
@@ -111,7 +111,7 @@ class EventsController < ApplicationController::Bootstrap
 
     Operations::Event::RequestUpdateUserRole.new(event: @event, user: @user, approver: @user, role: params[:role]).perform!
     redirect_to event_event_follows_url(@event), notice: I18n.t('notice.events.add_user.success')
-  rescue ActiveRecord::RecordInvalid => e
+  rescue ActiveRecord::RecordInvalid
     redirect_to event_event_follows_url(@event)
   rescue Operations::Event::RequestUpdateUserRole::UserIsOwner
     redirect_to edit_event_owner_url(@event)
@@ -146,11 +146,11 @@ class EventsController < ApplicationController::Bootstrap
   private
 
   def find_user
-    User.friendly.find(params[:user_id])
+    User.friendly.secret_or_over.find(params[:user_id])
   end
 
   def find_event
-    Event.friendly.find(params[:id])
+    Event.friendly.secret_or_over.find(params[:id])
   end
 
   def index_params

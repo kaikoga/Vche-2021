@@ -2,7 +2,7 @@ module VcheTestHelper
   # include Sorcery::TestHelpers::Rails::Integration
   def login_user(user)
     # post the login and follow through
-    post login_path, params: { email: user.email, password: "kaikoga" }
+    post login_path, params: { email: user.email, password: 'kaikoga' }
     follow_redirect!
   end
 

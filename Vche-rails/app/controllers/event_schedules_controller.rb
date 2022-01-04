@@ -58,7 +58,7 @@ class EventSchedulesController < ApplicationController::Bootstrap
   private
 
   def find_parent_event
-    @event = Event.friendly.find(params[:event_id])
+    @event = Event.friendly.secret_or_over.find(params[:event_id])
   end
 
   def find_event_schedule
@@ -66,6 +66,8 @@ class EventSchedulesController < ApplicationController::Bootstrap
   end
 
   def event_schedule_params
-    p = params.require(:event_schedule).permit(:visibility, :assemble_at, :open_at, :start_at, :end_at, :close_at, :repeat, :repeat_until)
+    @event_schedule_params ||=
+      params.require(:event_schedule)
+        .permit(:visibility, :assemble_at, :open_at, :start_at, :end_at, :close_at, :repeat, :repeat_until)
   end
 end
