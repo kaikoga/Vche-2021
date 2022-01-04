@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     end
 
     resource :user do
+      get :delete_form
       post :delete
     end
 
@@ -96,6 +97,8 @@ Rails.application.routes.draw do
       post :agree
     end
   end
+
+  resource :recovery, only: [:new, :create]
 
   resources :feedbacks, only: [:new, :create] do
     collection do
