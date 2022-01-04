@@ -3,11 +3,13 @@ class My::UsersController < ApplicationController::Bootstrap
 
   def delete
     authorize!
-    Operations::User::Destroy.new(user: current_user, confirm: params[:confirm]).perform!
+    Operations::User::Delete.new(user: current_user, confirm: params[:confirm]).perform!
+    invalidate_active_sessions!
+    logout
     redirect_to :root, notice: I18n.t('notice.my/users.delete.success')
-  rescue Operations::User::Destroy::Confirm
+  rescue Operations::User::Delete::Confirm
     redirect_to my_settings_path, notice: I18n.t('notice.my/users.delete.confirm')
-  rescue Operations::User::Destroy::UserIsOwner
+  rescue Operations::User::Delete::UserIsOwner
     redirect_to my_settings_path
   end
 end

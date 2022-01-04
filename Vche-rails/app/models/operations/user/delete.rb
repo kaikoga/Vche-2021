@@ -1,4 +1,4 @@
-class Operations::User::Destroy
+class Operations::User::Delete
   include Operations::Operation
 
   class UserIsOwner < StandardError; end
@@ -15,8 +15,7 @@ class Operations::User::Destroy
   end
 
   def perform
-    @user.visibility = :deleted
-    @user.save!(context: :destroy)
+    user.destroy!
   end
 
   private
