@@ -61,7 +61,7 @@ class User < ApplicationRecord
   validates :bio, length: { in: 0..4095 }, allow_blank: true
 
   has_many :accounts, dependent: :destroy
-  has_many :event_memories, dependent: :destroy
+  has_many :event_memories, dependent: :destroy, inverse_of: :user
   has_many :shared_or_over_event_memories, -> { joins(:event).merge(Event.shared_or_over) }, class_name: 'EventMemory', dependent: nil, inverse_of: :user
 
   has_many :created_events, class_name: 'Event', foreign_key: :created_user_id, dependent: :nullify, inverse_of: :created_user
