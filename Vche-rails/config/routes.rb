@@ -49,6 +49,7 @@ Rails.application.routes.draw do
       post :add_user
       post :change_user
       post :remove_user
+      get :appeal
     end
     resources :event_schedules
     resources :event_histories, controller: 'events/event_histories' do
