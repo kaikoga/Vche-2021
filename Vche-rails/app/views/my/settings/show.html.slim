@@ -17,3 +17,5 @@ h2 = '利用登録の解除'
   .actions
     - if loyalty(nil, 'my/users').delete_form?
       = link_to '利用登録を解除する', delete_form_my_user_path, class: 'button'
+
+- set_meta_title_for('自分の設定')

@@ -3,3 +3,5 @@ h1 = "#{User.model_name.human}情報"
 = render 'strip', user: @user
 
 = render 'table', user: @user
+
+- set_meta_for(@user)

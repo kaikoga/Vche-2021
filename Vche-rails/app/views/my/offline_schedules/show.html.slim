@@ -24,3 +24,5 @@ h1 = "#{OfflineSchedule.model_name.human}詳細"
       = link_to '編集する', edit_my_offline_schedule_path(@offline_schedule), class: 'button'
     - if loyalty(@offline_schedule, 'my/offline_schedules').destroy?
       = link_to '削除する', my_offline_schedule_path(@offline_schedule), method: :delete, class: 'button -negative'
+
+- set_meta_title_for(@offline_schedule)

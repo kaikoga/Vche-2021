@@ -4,3 +4,5 @@ h1 = EventMemory.model_name.human
 
 .panel
   = render 'event_memories/cards', event_memories: @event_memories
+
+- set_meta_for(@user, EventMemory.model_name.human)

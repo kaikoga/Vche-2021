@@ -13,3 +13,5 @@ nav.event__nav
 .panel.actions
   = link_to "新規#{Event.model_name.human}", select_new_event_path, class: 'button'
   = link_to "#{Event.human_attribute_name(:hashtag)}一覧", hashtags_path, class: 'button'
+
+- set_meta_for(Event.model_name.human)

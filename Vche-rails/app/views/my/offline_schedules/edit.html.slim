@@ -6,3 +6,5 @@ h1 = "#{OfflineSchedule.model_name.human}を編集する"
 
 .panel
   = link_to '戻る', my_offline_schedule_path(@offline_schedule), class: 'button'
+
+- set_meta_title_for(@offline_schedule, "#{OfflineSchedule.model_name.human}を編集する")

@@ -21,3 +21,5 @@ h1 = Event.human_attribute_name(:followers)
     h2 = "参加者"
     .panel
       = render 'event_follows/cards', event_follows: @event.event_audiences, card_cloud: true, actions: :audience
+
+- set_meta_for(@event, Event.human_attribute_name(:followers))

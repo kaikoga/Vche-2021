@@ -17,3 +17,5 @@ h1 = User.model_name.human
     = render 'events/cards', events: audience_events, card_cloud: true
   .panel
     = paginate @audience_events
+
+- set_meta_for(@user, Event.model_name.human)
