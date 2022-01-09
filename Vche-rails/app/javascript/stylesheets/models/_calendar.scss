@@ -99,8 +99,23 @@
       word-break: break-all;
       background-color: $fill;
       &.-attending {
-        background-color: $positive_bg-light;
         color: $positive_text-light;
+        background-color: $positive_bg-light;
+      }
+      &.-role_owner
+      {
+        background-color: $positive_bg;
+      }
+      &.-role_instance_owner,
+      &.-role_performer,
+      &.-role_staff
+      {
+        background-color: $positive_bg;
+      }
+      &.-role_participant,
+      &.-role_applicant
+      {
+        background-color: $positive_bg-light;
       }
       &.-resolution_information {
         color: $text-light;

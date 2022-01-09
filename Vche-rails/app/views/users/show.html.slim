@@ -2,7 +2,7 @@ h1 = "#{User.model_name.human}詳細"
 
 = render 'strip', user: @user
 
-= render 'calendar/calendar', calendar: @calendar, form: @form
+= render 'calendar/calendar', calendar: @calendar, form: @form, enable_recent: true
 
 = render 'pretty', user: @user
 

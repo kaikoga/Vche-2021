@@ -86,7 +86,7 @@ class User < ApplicationRecord
   has_many :audience_events, through: :audience_follows, source: :event
 
   has_many :all_event_attendances, class_name: 'EventAttendance', dependent: :destroy
-  has_many :event_attendances, -> { secret_event_or_over }, dependent: nil, inverse_of: :event
+  has_many :event_attendances, -> { secret_event_or_over }, dependent: nil, inverse_of: :user
   has_many :attending_events, through: :event_attendances, source: :event
 
   has_many :offline_schedules, dependent: :destroy

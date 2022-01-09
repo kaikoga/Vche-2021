@@ -7,6 +7,10 @@ class CalendarPresenter
     [:month, :week, :compact].map { |v| [I18n.t(v, scope: 'vche.calendar.calendar'), v] }
   end
 
+  def current?
+    @current
+  end
+
   def per_months?
     @per_months
   end
@@ -20,7 +24,7 @@ class CalendarPresenter
   end
 
   def current_date_text
-    current ? '' : current_date.strftime(date_text_format)
+    current? ? '' : current_date.strftime(date_text_format)
   end
 
   def prev_date_str
@@ -134,16 +138,37 @@ class CalendarPresenter
     end
   end
 
+  def recent_events
+    @recent_events ||=
+      begin
+        today = Time.current.beginning_of_day
+        events = cells_by_date.values.reject { |cell| cell.date < today }
+          .lazy
+          .flat_map(&:events)
+          .reject(&:offline?)
+          .reject { |cell_event| cell_event.ended_at < Time.current }
+        attending_events = events.filter(&:attending?).take(8)
+        unattending_events = events.reject(&:attending?).take(3)
+        events = attending_events + unattending_events
+        events.take_while.with_index { |cell_event, i| i < 3 || cell_event.important? }
+      end
+  end
+
   class Cell
-    attr_reader :events
+    attr_reader :date, :events
 
     def initialize(current_user, date, event_histories, event_attendances, offline_histories)
       @date = date
-      @events = []
       @event_attendances = event_attendances
+      initialize_events(current_user, event_histories, offline_histories)
+    end
 
-      @events += event_histories.map { |event_history| CellEvent.new(current_user, event_history: event_history) }
-      @events += offline_histories.map { |offline_history| CellEvent.new(current_user, offline_history: offline_history) }
+    private
+
+    def initialize_events(current_user, event_histories, offline_histories)
+      @events = []
+      @events += event_histories.map { |event_history| CellEvent.from_event_history(current_user, event_history, attendance_for(event_history)) }
+      @events += offline_histories.map { |offline_history| CellEvent.from_offline_history(current_user, offline_history) }
       @events.sort_by!(&:started_at)
 
       offset = 0
@@ -156,32 +181,25 @@ class CalendarPresenter
       end
     end
 
-    def attending?(cell_event)
-      event_history = cell_event.event_history
-      return false unless event_history
-
+    def attendance_for(event_history)
       event_attendances.detect { |ea| ea.event_id == event_history.event_id && ea.started_at == event_history.started_at }
     end
 
-    private
-
-    attr_reader :date, :event_attendances, :offline_histories
+    attr_reader :event_attendances, :offline_histories
   end
 
   class CellEvent
-    attr_reader :event_history, :offline_history, :resolution, :name, :started_at, :ended_at
+    attr_reader :event_history, :offline_history, :resolution, :masked, :name, :started_at, :ended_at
     attr_accessor :offset
 
-    def offline?
-      @offline_history
-    end
+    delegate :role, :role_text, to: :event_attendance, allow_nil: true
+    alias_method :attending?, :role
+    alias_method :offline?, :offline_history
+    alias_method :masked?, :masked
 
-    def masked?
-      @masked
-    end
-
-    def initialize(current_user, event_history: nil, offline_history: nil)
+    def initialize(current_user, event_history: nil, offline_history: nil, event_attendance: nil)
       history = event_history || offline_history
+      @event_attendance = event_attendance
       @started_at = history.started_at
       @ended_at = history.ended_at || history.started_at
       @resolution = ended_at > Time.current ? :information : :ended
@@ -205,6 +223,22 @@ class CalendarPresenter
     def time_and_name
       "#{I18n.l(started_at, format: :hm)} #{name}"
     end
+
+    def important?
+      attending? || started_at < Time.current.end_of_day
+    end
+
+    def self.from_event_history(current_user, event_history, event_attendance)
+      self.new(current_user, event_history: event_history, event_attendance: event_attendance)
+    end
+
+    def self.from_offline_history(current_user, offline_history)
+      self.new(current_user, offline_history: offline_history)
+    end
+
+    private
+
+    attr_reader :event_attendance
   end
 
   private
