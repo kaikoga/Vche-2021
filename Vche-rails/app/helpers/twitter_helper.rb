@@ -1,8 +1,11 @@
 module TwitterHelper
   def intent_url(message:, hashtags: [], related: [])
-    message_ = CGI.escape message
-    hashtags_ = CGI.escape hashtags.join(',')
-    related_ = CGI.escape related.join(',')
-    "https://twitter.com/intent/tweet?text=#{message_}&hashtags=#{hashtags_}&related=#{related_}"
+    uri = Addressable::URI.parse('https://twitter.com/intent/tweet')
+    uri.query_values = {
+      text: message,
+      hashtags: hashtags.join(','),
+      related: related.join(',')
+    }.compact
+    uri.to_s
   end
 end
