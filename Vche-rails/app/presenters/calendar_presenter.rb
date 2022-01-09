@@ -7,6 +7,10 @@ class CalendarPresenter
     [:month, :week, :compact].map { |v| [I18n.t(v, scope: 'vche.calendar.calendar'), v] }
   end
 
+  def current?
+    @current
+  end
+
   def per_months?
     @per_months
   end
@@ -20,7 +24,7 @@ class CalendarPresenter
   end
 
   def current_date_text
-    current ? '' : current_date.strftime(date_text_format)
+    current? ? '' : current_date.strftime(date_text_format)
   end
 
   def prev_date_str
@@ -134,8 +138,27 @@ class CalendarPresenter
     end
   end
 
+  def recent_events
+    @recent_events =
+      begin
+        today = Time.current.beginning_of_day
+        value = cells_by_date.values.lazy
+          .reject { |cell| cell.date < today }
+          .flat_map(&:events)
+          .reject(&:offline?)
+          .reject { |cell_event| cell_event.ended_at < Time.current }
+          .take(5)
+          .map(&:event_history)
+          .to_a.compact
+        if value[3] && value[3].started_at > Time.current.end_of_day
+          value = value.take(3)
+        end
+        value
+      end
+  end
+
   class Cell
-    attr_reader :events
+    attr_reader :date, :events
 
     def initialize(current_user, date, event_histories, event_attendances, offline_histories)
       @date = date
@@ -165,7 +188,7 @@ class CalendarPresenter
 
     private
 
-    attr_reader :date, :event_attendances, :offline_histories
+    attr_reader :event_attendances, :offline_histories
   end
 
   class CellEvent

@@ -9,14 +9,17 @@
 
 div class="event_histories -#{_layout}"
   - event_histories.each do |event_history|
+    - _event = event || event_history.event
     .event_history.-card
-      = link_to [event, event_history], class: :time_span do
+      - unless event
+        span.name = link_to _event.name, event
+      = link_to [_event, event_history], class: :time_span do
         - started_at, ended_at = time_span_text(event_history.started_at, event_history.ended_at)
         span.started_at = started_at
         span.sep -
         span.ended_at = ended_at
       span.resolution = event_history.resolution_emoji_text
       - if edit && loyalty(event_history, 'events/event_histories').edit?
-        = link_to '編集する', edit_event_event_history_path(event, event_history), class: 'button'
+        = link_to '編集する', edit_event_event_history_path(_event, event_history), class: 'button'
   - if _count && _count > limit
     = "ほか #{_count - limit} 件"

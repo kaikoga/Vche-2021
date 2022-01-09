@@ -53,6 +53,9 @@
 
 .event_history.-card {
   @include card;
+  .name {
+    @include card__title;
+  }
   .resolution {
     @include roundbox--small;
   }
