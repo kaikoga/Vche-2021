@@ -8,3 +8,5 @@ h1 = "削除された#{User.model_name.human}"
   p ユーザーを復旧する場合は、以下のボタンをクリックしてください。
   .actions
     = link_to 'ユーザーを復旧する', recovery_path, method: :post, class: 'button -positive'
+
+- set_meta_title_for("削除された#{User.model_name.human}")

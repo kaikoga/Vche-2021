@@ -4,3 +4,5 @@ h1 = "#{Event.model_name.human}を編集する"
 
 .panel
   = link_to '戻る', @event, class: 'button'
+
+- set_meta_title_for(@event.name, "#{Event.model_name.human}を編集する")

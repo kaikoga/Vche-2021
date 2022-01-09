@@ -1,10 +1,15 @@
 ja:
   vche:
-   calendar:
+    calendar:
       calendar:
         month: 月
         week: 週
         compact: 狭
+    meta:
+      default_meta_description: VRイベントチェッカー
+      event_memory: 思い出
+      user: ユーザー
+      vche: Vche
   activerecord:
     models:
       agreement: 利用規約

@@ -1,9 +1,10 @@
 doctype html
 html
-  head
+  head prefix="og:http://ogp.me/ns#"
     title
-      | Vche
+      = content_for(:layout_head_title) || 'Vche'
     meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = render 'layouts/meta_tags'
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_pack_tag 'application_bootstrap', 'data-turbolinks-track': 'reload'

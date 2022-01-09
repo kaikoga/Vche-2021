@@ -3,3 +3,5 @@ h1 = EventMemory.model_name.human
 = render 'users/strip', user: @user
 
 = render 'event_memories/pretty', user: @user, event_memory: @event_memory
+
+- set_meta_for(@event_memory)

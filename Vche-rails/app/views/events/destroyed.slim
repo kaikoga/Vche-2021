@@ -4,3 +4,5 @@ h1 = "#{Event.model_name.human}の削除"
   p イベントは削除されました。
   .actions
     = link_to 'マイページへ戻る', home_path, class: 'button'
+
+- set_meta_title_for("#{Event.model_name.human}の削除")

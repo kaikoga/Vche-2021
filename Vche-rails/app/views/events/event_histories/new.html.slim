@@ -6,3 +6,5 @@ h1 = "#{EventHistory.model_name.human}を新しく登録する"
 
 .panel.actions
   = link_to '戻る', event_path(@event), class: 'button'
+
+- set_meta_title_for(@event.name, "#{EventHistory.model_name.human}を新しく登録する")

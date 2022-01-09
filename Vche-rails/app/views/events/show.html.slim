@@ -12,3 +12,5 @@ h2 = EventMemory.model_name.human
 
 - EventMemory.where(event: @event).recent.each do |event_memory|
   = render 'event_memories/pretty', event_memory: event_memory
+
+- set_meta_for(@event)

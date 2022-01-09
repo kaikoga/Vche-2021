@@ -14,3 +14,4 @@ h1 = "#{Event.model_name.human}の#{EventHistory.human_attribute_name(:resolutio
 .panel
   = link_to '戻る', [@event, @event_history], class: 'button'
 
+- set_meta_title_for(@event.name, "#{EventHistory.human_attribute_name(:resolution)}を編集する")

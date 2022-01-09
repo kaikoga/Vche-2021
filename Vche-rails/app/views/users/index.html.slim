@@ -1,6 +1,8 @@
-h1 = User.model_name.human
+h1 = "#{User.model_name.human}一覧"
 
 .panel
   = render 'cards', users: @users, card_cloud: true
 .panel
   = paginate @users
+
+- set_meta_for(User.model_name.human)

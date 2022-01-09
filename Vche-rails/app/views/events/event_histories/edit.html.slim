@@ -6,3 +6,5 @@ h1 = "#{EventHistory.model_name.human}を編集する"
 
 .panel
   = link_to '戻る', [@event, @event_history], class: 'button'
+
+- set_meta_for(@event_history)

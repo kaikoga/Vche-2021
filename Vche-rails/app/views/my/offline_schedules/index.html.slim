@@ -10,3 +10,5 @@ h1 = "#{OfflineSchedule.model_name.human}一覧"
 - if loyalty(nil, 'my/offline_schedules').new?
   .panel.actions
     = link_to "新規#{OfflineSchedule.model_name.human}", new_my_offline_schedule_path, class: 'button'
+
+- set_meta_title_for(OfflineSchedule.model_name.human)

@@ -5,3 +5,5 @@ h1 = "#{EventSchedule.model_name.human}を新しく登録する"
 div
   = render 'form', event: @event, event_schedule: @event_schedule
   = link_to '戻る', event_path(@event), class: 'button'
+
+- set_meta_title_for(@event.name, "#{EventSchedule.model_name.human}を新しく登録する")

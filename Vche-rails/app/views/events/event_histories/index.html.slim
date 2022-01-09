@@ -10,3 +10,5 @@ h1 = "#{Event.model_name.human}の#{EventHistory.model_name.human}一覧"
 - if loyalty(@event, 'events/event_histories').new?
   .panel.actions
     = link_to "新規#{EventHistory.model_name.human}", new_event_event_history_path(@event), class: 'button'
+
+- set_meta_for(@event, EventHistory.model_name.human)

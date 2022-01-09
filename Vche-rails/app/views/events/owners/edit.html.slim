@@ -7,3 +7,5 @@ h1 = "#{Event.model_name.human}の#{EventFollow.role.find_value(:owner).text}を
 
 .panel
   = render 'event_follows/cards', event_follows: @event.event_backstage_members, actions: :owner
+
+- set_meta_title_for(@event.name, "#{EventFollow.role.find_value(:owner).text}を変更する")
