@@ -1,3 +1,7 @@
+# More consistency
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+
 # We believe in Zeitwerk
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact

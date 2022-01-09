@@ -43,7 +43,7 @@ nav.calendar__nav
               - calendar_event_class << ' -offline'
             - else
               - calendar_event_class << ' -event'
-              - calendar_event_class << ' -attending' if cell.attending?(cell_event)
+              - calendar_event_class << ' -attending' if cell_event.attending?
               - calendar_event_class << " -resolution_#{cell_event.resolution}"
             - if calendar.per_months?
               - calendar_event_style = nil

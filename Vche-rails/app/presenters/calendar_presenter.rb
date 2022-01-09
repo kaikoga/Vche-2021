@@ -139,21 +139,18 @@ class CalendarPresenter
   end
 
   def recent_events
-    @recent_events =
+    @recent_events ||=
       begin
         today = Time.current.beginning_of_day
-        value = cells_by_date.values.lazy
-          .reject { |cell| cell.date < today }
+        events = cells_by_date.values.reject { |cell| cell.date < today }
+          .lazy
           .flat_map(&:events)
           .reject(&:offline?)
           .reject { |cell_event| cell_event.ended_at < Time.current }
-          .take(5)
-          .map(&:event_history)
-          .to_a.compact
-        if value[3] && value[3].started_at > Time.current.end_of_day
-          value = value.take(3)
-        end
-        value
+        attending_events = events.filter(&:attending?).take(8)
+        unattending_events = events.reject(&:attending?).take(3)
+        events = attending_events + unattending_events
+        events.take_while.with_index { |cell_event, i| i < 3 || cell_event.important? }.map(&:event_history).to_a
       end
   end
 
@@ -176,8 +173,11 @@ class CalendarPresenter
         event.offset = offset
         offset += 1
         overlap_end_at = [overlap_end_at, event.ended_at].max
+        event.attending = attending?(event)
       end
     end
+
+    private
 
     def attending?(cell_event)
       event_history = cell_event.event_history
@@ -186,14 +186,14 @@ class CalendarPresenter
       event_attendances.detect { |ea| ea.event_id == event_history.event_id && ea.started_at == event_history.started_at }
     end
 
-    private
-
     attr_reader :event_attendances, :offline_histories
   end
 
   class CellEvent
     attr_reader :event_history, :offline_history, :resolution, :name, :started_at, :ended_at
-    attr_accessor :offset
+    attr_accessor :offset, :attending
+
+    alias_method :attending?, :attending
 
     def offline?
       @offline_history
@@ -227,6 +227,10 @@ class CalendarPresenter
 
     def time_and_name
       "#{I18n.l(started_at, format: :hm)} #{name}"
+    end
+
+    def important?
+      attending? || started_at < Time.current.end_of_day
     end
   end
 
