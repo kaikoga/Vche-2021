@@ -67,6 +67,9 @@
       }
     }
   }
+  .role {
+    @include roundbox--small;
+  }
 }
 
 .event_histories.-card_list {

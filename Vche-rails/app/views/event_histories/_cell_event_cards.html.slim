@@ -1,0 +1,19 @@
+- cell_events ||= nil
+- card_cloud ||= false
+- _layout = card_cloud ? 'card_cloud' : 'card_list'
+
+div class="event_histories -#{_layout}"
+  - cell_events.each do |cell_event|
+    - event_history = cell_event.event_history
+    - event = event_history.event
+    - role_text = cell_event.role_text
+    .event_history.-card
+      span.resolution = event_history.resolution_emoji_text
+      span.name = link_to event.name, event
+      = link_to event_event_history_path(event, event_history), class: :time_span do
+        - started_at, ended_at = time_span_text(event_history.started_at, event_history.ended_at)
+        span.started_at = started_at
+        span.sep -
+        span.ended_at = ended_at
+      - if role_text
+        span.role = role_text

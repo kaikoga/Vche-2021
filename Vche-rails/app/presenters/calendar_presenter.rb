@@ -150,7 +150,7 @@ class CalendarPresenter
         attending_events = events.filter(&:attending?).take(8)
         unattending_events = events.reject(&:attending?).take(3)
         events = attending_events + unattending_events
-        events.take_while.with_index { |cell_event, i| i < 3 || cell_event.important? }.map(&:event_history).to_a
+        events.take_while.with_index { |cell_event, i| i < 3 || cell_event.important? }
       end
   end
 
@@ -159,11 +159,16 @@ class CalendarPresenter
 
     def initialize(current_user, date, event_histories, event_attendances, offline_histories)
       @date = date
-      @events = []
       @event_attendances = event_attendances
+      initialize_events(current_user, event_histories, offline_histories)
+    end
 
-      @events += event_histories.map { |event_history| CellEvent.new(current_user, event_history: event_history) }
-      @events += offline_histories.map { |offline_history| CellEvent.new(current_user, offline_history: offline_history) }
+    private
+
+    def initialize_events(current_user, event_histories, offline_histories)
+      @events = []
+      @events += event_histories.map { |event_history| CellEvent.from_event_history(current_user, event_history, attendance_for(event_history)) }
+      @events += offline_histories.map { |offline_history| CellEvent.from_offline_history(current_user, offline_history) }
       @events.sort_by!(&:started_at)
 
       offset = 0
@@ -173,16 +178,10 @@ class CalendarPresenter
         event.offset = offset
         offset += 1
         overlap_end_at = [overlap_end_at, event.ended_at].max
-        event.attending = attending?(event)
       end
     end
 
-    private
-
-    def attending?(cell_event)
-      event_history = cell_event.event_history
-      return false unless event_history
-
+    def attendance_for(event_history)
       event_attendances.detect { |ea| ea.event_id == event_history.event_id && ea.started_at == event_history.started_at }
     end
 
@@ -190,21 +189,17 @@ class CalendarPresenter
   end
 
   class CellEvent
-    attr_reader :event_history, :offline_history, :resolution, :name, :started_at, :ended_at
-    attr_accessor :offset, :attending
+    attr_reader :event_history, :offline_history, :resolution, :masked, :name, :started_at, :ended_at
+    attr_accessor :offset
 
-    alias_method :attending?, :attending
+    delegate :role, :role_text, to: :event_attendance, allow_nil: true
+    alias_method :attending?, :role
+    alias_method :offline?, :offline_history
+    alias_method :masked?, :masked
 
-    def offline?
-      @offline_history
-    end
-
-    def masked?
-      @masked
-    end
-
-    def initialize(current_user, event_history: nil, offline_history: nil)
+    def initialize(current_user, event_history: nil, offline_history: nil, event_attendance: nil)
       history = event_history || offline_history
+      @event_attendance = event_attendance
       @started_at = history.started_at
       @ended_at = history.ended_at || history.started_at
       @resolution = ended_at > Time.current ? :information : :ended
@@ -232,6 +227,18 @@ class CalendarPresenter
     def important?
       attending? || started_at < Time.current.end_of_day
     end
+
+    def self.from_event_history(current_user, event_history, event_attendance)
+      self.new(current_user, event_history: event_history, event_attendance: event_attendance)
+    end
+
+    def self.from_offline_history(current_user, offline_history)
+      self.new(current_user, offline_history: offline_history)
+    end
+
+    private
+
+    attr_reader :event_attendance
   end
 
   private
