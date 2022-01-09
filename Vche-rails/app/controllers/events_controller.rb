@@ -146,20 +146,7 @@ class EventsController < ApplicationController::Bootstrap
   def appeal
     @event = find_event
     authorize! @event
-
-    @event_history = @event.find_or_build_history(Time.current)
-    message =
-      if (@event_history.opened_at..@event_history.ended_at).cover?(Time.current)
-        "Check in! #{@event.name}\n#{event_url(@event)}"
-      else
-        "Check! #{@event.name}\n#{event_url(@event)}"
-      end
-
-    redirect_to helpers.intent_url(
-      message: message,
-      hashtags: [@event.hashtag_without_hash, 'Vche'].compact,
-      related: [@event.primary_sns_name, 'vche_jp'].compact
-    )
+    redirect_to helpers.intent_url_for_event(@event)
   end
 
   private
