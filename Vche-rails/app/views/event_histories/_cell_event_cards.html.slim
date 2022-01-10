@@ -1,5 +1,6 @@
 - cell_events ||= nil
 - card_cloud ||= false
+- edit ||= false
 - _layout = card_cloud ? 'card_cloud' : 'card_list'
 
 div class="event_histories -#{_layout}"
@@ -17,3 +18,5 @@ div class="event_histories -#{_layout}"
         span.ended_at = ended_at
       - if role_text
         span.role = role_text
+      - if edit
+        = external_link_to 'ツイート', appeal_event_path(event), class: 'button -external -tweet'

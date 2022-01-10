@@ -22,7 +22,7 @@
         = link_to 'フォロー解除', unfollow_event_path(event), method: :post, class: 'button'
 
       = link_to "最近の#{EventHistory.model_name.human}", event_event_histories_path(event), class: 'button'
-      = external_link_to 'ツイート', appeal_event_path(event), class: 'button -external'
+      = external_link_to 'ツイート', appeal_event_path(event), class: 'button -external -tweet'
 
   div
     span.fullname = event.fullname
