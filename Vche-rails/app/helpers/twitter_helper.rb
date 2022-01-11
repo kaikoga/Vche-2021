@@ -1,11 +1,18 @@
 module TwitterHelper
   def intent_url_for_event(event)
     event_history = event.find_or_build_history(Time.current)
+    intent_url_for(event_history)
+  end
+
+  def intent_url_for(event_history)
+    event = event_history.event
     message =
-      if (event_history.opened_at..event_history.ended_at).cover?(Time.current)
-        "Check in! #{event.name}\n#{event_url(event)}"
+      if Time.current < event_history.opened_at
+        "チェック! #{event.name}\n#{event_url(event)}"
+      elsif Time.current < event_history.ended_at
+        "チェックイン! #{event.name}\n#{event_url(event)}"
       else
-        "Check! #{event.name}\n#{event_url(event)}"
+        "チェックイン! #{event.name}\n#{event_url(event)}"
       end
 
     intent_url(
