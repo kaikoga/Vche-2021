@@ -1,8 +1,10 @@
 @import '_variables';
+@import '_variables_ip';
 
 @import 'mixins/_reset';
 
 @import 'components/_button';
+@import 'components/_button_ip';
 @import 'components/_card';
 @import 'components/_editor_fields';
 @import 'components/_icon';

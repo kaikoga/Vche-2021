@@ -143,6 +143,12 @@ class EventsController < ApplicationController::Bootstrap
     redirect_to edit_event_owner_url(@event)
   end
 
+  def appeal
+    @event = find_event
+    authorize! @event
+    redirect_to helpers.intent_url_for_event(@event)
+  end
+
   private
 
   def find_user

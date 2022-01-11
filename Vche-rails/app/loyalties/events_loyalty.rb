@@ -47,6 +47,10 @@ class EventsLoyalty < ApplicationLoyalty
     LoyaltyTools.user_is_owner?(record, user)
   end
 
+  def appeal?
+    true
+  end
+
   concerning :Model do
     def backstage?
       LoyaltyTools.user_is_backstage_member?(record, user)

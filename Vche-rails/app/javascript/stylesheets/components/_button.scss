@@ -25,6 +25,7 @@
   &.-disabled {
     @include --button-external;
   }
+  @include button-ip;
 }
 
 @mixin button--positive {

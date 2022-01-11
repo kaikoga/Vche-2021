@@ -9,7 +9,7 @@
 
 - if enable_recent && calendar.current? && calendar.recent_events.present?
   .panel
-    = render 'event_histories/cell_event_cards', cell_events: calendar.recent_events
+    = render 'event_histories/cell_event_cards', cell_events: calendar.recent_events, edit: enable_recent == :edit
 
 nav.calendar__nav
   = form_with(url: filtered_params, method: :get, class: '-inline') do |form|
