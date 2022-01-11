@@ -12,7 +12,7 @@ module TwitterHelper
       elsif Time.current < event_history.ended_at
         "チェックイン! #{event.name}\n#{event_url(event)}"
       else
-        "チェックイン! #{event.name}\n#{event_url(event)}"
+        "チェック! #{event.name}\n#{event_url(event)}"
       end
 
     intent_url(
