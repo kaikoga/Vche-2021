@@ -44,7 +44,35 @@
 require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  setup do
+    @event = events(:default)
+  end
+
+  teardown do
+  end
+
+  test 'empty #next_schedule' do
+    assert { @event.next_schedule.nil? }
+  end
+
+  test '#next_schedule before start_at' do
+    @event.event_schedules.create!(start_at: '2022-01-11 22:00:00', end_at: '2022-01-11 23:00:00', repeat: :every_week)
+    travel_to(Time.zone.parse('2022-01-11 21:00:00')) do
+      assert { @event.next_schedule.started_at == Time.zone.parse('2022-01-11 22:00:00') }
+    end
+  end
+
+  test '#next_schedule within start_at..end_at' do
+    @event.event_schedules.create!(start_at: '2022-01-11 22:00:00', end_at: '2022-01-11 23:00:00', repeat: :every_week)
+    travel_to(Time.zone.parse('2022-01-11 22:30:00')) do
+      assert { @event.next_schedule.started_at == Time.zone.parse('2022-01-11 22:00:00') }
+    end
+  end
+
+  test '#next_schedule after end_at' do
+    @event.event_schedules.create!(start_at: '2022-01-11 22:00:00', end_at: '2022-01-11 23:00:00', repeat: :every_week)
+    travel_to(Time.zone.parse('2022-01-11 23:00:00')) do
+      assert { @event.next_schedule.started_at == Time.zone.parse('2022-01-11 22:00:00') } # FIXME
+    end
+  end
 end
