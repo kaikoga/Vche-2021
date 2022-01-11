@@ -11,3 +11,5 @@ nav.event__nav
   = paginate @events
 
 = render 'calendar/calendar', calendar: @calendar, form: @form
+
+- set_meta_for(@hashtag)

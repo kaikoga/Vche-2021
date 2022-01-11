@@ -4,3 +4,5 @@ h1 = "#{EventMemory.model_name.human}を新しく登録する"
 
 .panel.actions
   = link_to '戻る', user_event_memories_path, class: 'button'
+
+- set_meta_title_for(@event_memory.event.name, "#{EventMemory.model_name.human}を新しく登録する")

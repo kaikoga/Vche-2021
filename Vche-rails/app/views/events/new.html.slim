@@ -1,7 +1,9 @@
 - if @role == :owner
   h1 = "#{Event.model_name.human}を新しく主催する"
+  - set_meta_title_for("#{Event.model_name.human}を新しく主催する")
 - else
   h1 = "#{Event.model_name.human}を新しく登録する"
+  - set_meta_title_for("#{Event.model_name.human}を新しく登録する")
 
 = render 'form', event: @event, role: @role
 
@@ -10,3 +12,4 @@
 
 = render 'events/visibilities/help', new: true unless @event.persisted?
 = render 'help' unless @event.persisted?
+

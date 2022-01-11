@@ -12,3 +12,5 @@ h1 = "#{EventHistory.model_name.human}を日程変更する"
 .panel
   = link_to '戻る', [@event, @event_history], class: 'button'
 
+
+- set_meta_title_for(@event.name, "#{EventHistory.model_name.human}を日程変更する")

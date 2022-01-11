@@ -1,0 +1,19 @@
+- content_for(:meta_title) { 'Vche' } unless content_for?(:meta_title)
+- content_for(:meta_description) { 'VRイベントチェッカー' } unless content_for?(:meta_description)
+- content_for(:meta_image) { asset_url('/vche.jpg') } unless content_for?(:meta_image)
+
+meta[property="og:title" content=content_for(:meta_title)]
+meta[property="og:description" content=content_for(:meta_description)]
+meta[property="og:url" content=request.url]
+meta[property="og:image" content=content_for(:meta_image)]
+meta[property="og:type" content="article"]
+meta[property="og:locale" content="ja_JP"]
+meta[property="og:site_name" content="Vche"]
+
+meta[name="twitter:card" content="summary"]
+meta[name="twitter:site" content="@vche_jp"]
+- if content_for?(:meta_twitter_creator)
+  meta[name="twitter:creator" content=content_for(:meta_twitter_creator)]
+meta[name="twitter:title" content=content_for(:meta_title)]
+meta[name="twitter:description" content=content_for(:meta_description)]
+meta[name="twitter:image" content=content_for(:meta_image)]

@@ -394,6 +394,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
+  addressable
   annotate
   banken
   bootsnap (>= 1.4.4)

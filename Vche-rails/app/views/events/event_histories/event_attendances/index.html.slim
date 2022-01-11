@@ -25,3 +25,5 @@ h1 = EventAttendance.model_name.human
     h2 = "参加者"
     .panel
       = render 'event_attendances/cards', event_history: @event_history, event_attendances: event_audiences, card_cloud: true
+
+- set_meta_for(@event_history, EventAttendance.model_name.human)

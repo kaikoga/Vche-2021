@@ -1,17 +1,22 @@
 - calendar ||= nil
 - form ||= nil
+- enable_recent ||= false
 - enable_filters ||= false
 
 - _calendar_params = filtered_params
 - _calendar_params.merge!(form.params) if form
 - _calendar_class = "calendar -cells -#{calendar.format}"
 
+- if enable_recent && calendar.current? && calendar.recent_events.present?
+  .panel
+    = render 'event_histories/cell_event_cards', cell_events: calendar.recent_events, edit: enable_recent == :edit
+
 nav.calendar__nav
   = form_with(url: filtered_params, method: :get, class: '-inline') do |form|
     = form.select :calendar, calendar.options, { selected: params[:calendar] }, onchange: "javascript: this.form.submit();"
   = link_to("=", _calendar_params.except(:date), class: :button)
   = link_to("< #{calendar.prev_date_text}", _calendar_params.merge(date: calendar.prev_date_str), class: :button)
-  - unless calendar.current
+  - unless calendar.current?
     span.current = calendar.current_date_text
   = link_to("#{calendar.next_date_text} >", _calendar_params.merge(date: calendar.next_date_str), class: :button)
   - if enable_filters
@@ -38,7 +43,7 @@ nav.calendar__nav
               - calendar_event_class << ' -offline'
             - else
               - calendar_event_class << ' -event'
-              - calendar_event_class << ' -attending' if cell.attending?(cell_event)
+              - calendar_event_class << " -attending -role_#{cell_event.role}" if cell_event.attending?
               - calendar_event_class << " -resolution_#{cell_event.resolution}"
             - if calendar.per_months?
               - calendar_event_style = nil

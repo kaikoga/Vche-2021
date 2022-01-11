@@ -4,3 +4,5 @@ h1 = "#{Account.model_name.human}を編集する"
 
 .panel
   = link_to '戻る', @user, class: 'button'
+
+- set_meta_title_for(@account.display_name, "#{Account.model_name.human}を編集する")

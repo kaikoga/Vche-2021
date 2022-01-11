@@ -7,3 +7,5 @@ h1 = Account.model_name.human
 
 .panel.actions
   = link_to "新規#{Account.model_name.human}", new_user_account_path, class: 'button'
+
+- set_meta_for(@user, Account.model_name.human)

@@ -8,3 +8,5 @@ h1 = "#{Event.model_name.human}の#{Event.human_attribute_name(:visibility)}を�
 
 .panel
   = link_to '戻る', @event, class: 'button'
+
+- set_meta_title_for(@event.name, "#{Event.human_attribute_name(:visibility)}を編集する")

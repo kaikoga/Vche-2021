@@ -5,3 +5,5 @@ h1 = "#{OfflineSchedule.model_name.human}を新しく登録する"
 div
   = render 'form', offline_schedule: @offline_schedule
   = link_to '戻る', my_offline_schedules_path, class: 'button'
+
+- set_meta_title_for("#{OfflineSchedule.model_name.human}を新しく登録する")

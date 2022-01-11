@@ -1,3 +1,5 @@
 h1 = Feedback.model_name.human
 
 = render 'form', feedback: @feedback, user: @user
+
+- set_meta_title_for(Feedback.model_name.human)

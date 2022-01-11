@@ -15,3 +15,5 @@ h1 = "#{Event.model_name.human}の#{EventFollow.role.find_value(:owner).text}に
   = form_with(model: @event, url: event_owner_path(@event), method: :patch, class: '-inline') do |form|
     = form.hidden_field :owner_id, value: current_user.id
     = form.submit '主催になる！'
+
+- set_meta_title_for(@event.name, "#{EventFollow.role.find_value(:owner).text}になる")
