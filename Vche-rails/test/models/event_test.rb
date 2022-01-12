@@ -72,7 +72,7 @@ class EventTest < ActiveSupport::TestCase
   test '#next_schedule after end_at' do
     @event.event_schedules.create!(start_at: '2022-01-11 22:00:00', end_at: '2022-01-11 23:00:00', repeat: :every_week)
     travel_to(Time.zone.parse('2022-01-11 23:00:00')) do
-      assert { @event.next_schedule.started_at == Time.zone.parse('2022-01-11 22:00:00') } # FIXME
+      assert { @event.next_schedule.started_at == Time.zone.parse('2022-01-18 22:00:00') }
     end
   end
 end

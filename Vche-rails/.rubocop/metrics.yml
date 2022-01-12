@@ -7,7 +7,11 @@ Metrics/AbcSize:
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods, IgnoredMethods.
 # IgnoredMethods: refine
 Metrics/BlockLength:
-  Max: 56
+  Exclude:
+    - app/admin/**/*.rb
+    - test/**/*.rb
+  IgnoredMethods:
+    - included # ActiveSupport::Concern
 
 # Offense count: 4
 # Configuration parameters: CountComments, CountAsOne.
