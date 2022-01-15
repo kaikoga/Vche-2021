@@ -102,6 +102,19 @@ class EventHistory < ApplicationRecord
     event.scheduled_at?(started_at)
   end
 
+  def event_appeal_for(user)
+    appeal = event.event_appeals.available.find_by(appeal_role: :personal, user: user)
+    return appeal if appeal
+
+    if user.nil?
+      event.event_appeals.available.find_by(appeal_role: :audience)
+    elsif user.attending_event_as_backstage_member?(self) || user.following_event_as_backstage_member?(event)
+      event.event_appeals.available.find_by(appeal_role: :backstage)
+    else
+      event.event_appeals.available.find_by(appeal_role: :audience)
+    end
+  end
+
   private
 
   def recalculate_resolution

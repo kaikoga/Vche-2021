@@ -24,23 +24,20 @@ module TwitterHelper
   end
 
   def message_for(event_history, without_time: false)
-    default_message_for(event_history, without_time: without_time)
-  end
-
-  private
-
-  def default_message_for(event_history, without_time: false)
     event = event_history.event
+    appeal = event_history.event_appeal_for(current_user)
     now = Time.current
     if !event_history.opened?(now)
-      message_prefix = 'チェック! '
+      message = appeal&.choose_message(:before) || "チェック! #{event.name}"
     elsif !event_history.ended?(now)
-      message_prefix = 'チェックイン! '
+      message = appeal&.message || "チェックイン! #{event.name}"
       without_time = true
     else
-      message_prefix = '終了! '
+      message = appeal&.choose_message(:after) || "終了! #{event.name}"
     end
-    event_time = without_time ? nil : " #{l(event_history.started_at, format: :mdahm)}"
-    "#{message_prefix}#{event.name}#{event_time}\n#{event_url(event)}"
+    unless without_time
+      message += " #{l(event_history.started_at, format: :mdahm)}"
+    end
+    "#{message}\n#{event_url(event)}"
   end
 end

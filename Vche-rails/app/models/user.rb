@@ -70,6 +70,8 @@ class User < ApplicationRecord
   has_many :updated_event_schedules, class_name: 'EventSchedule', foreign_key: :updated_user_id, dependent: :nullify, inverse_of: :updated_user
   has_many :created_event_histories, class_name: 'EventHistory', foreign_key: :created_user_id, dependent: :nullify, inverse_of: :created_user
   has_many :updated_event_histories, class_name: 'EventHistory', foreign_key: :updated_user_id, dependent: :nullify, inverse_of: :updated_user
+  has_many :created_event_appeals, class_name: 'EventAppeal', foreign_key: :created_user_id, dependent: :nullify, inverse_of: :created_user
+  has_many :updated_event_appeals, class_name: 'EventAppeal', foreign_key: :updated_user_id, dependent: :nullify, inverse_of: :updated_user
 
   has_many :all_event_follow_requests, class_name: 'EventFollowRequest', dependent: :destroy
   has_many :event_follow_requests, -> { secret_event_or_over }, dependent: nil, inverse_of: :event

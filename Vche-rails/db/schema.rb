@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_31_032132) do
+ActiveRecord::Schema.define(version: 2022_01_15_070259) do
 
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
     t.string "uid"
@@ -68,6 +68,26 @@ ActiveRecord::Schema.define(version: 2021_12_31_032132) do
     t.index ["emoji"], name: "index_categories_on_emoji", unique: true
     t.index ["name"], name: "index_categories_on_name", unique: true
     t.index ["slug"], name: "index_categories_on_slug", unique: true
+  end
+
+  create_table "event_appeals", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "event_id", null: false
+    t.bigint "user_id"
+    t.string "appeal_role"
+    t.boolean "available", null: false
+    t.text "message"
+    t.text "message_before"
+    t.text "message_after"
+    t.bigint "created_user_id"
+    t.bigint "updated_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_user_id"], name: "index_event_appeals_on_created_user_id"
+    t.index ["event_id"], name: "index_event_appeals_on_event_id"
+    t.index ["uid"], name: "index_event_appeals_on_uid", unique: true
+    t.index ["updated_user_id"], name: "index_event_appeals_on_updated_user_id"
+    t.index ["user_id"], name: "index_event_appeals_on_user_id"
   end
 
   create_table "event_attendances", charset: "utf8mb4", collation: "utf8mb4_0900_as_ci", force: :cascade do |t|
@@ -305,6 +325,10 @@ ActiveRecord::Schema.define(version: 2021_12_31_032132) do
 
   add_foreign_key "accounts", "platforms"
   add_foreign_key "accounts", "users"
+  add_foreign_key "event_appeals", "events"
+  add_foreign_key "event_appeals", "users"
+  add_foreign_key "event_appeals", "users", column: "created_user_id"
+  add_foreign_key "event_appeals", "users", column: "updated_user_id"
   add_foreign_key "event_attendances", "events"
   add_foreign_key "event_attendances", "users"
   add_foreign_key "event_flavors", "events"

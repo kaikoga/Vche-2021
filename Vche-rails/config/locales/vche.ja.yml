@@ -18,6 +18,7 @@ ja:
       category: 開催形態
       comment: コメント
       event: イベント
+      event_appeal: 参加告知文
       event_attendance: 参加表明
       event_categories: イベントの開催形態
       event_flavor: イベントのフレイバー
@@ -43,6 +44,10 @@ ja:
         info_url: 外部サイト
         flavors: フレイバー
         taste: 雰囲気
+      event_appeal:
+        message: メッセージ
+        message_before: メッセージ(開始前)
+        message_after: メッセージ(終了後)
       event_follow_request_archive:
         action: 処理結果
       event_history:
