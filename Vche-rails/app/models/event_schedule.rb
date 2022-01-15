@@ -50,6 +50,8 @@ class EventSchedule < ApplicationRecord
     next_instance&.yield_self { |date| at_date(date) }
   end
 
+  private
+
   def at_date(date)
     date_options = { year: date.year, month: date.month, day: date.day }
     history_resolution =

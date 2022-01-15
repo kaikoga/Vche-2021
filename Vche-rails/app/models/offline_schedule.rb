@@ -34,6 +34,8 @@ class OfflineSchedule < ApplicationRecord
     recent_instances(dates).map { |date| at_date(date) }
   end
 
+  private
+
   def at_date(date)
     date_options = { year: date.year, month: date.month, day: date.day }
     history_resolution = Time.current > end_at.change(date_options) ? :ended : :information
