@@ -48,7 +48,7 @@ class EventsLoyalty < ApplicationLoyalty
   end
 
   def appeal?
-    true
+    LoyaltyTools.event_accessible?(record, user)
   end
 
   concerning :Model do

@@ -61,6 +61,7 @@ Rails.application.routes.draw do
         post :add_user
         post :change_user
         post :remove_user
+        get :appeal
       end
       resource :resolution, controller: 'events/event_histories/resolutions', only: [:edit, :update]
       resource :reschedule, controller: 'events/event_histories/reschedules', only: [:new, :create]

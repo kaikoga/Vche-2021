@@ -132,6 +132,12 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
     redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: I18n.t('notice.events/event_histories.remove_user.outsider')
   end
 
+  def appeal
+    @event_history = find_event_history
+    authorize! @event_history
+    redirect_to helpers.intent_url_for(@event_history)
+  end
+
   private
 
   def find_user
