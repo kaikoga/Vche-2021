@@ -42,11 +42,11 @@ class EventSchedule < ApplicationRecord
 
   belongs_to :event
 
-  def recent_schedule(dates)
+  def recent_histories(dates)
     recent_instances(dates).map { |date| at_date(date) }
   end
 
-  def next_schedule
+  def next_history
     next_instance&.yield_self { |date| at_date(date) }
   end
 

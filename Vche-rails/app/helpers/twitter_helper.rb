@@ -1,6 +1,6 @@
 module TwitterHelper
   def intent_url_for_event(event)
-    event_history = event.next_schedule
+    event_history = event.next_history
     intent_url_for(event_history, without_time: true)
   end
 

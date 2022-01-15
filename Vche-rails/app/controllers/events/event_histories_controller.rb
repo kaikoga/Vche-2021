@@ -22,7 +22,7 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
 
   def at
     started_at = Time.zone.parse(params[:datetime])
-    @event_history = @event.recent_schedule([started_at.beginning_of_day]).detect { |h| h.started_at = started_at }
+    @event_history = @event.recent_histories([started_at.beginning_of_day]).detect { |h| h.started_at = started_at }
     authorize! @event_history
     render :show
   end

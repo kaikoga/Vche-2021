@@ -30,7 +30,7 @@ class OfflineSchedule < ApplicationRecord
 
   belongs_to :user
 
-  def recent_schedule(dates)
+  def recent_histories(dates)
     recent_instances(dates).map { |date| at_date(date) }
   end
 
