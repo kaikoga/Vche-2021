@@ -22,6 +22,8 @@
           = link_to '参加表明を解除', unattend_event_event_history_path(event, event_history), method: :post, class: 'button'
         - if loyalty(event_history, 'events/event_histories').memory?
           = link_to '思い出を書く', new_user_event_memory_path(user, event_id: event, started_at: event_history), class: 'button'
+        - if loyalty(event_history, 'events/event_histories').appeal?
+          = external_link_to 'ツイート', appeal_event_event_history_path(event, event_history), class: 'button -external -tweet'
 
   div
     span.resolution = event_history.resolution_emoji_text

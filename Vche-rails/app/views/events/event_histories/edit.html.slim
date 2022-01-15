@@ -1,6 +1,6 @@
 h1 = "#{EventHistory.model_name.human}を編集する"
 
-= render 'events/strip', event: @event, user: @user
+= render 'events/strip', event: @event, user: @user, without_appeal: true
 
 = render 'form', event: @event, event_history: @event_history
 

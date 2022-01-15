@@ -35,6 +35,7 @@
 class EventHistory < ApplicationRecord
   include Vche::Uid
   include Vche::EditorFields
+  include Vche::RepeatInstance
 
   include Enums::Resolution
   include Enums::DefaultAudienceRole

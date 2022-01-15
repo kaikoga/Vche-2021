@@ -10,9 +10,9 @@ div class="events -#{_layout}"
       = link_to event_icon_tag(event), event
       span.name = link_to event.name, event
       span.hashtag = event.hashtag
-      - next_schedule = event.next_schedule
-      - if next_schedule
-        span.start_at = link_to l(next_schedule.started_at), event_event_history_path(event, next_schedule)
+      - next_history = event.next_history
+      - if next_history
+        span.start_at = link_to l(next_history.started_at), event_event_history_path(event, next_history)
       - if current_user
         span.following_event = current_user.following_event?(event)&.text || EventFollow.role.irrelevant.text
       - if actions == :hashtag

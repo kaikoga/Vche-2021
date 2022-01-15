@@ -1,22 +1,13 @@
 module TwitterHelper
   def intent_url_for_event(event)
-    event_history = event.find_or_build_history(Time.current)
-    intent_url_for(event_history)
+    event_history = event.next_history
+    intent_url_for(event_history, without_time: true)
   end
 
-  def intent_url_for(event_history)
+  def intent_url_for(event_history, without_time: false)
     event = event_history.event
-    message =
-      if Time.current < (event_history.opened_at || event_history.started_at)
-        "チェック! #{event.name}\n#{event_url(event)}"
-      elsif Time.current < event_history.ended_at
-        "チェックイン! #{event.name}\n#{event_url(event)}"
-      else
-        "チェック! #{event.name}\n#{event_url(event)}"
-      end
-
     intent_url(
-      message: message,
+      message: message_for(event_history, without_time: without_time),
       hashtags: [event.hashtag_without_hash, 'Vche'].compact,
       related: [event.primary_sns_name, 'vche_jp'].compact
     )
@@ -30,5 +21,26 @@ module TwitterHelper
       related: related.join(',')
     }.compact
     uri.to_s
+  end
+
+  def message_for(event_history, without_time: false)
+    default_message_for(event_history, without_time: without_time)
+  end
+
+  private
+
+  def default_message_for(event_history, without_time: false)
+    event = event_history.event
+    now = Time.current
+    if !event_history.opened?(now)
+      message_prefix = 'チェック! '
+    elsif !event_history.ended?(now)
+      message_prefix = 'チェックイン! '
+      without_time = true
+    else
+      message_prefix = '終了! '
+    end
+    event_time = without_time ? nil : " #{l(event_history.started_at, format: :mdahm)}"
+    "#{message_prefix}#{event.name}#{event_time}\n#{event_url(event)}"
   end
 end

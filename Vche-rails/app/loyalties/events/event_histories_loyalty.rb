@@ -51,6 +51,10 @@ class Events::EventHistoriesLoyalty < ApplicationLoyalty
     LoyaltyTools.event_accessible?(record.event, user) && !record.resolution.phantom? && user && user.attending_event?(record)
   end
 
+  def appeal?
+    LoyaltyTools.event_accessible?(record.event, user)
+  end
+
   concerning :Model do
     def backstage?
       LoyaltyTools.user_is_backstage_member?(record.event, user)

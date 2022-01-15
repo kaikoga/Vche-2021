@@ -132,21 +132,25 @@ class Event < ApplicationRecord
     self.trust = base_trust + root_trust + trust
   end
 
-  def next_schedule
-    @next_schedule ||= event_schedules.filter_map(&:next_schedule).min_by(&:started_at)
+  def next_history(reload: false)
+    if reload
+      @next_history = nil
+      self.reload
+    end
+    @next_history ||= event_schedules.filter_map(&:next_history).concat(event_histories.reject(&:closed?)).min_by(&:started_at)
   end
 
-  def recent_schedule(recent_dates)
-    event_schedules.flat_map { |schedule| schedule.recent_schedule(recent_dates) }.concat(event_histories)
+  def recent_histories(recent_dates)
+    event_schedules.flat_map { |schedule| schedule.recent_histories(recent_dates) }.concat(event_histories.reject(&:closed?))
       .index_by(&:started_at).values
   end
 
   def scheduled_at?(time)
-    event_schedules.flat_map { |schedule| schedule.recent_schedule([time]) }.any? { |history| history.started_at == time }
+    event_schedules.flat_map { |schedule| schedule.recent_histories([time]) }.any? { |history| history.started_at == time }
   end
 
   def find_or_build_history(start_at)
-    recent_schedule([start_at.beginning_of_day])
+    recent_histories([start_at.beginning_of_day])
       .detect { |history| history.started_at == start_at } ||
       EventHistory.new(
         event: self,

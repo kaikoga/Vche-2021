@@ -1,6 +1,6 @@
 h1 = "#{EventHistory.model_name.human}を日程変更する"
 
-= render 'events/strip', event: @event, user: @user
+= render 'events/strip', event: @event, user: @user, without_appeal: true
 
 = render 'event_histories/strip', event: @event, event_history: @event_history, user: @user
 

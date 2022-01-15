@@ -22,7 +22,7 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
 
   def at
     started_at = Time.zone.parse(params[:datetime])
-    @event_history = @event.recent_schedule([started_at.beginning_of_day]).detect { |h| h.started_at = started_at }
+    @event_history = @event.recent_histories([started_at.beginning_of_day]).detect { |h| h.started_at = started_at }
     authorize! @event_history
     render :show
   end
@@ -130,6 +130,12 @@ class Events::EventHistoriesController < ApplicationController::Bootstrap
     redirect_to event_event_history_event_attendances_path(@event, @event_history)
   rescue Operations::EventHistory::UpdateUserRole::Outsider
     redirect_to event_event_history_event_attendances_path(@event, @event_history), notice: I18n.t('notice.events/event_histories.remove_user.outsider')
+  end
+
+  def appeal
+    @event_history = find_event_history
+    authorize! @event_history
+    redirect_to helpers.intent_url_for(@event_history)
   end
 
   private
