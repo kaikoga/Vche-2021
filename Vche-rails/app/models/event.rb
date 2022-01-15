@@ -132,12 +132,16 @@ class Event < ApplicationRecord
     self.trust = base_trust + root_trust + trust
   end
 
-  def next_schedule
-    @next_schedule ||= event_schedules.filter_map(&:next_schedule).min_by(&:started_at)
+  def next_schedule(reload: false)
+    if reload
+      @next_schedule = nil
+      self.reload
+    end
+    @next_schedule ||= event_schedules.filter_map(&:next_schedule).concat(event_histories.reject(&:closed?)).min_by(&:started_at)
   end
 
   def recent_schedule(recent_dates)
-    event_schedules.flat_map { |schedule| schedule.recent_schedule(recent_dates) }.concat(event_histories)
+    event_schedules.flat_map { |schedule| schedule.recent_schedule(recent_dates) }.concat(event_histories.reject(&:closed?))
       .index_by(&:started_at).values
   end
 

@@ -32,9 +32,9 @@ module TwitterHelper
   def default_message_for(event_history, without_time: false)
     event = event_history.event
     now = Time.current
-    if event_history.opened?(now)
+    if !event_history.opened?(now)
       message_prefix = 'チェック! '
-    elsif event_history.ended?(now)
+    elsif !event_history.ended?(now)
       message_prefix = 'チェックイン! '
       without_time = true
     else

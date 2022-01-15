@@ -75,4 +75,18 @@ class EventTest < ActiveSupport::TestCase
       assert { @event.next_schedule.started_at == Time.zone.parse('2022-01-18 22:00:00') }
     end
   end
+
+  test '#next_schedule with event_history' do
+    @event.event_schedules.create!(start_at: '2022-01-11 22:00:00', end_at: '2022-01-11 23:00:00', repeat: :every_week)
+    @event.event_histories.create!(started_at: '2022-01-14 22:00:00', ended_at: '2022-01-14 23:00:00')
+    travel_to(Time.zone.parse('2022-01-10 21:00:00')) do
+      assert { @event.next_schedule(reload: true).started_at == Time.zone.parse('2022-01-11 22:00:00') }
+    end
+    travel_to(Time.zone.parse('2022-01-13 21:00:00')) do
+      assert { @event.next_schedule(reload: true).started_at == Time.zone.parse('2022-01-14 22:00:00') }
+    end
+    travel_to(Time.zone.parse('2022-01-16 21:00:00')) do
+      assert { @event.next_schedule(reload: true).started_at == Time.zone.parse('2022-01-18 22:00:00') }
+    end
+  end
 end
