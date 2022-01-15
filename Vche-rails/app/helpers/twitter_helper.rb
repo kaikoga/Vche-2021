@@ -6,10 +6,11 @@ module TwitterHelper
 
   def intent_url_for(event_history)
     event = event_history.event
+    now = Time.current
     message =
-      if Time.current < (event_history.opened_at || event_history.started_at)
+      if event_history.opened?(now)
         "チェック! #{event.name}\n#{event_url(event)}"
-      elsif Time.current < event_history.ended_at
+      elsif event_history.ended?(now)
         "チェックイン! #{event.name}\n#{event_url(event)}"
       else
         "チェック! #{event.name}\n#{event_url(event)}"
