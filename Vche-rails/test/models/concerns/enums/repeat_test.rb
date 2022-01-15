@@ -25,8 +25,13 @@
 require 'test_helper'
 
 class Enums::RepeatTest < ActiveSupport::TestCase
+  setup do
+    @start_at = Time.zone.parse('2022-01-11 22:00:00')
+    @end_at = Time.zone.parse('2022-01-11 23:00:00')
+  end
+
   test '#next_instance for oneshot' do
-    item = RepeatClass.new(start_at: Time.zone.parse('2022-01-11 22:00:00'), end_at: Time.zone.parse('2022-01-11 23:00:00'), repeat: :oneshot)
+    item = RepeatClass.new(start_at: @start_at, end_at: @end_at, repeat: :oneshot)
     travel_to(Time.zone.parse('2022-01-11 00:00:00')) do
       assert { item.next_instance == Time.zone.parse('2022-01-11 22:00:00') }
     end
@@ -39,7 +44,7 @@ class Enums::RepeatTest < ActiveSupport::TestCase
   end
 
   test '#next_instance for every_day' do
-    item = RepeatClass.new(start_at: Time.zone.parse('2022-01-11 22:00:00'), end_at: Time.zone.parse('2022-01-11 23:00:00'), repeat: :every_day)
+    item = RepeatClass.new(start_at: @start_at, end_at: @end_at, repeat: :every_day)
     travel_to(Time.zone.parse('2022-01-11 00:00:00')) do
       assert { item.next_instance == Time.zone.parse('2022-01-11 22:00:00') }
     end
@@ -52,7 +57,7 @@ class Enums::RepeatTest < ActiveSupport::TestCase
   end
 
   test '#next_instance for every_week' do
-    item = RepeatClass.new(start_at: Time.zone.parse('2022-01-11 22:00:00'), end_at: Time.zone.parse('2022-01-11 23:00:00'), repeat: :every_week)
+    item = RepeatClass.new(start_at: @start_at, end_at: @end_at, repeat: :every_week)
     travel_to(Time.zone.parse('2022-01-11 00:00:00')) do
       assert { item.next_instance == Time.zone.parse('2022-01-11 22:00:00') }
     end
@@ -64,10 +69,62 @@ class Enums::RepeatTest < ActiveSupport::TestCase
     end
   end
 
+  test '#next_instance with schedule over midnight' do
+    item = RepeatClass.new(start_at: @start_at, end_at: @start_at + 3.hours, repeat: :every_day)
+    travel_to(Time.zone.parse('2022-01-11 00:00:00')) do
+      assert { item.next_instance == Time.zone.parse('2022-01-11 22:00:00') }
+    end
+    travel_to(Time.zone.parse('2022-01-11 23:30:00')) do
+      assert { item.next_instance == Time.zone.parse('2022-01-11 22:00:00') }
+    end
+    travel_to(Time.zone.parse('2022-01-12 00:30:00')) do
+      assert { item.next_instance == Time.zone.parse('2022-01-11 22:00:00') }
+    end
+    travel_to(Time.zone.parse('2022-01-12 02:30:00')) do
+      assert { item.next_instance == Time.zone.parse('2022-01-12 22:00:00') }
+    end
+  end
+
+  test '#next_instance with schedule over multiple days' do
+    item = RepeatClass.new(start_at: @start_at, end_at: @start_at + 3.days, repeat: :every_week)
+    travel_to(Time.zone.parse('2022-01-11 00:00:00')) do
+      assert { item.next_instance == Time.zone.parse('2022-01-11 22:00:00') }
+    end
+    travel_to(Time.zone.parse('2022-01-12 00:00:00')) do
+      assert { item.next_instance == Time.zone.parse('2022-01-11 22:00:00') }
+    end
+    travel_to(Time.zone.parse('2022-01-13 23:30:00')) do
+      assert { item.next_instance == Time.zone.parse('2022-01-11 22:00:00') }
+    end
+    travel_to(Time.zone.parse('2022-01-14 00:30:00')) do
+      assert { item.next_instance == Time.zone.parse('2022-01-11 22:00:00') }
+    end
+    travel_to(Time.zone.parse('2022-01-15 02:30:00')) do
+      assert { item.next_instance == Time.zone.parse('2022-01-18 22:00:00') }
+    end
+  end
+
+  test '#next_instance with explicit close_at overrides end_at' do
+    item = RepeatClass.new(start_at: @start_at, end_at: @end_at, close_at: @end_at + 30.minutes, repeat: :every_day)
+    travel_to(Time.zone.parse('2022-01-11 00:00:00')) do
+      assert { item.next_instance == Time.zone.parse('2022-01-11 22:00:00') }
+    end
+    travel_to(Time.zone.parse('2022-01-11 23:10:00')) do
+      assert { item.next_instance == Time.zone.parse('2022-01-11 22:00:00') }
+    end
+    travel_to(Time.zone.parse('2022-01-11 23:40:00')) do
+      assert { item.next_instance == Time.zone.parse('2022-01-12 22:00:00') }
+    end
+    travel_to(Time.zone.parse('2022-01-12 00:00:00')) do
+      assert { item.next_instance == Time.zone.parse('2022-01-12 22:00:00') }
+    end
+  end
+
   class RepeatClass
+    extend Enumerize
+
     include ActiveModel::Model
-    include Enumerize
     include Enums::Repeat
-    attr_accessor :start_at, :end_at
+    attr_accessor :start_at, :end_at, :close_at
   end
 end

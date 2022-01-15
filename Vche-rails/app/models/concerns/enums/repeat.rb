@@ -27,9 +27,10 @@ module Enums::Repeat
     def next_instance
       return start_at if repeat.to_sym == :oneshot
 
-      now = Time.current
-      start = to_start_at(now)
       duration = (try(:close_at) || end_at) - start_at
+      duration_by_days = duration / 86400 + 1
+      now = Time.current
+      start = to_start_at(now - duration_by_days.days)
       (0...35).map { |i| start + i.days }.filter { |date| date + duration > now && instance_at_date?(date) }.take(1).first
     end
 
