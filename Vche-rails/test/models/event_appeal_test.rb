@@ -2,19 +2,21 @@
 #
 # Table name: event_appeals
 #
-#  id              :bigint           not null, primary key
-#  uid             :string(255)
-#  event_id        :bigint           not null
-#  user_id         :bigint
-#  appeal_role     :string(255)
-#  available       :boolean          not null
-#  message         :text(65535)
-#  message_before  :text(65535)
-#  message_after   :text(65535)
-#  created_user_id :bigint
-#  updated_user_id :bigint
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                :bigint           not null, primary key
+#  uid               :string(255)
+#  event_id          :bigint           not null
+#  user_id           :bigint
+#  appeal_role       :string(255)
+#  available         :boolean          not null
+#  use_system_footer :boolean          not null
+#  use_hashtag       :boolean          not null
+#  message           :text(65535)
+#  message_before    :text(65535)
+#  message_after     :text(65535)
+#  created_user_id   :bigint
+#  updated_user_id   :bigint
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
 #
 # Indexes
 #
