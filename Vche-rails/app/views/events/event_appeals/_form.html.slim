@@ -16,11 +16,15 @@
     = form.text_area :message_after, rows: 2
 
   = render_field form, :use_system_footer do
-    = form.check_box :use_system_footer
-    .message 公開イベントの場合、開催日時とVcheのイベントページURLをツイート文に含めます
+    = form.check_box :use_system_footer, disabled: !event.visible?
+    .message
+      | 公開イベントの場合、開催日時とVcheのイベントページURLをツイート文に含めます。
+      - unless event.visible?
+        br
+        .inline.-negative 非公開イベントなので、この機能は無効化されています。
   = render_field form, :use_hashtag do
     = form.check_box :use_hashtag
-    .message = "ハッシュタグ #{event.hashtag} をツイート文に含めます"
+    .message = "ハッシュタグ #{event.hashtag} をツイート文に含めます。"
 
   .actions = form.submit
 
