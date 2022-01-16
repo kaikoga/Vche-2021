@@ -102,6 +102,14 @@ class EventHistory < ApplicationRecord
     event.scheduled_at?(started_at)
   end
 
+  def event_appeal_for(user)
+    appeal = event.event_appeals.available.find_by(appeal_role: :personal, user: user)
+    return appeal if appeal
+
+    appeal_role = use_backstage_appeal_for?(user) ? :backstage : :audience
+    event.event_appeals.available.find_by(appeal_role: appeal_role) || EventAppeal::Default.new(event)
+  end
+
   private
 
   def recalculate_resolution
@@ -120,6 +128,12 @@ class EventHistory < ApplicationRecord
 
   def recalculate_capacity
     self.capacity ||= 0
+  end
+
+  def use_backstage_appeal_for?(user)
+    return nil unless user
+
+    user.attending_event_as_backstage_member?(self) || user.following_event_as_backstage_member?(event)
   end
 
   def cleanup_stale_schedule

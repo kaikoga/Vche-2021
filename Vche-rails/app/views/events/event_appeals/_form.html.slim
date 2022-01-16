@@ -1,0 +1,31 @@
+- event_appeal ||= nil
+
+- event = event_appeal.event
+
+= form_with(model: event_appeal, url: event_event_appeal_path(event, event_appeal.appeal_role), method: :patch, class: '-table') do |form|
+  = render_errors_header form
+
+  = render_field form, :available do
+    = form.check_box :available
+
+  = render_field form, :message, required: true do
+    = form.text_area :message, rows: 2
+  = render_field form, :message_before do
+    = form.text_area :message_before, rows: 2
+  = render_field form, :message_after do
+    = form.text_area :message_after, rows: 2
+
+  = render_field form, :use_system_footer do
+    = form.check_box :use_system_footer, disabled: !event.visible?
+    .message
+      | 公開イベントの場合、開催日時とVcheのイベントページURLをツイート文に含めます。
+      - unless event.visible?
+        br
+        .inline.-negative 非公開イベントなので、この機能は無効化されています。
+  = render_field form, :use_hashtag do
+    = form.check_box :use_hashtag
+    .message = "ハッシュタグ #{event.hashtag} をツイート文に含めます。"
+
+  .actions = form.submit
+
+  = render 'editor_info', resource: event_appeal

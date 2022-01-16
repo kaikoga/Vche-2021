@@ -110,3 +110,6 @@ ja:
     events/visibilities:
       update:
         success: 'イベントの公開範囲を更新しました'
+    events/event_appeals:
+      update:
+        success: 'イベントのツイート文を更新しました'

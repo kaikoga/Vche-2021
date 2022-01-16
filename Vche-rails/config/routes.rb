@@ -72,6 +72,7 @@ Rails.application.routes.draw do
         post :withdraw
       end
     end
+    resources :event_appeals, controller: 'events/event_appeals', only: [:edit, :update]
 
     resource :owner, controller: 'events/owners', only: [:edit, :update] do
       get :introduction

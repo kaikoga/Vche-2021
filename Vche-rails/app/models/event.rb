@@ -90,6 +90,8 @@ class Event < ApplicationRecord
   has_many :all_event_attendances, class_name: 'EventAttendance', dependent: :destroy
   has_many :event_attendances, -> { secret_user_or_over }, dependent: nil, inverse_of: :event
 
+  has_many :event_appeals, dependent: :destroy, inverse_of: :event
+
   has_many :event_memories, dependent: :destroy, inverse_of: :event
 
   before_validation :recalculate_capacity
@@ -179,6 +181,21 @@ class Event < ApplicationRecord
 
   def official?
     owners.exists?
+  end
+
+  def find_or_initialize_event_appeal_for(user, appeal_role)
+    user = nil unless appeal_role == 'personal'
+
+    event_appeals.find_or_initialize_by(appeal_role: appeal_role, user: user) do |ea|
+      default_appeal = EventAppeal::Default.new(self)
+      ea.available = false
+      ea.use_system_footer = true
+      ea.use_hashtag = true
+      ea.message = default_appeal.choose_message
+      ea.message_before = default_appeal.choose_message(:before)
+      ea.message_after = default_appeal.choose_message(:after)
+      ea.created_user = user
+    end
   end
 
   private

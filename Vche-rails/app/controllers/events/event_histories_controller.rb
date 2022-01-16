@@ -1,6 +1,6 @@
 class Events::EventHistoriesController < ApplicationController::Bootstrap
   before_action :find_parent_event
-  skip_before_action :require_login, only: [:index, :show]
+  skip_before_action :require_login, only: [:index, :show, :appeal]
 
   def index
     @event_histories = @event.event_histories.order(started_at: :desc).page(params[:page])

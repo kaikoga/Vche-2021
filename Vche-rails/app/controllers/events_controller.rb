@@ -1,5 +1,5 @@
 class EventsController < ApplicationController::Bootstrap
-  skip_before_action :require_login, only: [:index, :show]
+  skip_before_action :require_login, only: [:index, :show, :appeal]
 
   def index
     @form = CalendarPresenterForm.new(Event.public_or_over, index_params, filter: { trust: :all }, paginate: true)
