@@ -1,0 +1,26 @@
+- backstage = loyalty([@event, :audience], 'events/event_appeals').edit?
+
+h1 = "#{Event.model_name.human}の#{Event.human_attribute_name(:event_appeals)}を編集する"
+
+= render 'events/strip', event: @event, user: @user
+
+.panel.-roundbox
+  ul
+    - if backstage
+      li 個人用のメッセージが設定されている場合、優先して使用されます。
+    li 開始前のメッセージが設定されている場合、開場日時または開始日時以前に優先して使用されます。
+    li 終了後のメッセージが設定されている場合、解散日時または終了日時以降に優先して使用されます。
+  - if backstage
+    .actions
+      - EventAppeal.appeal_role.values.reverse.each do |appeal_role|
+        = link_to appeal_role.text, edit_event_event_appeal_path(@event, appeal_role), class: 'button'
+
+- if backstage
+  h2 = @event_appeal.appeal_role_text
+
+= render 'form', event_appeal: @event_appeal
+
+.panel
+  = link_to '戻る', @event, class: 'button'
+
+- set_meta_title_for(@event.name, "#{Event.human_attribute_name(:event_appeals)}を編集する")

@@ -18,7 +18,7 @@ ja:
       category: 開催形態
       comment: コメント
       event: イベント
-      event_appeal: 参加告知文
+      event_appeal: ツイート文
       event_attendance: 参加表明
       event_categories: イベントの開催形態
       event_flavor: イベントのフレイバー
@@ -45,6 +45,7 @@ ja:
         flavors: フレイバー
         taste: 雰囲気
       event_appeal:
+        available: カスタマイズする
         message: メッセージ
         message_before: メッセージ(開始前)
         message_after: メッセージ(終了後)
@@ -91,6 +92,7 @@ ja:
     capacity: 定員
     default_audience_role: デフォルトの参加方法
     event: イベント
+    event_appeals: ツイート文
     event_histories: 開催回
     event_schedules: イベント予定
     followers: フォロワー
@@ -115,6 +117,10 @@ ja:
     updated_at: 更新した日時
   enumerize:
     defaults:
+      appeal_role:
+        backstage: スタッフ用
+        audience: 一般参加者用
+        personal: 個人用
       multiplicity:
         single: 単発イベント
         multiple: 定期開催

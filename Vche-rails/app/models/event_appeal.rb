@@ -43,7 +43,7 @@ class EventAppeal < ApplicationRecord
 
   scope :available, -> { where(available: true) }
 
-  def choose_message(kind)
+  def choose_message(kind = nil)
     case kind
     when :before
       message_before.presence || message
@@ -51,6 +51,25 @@ class EventAppeal < ApplicationRecord
       message_after.presence || message
     else
       message
+    end
+  end
+
+  class Default
+    attr_reader :event_name
+
+    def initialize(event)
+      @event_name = event.name
+    end
+
+    def choose_message(kind = nil)
+      case kind
+      when :before
+        "チェック! #{@event_name}"
+      when :after
+        "終了! #{@event_name}"
+      else
+        "チェックイン! #{@event_name}"
+      end
     end
   end
 end

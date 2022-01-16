@@ -52,6 +52,8 @@ h2 = event.fullname
       = link_to '情報を見る', info_event_path(event), class: :button
     - if loyalty(event, :events).edit?
       = link_to '編集する', edit_event_path(event), class: 'button'
+    - if loyalty([event, :personal], 'events/event_appeals').edit?
+      = link_to 'ツイート文を編集する', edit_event_event_appeal_path(event, :personal), class: 'button'
     - if loyalty(event, 'events/visibilities').edit?
       = link_to '公開範囲を変更する', edit_event_visibility_path(event), class: 'button'
     - else

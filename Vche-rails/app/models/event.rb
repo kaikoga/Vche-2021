@@ -183,6 +183,18 @@ class Event < ApplicationRecord
     owners.exists?
   end
 
+  def find_or_initialize_event_appeal_for(user, appeal_role)
+    user = nil unless appeal_role == 'personal'
+
+    event_appeals.find_or_initialize_by(appeal_role: appeal_role, user: user) do |ea|
+      default_appeal = EventAppeal::Default.new(@event)
+      ea.message = default_appeal.choose_message
+      ea.message_before = default_appeal.choose_message(:before)
+      ea.message_after = default_appeal.choose_message(:after)
+      ea.created_user = user
+    end
+  end
+
   private
 
   def recalculate_capacity
