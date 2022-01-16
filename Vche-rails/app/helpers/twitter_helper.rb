@@ -13,6 +13,8 @@ module TwitterHelper
     )
   end
 
+  private
+
   def intent_url(message:, hashtags: [], related: [])
     uri = Addressable::URI.parse('https://twitter.com/intent/tweet')
     uri.query_values = {
@@ -23,8 +25,12 @@ module TwitterHelper
     uri.to_s
   end
 
-  def appeal_message_for(event_history, without_time: false)
+  def appeal_message_for(event_history, without_time: false, without_url: false)
     event = event_history.event
+    unless event.visible?
+      without_time = true
+      without_url = true
+    end
     appeal = event_history.event_appeal_for(current_user)
     now = Time.current
     if !event_history.opened?(now)
@@ -38,6 +44,9 @@ module TwitterHelper
     unless without_time
       message += " #{l(event_history.started_at, format: :mdahm)}"
     end
-    "#{message}\n#{event_url(event)}"
+    unless without_url
+      message += "\n#{event_url(event)}"
+    end
+    message
   end
 end
