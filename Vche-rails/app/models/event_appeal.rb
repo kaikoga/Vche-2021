@@ -73,5 +73,13 @@ class EventAppeal < ApplicationRecord
         "チェックイン! #{@event_name}"
       end
     end
+
+    def use_hashtag?
+      true
+    end
+
+    def use_system_footer?
+      true
+    end
   end
 end

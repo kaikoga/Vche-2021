@@ -30,6 +30,9 @@ class Events::EventAppealsController < ApplicationController::Bootstrap
   end
 
   def update_params
-    params.require(:event_appeal).permit(:available, :message, :message_before, :message_after)
+    params.require(:event_appeal).permit(
+      :available, :use_system_footer, :use_hashtag,
+      :message, :message_before, :message_after
+    )
   end
 end

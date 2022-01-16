@@ -188,6 +188,9 @@ class Event < ApplicationRecord
 
     event_appeals.find_or_initialize_by(appeal_role: appeal_role, user: user) do |ea|
       default_appeal = EventAppeal::Default.new(self)
+      ea.available = false
+      ea.use_system_footer = true
+      ea.use_hashtag = true
       ea.message = default_appeal.choose_message
       ea.message_before = default_appeal.choose_message(:before)
       ea.message_after = default_appeal.choose_message(:after)

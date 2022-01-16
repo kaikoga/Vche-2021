@@ -15,6 +15,13 @@
   = render_field form, :message_after do
     = form.text_area :message_after, rows: 2
 
+  = render_field form, :use_system_footer do
+    = form.check_box :use_system_footer
+    .message 公開イベントの場合、開催日時とVcheのイベントページURLをツイート文に含めます
+  = render_field form, :use_hashtag do
+    = form.check_box :use_hashtag
+    .message = "ハッシュタグ #{event.hashtag} をツイート文に含めます"
+
   .actions = form.submit
 
   = render 'editor_info', resource: event_appeal

@@ -46,6 +46,8 @@ ja:
         taste: 雰囲気
       event_appeal:
         available: カスタマイズする
+        use_system_footer: フッターを付与
+        use_hashtag: ハッシュタグを付与
         message: メッセージ
         message_before: メッセージ(開始前)
         message_after: メッセージ(終了後)
