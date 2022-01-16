@@ -40,7 +40,6 @@ class EventHistory < ApplicationRecord
   include Enums::Resolution
   include Enums::DefaultAudienceRole
 
-  validates :event_id, presence: true
   validates :resolution, unless: :official?, exclusion: { in: %w[scheduled announced], message: 'は主催のいるイベント用の状態です' }
   validates :resolution, exclusion: { in: %w[phantom], message: 'は選択できない状態です' }
   validates :started_at, presence: true
