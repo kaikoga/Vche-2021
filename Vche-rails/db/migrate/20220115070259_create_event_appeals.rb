@@ -6,6 +6,8 @@ class CreateEventAppeals < ActiveRecord::Migration[6.1]
       t.references :user, foreign_key: true, null: true
       t.string :appeal_role
       t.boolean :available, null: false
+      t.boolean :use_system_footer, null: false
+      t.boolean :use_hashtag, null: false
       t.text :message
       t.text :message_before
       t.text :message_after
