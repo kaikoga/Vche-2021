@@ -25,6 +25,7 @@ inherit_from:
   - .rubocop/performance.yml
   - .rubocop/rails.yml
   - .rubocop/style.yml
+  - .rubocop_todo.yml
 
 Style/FrozenStringLiteralComment:
   Enabled: false

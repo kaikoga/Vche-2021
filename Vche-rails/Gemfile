@@ -32,7 +32,7 @@ gem 'kaminari-i18n'
 gem 'oauth' # for twitter external of Sorcery
 gem 'qiita-markdown'
 gem 'public_uid'
-gem 'rails-i18n'
+gem 'rails-i18n', '~> 6.0'
 gem 'slack-notifier'
 gem 'slim'
 gem 'sorcery'
