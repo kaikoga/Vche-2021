@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
   include Banken
 
+  before_action :set_sentry_context
   before_action :require_login
+
   after_action :verify_authorized unless Rails.env.production?
 
   if Rails.application.config.x.vche.pretty_not_found
@@ -10,6 +12,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_sentry_context
+    Sentry.set_user(id: current_user&.id)
+  end
 
   def not_authenticated
     render 'error_not_authenticated'
