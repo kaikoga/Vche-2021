@@ -23,8 +23,8 @@ class UsersController < ApplicationController::Bootstrap
     @user = find_user
     authorize! @user
 
-    @backstage_events = @user.backstage_events.shared_or_over
-    @audience_events = @user.audience_events.shared_or_over.page(params[:page])
+    @form = UserEventsForm.new(@user, events_params, paginate: true, exclude: [:created])
+    @events = @form.events
   end
 
   def new
@@ -80,5 +80,9 @@ class UsersController < ApplicationController::Bootstrap
     params.require(:user).permit(
       :visibility, :user_role, :display_name, :primary_sns_url, :bio
     )
+  end
+
+  def events_params
+    params.permit(:filter, :page)
   end
 end

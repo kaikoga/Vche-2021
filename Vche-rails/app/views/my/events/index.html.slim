@@ -2,23 +2,16 @@ h1 = 'マイページ'
 
 = render 'my/user_strip', user: @user
 
-- backstage_events = @backstage_events.to_a
-- if backstage_events.any?
-  h2 = User.human_attribute_name(:backstage_events)
+= render 'users/event_filter', form: @form
 
-  .panel
-    = render 'events/cards', events: @backstage_events, card_cloud: true
+h2 = User.human_attribute_name(@form.events_field)
 
-- audience_events = @audience_events.to_a
-- if audience_events.any?
-  h2 = User.human_attribute_name(:audience_events)
-
-  .panel
-    = render 'events/cards', events: audience_events, card_cloud: true
-  .panel
-    = paginate @audience_events
+.panel
+  = render 'events/cards', events: @events, card_cloud: true
+.panel
+  = paginate @events
 
 .panel
   = link_to "新規#{Event.model_name.human}", new_event_path, class: 'button'
 
-- set_meta_title_for('自分のイベント')
+- set_meta_title_for(User.human_attribute_name(@form.events_field))

@@ -1,0 +1,15 @@
+- form ||= nil
+
+- _params = filtered_params
+- _params.merge!(form.params) if form
+
+.panel.-roundbox
+  .actions
+    - unless form&.excluded?(:following)
+      = link_to "#{User.human_attribute_name(:following_events)} (#{form.events_for(:following).count})", _params.merge(filter: :following), class: 'button'
+    - unless form&.excluded?(:backstage)
+      = link_to "#{User.human_attribute_name(:backstage_events)} (#{form.events_for(:backstage).count})", _params.merge(filter: :backstage), class: 'button'
+    - unless form&.excluded?(:audience)
+      = link_to "#{User.human_attribute_name(:audience_events)} (#{form.events_for(:audience).count})", _params.merge(filter: :audience), class: 'button'
+    - unless form&.excluded?(:created)
+      = link_to "#{User.human_attribute_name(:created_events)} (#{form.events_for(:created).count})", _params.merge(filter: :created), class: 'button'

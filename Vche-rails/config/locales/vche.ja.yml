@@ -78,8 +78,10 @@ ja:
         start_at: 開始日時
         end_at: 終了日時
       user:
-        audience_events: フォローしているイベント
+        audience_events: 参加しているイベント
         backstage_events: スタッフをしているイベント
+        created_events: 登録したイベント
+        following_events: フォローしているイベント
         email: ログインID
         display_name: 表示名
         bio: 自己紹介

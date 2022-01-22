@@ -3,7 +3,13 @@ class My::EventsController < ApplicationController::Bootstrap
 
   def index
     authorize!
-    @backstage_events = @user.backstage_events
-    @audience_events = @user.audience_events.page(params[:page])
+    @form = UserEventsForm.new(@user, index_params, paginate: true)
+    @events = @form.events
+  end
+
+  private
+
+  def index_params
+    params.permit(:filter, :page)
   end
 end
