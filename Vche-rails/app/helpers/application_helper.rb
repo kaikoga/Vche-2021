@@ -18,6 +18,14 @@ module ApplicationHelper
     end
   end
 
+  def inline_officiality_tag(value, emoji_only: false)
+    tag.span class: "inline -officiality #{value}" do
+      emoji = value ? '🐏' : '🌱'
+      enum_name = value ? 'official' : 'unofficial'
+      emoji_only ? emoji : "#{emoji}#{t(enum_name, scope: 'enumerize.defaults.officiality')}"
+    end
+  end
+
   def icon_size_num(size)
     case size
     when :small then '32px'

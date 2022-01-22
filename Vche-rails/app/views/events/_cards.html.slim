@@ -6,8 +6,9 @@
 div class="events -#{_layout}"
   - events.each do |event|
     .event.-card
+      = inline_officiality_tag(event.official?, emoji_only: true)
       = inline_visibility_tag(event.visibility, hide_public: true)
-      = link_to event_icon_tag(event), event
+      / = link_to event_icon_tag(event), event
       span.name = link_to event.name, event
       span.hashtag = event.hashtag
       - next_history = event.next_history
