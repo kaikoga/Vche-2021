@@ -28,10 +28,12 @@ class EventsController < ApplicationController::Bootstrap
 
   def new
     @event = Event.new(capacity: 0)
-    @role = params[:role] == 'owner' ? :owner : :participant
+    @role = new_params[:role] == 'owner' ? :owner : :participant
     authorize! @event
 
     if @role == :owner
+      @event.name = new_params[:name]
+      @event.hashtag = new_params[:hashtag]
       @event.organizer_name = current_user.display_name
       @event.primary_sns = "https://twitter.com/#{current_user.email}"
       @event.info_url = "https://twitter.com/#{current_user.email}"
@@ -165,6 +167,10 @@ class EventsController < ApplicationController::Bootstrap
 
   def show_params
     params.permit(:calendar, :date)
+  end
+
+  def new_params
+    @new_params ||= params.permit(:role, :name, :hashtag)
   end
 
   def create_params
