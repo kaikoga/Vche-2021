@@ -111,7 +111,9 @@ class EventsController < ApplicationController::Bootstrap
     authorize! @event
     @user = find_user
 
-    Operations::Event::RequestUpdateUserRole.new(event: @event, user: @user, approver: @user, role: params[:role]).perform!
+    Operations::Event::RequestUpdateUserRole.new(
+      event: @event, creator: current_user, user: @user, approver: @user, role: params[:role]
+    ).perform!
     redirect_to event_event_follows_url(@event), notice: I18n.t('notice.events.add_user.success')
   rescue ActiveRecord::RecordInvalid
     redirect_to event_event_follows_url(@event)
