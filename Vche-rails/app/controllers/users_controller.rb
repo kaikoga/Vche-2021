@@ -24,7 +24,7 @@ class UsersController < ApplicationController::Bootstrap
     authorize! @user
 
     @form = UserEventsForm.new(@user, events_params, paginate: true, exclude: [:created])
-    @events = @form.events
+    @events = @form.events.includes(:event_schedules, :event_histories)
   end
 
   def new

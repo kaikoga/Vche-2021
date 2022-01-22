@@ -4,7 +4,7 @@ class My::EventsController < ApplicationController::Bootstrap
   def index
     authorize!
     @form = UserEventsForm.new(@user, index_params, paginate: true)
-    @events = @form.events
+    @events = @form.events.includes(:event_schedules, :event_histories)
   end
 
   private

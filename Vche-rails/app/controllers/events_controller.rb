@@ -3,7 +3,7 @@ class EventsController < ApplicationController::Bootstrap
 
   def index
     @form = CalendarPresenterForm.new(Event.public_or_over, index_params, filter: { trust: :all }, paginate: true)
-    @events = @form.events.includes(:event_schedules)
+    @events = @form.events.includes(:event_schedules, :event_histories)
     authorize!
   end
 
