@@ -127,6 +127,9 @@ ja:
         single: 単発イベント
         multiple: 定期開催
         quantum: 不定期開催
+      officiality:
+        official: 公式
+        unofficial: 非公式
       repeat:
         oneshot: 繰り返しなし
         some_day: 不定
